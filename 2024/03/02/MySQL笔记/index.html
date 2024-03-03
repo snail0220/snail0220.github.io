@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="MySQLMySQL概述数据库相关概念   名称 全称 简称    数据库 存储数据的仓库，数据是有组织的进行存储 DataBase(DB)   数据库管理系统 操纵和管理数据库的大型软件 DataBase Management System(DBMS)   SQL 操作关系型数据库的编程语言，定义了一套操作关系型数据库统一标准 Structured Qunery Language(SQL)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MySQLMySQL概述数据库相关概念   名称 全称 简称    数据库 存储数据的仓库，数据是有组织的进行存储 DataBase(DB)   数据库管理系统 操纵和管理数据库的大型软件 DataBase Management System(DBMS)   SQL 操作关系型数据库的编程语言，定义了一套操作关系型数据库统一标准 Structured Qunery Language(SQL)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240303094054298.png">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240303100740736.png">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240303100824619.png">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240303100938301.png">
+<meta property="og:image" content="file:///E:/QQ/2194861505/Image/C2C/A4B65070B9BF6C0ECDC32AD7956AECE9.jpg">
+<meta property="og:image" content="file:///E:/QQ/2194861505/Image/C2C/4C8A1B042886A7EECB687245E8315CCA.jpg">
+<meta property="article:published_time" content="2024-03-02T07:15:24.431Z">
+<meta property="article:modified_time" content="2024-03-03T05:14:20.793Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240303094054298.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://snail0220.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-MySQL笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-02T07:15:24.431Z" itemprop="datePublished">2024-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="MySQL概述"><a href="#MySQL概述" class="headerlink" title="MySQL概述"></a>MySQL概述</h3><h4 id="数据库相关概念"><a href="#数据库相关概念" class="headerlink" title="数据库相关概念"></a>数据库相关概念</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>全称</th>
+<th>简称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据库</td>
+<td>存储数据的仓库，数据是有组织的进行存储</td>
+<td>DataBase(DB)</td>
+</tr>
+<tr>
+<td>数据库管理系统</td>
+<td>操纵和管理数据库的大型软件</td>
+<td>DataBase Management System(DBMS)</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>操作关系型数据库的编程语言，定义了一套操作关系型数据库统一标准</td>
+<td>Structured Qunery Language(SQL)</td>
+</tr>
+</tbody></table>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303094054298.png" alt="image-20240303094054298"></p>
+<p>不同的数据库管理系统都有一个同样的标准：SQL</p>
+<h4 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h4><h5 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h5><p>启动：net start mysql80</p>
+<p>停止：net stop mysql80</p>
+<h5 id="客户端连接"><a href="#客户端连接" class="headerlink" title="客户端连接"></a>客户端连接</h5><p>方式一：MySQL提供的客户端命令行工具</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303100740736.png" alt="image-20240303100740736"></p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303100824619.png" alt="image-20240303100824619"></p>
+<p>方式二：系统自带的命令行工具执行指令</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303100938301.png" alt="image-20240303100938301"></p>
+<p>mysql -u root -p（出错）</p>
+<p>(需配置PATH环境变量)</p>
+<h5 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h5><p>概念：建立在关系模型基础上，有多张相互连接的二维表组成的数据库。</p>
+<p>特点：</p>
+<ol>
+<li>使用表存储数据，格式统一，便于维护。</li>
+<li>使用SQL语言操作，标准统一，使用方便。</li>
+</ol>
+<h5 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型<img src="file:///E:\QQ\2194861505\Image\C2C\A4B65070B9BF6C0ECDC32AD7956AECE9.jpg" alt="img"></h5><h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><h5 id="SQL通用语法"><a href="#SQL通用语法" class="headerlink" title="SQL通用语法"></a>SQL通用语法</h5><ol>
+<li>SQL语句可以单行或多行书写，以分号结尾。</li>
+<li>SQL语句可以使用空格&#x2F;缩进来增强语句的可读性。</li>
+<li>MySQL数据库的SQL语句不区分大小写，关键字建议使用大写。</li>
+<li>注释：<ul>
+<li>​	单行注释：–注释内容 或 # 注释内容（MySQL特有）</li>
+<li>​    多行注释：&#x2F;(<em>)注释内容(</em>)&#x2F;</li>
+</ul>
+</li>
+</ol>
+<h5 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h5><p><img src="file:///E:\QQ\2194861505\Image\C2C\4C8A1B042886A7EECB687245E8315CCA.jpg" alt="img"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/" data-id="cltbbwu2q0000qcfwggaycapw" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/03/huang2024-2-26-2024-3-3%E5%91%A8%E6%8A%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          huang2024/2/26-2024/3/3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/02/04/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩学习周报</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/03/huang2024-2-26-2024-3-3%E5%91%A8%E6%8A%A5/">huang2024/2/26-2024/3/3</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/04/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/04/%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/04/%E6%96%B9%E6%B3%95%E6%A8%A1%E5%9D%97/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
