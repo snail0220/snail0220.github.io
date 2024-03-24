@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="MySQL–函数 1.定义：函数是指一段可以直接被另一段程序调用的程序或代码。   分类：字符串函数、数值函数、日期函数、流程函数 2.字符串函数 常见的如下    函数 功能    concat(s1,s2,…sn) 字符串拼接，将s1,s2,…sn拼接成一个字符串   lower(str) 将字符串str全部转化为小写   upper(str) 将字符串str全部转化为大写   lpad(st">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://snail0220.github.io/2024/03/24/%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MySQL–函数 1.定义：函数是指一段可以直接被另一段程序调用的程序或代码。   分类：字符串函数、数值函数、日期函数、流程函数 2.字符串函数 常见的如下    函数 功能    concat(s1,s2,…sn) 字符串拼接，将s1,s2,…sn拼接成一个字符串   lower(str) 将字符串str全部转化为小写   upper(str) 将字符串str全部转化为大写   lpad(st">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-24T05:50:13.133Z">
+<meta property="article:modified_time" content="2024-03-24T06:49:31.314Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://snail0220.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/24/%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-24T05:50:13.133Z" itemprop="datePublished">2024-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>MySQL–函数</p>
+<p>1.定义：函数是指一段可以直接被另一段程序调用的程序或代码。</p>
+<p>  分类：字符串函数、数值函数、日期函数、流程函数</p>
+<p>2.字符串函数</p>
+<p>常见的如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">concat(s1,s2,…sn)</td>
+<td align="center">字符串拼接，将s1,s2,…sn拼接成一个字符串</td>
+</tr>
+<tr>
+<td align="center">lower(str)</td>
+<td align="center">将字符串str全部转化为小写</td>
+</tr>
+<tr>
+<td align="center">upper(str)</td>
+<td align="center">将字符串str全部转化为大写</td>
+</tr>
+<tr>
+<td align="center">lpad(str,n,pad)</td>
+<td align="center">左填充，用字符串pad对str的左边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">rpad(str,n,pad)</td>
+<td align="center">右填充，用字符串pad对str的右边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">trim(str)</td>
+<td align="center">去掉字符串头部和尾部的空格</td>
+</tr>
+<tr>
+<td align="center">substring(str,start,len)</td>
+<td align="center">返回从字符串str从start位置起的len个长度的字符串</td>
+</tr>
+</tbody></table>
+<p>3.数值函数</p>
+<p>常见的如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">cell(x)</td>
+<td align="center">向上取整</td>
+</tr>
+<tr>
+<td align="center">floor(x)</td>
+<td align="center">向下取整</td>
+</tr>
+<tr>
+<td align="center">mod(x,y)</td>
+<td align="center">返回x&#x2F;y的模</td>
+</tr>
+<tr>
+<td align="center">rand()</td>
+<td align="center">返回0~1内的随机数</td>
+</tr>
+<tr>
+<td align="center">round(x,y)</td>
+<td align="center">求参数x的四舍五入的值，保留y位小数</td>
+</tr>
+</tbody></table>
+<p>案例：通过数据库的函数，生成一个六位数的随机验证码。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> lpad(round(rand()<span class="operator">*</span><span class="number">1000000</span>,<span class="number">0</span>),<span class="number">6</span>,<span class="string">&#x27;0&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>4.日期函数</p>
+<p>常见的如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">curdate()</td>
+<td align="center">返回当前日期</td>
+</tr>
+<tr>
+<td align="center">curtime()</td>
+<td align="center">返回当前时间</td>
+</tr>
+<tr>
+<td align="center">now()</td>
+<td align="center">返回当前日期和时间</td>
+</tr>
+<tr>
+<td align="center">year(date)</td>
+<td align="center">获取指定date的年份</td>
+</tr>
+<tr>
+<td align="center">month(date)</td>
+<td align="center">获取指定date的月份</td>
+</tr>
+<tr>
+<td align="center">day(date)</td>
+<td align="center">获取指定date的日期</td>
+</tr>
+<tr>
+<td align="center">date_add(date,interval expr type)</td>
+<td align="center">返回一个时期&#x2F;时间值加上一个时间间隔 expr后的时间值</td>
+</tr>
+<tr>
+<td align="center">datediff(date1,date2)</td>
+<td align="center">返回起始时间date1和结束时间date2之间的天数</td>
+</tr>
+</tbody></table>
+<p>案例：查询所有员工的入职天数，并根据入职天数倒序排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,datediff(cuidate(),entrydate) as &#x27;entrydays&#x27; from emp order by entrydays desc;</span><br></pre></td></tr></table></figure>
+
+<p>流程（控制）函数</p>
+<p>可以在SQL语句中实现条件筛选，从而提高语句的效率</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">if(value,t,f)</td>
+<td align="center">如果value为true，则返回t，否则返回f</td>
+</tr>
+<tr>
+<td align="center">ifnull(value1,value2)</td>
+<td align="center">如果value1不为空，返回value1.否则返回value2</td>
+</tr>
+<tr>
+<td align="center">case when [val1] then [res1] …else[default] end</td>
+<td align="center">如果val1为true，返回res1，…否则返回default默认值</td>
+</tr>
+<tr>
+<td align="center">case [expr] when [val1] then [res1]…else [default] end</td>
+<td align="center">如果expr的值等于val1，返回res1，…否则返回default默认值</td>
+</tr>
+</tbody></table>
+<p>案例：统计班级各个学员的成绩，展示的规则如下：</p>
+<p>大于等于85，展示优秀</p>
+<p>大于等于65，展示及格</p>
+<p>否则，展示不及格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table score(</span><br><span class="line">	id int comment &#x27;ID&#x27;,</span><br><span class="line">	name varchar(20) comment &#x27;姓名&#x27;</span><br><span class="line">	math int comment &#x27;数学&#x27;</span><br><span class="line">	english int comment &#x27;英语&#x27;</span><br><span class="line">	chinese int comment &#x27;语文&#x27;</span><br><span class="line">)comment &#x27;学员成绩表&#x27;；</span><br><span class="line">insert into score(id,name,math,english,chinese) values (1,&#x27;Tom&#x27;,67,88,95),(2,&#x27;Rose&#x27;,23,66,98),(3,&#x27;Jack&#x27;,54,98,76)</span><br></pre></td></tr></table></figure>
+
+<p>先展示分数—等级</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">	id,</span><br><span class="line">	name,</span><br><span class="line">	(case when math &gt;= 85 then&#x27;优秀’when math &gt;=60 then&#x27;及格&#x27;else&#x27;不及格&#x27;end )&#x27;数学&#x27;,</span><br><span class="line">	(case when english &gt;= 85 then&#x27;优秀’when english &gt;=60 then&#x27;及格&#x27;else&#x27;不及格&#x27;end )&#x27;英语&#x27;,</span><br><span class="line">	(case when chinese &gt;= 85 then&#x27;优秀’when chinese &gt;=60 then&#x27;及格’else&#x27;不及格&#x27;end )&#x27;语文&#x27;</span><br><span class="line">from scoer</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/03/24/%E5%87%BD%E6%95%B0/" data-id="clu55urbf0000b4fw6g3aa9pg" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/16/SQL-DCL/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩学习周报</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/24/%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/16/SQL-DCL/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/16/SQL-DQL/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/16/huang2024-3-11-2024-3-17%E5%91%A8%E6%8A%A5/">huang2024-3-11-2024-3-17周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/10/huang2024-3-4-2024-3-10%E5%91%A8%E6%8A%A5/">huang2024/3/4-2024/3/10</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

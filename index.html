@@ -73,6 +73,188 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/24/%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-24T05:50:13.133Z" itemprop="datePublished">2024-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>MySQL–函数</p>
+<p>1.定义：函数是指一段可以直接被另一段程序调用的程序或代码。</p>
+<p>  分类：字符串函数、数值函数、日期函数、流程函数</p>
+<p>2.字符串函数</p>
+<p>常见的如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">concat(s1,s2,…sn)</td>
+<td align="center">字符串拼接，将s1,s2,…sn拼接成一个字符串</td>
+</tr>
+<tr>
+<td align="center">lower(str)</td>
+<td align="center">将字符串str全部转化为小写</td>
+</tr>
+<tr>
+<td align="center">upper(str)</td>
+<td align="center">将字符串str全部转化为大写</td>
+</tr>
+<tr>
+<td align="center">lpad(str,n,pad)</td>
+<td align="center">左填充，用字符串pad对str的左边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">rpad(str,n,pad)</td>
+<td align="center">右填充，用字符串pad对str的右边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">trim(str)</td>
+<td align="center">去掉字符串头部和尾部的空格</td>
+</tr>
+<tr>
+<td align="center">substring(str,start,len)</td>
+<td align="center">返回从字符串str从start位置起的len个长度的字符串</td>
+</tr>
+</tbody></table>
+<p>3.数值函数</p>
+<p>常见的如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">cell(x)</td>
+<td align="center">向上取整</td>
+</tr>
+<tr>
+<td align="center">floor(x)</td>
+<td align="center">向下取整</td>
+</tr>
+<tr>
+<td align="center">mod(x,y)</td>
+<td align="center">返回x&#x2F;y的模</td>
+</tr>
+<tr>
+<td align="center">rand()</td>
+<td align="center">返回0~1内的随机数</td>
+</tr>
+<tr>
+<td align="center">round(x,y)</td>
+<td align="center">求参数x的四舍五入的值，保留y位小数</td>
+</tr>
+</tbody></table>
+<p>案例：通过数据库的函数，生成一个六位数的随机验证码。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> lpad(round(rand()<span class="operator">*</span><span class="number">1000000</span>,<span class="number">0</span>),<span class="number">6</span>,<span class="string">&#x27;0&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>4.日期函数</p>
+<p>常见的如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">curdate()</td>
+<td align="center">返回当前日期</td>
+</tr>
+<tr>
+<td align="center">curtime()</td>
+<td align="center">返回当前时间</td>
+</tr>
+<tr>
+<td align="center">now()</td>
+<td align="center">返回当前日期和时间</td>
+</tr>
+<tr>
+<td align="center">year(date)</td>
+<td align="center">获取指定date的年份</td>
+</tr>
+<tr>
+<td align="center">month(date)</td>
+<td align="center">获取指定date的月份</td>
+</tr>
+<tr>
+<td align="center">day(date)</td>
+<td align="center">获取指定date的日期</td>
+</tr>
+<tr>
+<td align="center">date_add(date,interval expr type)</td>
+<td align="center">返回一个时期&#x2F;时间值加上一个时间间隔 expr后的时间值</td>
+</tr>
+<tr>
+<td align="center">datediff(date1,date2)</td>
+<td align="center">返回起始时间date1和结束时间date2之间的天数</td>
+</tr>
+</tbody></table>
+<p>案例：查询所有员工的入职天数，并根据入职天数倒序排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,datediff(cuidate(),entrydate) as &#x27;entrydays&#x27; from emp order by entrydays desc;</span><br></pre></td></tr></table></figure>
+
+<p>流程（控制）函数</p>
+<p>可以在SQL语句中实现条件筛选，从而提高语句的效率</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">if(value,t,f)</td>
+<td align="center">如果value为true，则返回t，否则返回f</td>
+</tr>
+<tr>
+<td align="center">ifnull(value1,value2)</td>
+<td align="center">如果value1不为空，返回value1.否则返回value2</td>
+</tr>
+<tr>
+<td align="center">case when [val1] then [res1] …else[default] end</td>
+<td align="center">如果val1为true，返回res1，…否则返回default默认值</td>
+</tr>
+<tr>
+<td align="center">case [expr] when [val1] then [res1]…else [default] end</td>
+<td align="center">如果expr的值等于val1，返回res1，…否则返回default默认值</td>
+</tr>
+</tbody></table>
+<p>案例：统计班级各个学员的成绩，展示的规则如下：</p>
+<p>大于等于85，展示优秀</p>
+<p>大于等于65，展示及格</p>
+<p>否则，展示不及格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table score(</span><br><span class="line">	id int comment &#x27;ID&#x27;,</span><br><span class="line">	name varchar(20) comment &#x27;姓名&#x27;</span><br><span class="line">	math int comment &#x27;数学&#x27;</span><br><span class="line">	english int comment &#x27;英语&#x27;</span><br><span class="line">	chinese int comment &#x27;语文&#x27;</span><br><span class="line">)comment &#x27;学员成绩表&#x27;；</span><br><span class="line">insert into score(id,name,math,english,chinese) values (1,&#x27;Tom&#x27;,67,88,95),(2,&#x27;Rose&#x27;,23,66,98),(3,&#x27;Jack&#x27;,54,98,76)</span><br></pre></td></tr></table></figure>
+
+<p>先展示分数—等级</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">	id,</span><br><span class="line">	name,</span><br><span class="line">	(case when math &gt;= 85 then&#x27;优秀’when math &gt;=60 then&#x27;及格&#x27;else&#x27;不及格&#x27;end )&#x27;数学&#x27;,</span><br><span class="line">	(case when english &gt;= 85 then&#x27;优秀’when english &gt;=60 then&#x27;及格&#x27;else&#x27;不及格&#x27;end )&#x27;英语&#x27;,</span><br><span class="line">	(case when chinese &gt;= 85 then&#x27;优秀’when chinese &gt;=60 then&#x27;及格’else&#x27;不及格&#x27;end )&#x27;语文&#x27;</span><br><span class="line">from scoer</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/03/24/%E5%87%BD%E6%95%B0/" data-id="clu55urbf0000b4fw6g3aa9pg" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-SQL-DCL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/16/SQL-DCL/" class="article-date">
@@ -459,17 +641,59 @@
 <p>文本样式标签</p>
 <p>HTML图像</p>
 <h4 id="【案例一】简单的网页"><a href="#【案例一】简单的网页" class="headerlink" title="【案例一】简单的网页"></a>【案例一】简单的网页</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240309195718799.png" alt="image-20240309195718799"></p>
-<h5 id="HTML文档基本格式"><a href="#HTML文档基本格式" class="headerlink" title="HTML文档基本格式"></a>HTML文档基本格式</h5><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240309195616647.png" alt="image-20240309195616647"></p>
+<h5 id="HTML文档基本格式"><a href="#HTML文档基本格式" class="headerlink" title="HTML文档基本格式"></a>HTML文档基本格式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。</span><br><span class="line">&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;html&gt;标志着HTML文档的开始，&lt;/html&gt;标志着HTML文档的结束，在他们之间是文档的头部和主体内容。</span><br><span class="line">&lt;head&gt;:用于定义HTML文档的头部信息，也称为头部标签，紧跟在&lt;html&gt;之后。头部标签主要用来封装其他位于文档头部的标签，例如&lt;title&gt;、&lt;meta&gt;、&lt;link&gt;和&lt;stye&gt;等，用来描述文档的标题、作者，以及与其它文档的的关系。</span><br><span class="line">&lt;body&gt;;田干定义HTML文档所要显示的内容，也称为主体标签，浏监器中显示的所有文本、图像、音颛和视频等信息都必须位于&lt;body&gt;内，才能最终展示给用户。一个HTML文档中智能含有一对&lt;body&gt;，且&lt;body&gt;必须位于&lt;html&gt;内，位于&lt;head&gt;之后，与&lt;head&gt;是并列关系。</span><br></pre></td></tr></table></figure>
+
+
+
 <h5 id="标签的分类"><a href="#标签的分类" class="headerlink" title="标签的分类"></a>标签的分类</h5><p>1.双标签（体标签）&lt;&gt;内容&lt;&#x2F;&gt;</p>
 <p>2.单标签(空标签)&lt;&#x2F;&gt;</p>
-<h5 id="标签的关系"><a href="#标签的关系" class="headerlink" title="标签的关系"></a>标签的关系</h5><p>1.嵌套关系（包含关系）</p>
+<h5 id="标签的关系"><a href="#标签的关系" class="headerlink" title="标签的关系"></a>标签的关系</h5><p>1.嵌套关系（包含关系）<font>标签</p>
 <p>最外层的标签称之为“父级标签”，内层的标签称之为“子级标签“。只有双标签才能作为”父级标签“。</p>
 <p>2.并列关系（兄弟关系）</p>
 <p>两个标签处于同一级别，并且没有包含关系。如<head>标签和<body>标签就是并列关系。无论双标签还是单标签都可以拥有并列关系。</p>
-<h5 id="页面格式化标签"><a href="#页面格式化标签" class="headerlink" title="页面格式化标签"></a>页面格式化标签</h5><p>1.标题标签html head</p>
+<h5 id="页面格式化标签"><a href="#页面格式化标签" class="headerlink" title="页面格式化标签"></a>页面格式化标签</h5><p>1.标题标签html head（6个）</p>
 <p>2.段落标签h1,h2…</p>
 <p>3.水平线标签hr</p>
-<h4 id="【案例二】新闻页面"><a href="#【案例二】新闻页面" class="headerlink" title="【案例二】新闻页面"></a>【案例二】新闻页面</h4><h4 id="【案例三】图文混排"><a href="#【案例三】图文混排" class="headerlink" title="【案例三】图文混排"></a>【案例三】图文混排</h4>
+<table>
+<thead>
+<tr>
+<th align="center">属性名</th>
+<th align="center">含义</th>
+<th align="center">属性值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">align</td>
+<td align="center">设置水平线的对齐方式</td>
+<td align="center">可选择left、right、center三种值，默认为center，居中对齐显示</td>
+</tr>
+<tr>
+<td align="center">size</td>
+<td align="center">设置水平线的粗细</td>
+<td align="center">以像素为单位，默认为2像素</td>
+</tr>
+<tr>
+<td align="center">color</td>
+<td align="center">设置水平线的颜色</td>
+<td align="center">可用颜色名称，十六进制#RGB、rgb(r,g,b)</td>
+</tr>
+<tr>
+<td align="center">width</td>
+<td align="center">设置水平线的宽度</td>
+<td align="center">可以是确定的像素值，也可以是浏览器窗口的百分比，默认为100%</td>
+</tr>
+</tbody></table>
+<p>换行<br/></p>
+<h4 id="【案例二】新闻页面"><a href="#【案例二】新闻页面" class="headerlink" title="【案例二】新闻页面"></a>【案例二】新闻页面</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240319143401995.png" alt="image-20240319143401995"></p>
+<p>1.标签的属性</p>
+<p>HTML标签设置属性的基本语法格式如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> <span class="attr">属性1</span>=<span class="string">&quot;属性值1&quot;</span> <span class="attr">属性2</span>=<span class="string">&quot;属性值2&quot;</span>…&gt;</span>内容<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.HTML文档头部相关标签</p>
+<p>3.文本样式标签</p>
+<p>4.文本格式化标签</p>
+<h4 id="【案例三】图文混排"><a href="#【案例三】图文混排" class="headerlink" title="【案例三】图文混排"></a>【案例三】图文混排</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240324134455314.png" alt="image-20240324134455314"></p>
+
       
     </div>
     <footer class="article-footer">
@@ -788,47 +1012,6 @@
 
 
   
-    <article id="post-方法模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/04/%E6%96%B9%E6%B3%95%E6%A8%A1%E5%9D%97/" class="article-date">
-  <time class="dt-published" datetime="2024-02-04T01:34:30.081Z" itemprop="datePublished">2024-02-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="方法模块笔记"><a href="#方法模块笔记" class="headerlink" title="方法模块笔记"></a>方法模块笔记</h2><h5 id="Java方法模块的基本流程："><a href="#Java方法模块的基本流程：" class="headerlink" title="Java方法模块的基本流程："></a>Java方法模块的基本流程：</h5><ol>
-<li>创建一个Java模块：这可以通过在你的Java项目中创建一个新的包来实现。在包中，你可以创建多个类文件，并且这些类文件将组成一个模块。</li>
-<li>在模块中定义一个类并实现方法：在刚创建的模块中，你需要定义一个类，并在该类中实现你需要调用的方法。</li>
-<li>在其他模块中引用该模块：现在，你已经在一个模块中定义了一个类和方法。接下来，你需要在其他模块中引用并调用这个方法。为了实现这一步，你需要在其他模块中导入这个模块，并通过创建该类的实例并调用方法。</li>
-</ol>
-<h5 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义"></a>方法定义</h5><ol>
-<li><strong><strong>修饰符：修饰符是可选的，它可以告诉编译器如何调用该方法。例如，<code>public</code> 表示该方法可以从任何地方被访问。</strong></strong></li>
-<li>**** 返回值类型：方法可能会返回值，<code>returnValueType</code> 是方法返回值的数据类型。如果方法不返回任何值，那么 <code>returnValueType</code> 是 <code>void</code>。****</li>
-<li>**** 方法名：方法名是方法的实际名称，它应该是描述性的，以便其他人阅读你的代码时能够理解它的作用。****</li>
-<li>**** 参数列表：参数是传递给方法的值。参数之间用逗号分隔，每个参数都有自己的数据类型和名称。****</li>
-<li>**** 方法体：方法体是方法执行的代码块。****</li>
-</ol>
-<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>- 方法名应遵循驼峰命名法，首字母小写。<br>- 如果方法没有返回值，需要在方法声明时使用 <code>void</code> 关键字。<br>- 在方法体中，使用 <code>return</code> 语句来返回方法的值。<br>- 避免在方法中编写过多的代码，使方法尽可能地简洁和易于理解。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/02/04/%E6%96%B9%E6%B3%95%E6%A8%A1%E5%9D%97/" data-id="cltbbykx2000hlgfw99b0cw6j" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -879,6 +1062,10 @@
       <ul>
         
           <li>
+            <a href="/2024/03/24/%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/16/SQL-DCL/">(no title)</a>
           </li>
         
@@ -892,10 +1079,6 @@
         
           <li>
             <a href="/2024/03/10/huang2024-3-4-2024-3-10%E5%91%A8%E6%8A%A5/">huang2024/3/4-2024/3/10</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/">(no title)</a>
           </li>
         
       </ul>

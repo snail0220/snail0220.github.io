@@ -6,17 +6,18 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="第二章 从零开始构建HTML页面文档基本格式 文本样式标签 HTML图像 【案例一】简单的网页 HTML文档基本格式 标签的分类1.双标签（体标签）&lt;&gt;内容&lt;&#x2F;&gt; 2.单标签(空标签)&lt;&#x2F;&gt; 标签的关系1.嵌套关系（包含关系） 最外层的标签称之为“父级标签”，内层的标签称之为“子级标签“。只有双标签才能作为”父级标签“。 2.并列关系（兄弟关">
+  <meta name="description" content="第二章 从零开始构建HTML页面文档基本格式 文本样式标签 HTML图像 【案例一】简单的网页 HTML文档基本格式1234&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;ht">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="https://snail0220.github.io/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="第二章 从零开始构建HTML页面文档基本格式 文本样式标签 HTML图像 【案例一】简单的网页 HTML文档基本格式 标签的分类1.双标签（体标签）&lt;&gt;内容&lt;&#x2F;&gt; 2.单标签(空标签)&lt;&#x2F;&gt; 标签的关系1.嵌套关系（包含关系） 最外层的标签称之为“父级标签”，内层的标签称之为“子级标签“。只有双标签才能作为”父级标签“。 2.并列关系（兄弟关">
+<meta property="og:description" content="第二章 从零开始构建HTML页面文档基本格式 文本样式标签 HTML图像 【案例一】简单的网页 HTML文档基本格式1234&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;ht">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240309195718799.png">
-<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240309195616647.png">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240319143401995.png">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240324134455314.png">
 <meta property="article:published_time" content="2024-03-05T06:07:35.171Z">
-<meta property="article:modified_time" content="2024-03-09T11:57:35.446Z">
+<meta property="article:modified_time" content="2024-03-24T05:45:09.115Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240309195718799.png">
@@ -94,17 +95,59 @@
 <p>文本样式标签</p>
 <p>HTML图像</p>
 <h4 id="【案例一】简单的网页"><a href="#【案例一】简单的网页" class="headerlink" title="【案例一】简单的网页"></a>【案例一】简单的网页</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240309195718799.png" alt="image-20240309195718799"></p>
-<h5 id="HTML文档基本格式"><a href="#HTML文档基本格式" class="headerlink" title="HTML文档基本格式"></a>HTML文档基本格式</h5><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240309195616647.png" alt="image-20240309195616647"></p>
+<h5 id="HTML文档基本格式"><a href="#HTML文档基本格式" class="headerlink" title="HTML文档基本格式"></a>HTML文档基本格式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。</span><br><span class="line">&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;html&gt;标志着HTML文档的开始，&lt;/html&gt;标志着HTML文档的结束，在他们之间是文档的头部和主体内容。</span><br><span class="line">&lt;head&gt;:用于定义HTML文档的头部信息，也称为头部标签，紧跟在&lt;html&gt;之后。头部标签主要用来封装其他位于文档头部的标签，例如&lt;title&gt;、&lt;meta&gt;、&lt;link&gt;和&lt;stye&gt;等，用来描述文档的标题、作者，以及与其它文档的的关系。</span><br><span class="line">&lt;body&gt;;田干定义HTML文档所要显示的内容，也称为主体标签，浏监器中显示的所有文本、图像、音颛和视频等信息都必须位于&lt;body&gt;内，才能最终展示给用户。一个HTML文档中智能含有一对&lt;body&gt;，且&lt;body&gt;必须位于&lt;html&gt;内，位于&lt;head&gt;之后，与&lt;head&gt;是并列关系。</span><br></pre></td></tr></table></figure>
+
+
+
 <h5 id="标签的分类"><a href="#标签的分类" class="headerlink" title="标签的分类"></a>标签的分类</h5><p>1.双标签（体标签）&lt;&gt;内容&lt;&#x2F;&gt;</p>
 <p>2.单标签(空标签)&lt;&#x2F;&gt;</p>
-<h5 id="标签的关系"><a href="#标签的关系" class="headerlink" title="标签的关系"></a>标签的关系</h5><p>1.嵌套关系（包含关系）</p>
+<h5 id="标签的关系"><a href="#标签的关系" class="headerlink" title="标签的关系"></a>标签的关系</h5><p>1.嵌套关系（包含关系）<font>标签</p>
 <p>最外层的标签称之为“父级标签”，内层的标签称之为“子级标签“。只有双标签才能作为”父级标签“。</p>
 <p>2.并列关系（兄弟关系）</p>
 <p>两个标签处于同一级别，并且没有包含关系。如<head>标签和<body>标签就是并列关系。无论双标签还是单标签都可以拥有并列关系。</p>
-<h5 id="页面格式化标签"><a href="#页面格式化标签" class="headerlink" title="页面格式化标签"></a>页面格式化标签</h5><p>1.标题标签html head</p>
+<h5 id="页面格式化标签"><a href="#页面格式化标签" class="headerlink" title="页面格式化标签"></a>页面格式化标签</h5><p>1.标题标签html head（6个）</p>
 <p>2.段落标签h1,h2…</p>
 <p>3.水平线标签hr</p>
-<h4 id="【案例二】新闻页面"><a href="#【案例二】新闻页面" class="headerlink" title="【案例二】新闻页面"></a>【案例二】新闻页面</h4><h4 id="【案例三】图文混排"><a href="#【案例三】图文混排" class="headerlink" title="【案例三】图文混排"></a>【案例三】图文混排</h4>
+<table>
+<thead>
+<tr>
+<th align="center">属性名</th>
+<th align="center">含义</th>
+<th align="center">属性值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">align</td>
+<td align="center">设置水平线的对齐方式</td>
+<td align="center">可选择left、right、center三种值，默认为center，居中对齐显示</td>
+</tr>
+<tr>
+<td align="center">size</td>
+<td align="center">设置水平线的粗细</td>
+<td align="center">以像素为单位，默认为2像素</td>
+</tr>
+<tr>
+<td align="center">color</td>
+<td align="center">设置水平线的颜色</td>
+<td align="center">可用颜色名称，十六进制#RGB、rgb(r,g,b)</td>
+</tr>
+<tr>
+<td align="center">width</td>
+<td align="center">设置水平线的宽度</td>
+<td align="center">可以是确定的像素值，也可以是浏览器窗口的百分比，默认为100%</td>
+</tr>
+</tbody></table>
+<p>换行<br/></p>
+<h4 id="【案例二】新闻页面"><a href="#【案例二】新闻页面" class="headerlink" title="【案例二】新闻页面"></a>【案例二】新闻页面</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240319143401995.png" alt="image-20240319143401995"></p>
+<p>1.标签的属性</p>
+<p>HTML标签设置属性的基本语法格式如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> <span class="attr">属性1</span>=<span class="string">&quot;属性值1&quot;</span> <span class="attr">属性2</span>=<span class="string">&quot;属性值2&quot;</span>…&gt;</span>内容<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.HTML文档头部相关标签</p>
+<p>3.文本样式标签</p>
+<p>4.文本格式化标签</p>
+<h4 id="【案例三】图文混排"><a href="#【案例三】图文混排" class="headerlink" title="【案例三】图文混排"></a>【案例三】图文混排</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240324134455314.png" alt="image-20240324134455314"></p>
+
       
     </div>
     <footer class="article-footer">
@@ -182,6 +225,10 @@
       <ul>
         
           <li>
+            <a href="/2024/03/24/%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/16/SQL-DCL/">(no title)</a>
           </li>
         
@@ -195,10 +242,6 @@
         
           <li>
             <a href="/2024/03/10/huang2024-3-4-2024-3-10%E5%91%A8%E6%8A%A5/">huang2024/3/4-2024/3/10</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/">(no title)</a>
           </li>
         
       </ul>
