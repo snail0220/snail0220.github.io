@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2024/3 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="MySQL事务MySQL事务是一种用于维护数据库完整性的机制，它保证了数据库操作的原子性、一致性、隔离性和持久性（ACID属性）。在MySQL中，只有使用了InnoDB存储引擎的数据库或表才支持事务。以下是关于MySQL事务的详细笔记： ACID属性1.原子性（Atomicity）：事务中的所有操作要么全部执行成功，要么全部失败回滚，不会只执行其中的一部分操作。 2.一致性（Consistency">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://snail0220.github.io/archives/2024/03/page/2/index.html">
+<meta property="og:url" content="https://snail0220.github.io/2024/04/07/%E4%BA%8B%E5%8A%A1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MySQL事务MySQL事务是一种用于维护数据库完整性的机制，它保证了数据库操作的原子性、一致性、隔离性和持久性（ACID属性）。在MySQL中，只有使用了InnoDB存储引擎的数据库或表才支持事务。以下是关于MySQL事务的详细笔记： ACID属性1.原子性（Atomicity）：事务中的所有操作要么全部执行成功，要么全部失败回滚，不会只执行其中的一部分操作。 2.一致性（Consistency">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-07T12:52:56.684Z">
+<meta property="article:modified_time" content="2024-04-07T12:52:56.685Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -71,39 +75,73 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-03-02T07:15:24.431Z" itemprop="datePublished">Mar 2</time>
+        <section id="main"><article id="post-事务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/07/%E4%BA%8B%E5%8A%A1/" class="article-date">
+  <time class="dt-published" datetime="2024-04-07T12:52:56.684Z" itemprop="datePublished">2024-04-07</time>
 </a>
-      
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/archives/2024/03/">&laquo; Prev</a><a class="page-number" href="/archives/2024/03/">1</a><span class="page-number current">2</span>
-  </nav>
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL事务"><a href="#MySQL事务" class="headerlink" title="MySQL事务"></a>MySQL事务</h2><p>MySQL事务是一种用于维护数据库完整性的机制，它保证了数据库操作的原子性、一致性、隔离性和持久性（ACID属性）。在MySQL中，只有使用了InnoDB存储引擎的数据库或表才支持事务。以下是关于MySQL事务的详细笔记：</p>
+<h4 id="ACID属性"><a href="#ACID属性" class="headerlink" title="ACID属性"></a>ACID属性</h4><p>1.原子性（Atomicity）：事务中的所有操作要么全部执行成功，要么全部失败回滚，不会只执行其中的一部分操作。</p>
+<p>2.一致性（Consistency）：事务执行前后，数据库的状态必须保持一致。</p>
+<p>3.隔离性（Isolation）：并发执行的多个事务之间互不干扰，一个事务的中间状态对其他事务是不可见的。</p>
+<p>4.持久性（Durability）：一旦事务提交，其对数据库的修改就是永久性的。</p>
+<h4 id="事务控制语句"><a href="#事务控制语句" class="headerlink" title="事务控制语句"></a>事务控制语句</h4><p>MySQL提供了以下四个事务控制语句：</p>
+<ol>
+<li><p>BEGIN：表示一个事务的开始。</p>
+</li>
+<li><p>COMMIT：表示一个事务的提交，将修改保存到数据库中。</p>
+</li>
+<li><p>ROLLBACK：表示一个事务的回滚，撤销对数据库的修改。</p>
+</li>
+<li><p>SAVEPOINT：表示设置一个保存点，可以在后续的操作中使用ROLLBACK TO语句来回滚到指定的保存点。</p>
+</li>
+</ol>
+<h4 id="事务的使用示例"><a href="#事务的使用示例" class="headerlink" title="事务的使用示例"></a>事务的使用示例</h4><p>以下是一个使用事务的示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">START TRANSACTION; </span><br><span class="line">-- 执行多条SQL语句 COMMIT; # 如果需要回滚，可以使用ROLLBACK; </span><br></pre></td></tr></table></figure>
+
+<p>在实际应用中，事务可以用于保证一系列数据库操作的完整性和一致性。例如，在一个转账的场景中，事务可以保证从一个账户扣款和向另一个账户存款这两个操作要么都成功，要么都不做，从而避免了只做了其中一部分操作导致的错误。</p>
+<p>需要注意的是，虽然事务可以提高数据库操作的可靠性，但同时也可能影响数据库的性能。因此，在实际使用中需要权衡事务带来的好处和可能的性能开销。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/07/%E4%BA%8B%E5%8A%A1/" data-id="clupj6g6w0002wsfw8m6d3wnq" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">huang2024-4-1-2024-4-7周报</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
 
 </section>
         

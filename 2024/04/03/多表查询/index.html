@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2024/3 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="多表查询1.基础在MySQL中，多表查询是一种强大的功能，它允许你在一次查询中联合多个表，并从中获取所需的数据。以下是一些关于MySQL多表查询的基础知识： (1) 多表查询的基本语法 多表查询的基本语法是SELECT * FROM 表1, 表2。这里的*代表选择所有的列，可以根据需要替换成具体的列名。表1和表2是想要联接的表名。例如，如果想同时从students表和classes表中查询数据，可">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://snail0220.github.io/archives/2024/03/page/2/index.html">
+<meta property="og:url" content="https://snail0220.github.io/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="多表查询1.基础在MySQL中，多表查询是一种强大的功能，它允许你在一次查询中联合多个表，并从中获取所需的数据。以下是一些关于MySQL多表查询的基础知识： (1) 多表查询的基本语法 多表查询的基本语法是SELECT * FROM 表1, 表2。这里的*代表选择所有的列，可以根据需要替换成具体的列名。表1和表2是想要联接的表名。例如，如果想同时从students表和classes表中查询数据，可">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-03T12:09:20.189Z">
+<meta property="article:modified_time" content="2024-04-03T12:10:27.537Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -71,39 +75,65 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-03-02T07:15:24.431Z" itemprop="datePublished">Mar 2</time>
+        <section id="main"><article id="post-多表查询" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" class="article-date">
+  <time class="dt-published" datetime="2024-04-03T12:09:20.189Z" itemprop="datePublished">2024-04-03</time>
 </a>
-      
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/archives/2024/03/">&laquo; Prev</a><a class="page-number" href="/archives/2024/03/">1</a><span class="page-number current">2</span>
-  </nav>
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h4><h5 id="1-基础"><a href="#1-基础" class="headerlink" title="1.基础"></a>1.基础</h5><p>在MySQL中，多表查询是一种强大的功能，它允许你在一次查询中联合多个表，并从中获取所需的数据。以下是一些关于MySQL多表查询的基础知识：</p>
+<p>(1) 多表查询的基本语法</p>
+<p>多表查询的基本语法是SELECT * FROM 表1, 表2。这里的*代表选择所有的列，可以根据需要替换成具体的列名。表1和表2是想要联接的表名。例如，如果想同时从students表和classes表中查询数据，可以这样写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM students, classes; </span><br></pre></td></tr></table></figure>
+
+<p>这个查询会返回students表和classes表的“乘积”，也就是说，students表的每一行都会与classes表的每一行进行配对，形成一个二维表 。</p>
+<p>(2) 多表查询的注意事项</p>
+<p>在使用多表查询时，你需要特别注意的一点是，由于结果是两个表的行数乘积，因此可能会得到大量的数据。比如，如果你的两个表各有100行记录，那么进行笛卡尔查询将会返回10000条记录。因此，在进行多表查询时，你应该尽可能地使用WHERE条件来限制查询的范围 。</p>
+<p>(3)多表查询的高级用法</p>
+<p>除了基本的笛卡尔查询，MySQL还提供了其他几种高级的多表查询方法，如INNER JOIN、LEFT JOIN、RIGHT JOIN和FULL JOIN。这些方法可以帮助你更有效地从多个表中获取数据。例如，如果你想查询students表中所有学生的名字和他们的班级，你可以使用INNER JOIN：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT students.name,classes.classroom FROM students INNER JOIN classes ON students.class_id = classes.class_id; </span><br></pre></td></tr></table></figure>
+
+<p>在这个查询中，ON关键字后面的是连接条件，也就是students表中的class_id列和classes表中的class_id列相等。通过这种方式，你可以精确地从多个表中获取你想要的数据 。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" data-id="clupj6g6x0004wsfwezgoe37k" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          huang2024-4-1-2024-4-7周报
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/31/%E7%BA%A6%E6%9D%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
 
 </section>
         

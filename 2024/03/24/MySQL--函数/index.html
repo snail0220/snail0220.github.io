@@ -6,15 +6,15 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="MySQL–函数 1.定义：函数是指一段可以直接被另一段程序调用的程序或代码。   分类：字符串函数、数值函数、日期函数、流程函数 2.字符串函数 常见的如下    函数 功能    concat(s1,s2,…sn) 字符串拼接，将s1,s2,…sn拼接成一个字符串   lower(str) 将字符串str全部转化为小写   upper(str) 将字符串str全部转化为大写   lpad(st">
+  <meta name="description" content="MySQL—函数1.定义函数是指一段可以直接被另一段程序调用的程序或代码。基本分类有字符串函数、数值函数、日期函数、流程函数 2.字符串函数常见的如下    函数 功能    concat(s1,s2,…sn) 字符串拼接，将s1,s2,…sn拼接成一个字符串   lower(str) 将字符串str全部转化为小写   upper(str) 将字符串str全部转化为大写   lpad(str,n,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://snail0220.github.io/2024/03/24/%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:url" content="https://snail0220.github.io/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="MySQL–函数 1.定义：函数是指一段可以直接被另一段程序调用的程序或代码。   分类：字符串函数、数值函数、日期函数、流程函数 2.字符串函数 常见的如下    函数 功能    concat(s1,s2,…sn) 字符串拼接，将s1,s2,…sn拼接成一个字符串   lower(str) 将字符串str全部转化为小写   upper(str) 将字符串str全部转化为大写   lpad(st">
+<meta property="og:description" content="MySQL—函数1.定义函数是指一段可以直接被另一段程序调用的程序或代码。基本分类有字符串函数、数值函数、日期函数、流程函数 2.字符串函数常见的如下    函数 功能    concat(s1,s2,…sn) 字符串拼接，将s1,s2,…sn拼接成一个字符串   lower(str) 将字符串str全部转化为小写   upper(str) 将字符串str全部转化为大写   lpad(str,n,">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-03-24T05:50:13.133Z">
-<meta property="article:modified_time" content="2024-03-24T06:49:31.314Z">
+<meta property="article:modified_time" content="2024-04-03T12:16:19.604Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -75,9 +75,9 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-MySQL--函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/03/24/%E5%87%BD%E6%95%B0/" class="article-date">
+    <a href="/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/" class="article-date">
   <time class="dt-published" datetime="2024-03-24T05:50:13.133Z" itemprop="datePublished">2024-03-24</time>
 </a>
     
@@ -87,11 +87,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>MySQL–函数</p>
-<p>1.定义：函数是指一段可以直接被另一段程序调用的程序或代码。</p>
-<p>  分类：字符串函数、数值函数、日期函数、流程函数</p>
-<p>2.字符串函数</p>
-<p>常见的如下</p>
+        <h3 id="MySQL—函数"><a href="#MySQL—函数" class="headerlink" title="MySQL—函数"></a>MySQL—函数</h3><h5 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h5><p>函数是指一段可以直接被另一段程序调用的程序或代码。基本分类有字符串函数、数值函数、日期函数、流程函数</p>
+<h5 id="2-字符串函数"><a href="#2-字符串函数" class="headerlink" title="2.字符串函数"></a>2.字符串函数</h5><p>常见的如下</p>
 <table>
 <thead>
 <tr>
@@ -128,8 +125,7 @@
 <td align="center">返回从字符串str从start位置起的len个长度的字符串</td>
 </tr>
 </tbody></table>
-<p>3.数值函数</p>
-<p>常见的如下</p>
+<h5 id="3-数值函数"><a href="#3-数值函数" class="headerlink" title="3.数值函数"></a>3.数值函数</h5><p>常见的如下</p>
 <table>
 <thead>
 <tr>
@@ -158,11 +154,11 @@
 <td align="center">求参数x的四舍五入的值，保留y位小数</td>
 </tr>
 </tbody></table>
-<p>案例：通过数据库的函数，生成一个六位数的随机验证码。</p>
+<p>案例</p>
+<p>通过数据库的函数，生成一个六位数的随机验证码。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> lpad(round(rand()<span class="operator">*</span><span class="number">1000000</span>,<span class="number">0</span>),<span class="number">6</span>,<span class="string">&#x27;0&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>4.日期函数</p>
-<p>常见的如下</p>
+<h5 id="4-日期函数"><a href="#4-日期函数" class="headerlink" title="4.日期函数"></a>4.日期函数</h5><p>常见的如下</p>
 <table>
 <thead>
 <tr>
@@ -203,11 +199,11 @@
 <td align="center">返回起始时间date1和结束时间date2之间的天数</td>
 </tr>
 </tbody></table>
-<p>案例：查询所有员工的入职天数，并根据入职天数倒序排序</p>
+<p>案例</p>
+<p>查询所有员工的入职天数，并根据入职天数倒序排序</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,datediff(cuidate(),entrydate) as &#x27;entrydays&#x27; from emp order by entrydays desc;</span><br></pre></td></tr></table></figure>
 
-<p>流程（控制）函数</p>
-<p>可以在SQL语句中实现条件筛选，从而提高语句的效率</p>
+<h5 id="5-流程（控制）函数"><a href="#5-流程（控制）函数" class="headerlink" title="5.流程（控制）函数"></a>5.流程（控制）函数</h5><p>可以在SQL语句中实现条件筛选，从而提高语句的效率</p>
 <table>
 <thead>
 <tr>
@@ -232,7 +228,8 @@
 <td align="center">如果expr的值等于val1，返回res1，…否则返回default默认值</td>
 </tr>
 </tbody></table>
-<p>案例：统计班级各个学员的成绩，展示的规则如下：</p>
+<p>案例</p>
+<p>统计班级各个学员的成绩，展示的规则如下：</p>
 <p>大于等于85，展示优秀</p>
 <p>大于等于65，展示及格</p>
 <p>否则，展示不及格</p>
@@ -245,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/24/%E5%87%BD%E6%95%B0/" data-id="clu55urbf0000b4fw6g3aa9pg" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://snail0220.github.io/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/" data-id="clupj6g6m0000wsfw8o15610f" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -297,7 +294,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a>
+      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a>
     </div>
   </div>
 
@@ -306,7 +303,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
     </div>
   </div>
 
@@ -319,23 +316,23 @@
       <ul>
         
           <li>
+            <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/07/%E4%BA%8B%E5%8A%A1/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/">huang2024-4-1-2024-4-7周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/31/%E7%BA%A6%E6%9D%9F/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/31/huang2024-3-25-2024-3-31%E5%91%A8%E6%8A%A5/">huang2024-3-25-2024-3-31周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/24/%E5%87%BD%E6%95%B0/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/21/huang2024-3-18-2024-3-24%E5%91%A8%E6%8A%A5/">huang2024-3-18-2024-3-24周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/16/SQL-DCL/">(no title)</a>
           </li>
         
       </ul>
