@@ -73,6 +73,538 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MySQL索引" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/" class="article-date">
+  <time class="dt-published" datetime="2024-04-14T07:14:18.000Z" itemprop="datePublished">2024-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="1-索引概述"><a href="#1-索引概述" class="headerlink" title="1.索引概述"></a>1.索引概述</h3><h4 id="1-1MySQL索引概述"><a href="#1-1MySQL索引概述" class="headerlink" title="1.1	MySQL索引概述"></a>1.1	MySQL索引概述</h4><p>​		索引是一种将数据库中单列或者多列的值进行排序的结构。应用索引，可以大幅度提高查询的速度。<br>​		用户通过索引查询数据，不但可以提高查询速度，也可以降低服务器的负载。用户查询数据时，系统可以不必遍历数据表中的所有记录，而是查询索引列。一般过程的数据查询是通过遍历全部数据，并寻找数据库中的匹配记录而实现的。与一般形式的查询相比，索引就像一本书的目录。而当用户通过目录查找书中内容时，就好比用户通过目录查询某章节的某个知识点。这样就为用户在查找内容过程中，缩短大量时间，帮助用户有效地提高查找速度。所以，使用索引可以有效地提高数据库系统的整体性能。<br>​		应用MySQL数据库时，并非用户在查询数据的时候，总需要应用索引来优化查询。凡事都有双面性，使用索引可以提高检索数据的速度，对于依赖关系的子表和父表之间的联合查询时，可以提高查询速度，并且可以提高整体的系统性能。但是，创建索引和维护需要耗费时间，并且该耗费时间与数据量的大小成正比；另外，索引需要占用物理空间，给数据的维护造成很多麻烦。<br>​		整体来说，索引可以提高查询的速度，但是会影响用户操作数据库的插入操作。因为，向有索引的表中插入记录时，数据库系统会按照索引进行排序。所以，用户可以将索引删除后，插入数据，当数据插入操作完成后，用户可以重新创建索引。</p>
+<p>​		说明：<br>​		不同的存储引擎定义每个表的最大索引数和最大索引长度。所有存储引擎对每个表至少支持16个索引。总索引长度至少为256字节。有些存储引擎支持更多的索引数和更大的索引长度。索引有两种存储类型，包括B树（BTREE）索引和哈希（HASH）索引。其中，B树为系统默认索引方法。</p>
+<h4 id="1-2-MySQL索引分类"><a href="#1-2-MySQL索引分类" class="headerlink" title="1.2　MySQL索引分类"></a>1.2　MySQL索引分类</h4><p>​		MySQL的索引包括普通索引、唯一性索引、全文索引、单列索引、多列索引和空间索引等。</p>
+<h5 id="1．普通索引"><a href="#1．普通索引" class="headerlink" title="1．普通索引"></a>1．普通索引</h5><p>​		普通索引，即不应用任何限制条件的索引，该索引可以在任何数据类型中创建。字段本身的约束条件可以判断其值是否为空或唯一。创建该类型索引后，用户在查询时，便可以通过索引进行查询。在某数据表的某一字段中，建立普通索引后。用户需要查询数据时，只需根据该索引进行查询即可。</p>
+<h5 id="2．唯一性索引"><a href="#2．唯一性索引" class="headerlink" title="2．唯一性索引"></a>2．唯一性索引</h5><p>​		使用UNIQUE参数可以设置唯一索引。创建该索引时，索引的值必须唯一，通过唯一索引，用户可以快速定位某条记录，主键是一种特殊唯一索引。</p>
+<h5 id="3．全文索引"><a href="#3．全文索引" class="headerlink" title="3．全文索引"></a>3．全文索引</h5><p>​		使用FULLTEXT参数可以设置索引为全文索引。全文索引只能创建在CHAR、VARCHAR或者TEXT类型的字段上。查询数据量较大的字符串类型的字段时，使用全文索引可以提高查询速度。例如，查询带有文章回复内容的字段，可以应用全文索引方式。需要注意的是，在默认情况下，应用全文搜索大小写不敏感。如果索引的列使用二进制排序后，可以执行大小写敏感的全文索引。</p>
+<h5 id="4．单列索引"><a href="#4．单列索引" class="headerlink" title="4．单列索引"></a>4．单列索引</h5><p>​		顾名思义，单列索引即只对应一个字段的索引。其可以包括上述叙述的3种索引方式。应用该索引的条件只需要保证该索引值对应一个字段即可。</p>
+<h5 id="5．多列索引"><a href="#5．多列索引" class="headerlink" title="5．多列索引"></a>5．多列索引</h5><p>​		多列索引是在表的多个字段上创建一个索引。该索引指向创建时对应的多个字段，用户可以通过这几个字段进行查询。要想应用该索引，用户必须使用这些字段中的第一个字段。</p>
+<h5 id="6．空间索引"><a href="#6．空间索引" class="headerlink" title="6．空间索引"></a>6．空间索引</h5><p>​		使用SPATIAL参数可以设置索引为空间索引。空间索引只能建立在空间数据类型上，这样可以提高系统获取空间数据的效率。MySQL中只有MyISAM存储引擎支持空间检索，而且索引的字段不能为空值。</p>
+<h3 id="2-创建索引"><a href="#2-创建索引" class="headerlink" title="2.　创建索引"></a>2.　创建索引</h3><p>​		创建索引是指在某个表中至少一列中建立索引，以便提高数据库性能。其中，建立索引可以提高表的访问速度。本节通过几种不同的方式创建索引。其中包括在建立数据库时创建索引、在已经建立的数据表中创建索引和修改数据表结构创建索引。</p>
+<h4 id="2-1-在建立数据表时创建索引"><a href="#2-1-在建立数据表时创建索引" class="headerlink" title="2.1　在建立数据表时创建索引"></a>2.1　在建立数据表时创建索引</h4><p>​		在建立数据表时可以直接创建索引，这种方式比较直接，且方便、易用。在建立数据表时创建索引的基本语法结构如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table table_name(</span><br><span class="line">    属性名 数据类型[约束条件],</span><br><span class="line">    属性名 数据类型[约束条件]</span><br><span class="line">    ...</span><br><span class="line">    属性名 数据类型</span><br><span class="line">    [UNIQUE | FULLTEXT | SPATIAL ]  INDEX &#125;KEY</span><br><span class="line">    [别名]( 属性名1 [(长度)] [ASC | DESC])</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>​		其中，属性名后的属性值，其含义如下。<br>（1）UNIQUE：可选项，表明索引为唯一性索引。<br>（2）FULLTEXT：可选项，表明索引为全文搜索。<br>（3）SPATIAL：可选项，表明索引为空间索引。<br>​		INDEX和KEY参数用于指定字段索引，用户在选择时，只需要选择其中的一种即可；另外别名为可选项，其作用是给创建的索引取新名称；别名的参数如下。<br>（1）属性名1：指索引对应的字段名称，该字段必须被预先定义。<br>（2）长度：可选项，指索引的长度，必须是字符串类型才可以使用。<br>（3）ASC&#x2F;DESC：可选项，ASC表示升序排列，DESC参数表示降序排列。</p>
+<h5 id="1．普通索引创建"><a href="#1．普通索引创建" class="headerlink" title="1．普通索引创建"></a>1．普通索引创建</h5><p>​		创建普通索引，即不添加UNIQUE、FULLTEXT等任何参数。</p>
+<p>​		下面创建表名为score的数据表，并在该表的id字段上建立索引，其主要代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table score(</span><br><span class="line">    id int(11) auto_increment primary key not null,</span><br><span class="line">    name varchar(50) not null,</span><br><span class="line">    math int(5) not null,</span><br><span class="line">    english int(5) not null,</span><br><span class="line">    chinese int(5) not null,</span><br><span class="line">    index(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>​		在命令提示符中使用SHOW CREATE TABLE语句查看该表的结构，在命令提示符中输入的代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create table score;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2．创建唯一性索引"><a href="#2．创建唯一性索引" class="headerlink" title="2．创建唯一性索引"></a>2．创建唯一性索引</h5><p>​		创建唯一性索引与创建一般索引的语法结构大体相同，但是在创建唯一索引的时候，需要使用UNIQUE参数进行约束。<br>​		创建一个表名为address的数据表，并指定该表的id字段上建立唯一索引，其代码如下所示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table address(</span><br><span class="line">id int(11) auto_increment primary key not null,</span><br><span class="line">name varchar(50),</span><br><span class="line">address varchar(200),</span><br><span class="line">UNIQUE INDEX address(id ASC)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>​		说明<br>​		虽然添加唯一索引可以约束字段的唯一性，但是有时候并不能提高用户查找速度，即不能实现优化查询目的。所以，读者在使用过程中需要根据实际情况来选择唯一索引。</p>
+<h5 id="3．创建全文索引"><a href="#3．创建全文索引" class="headerlink" title="3．创建全文索引"></a>3．创建全文索引</h5><p>​		与创建普通索引和唯一索引不同，全文索引的创建只能作用在CHAR、VARCHAR、TEXT类型的字段上。创建全文索引需要使用FULLTEXT参数进行约束。<br>​	　创建一个名称为cards的数据表，并在该表的number字段上创建全文索引，其代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create table cards(</span><br><span class="line">id int(11) auto_increment primary key not null,</span><br><span class="line">name varchar(50),number bigint(11),</span><br><span class="line">info varchar(50),</span><br><span class="line">FULLTEXT KEY cards_info(info)) engine=MyISAM;</span><br></pre></td></tr></table></figure>
+
+<p>​		在命令提示符中应用SHOW CREATE TABLE语句查看表结构，其代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE TABLE cards;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>    说明
+    只有MyISAM类型的数据表支持FULLTEXT全文索引，InnoDB或其他类型的数据表不支持全文索引。当用户在建立全文索引的时候，返回“ERROR 1283 (HY000): Column &#39;number&#39; cannot be part of FULLTEXT index”的错误，则说明用户操作的当前数据表不支持全文索引，即不为MyISAM类型的数据表。
+</code></pre>
+<h5 id="4．创建单列索引"><a href="#4．创建单列索引" class="headerlink" title="4．创建单列索引"></a>4．创建单列索引</h5><p>​		创建单列索引，即在数据表的单个字段上创建索引。创建该类型索引不需要引入约束参数，用户在建立时只需指定单列字段名，即可创建单列索引。<br>例11.4　创建名称为telephone的数据表，并指定在tel字段上建立名称为tel_num的单列索引，其代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table telephone(</span><br><span class="line">id int(11) primary key auto_increment not null,</span><br><span class="line">name varchar(50) not null,</span><br><span class="line">tel varchar(50) not null,</span><br><span class="line">index tel_num(tel(20))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>​		运行上述代码后，应用SHOW CREATE TABLE语句查看表的结构。<br>​		说明<br>​		数据表中的字段长度为50，而创建的索引的字段长度为20，这样做的目的是为了提高查询效率，优化查询速度。</p>
+<h5 id="5．创建多列索引"><a href="#5．创建多列索引" class="headerlink" title="5．创建多列索引"></a>5．创建多列索引</h5><p>​		与创建单列索引相仿，创建多列索引即指定表的多个字段即可实现。<br>例11.5　创建名称为information的数据表，并指定name和sex为多列索引，其代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table information(</span><br><span class="line">id int(11) auto_increment primary key not null,</span><br><span class="line">name varchar(50) not null,</span><br><span class="line">sex varchar(5) not null,</span><br><span class="line">birthday varchar(50) not null,</span><br><span class="line">INDEX info(name,sex)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>​		应用SHOW CREATE TABLE语句查看创建多列的数据表结构。<br>​		需要注意的是，在多列索引中，只有查询条件中使用了这些字段中的第一个字段（即上面示例中的name字段）时，索引才会被使用。<br>​		说明<br>​		触发多列索引的条件是用户必须使用索引的第一字段，如果没有用到第一字段，则索引不起任何作用，用户想要优化查询速度，可以应用该类索引形式。</p>
+<h5 id="6．创建空间索引"><a href="#6．创建空间索引" class="headerlink" title="6．创建空间索引"></a>6．创建空间索引</h5><p>​		创建空间索引时，需要设置SPATIAL参数。同样，必须说明的是，只有MyISAM类型表支持该类型索引。而且，索引字段必须有非空约束。<br>​	　创建一个名称为list的数据表，并创建一个名为listinfo的空间索引，其代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create table list(</span><br><span class="line">id int(11) primary key auto_increment not null,</span><br><span class="line">goods geometry not null,</span><br><span class="line">SPATIAL INDEX listinfo(goods)</span><br><span class="line">)engine=MyISAM;</span><br></pre></td></tr></table></figure>
+
+<p>​		运行上述代码，创建成功后，在命令提示符中应用SHOW CREATE TABLE语句查看表的结构。<br>​		说明<br>​		空间类型除了上述示例中提到的GEOMETRY类型外，还包括如POINT、LINESTRING、POLYGON等类型。这些空间数据类型在平常的操作中很少被用到。</p>
+<h4 id="2-2-在已建立的数据表中创建索引"><a href="#2-2-在已建立的数据表中创建索引" class="headerlink" title="2.2　在已建立的数据表中创建索引"></a>2.2　在已建立的数据表中创建索引</h4><p>​		在MySQL中，不但可以在用户创建数据表时创建索引，用户也可以直接在已经创建的表中，在已经存在的一个或几个字段上创建索引。其基本的命令结构如下所示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE [UNIQUE | FULLTEXT |SPATIAL ] INDEX index_name</span><br><span class="line">ON table_name(属性 [(length)] [ ASC | DESC]);</span><br></pre></td></tr></table></figure>
+
+<p>​		命令的参数说明如下：<br>（1）index_name为索引名称，该参数作用是给用户创建的索引赋予新的名称。<br>（2）table_name为表名，即指定创建索引的表名称。<br>（3）可选参数，指定索引类型，包括UNIQUE（唯一索引）、FULLTEXT（全文索引）、SPATIAL（空间索引）。<br>（4）属性参数，指定索引对应的字段名称。该字段必须已经预存在用户想要操作的数据表中，如果该数据表中不存在用户指定的字段，则系统会提示异常。<br>（5）length为可选参数，用于指定索引长度。<br>（6）ASC和DESC参数，指定数据表的排序顺序。<br>与建立数据表时创建索引相同，在已建立的数据表中创建索引同样包含6种索引方式。</p>
+<h5 id="1．创建普通索引"><a href="#1．创建普通索引" class="headerlink" title="1．创建普通索引"></a>1．创建普通索引</h5><p>​	　首先，应用SHOW CREATE TABLE语句查看studentinfo表的结构。<br>​		然后，在该表中创建名称为stu_info的普通索引，在命令提示符中输入如下命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create INDEX stu_info ON studentinfo(sid);</span><br></pre></td></tr></table></figure>
+
+<p>​		输入上述命令后，应用SHOW CREATE TABLE语句查看该数据表的结构。</p>
+<h5 id="2．创建唯一索引"><a href="#2．创建唯一索引" class="headerlink" title="2．创建唯一索引"></a>2．创建唯一索引</h5><p>​		在已经存在的数据表中建立唯一索引的命令如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE UNIQUE INDEX 索引名 ON 数据表名称(字段名称);</span><br></pre></td></tr></table></figure>
+
+<p>​		其中，UNIQUE是用来设置索引唯一性的参数，该表中的字段名称既可以存在唯一性约束，也可以不存在唯一性约束。</p>
+<h5 id="3．创建全文索引-1"><a href="#3．创建全文索引-1" class="headerlink" title="3．创建全文索引"></a>3．创建全文索引</h5><p>在MySQL中，为已经存在的数据表创建全文索引的命令如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE FULLTEXT INDEX 索引名 ON 数据表名称(字段名称);</span><br></pre></td></tr></table></figure>
+
+<p>​		其中，FULLTEXT用来设置索引为全文索引。操作的数据表类型必须为MyISAM类型。字段类型必须为VARCHAR、CHAR、TEXT等类型。</p>
+<h5 id="4．创建单列索引-1"><a href="#4．创建单列索引-1" class="headerlink" title="4．创建单列索引"></a>4．创建单列索引</h5><p>​		与建立数据表时创建单列索引相同，用户可以设置单列索引。其命令结构如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD  INDEX 索引名称(字段名称(长度));</span><br></pre></td></tr></table></figure>
+
+<p>​		同样，用户可以设置字段名称长度，以便优化查询速度，提高执行效率。</p>
+<h5 id="5．添加多列索引"><a href="#5．添加多列索引" class="headerlink" title="5．添加多列索引"></a>5．添加多列索引</h5><p>​		添加多列索引与建立单列索引类似。其主要命令结构如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD  INDEX 索引名称(字段名称1,字段名称2,…);</span><br></pre></td></tr></table></figure>
+
+<p>​		使用ALTER修改数据表结构同样可以添加多列索引。与建立数据表时创建多列索引相同，当创建多列索引时，用户必须使用第一字段作为查询条件，否则索引不能生效。</p>
+<h5 id="6．添加空间索引"><a href="#6．添加空间索引" class="headerlink" title="6．添加空间索引"></a>6．添加空间索引</h5><p>​		添加空间索引，用户需要应用SPATIAL参数作为约束条件。其命令结构如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD  SPATIAL INDEX 索引名称(字段名称);</span><br></pre></td></tr></table></figure>
+
+<p>​		其中，SPATIAL用来设置索引为空间索引。用户要操作的数据表类型必须为MyISAM类型，并且字段名称必须存在非空约束，否则将不能正常创建空间索引。</p>
+<h3 id="3-删除索引"><a href="#3-删除索引" class="headerlink" title="3.　删除索引"></a>3.　删除索引</h3><p>​		在MySQL中，创建索引后，如果用户不再需要该索引，则可以删除指定表的索引。因为这些已经被建立且不常使用的索引，一方面可能会占用系统资源，另一方面也可能导致更新速度下降，这极大地影响了数据表的性能。所以，在用户不需要该表的索引时，可以手动删除指定索引。其中，删除索引可以通过DROP语句来实现。其基本的命令如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP INDEX index_name ON table_name;</span><br></pre></td></tr></table></figure>
+
+<p>​		其中，参数index_name是用户需要删除的索引名称，参数table_name指定数据表名称，下面应用示例向读者展示如何删除数据表中已经存在的索引。打开MySQL后，应用SHOW CREATE TABLE语句查看数据表的索引，<br>在用户顺利删除索引后，为确定该索引是否已被删除，用户可以再次应用SHOW CREATE TABLE语句来查看数据表结构。<br>　	本实例将使用DROP语句从数据表中删除不再需要的索引。<br>​		使用DROP语句删除workinfo表的唯一性索引index_id，具体代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP INDEX index_id ON workinfo;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-小结"><a href="#4-小结" class="headerlink" title="4.小结"></a>4.小结</h3><p>​		本章对MySQL数据库的索引的基础知识、创建索引、删除索引进行了详细讲解，创建索引的内容是本章的重点。读者应该重点掌握创建索引的3种方法，分别为创建表的时候创建索引、使用CREATE INDEX语句来创建索引和使用ALTER TABLE语句来创建索引。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/" data-id="cluz85hf20000wofwcsmidvhf" data-title="MySQL索引" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-4-8-2024-4-14周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-04-14T05:32:17.000Z" itemprop="datePublished">2024-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/">huang2024-4-8-2024-4-14周报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.mysql学习</p>
+<p>2.整理Java笔记</p>
+<p>3.日周笔记</p>
+<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>学习内容</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>索引概述</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>创建索引</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>java笔记整理</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>删除索引</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>\</td>
+<td>日周笔记</td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期日</td>
+<td>java笔记整理</td>
+<td>\</td>
+</tr>
+</tbody></table>
+<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><p>1.MySQL笔记</p>
+<p>2.Java整理成果</p>
+<p>3.日周笔记</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本周的学习进度正常，但是由于本周在准备大创及互联网+项目的内容准备，导致周六没有学习相关内容和日周笔记的质量下降，希望在下周可以补回。</p>
+<h2 id="下周学习"><a href="#下周学习" class="headerlink" title="下周学习"></a>下周学习</h2><p>1.MySQL继续学习</p>
+<p>2.Java整理</p>
+<p>3.日周笔记</p>
+<p>4.题目</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/" data-id="cluz85hf50001wofwg92j1lci" data-title="huang2024-4-8-2024-4-14周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-第三章 使用CCS技术美化网页" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/09/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E4%BD%BF%E7%94%A8CCS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/" class="article-date">
+  <time class="dt-published" datetime="2024-04-09T05:35:22.558Z" itemprop="datePublished">2024-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>第三章 使用CSS技术美化网页</p>
+<p>HTML存在很大的局限和不足。</p>
+<p>3.1【案例4】数字变色Logo</p>
+<p>1.认识CSS</p>
+<p>实现结构与表现的分离。CSS非常灵活，既可以嵌入在HTML文档中，也可以是一个单独的外部文档，如果是独立的文档，则必须以.css为后缀。</p>
+<p>CSS集中写在HTML文档的头部，也是符合结构与表现相分离的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="selector-tag">p</span>&#123;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">font-size</span>:<span class="number">36px</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">color</span>:red;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">text-align</span>:center</span></span><br><span class="line"><span class="language-css">	&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>优势：节约成本、提高性能</p>
+<p>2.CSS样式规则</p>
+<p>具体语法规则如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">选择器&#123;</span><br><span class="line">		属性1：属性值1；</span><br><span class="line">		属性2：属性值2；</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特点</p>
+<ul>
+<li><p>严格区分大小写。</p>
+</li>
+<li><p>多个属性之间必须用英文状态下的分号隔开，最后一个属性后的分号可以省略，但是最好保留。</p>
+</li>
+<li><p>如果属性值由多个单词组成且中间包含空格，则必须为这个属性值加上英文状态下的引号。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p &#123;font-family:&quot;Times New Roman&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以使用“&#x2F;<em>注释语句</em>&#x2F;”来进行注释</p>
+</li>
+<li><p>CSS中空格是不会被解析的，花括号以及分号前后的空格可有可无。因此可以使用空格键、tab键对样式进行排版。</p>
+</li>
+</ul>
+<p>3.引入CSS样式表</p>
+<p>行内式</p>
+<p>行内式也称内联样式，</p>
+<h5 id="内嵌式"><a href="#内嵌式" class="headerlink" title="内嵌式"></a>内嵌式</h5><p>链入式</p>
+<p>导入式</p>
+<p>4.CSS基础选择器</p>
+<p>3.2【案例5】美食专题栏目</p>
+<p>3.3【案例6】搜索页面</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/09/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E4%BD%BF%E7%94%A8CCS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/" data-id="cluz85hf60002wofw0oomdlp5" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-java" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/08/java/" class="article-date">
+  <time class="dt-published" datetime="2024-04-08T13:37:12.674Z" itemprop="datePublished">2024-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>java语言的基础</p>
+<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240408213857363.png" alt="image-20240408213857363" style="zoom:67%;" />
+
+<p>1.1  Java主类结构</p>
+<p>Java语言是面向对象的程序设计语言，Java程序的基本组成单元是类，类体中又包括属性和方法两部分。每一个应用程序都必须包含一个main()方法，含有main()方法的类称为主类。下面通过程序来介绍Java主类结构。</p>
+<p>【例1.1】创建主类并调动其主方法，实现在控制台上输出“你好Java”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Number;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Frist</span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;你好&quot;</span>；</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;Java&quot;</span>;</span><br><span class="line">		System.out.println(s1);</span><br><span class="line">		System.out.println(s2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意</p>
+<p>代码中的所有标点符号都是英文字符。不要在中文输入法状态下输入标点符号，如双引号和分号，否则会导致编译错误。</p>
+<p>文件名必须和类名Frist相同，即Frist.java。还要区分大小写，Java是区分大小写的。</p>
+<p>1.包声明</p>
+<p>一个Java应用程序是由若干个类组成的。在例1.1中就是一个类名为Frist的类，语句package Number为声明该类所在的包，package为包的关键字。</p>
+<p>2.声明成员变量和局部变量</p>
+<p>通常将类的属性称为类的全局变量（成员变量），将方法中的属性称为局部变量。全局变量声明在类体中，局部变量声明在方法体中，全局变量和局部变量都有各自的应用范围。在例1.1中，s1是成员变量，s2是局部变量。</p>
+<p>3.编写主方法</p>
+<p>main()方法是类体中的主方法。该方法从“{”开始，至”}”结束。public、static和void分别是main()方法的权限修饰符、静态修饰符和返回值修饰符，Java程序中的main()方法必须声明为public static void。String[] args是一个字符串类型的数组，它是main()方法的参数。main()方法是程序开始执行的位置。</p>
+<p>4.导入API类库</p>
+<p>在Java语言中可以通过import关键字导入相关的类。在JDK的API中（应用程序接口）提供了130多个包，如java.awt、java.io等。可以通过JDK的API文档来查看这些包中的类，把握类的继承结构、类的应用、成员变量表、构造方法表等，并对每个变量的使用目的进行了解，API文档是程序开发人员不可或缺的工具。</p>
+<p>误区警示</p>
+<p>Java语言是严格区分大小写的。例如，不能将关键字class等同于Class.</p>
+<p>1.2  基本数据类型</p>
+<p>在Java中有8种基本数据类型来存储数值、字符和布尔值，如图所示。</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240409220719993.png" alt="image-20240409220719993"></p>
+<p>1.2.1  整数类型</p>
+<p>整数类型简称整型，用来存储整数数值，即没有小数部分的数值。可以是正数，也可以是负数。整型数据根据它所占内存大小的不同，可分为byte、short、int和long 4种类型。它们具有不同的取值范围。</p>
+<table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">内存空间（8位等于1字节）</th>
+<th align="center">取值范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">byte</td>
+<td align="center">8位</td>
+<td align="center">-128~127</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">16位</td>
+<td align="center">-32768~32767</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">32位</td>
+<td align="center">-2147483648~2147483647</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">64位</td>
+<td align="center">-9223372036854775808~9223372036854775807</td>
+</tr>
+</tbody></table>
+<p>下面分别对这4种整型数据类型进行介绍。</p>
+<p>1.int型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x;                        <span class="comment">//定义int型变量x</span></span><br><span class="line"><span class="type">int</span> x,y;                      <span class="comment">//同时定义int型变量x,y</span></span><br><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">10</span>,y = -<span class="number">5</span>;            <span class="comment">//同时定义int型变量x,y并赋予初值</span></span><br><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">5</span>+<span class="number">23</span>;                 <span class="comment">//定义int型变量x,并赋予公式（5+23）计算结果的初值</span></span><br></pre></td></tr></table></figure>
+
+<p>int变量在内存中占4字节，也就是32位bit，在计算机中bit是由0和1来表示的，所以int型值5在计算机中是这样显示的：00000000 00000000 00000000 00000101</p>
+<p>int型是Java整数值的默认数据类型。当对多个尚未定义数据类型的整数做运算时，运算的结果将默认为int类型。例如，下面这行代码：</p>
+<p>​	System.out.println(15+20);       &#x2F;&#x2F; 输出35</p>
+<p>等同于如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">15</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> a+b;</span><br><span class="line">System.out.println(c);      <span class="comment">//输出35</span></span><br></pre></td></tr></table></figure>
+
+<p>2.byte型</p>
+<p>byte型的定义方式与int相同。定义byte类型变量，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">byte</span> a;</span><br><span class="line"><span class="type">byte</span> a,b,c;</span><br><span class="line"><span class="type">byte</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">19</span>,b = -<span class="number">45</span>;</span><br></pre></td></tr></table></figure>
+
+<p>3.short型</p>
+<p>short型的定义方式与int相同。定义short类型变量，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">short</span> s;</span><br><span class="line"><span class="type">short</span> s,t,r;</span><br><span class="line"><span class="type">short</span> <span class="variable">s</span> <span class="operator">=</span> <span class="number">1000</span>,t = -<span class="number">19</span>;</span><br><span class="line"><span class="type">short</span> <span class="variable">s</span> <span class="operator">=</span> <span class="number">20000</span>/<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>4.long型</p>
+<p>由于long型的取值范围比int型大，且属于高精度数据类型，所以在赋值时要和int型作出区分，需要在整数后加L和l。定义long类型变量，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> number;</span><br><span class="line"><span class="type">long</span> number,rum;</span><br><span class="line"><span class="type">long</span> <span class="variable">number</span> <span class="operator">=</span> <span class="number">12345678l</span>,rum = -<span class="number">987654321L</span>;</span><br><span class="line"><span class="type">long</span> <span class="variable">number</span> <span class="operator">=</span> <span class="number">123456789L</span>*<span class="number">987654321L</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注意</p>
+<p>整数在Java程序中有3种表示形式，分别为十进制、八进制和十六进制：</p>
+<p>(1)十进制：十进制如120、0、-127</p>
+<p>(2)八进制：0123(转化为十进制为83)，八进制必须为0开头</p>
+<p>(3)十六进制：0x23(转化为十进制为37)、0Xb01e(转化为十进制为45086)，十六进制必须为0X或0x开头。</p>
+<p>1.2.2  浮点类型</p>
+<p>浮点类型简称浮点型，用来存储含有小数部分的数值。Java语言中浮点类型分为单精度浮点类型(float)和双精度浮点类型(double)，它们具有不同的取值范围，如表所示。</p>
+<table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">内存空间（8位等于1字节）</th>
+<th align="center">取值范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">float</td>
+<td align="center">32位</td>
+<td align="center">1.4E-45~3.4028235E38</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">64位</td>
+<td align="center">4.9E-324~1.7976931348623157E308</td>
+</tr>
+</tbody></table>
+<p>在默认情况下小数都被看做double型，若想使用float型小数，则需要在小数后面添加F或f。另外，可以使用后缀d或D来明确表明这是一个double类型数据，但加不加d或D并没有硬性规定，系统会认为是double类型数据，进而出错。定义浮点类型变量，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> <span class="variable">f1</span> <span class="operator">=</span> <span class="number">13.23f</span>;</span><br><span class="line"><span class="type">double</span> <span class="variable">d1</span> <span class="operator">=</span> <span class="number">4562.12d</span>;</span><br><span class="line"><span class="type">double</span> <span class="variable">d2</span> <span class="operator">=</span> <span class="number">45678.1564</span>;</span><br></pre></td></tr></table></figure>
+
+<p>误区警示</p>
+<p>浮点值属于近似值，在系统中运算后的结果可能与实际有偏差。</p>
+<p>【例1.2】根据身高体重计算BMI指数</p>
+<p>创建BMLexponent类，声明double型变量height来记录身高，单位为米；声明int型变量weight记录体重，单位为千克；根据BMI &#x3D; 体重&#x2F;(身高*身高)计算BMI指数。实例代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BMIexponent</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">double</span> <span class="variable">height</span> <span class="operator">=</span> <span class="number">1.72</span>;                          <span class="comment">//身高变量，单位：米</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">weight</span> <span class="operator">=</span> <span class="number">70</span>;                               <span class="comment">//体重变量，单位：千克</span></span><br><span class="line">		<span class="type">double</span> <span class="variable">exponent</span> <span class="operator">=</span> weight/(height*height);      <span class="comment">//BMI计算公式</span></span><br><span class="line">		System.out.println(<span class="string">&quot;您的身高为：&quot;</span>+height);</span><br><span class="line">		System.out.println(<span class="string">&quot;您的体重为：&quot;</span>+weight);</span><br><span class="line">		System.out.println(<span class="string">&quot;您的BMI指数为：&quot;</span>+exponent);</span><br><span class="line">		System.out.println(<span class="string">&quot;您的体重属于：&quot;</span>);</span><br><span class="line">		<span class="keyword">if</span>(exponent&lt;<span class="number">18.5</span>)&#123;                             <span class="comment">//判断BMI指数是否小于18.5</span></span><br><span class="line">			System.out.println(<span class="string">&quot;体重过轻&quot;</span>)；</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(exponent&gt;=<span class="number">18.5</span> &amp;&amp; exponent&lt;<span class="number">24.9</span>)&#123;           <span class="comment">//判断BMI指数是否在18.5到24.9之间</span></span><br><span class="line">			System.out.println(<span class="string">&quot;正常范围&quot;</span>)；</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(exponent&gt;=<span class="number">24.9</span> &amp;&amp; exponent&lt;<span class="number">29.9</span>)&#123;           <span class="comment">//判断BMI指数是否在24.9到29.9之间</span></span><br><span class="line">			System.out.println(<span class="string">&quot;体重过重&quot;</span>)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(exponent&gt;=<span class="number">29.9</span>)&#123;                            <span class="comment">//判断BMI指数是否大于29.9</span></span><br><span class="line">			System.out.println(<span class="string">&quot;肥胖&quot;</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">您的体重为：1.72</span><br><span class="line">您的体重为：70</span><br><span class="line">您的BMI指数为：23.661438615467823</span><br><span class="line">您的体重属于：正常范围</span><br></pre></td></tr></table></figure>
+
+
+
+<p>1.2.3  字符类型</p>
+<p>1.char型</p>
+<p>字符类型(char)用于存储单个字符，占用16位(两个字节)的内存空间。在定义字符型变量时，要以单引号表示，如’s’表示一个字符。但是”s”则表示一个字符串，虽然只有一个字符，但由于使用双引号，它仍然表示字符串，而不是字符。</p>
+<p>使用char关键字可定义字符变量，其语法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> <span class="variable">x</span> <span class="operator">=</span> <span class="string">&#x27;a&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>由于字符a在Unicode表中的排序位置是97，因此允许将上面的语句写成：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">97</span>;</span><br></pre></td></tr></table></figure>
+
+<p>同C和C++语言一样，Java语言也可以把字符作为整数对待。由于Unicode编码采用无符号编码，可以存储65536个字符（0x0000～0xffff），所以Java中的字符几乎可以处理所有国家的语言文字。若想得到一个0～65536的数所代表的Unicode表中相应位置上的字符，也必须使用char型显式转换。</p>
+<p>【例1.3】查看字符与Unicode码互转的结果</p>
+<p>在项目中创建类Gess，编写如下代码，将Unicode表中某些位置上的字符以及一些字符在Unicode表中的位置在控制台上输出。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Gess</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">char</span> <span class="variable">word</span> <span class="operator">=</span> <span class="string">&#x27;d&#x27;</span>,word2 = <span class="string">&#x27;@&#x27;</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> <span class="number">23045</span>,p2 = <span class="number">45213</span>;</span><br><span class="line">		System.out.println(<span class="string">&quot;d在Unicode表中的顺序位置是：&quot;</span>+(<span class="type">int</span>)word);</span><br><span class="line">		System.out.println(<span class="string">&quot;@在Unicode表中的顺序位置是：&quot;</span>+(<span class="type">int</span>)word2);</span><br><span class="line">        System.out.println(<span class="string">&quot;Unicode表中的第23045位是：&quot;</span>+(<span class="type">char</span>)p);</span><br><span class="line">        System.out.println(<span class="string">&quot;Unicode表中的第45213位是：&quot;</span>+(<span class="type">char</span>)p2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">d在Unicode表中的顺序位置是：100</span><br><span class="line">@在Unicode表中的顺序位置是：64</span><br><span class="line">Unicode表中的第23045位是：娅</span><br><span class="line">Unicode表中的第45213位是：？</span><br></pre></td></tr></table></figure>
+
+<p>String类型为字符串类型，可以用来保存由多个字符组成的文本内容，其用法与字符类型相似，但文本内容需要用双引号标注。</p>
+<p>2.转义字符</p>
+<p>转义字符是一种特殊的字符变量，它以反斜杠”\“开头，后跟一个或多个字符。转义字符具有特定的含义，不同于字符原有的意义，故称”转义“。例如，printf函数的格式串中用到的”\n“就是一个转义字符，意思是”回车换行“。Java中的转义字符如图所示。</p>
+<table>
+<thead>
+<tr>
+<th align="center">转义字符</th>
+<th align="center">含义</th>
+<th align="center">转义字符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\ddd</td>
+<td align="center">1~3位八进制数据所表示的字符，如\123</td>
+<td align="center">\r</td>
+<td align="center">回车</td>
+</tr>
+<tr>
+<td align="center">\uxxxx</td>
+<td align="center">4位十六进制数据所表示的字符，如\u0052</td>
+<td align="center">\n</td>
+<td align="center">换行</td>
+</tr>
+<tr>
+<td align="center">\‘</td>
+<td align="center">单引号字符</td>
+<td align="center">\b</td>
+<td align="center">退格</td>
+</tr>
+<tr>
+<td align="center">\\</td>
+<td align="center">反斜杠字符</td>
+<td align="center">\f</td>
+<td align="center">换页</td>
+</tr>
+<tr>
+<td align="center">\t</td>
+<td align="center">垂直制表符，将光标已到下一个制表符的位置</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>将转义字符赋值给字符变量时，与字符常量值一样需要使用单引号。</p>
+<p>【例1.4】输出‘\’字符和‘★’字符。</p>
+<p>‘\’字符的转义字符为‘\\’，‘★’字符的Unicode码为2605，实例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">char</span> <span class="variable">c1</span> <span class="operator">=</span> <span class="string">&#x27;\\&#x27;</span>;                   <span class="comment">//</span></span><br><span class="line">		<span class="type">char</span> <span class="variable">char1</span> <span class="operator">=</span> <span class="string">&#x27;\u2605&#x27;</span>;</span><br><span class="line">		System.out.println(c1);</span><br><span class="line">		System.out.println(char1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\</span><br><span class="line">★</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>1.2.4  布尔类型</p>
+<p>布尔类型又称逻辑类型，简称布尔型，通过关键字boolean来定义布尔类型变量。布尔类型只有true和false两个值，分别代表布尔逻辑中的“真”和“假”。布尔值不能与整数类型进行转换。布尔类型通常被用在流程控制中，作为判断条件。定义布尔类型变量，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> b;                       <span class="comment">//定义布尔型变量b</span></span><br><span class="line"><span class="type">boolean</span> b1,b2;                   <span class="comment">//定义布尔值变量b1,b2</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">b</span> <span class="operator">=</span> <span class="literal">true</span>;                <span class="comment">//定义布尔值变量b，并赋给初值true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>1.3  变量与常量</p>
+<p>在程序执行过程中，其值不能被改变的量称为常量，其值能被改变的量称为变量。变量与常量的命名都必须使用合法的标识符。</p>
+<p>1.3.1  标识符和关键字</p>
+<p>1.标识符</p>
+<p>标识符可以简单的理解为一个名字，是用来标识类名、变量名、方法名、数组名、文件名 的有效字符序列。</p>
+<p>Java语言规定标识符由任意顺序的字母、下划线(_)、美元符号($)和数字组成，并且第一个字符不能是数字。标识符不能是Java中的关键字(保留字)。</p>
+<p>在Java语言中，标识符中的字母是严格区分大小写的。Java语言使用Unicode标准字符集，最多可以标识65535个字符。</p>
+<p>2.关键字</p>
+<p>关键字又称保留字，是Java语言中已经被赋予特定意义的一些单词，不可以把这些单词作为标识符来使用。如图所示。</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240411222025653.png" alt="image-20240411222025653"></p>
+<p>1.3.2  声明变量</p>
+<p>变量的使用是程序设计中一个十分重要的环节。声明变量就是要告诉编译器(compiler)这个变量的数据类型，这样编译器才知道需要配置多少空间给它，以及它能存放什么样的数据。在程序运行过程中，空间内的值是变化的，这个内存空间就称为变量。为了便于操作，给这个内存空间取个名字，称为变量名。变量的命名必须是合法的标识符。内存空间内的值就是变量值。在声明变量时可以是没有赋值，也可以是直接赋给初值。</p>
+<p>例如，声明一个整数类型变量和声明一个字符类型变量，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> age;                         <span class="comment">//声明int型变量</span></span><br><span class="line"><span class="type">char</span> <span class="variable">char1</span> <span class="operator">=</span> <span class="string">&#x27;r&#x27;</span>；               <span class="comment">//声明char型变量并赋值</span></span><br></pre></td></tr></table></figure>
+
+<p>变量占用的内存空间：</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240411223445097.png" alt="image-20240411223445097"></p>
+<p>如图所知，由图3.2可知，系统的内存可大略分为3个区域，即系统（OS）区、程序（Program）区和数据（Data）区。当程序执行时，程序代码会加载到内存中的程序区，数据暂时存储在数据区中。假设上述两个变量定义在方法体中，则程序加载到程序区中。当执行此行程序代码时，会在数据区配置空间给出这两个变量。<br>对于变量的命名并不是随意的，应遵循以下几条规则：<br>￼　变量名必须是一个有效的标识符。<br>￼　变量名不可以使用Java中的关键字。<br>￼　变量名不能重复。<br>￼　应选择有意义的单词作为变量名。<br>说明<br>在Java语言中允许使用汉字或其他语言文字作为变量名，如“int年龄&#x3D; 21”，在程序运行时不会出现错误，但建议读者尽量不要使用这些语言文字作为变量名。</p>
+<p>1.3.3  声明常量</p>
+<p>在程序运行过程中一直不会改变的量称为常量(constant)，通常也被称为“final变量“。常量在整个程序中只能被赋值一次。在为所有的对象共享值时，常量是非常有用的。</p>
+<p>在Java语言中声明一个常量，除了要指定数据类型，还需要通过final关键字进行限定。声明常量的标准语法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> 数据类型 常量名称 [= 值]</span><br></pre></td></tr></table></figure>
+
+<p>当变量被final关键字修饰时，该变量就变成了常量，必须在定义时就设定它的初值，否则将会产生编译错误。</p>
+<p>【例1.5】尝试给常量赋值，观察是否会发生错误。</p>
+<p>​	在项目中创建Part，在类体中创建变量age与变量PI。在主方法中分别将变量与常量赋值，通过输出信息可测试变量与常量的有效范围。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Part</span>&#123;</span><br><span class="line">	<span class="keyword">static</span> fianl <span class="type">double</span> PI=<span class="number">3.14</span>;</span><br><span class="line">	<span class="keyword">static</span> <span class="type">int</span> age=<span class="number">23</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] ages)</span>&#123;</span><br><span class="line">		<span class="keyword">final</span> <span class="type">int</span> number;</span><br><span class="line">		number = <span class="number">1235</span>;</span><br><span class="line">		age = <span class="number">22</span>;</span><br><span class="line">		number = <span class="number">1236</span>;</span><br><span class="line">		System.out.println(<span class="string">&quot;常量PI的值；&quot;</span>+PI);</span><br><span class="line">		System.out.println(<span class="string">&quot;赋值后number的值为：&quot;</span>+number)；</span><br><span class="line">		System.out.println(<span class="string">&quot;int型变量age的值为：&quot;</span>+age)；</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/08/java/" data-id="cluz85hf80004wofwggwnfmer" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-多表查询2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/" class="article-date">
@@ -460,453 +992,11 @@
 
 
   
-    <article id="post-MySQL--函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2024-03-24T05:50:13.133Z" itemprop="datePublished">2024-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="MySQL—函数"><a href="#MySQL—函数" class="headerlink" title="MySQL—函数"></a>MySQL—函数</h3><h5 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h5><p>函数是指一段可以直接被另一段程序调用的程序或代码。基本分类有字符串函数、数值函数、日期函数、流程函数</p>
-<h5 id="2-字符串函数"><a href="#2-字符串函数" class="headerlink" title="2.字符串函数"></a>2.字符串函数</h5><p>常见的如下</p>
-<table>
-<thead>
-<tr>
-<th align="center">函数</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">concat(s1,s2,…sn)</td>
-<td align="center">字符串拼接，将s1,s2,…sn拼接成一个字符串</td>
-</tr>
-<tr>
-<td align="center">lower(str)</td>
-<td align="center">将字符串str全部转化为小写</td>
-</tr>
-<tr>
-<td align="center">upper(str)</td>
-<td align="center">将字符串str全部转化为大写</td>
-</tr>
-<tr>
-<td align="center">lpad(str,n,pad)</td>
-<td align="center">左填充，用字符串pad对str的左边进行填充，达到n个字符串长度</td>
-</tr>
-<tr>
-<td align="center">rpad(str,n,pad)</td>
-<td align="center">右填充，用字符串pad对str的右边进行填充，达到n个字符串长度</td>
-</tr>
-<tr>
-<td align="center">trim(str)</td>
-<td align="center">去掉字符串头部和尾部的空格</td>
-</tr>
-<tr>
-<td align="center">substring(str,start,len)</td>
-<td align="center">返回从字符串str从start位置起的len个长度的字符串</td>
-</tr>
-</tbody></table>
-<h5 id="3-数值函数"><a href="#3-数值函数" class="headerlink" title="3.数值函数"></a>3.数值函数</h5><p>常见的如下</p>
-<table>
-<thead>
-<tr>
-<th align="center">函数</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">cell(x)</td>
-<td align="center">向上取整</td>
-</tr>
-<tr>
-<td align="center">floor(x)</td>
-<td align="center">向下取整</td>
-</tr>
-<tr>
-<td align="center">mod(x,y)</td>
-<td align="center">返回x&#x2F;y的模</td>
-</tr>
-<tr>
-<td align="center">rand()</td>
-<td align="center">返回0~1内的随机数</td>
-</tr>
-<tr>
-<td align="center">round(x,y)</td>
-<td align="center">求参数x的四舍五入的值，保留y位小数</td>
-</tr>
-</tbody></table>
-<p>案例</p>
-<p>通过数据库的函数，生成一个六位数的随机验证码。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> lpad(round(rand()<span class="operator">*</span><span class="number">1000000</span>,<span class="number">0</span>),<span class="number">6</span>,<span class="string">&#x27;0&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-日期函数"><a href="#4-日期函数" class="headerlink" title="4.日期函数"></a>4.日期函数</h5><p>常见的如下</p>
-<table>
-<thead>
-<tr>
-<th align="center">函数</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">curdate()</td>
-<td align="center">返回当前日期</td>
-</tr>
-<tr>
-<td align="center">curtime()</td>
-<td align="center">返回当前时间</td>
-</tr>
-<tr>
-<td align="center">now()</td>
-<td align="center">返回当前日期和时间</td>
-</tr>
-<tr>
-<td align="center">year(date)</td>
-<td align="center">获取指定date的年份</td>
-</tr>
-<tr>
-<td align="center">month(date)</td>
-<td align="center">获取指定date的月份</td>
-</tr>
-<tr>
-<td align="center">day(date)</td>
-<td align="center">获取指定date的日期</td>
-</tr>
-<tr>
-<td align="center">date_add(date,interval expr type)</td>
-<td align="center">返回一个时期&#x2F;时间值加上一个时间间隔 expr后的时间值</td>
-</tr>
-<tr>
-<td align="center">datediff(date1,date2)</td>
-<td align="center">返回起始时间date1和结束时间date2之间的天数</td>
-</tr>
-</tbody></table>
-<p>案例</p>
-<p>查询所有员工的入职天数，并根据入职天数倒序排序</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,datediff(cuidate(),entrydate) as &#x27;entrydays&#x27; from emp order by entrydays desc;</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-流程（控制）函数"><a href="#5-流程（控制）函数" class="headerlink" title="5.流程（控制）函数"></a>5.流程（控制）函数</h5><p>可以在SQL语句中实现条件筛选，从而提高语句的效率</p>
-<table>
-<thead>
-<tr>
-<th align="center">函数</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">if(value,t,f)</td>
-<td align="center">如果value为true，则返回t，否则返回f</td>
-</tr>
-<tr>
-<td align="center">ifnull(value1,value2)</td>
-<td align="center">如果value1不为空，返回value1.否则返回value2</td>
-</tr>
-<tr>
-<td align="center">case when [val1] then [res1] …else[default] end</td>
-<td align="center">如果val1为true，返回res1，…否则返回default默认值</td>
-</tr>
-<tr>
-<td align="center">case [expr] when [val1] then [res1]…else [default] end</td>
-<td align="center">如果expr的值等于val1，返回res1，…否则返回default默认值</td>
-</tr>
-</tbody></table>
-<p>案例</p>
-<p>统计班级各个学员的成绩，展示的规则如下：</p>
-<p>大于等于85，展示优秀</p>
-<p>大于等于65，展示及格</p>
-<p>否则，展示不及格</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table score(</span><br><span class="line">	id int comment &#x27;ID&#x27;,</span><br><span class="line">	name varchar(20) comment &#x27;姓名&#x27;</span><br><span class="line">	math int comment &#x27;数学&#x27;</span><br><span class="line">	english int comment &#x27;英语&#x27;</span><br><span class="line">	chinese int comment &#x27;语文&#x27;</span><br><span class="line">)comment &#x27;学员成绩表&#x27;；</span><br><span class="line">insert into score(id,name,math,english,chinese) values (1,&#x27;Tom&#x27;,67,88,95),(2,&#x27;Rose&#x27;,23,66,98),(3,&#x27;Jack&#x27;,54,98,76)</span><br></pre></td></tr></table></figure>
-
-<p>先展示分数—等级</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">	id,</span><br><span class="line">	name,</span><br><span class="line">	(case when math &gt;= 85 then&#x27;优秀’when math &gt;=60 then&#x27;及格&#x27;else&#x27;不及格&#x27;end )&#x27;数学&#x27;,</span><br><span class="line">	(case when english &gt;= 85 then&#x27;优秀’when english &gt;=60 then&#x27;及格&#x27;else&#x27;不及格&#x27;end )&#x27;英语&#x27;,</span><br><span class="line">	(case when chinese &gt;= 85 then&#x27;优秀’when chinese &gt;=60 then&#x27;及格’else&#x27;不及格&#x27;end )&#x27;语文&#x27;</span><br><span class="line">from scoer</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/" data-id="clupj6g6m0000wsfw8o15610f" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-huang2024-3-18-2024-3-24周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/21/huang2024-3-18-2024-3-24%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-03-21T14:44:27.000Z" itemprop="datePublished">2024-03-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/21/huang2024-3-18-2024-3-24%E5%91%A8%E6%8A%A5/">huang2024-3-18-2024-3-24周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.题目</p>
-<p>2.MySQL继续</p>
-<p>3.日周笔记</p>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日历</th>
-<th>学习内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>题目</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>web网页(图片插入)</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>mysql 函数</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>题目</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>日周笔记</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>函数案例</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期日</td>
-<td>约束</td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><p>1.MySQL笔记</p>
-<p><a href="https://snail0220.github.io/2024/03/24/%E5%87%BD%E6%95%B0/">https://snail0220.github.io/2024/03/24/%E5%87%BD%E6%95%B0/</a></p>
-<p>2.web网页设计</p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240324134517432.png" alt="image-20240324134517432"></p>
-<p><a href="https://snail0220.github.io/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/">https://snail0220.github.io/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/</a></p>
-<p>3.笔记整理</p>
-<p><img src="file:///E:\QQ\2194861505\Image\C2C\352ADF8753C332357956785C24401D82.jpg"></p>
-<p>4.刷题</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本周除了基本的MySQL的学习之外，另外开始了刷题的流程，不过本周刚刚开始，没有什么规划，在下周会找好规律，规划好时间，做好笔记安排。</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><p>1.MySQL</p>
-<p>2.题目</p>
-<p>3.日周笔记</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/21/huang2024-3-18-2024-3-24%E5%91%A8%E6%8A%A5/" data-id="clu56dmj90000r0fw3t8bgyku" data-title="huang2024-3-18-2024-3-24周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-SQL-DCL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/16/SQL-DCL/" class="article-date">
-  <time class="dt-published" datetime="2024-03-16T09:32:45.706Z" itemprop="datePublished">2024-03-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="SQL-DCL"><a href="#SQL-DCL" class="headerlink" title="SQL-DCL"></a>SQL-DCL</h2><h5 id="DCL-介绍"><a href="#DCL-介绍" class="headerlink" title="DCL-介绍"></a>DCL-介绍</h5><p>DCL英文全称是Data Control Language(数据控制语言)，用来管理数据库用户、控制数据库的访问权限。</p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240316202949862.png" alt="image-20240316202949862"></p>
-<h5 id="DCL-管理用户"><a href="#DCL-管理用户" class="headerlink" title="DCL-管理用户"></a>DCL-管理用户</h5><p>1.查询用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">USE mysql;</span><br><span class="line">SELECT * FROM user;</span><br></pre></td></tr></table></figure>
-
-<p>2.创建用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &#x27;用户名&#x27;@&#x27;主机名&#x27; IDENTIFIED BY &#x27;密码&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>3.修改用户密码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &#x27;用户名&#x27;@&#x27;主机名&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;新密码&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>4.删除用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP USER &#x27;用户名&#x27;@&#x27;主机名&#x27;;</span><br></pre></td></tr></table></figure>
-
-<h5 id="案例练习"><a href="#案例练习" class="headerlink" title="案例练习"></a>案例练习</h5><p>1.创建用户 itcast,只能够在当前主机localhost访问，密码123456</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &#x27;itcast&#x27;@&#x27;localhost&#x27; identified by &#x27;123456&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>2.创建用户snail,可以在任意主机访问该数据库，密码123456</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &#x27;snail&#x27;@&#x27;%&#x27; identified by &#x27;123456&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>3.修改用户snail的访问密码为1234</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter urser &#x27;snail&#x27;@&#x27;%&#x27;identified with mysql_native_password by &#x27;1234&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>4.删除itcast@localhost用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop user &#x27;itcast&#x27;@&#x27;localhost&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>说明</p>
-<ul>
-<li>主机名可以用’%‘通配。</li>
-<li>这类SQL开发人员操作的比较少，主要是DBA(Database Administrator 数据库管理员)使用。</li>
-</ul>
-<h5 id="DCL-权限控制"><a href="#DCL-权限控制" class="headerlink" title="DCL-权限控制"></a>DCL-权限控制</h5><p>MySQL中定义了很多种权限，但是常用的就以下几种：</p>
-<table>
-<thead>
-<tr>
-<th>权限</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ALL,ALL PRIVILEGES</td>
-<td>所有权限</td>
-</tr>
-<tr>
-<td>SELERT</td>
-<td>查询权限</td>
-</tr>
-<tr>
-<td>INSERT</td>
-<td>插入数据</td>
-</tr>
-<tr>
-<td>UPDATE</td>
-<td>修改数据</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>删除数据</td>
-</tr>
-<tr>
-<td>ALTER</td>
-<td>修改表</td>
-</tr>
-<tr>
-<td>DROP</td>
-<td>删除数据库&#x2F;表&#x2F;视图</td>
-</tr>
-<tr>
-<td>CREATE</td>
-<td>创建数据库&#x2F;表</td>
-</tr>
-</tbody></table>
-<p>1.查询权限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW GRANTS FOR &#x27;用户名&#x27;@&#x27;主机名&#x27;；</span><br></pre></td></tr></table></figure>
-
-<p>2.授予权限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT 权限列表 ON 数据库名.表名 TO &#x27;用户名&#x27;@&#x27;主机名&#x27;；</span><br></pre></td></tr></table></figure>
-
-<p>3.撤销权限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REVOKE 权限列表 ON 数据库名.表名 FROM &#x27;用户名&#x27;@&#x27;主机名&#x27;；</span><br></pre></td></tr></table></figure>
-
-<p>注意</p>
-<ul>
-<li>多个权限之间，使用逗号分隔。</li>
-<li>授权时，数据库名和表名可以使用*进行通配，代表所有。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/16/SQL-DCL/" data-id="cltu45i8e00007gfw3t962ol8" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-SQL-DQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/16/SQL-DQL/" class="article-date">
-  <time class="dt-published" datetime="2024-03-16T09:24:11.821Z" itemprop="datePublished">2024-03-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="SQL-DQL"><a href="#SQL-DQL" class="headerlink" title="SQL-DQL"></a>SQL-DQL</h2><h4 id="一、案例练习"><a href="#一、案例练习" class="headerlink" title="一、案例练习"></a>一、案例练习</h4><p>按照需求完成如下DQL语句编写</p>
-<p>1.查询年龄为20，21，22，23岁的女性员工信息。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where gender = &#x27;女&#x27; and age in</span><br><span class="line">（20,21,22,23）;</span><br></pre></td></tr></table></figure>
-
-<p>2.查询性别为 男  ，并且年龄在 20~40 岁(含)以内的姓名为三个字的员工。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where gender = &#x27;男&#x27; and ( age between 20 and 40 ) and name like &#x27;___&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>3.统计员工表中，年龄小于60岁的，男性员工和女性员工的人数。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select gender, count(*) from emp where age &lt; 60 group by gender;</span><br></pre></td></tr></table></figure>
-
-<p>4.查询所有年龄小于等于35岁的员工的姓名和年龄，并对查询结果按年龄升序排序，如果年龄相同按入职时间降序排序。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name , age from emp where age &lt;=35 order by age asc , entrydate desc;</span><br></pre></td></tr></table></figure>
-
-<p>5.查询性别为男，且年龄在20-48岁(含)以内的前5个员工信息，对查询的结果按年龄升序排序，年龄相同按入职时间升序排序。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where gender = &#x27;男&#x27; and age between 20 and 40 order by age asc , entrydate asc limit 5;</span><br></pre></td></tr></table></figure>
-
-<h4 id="二、执行顺序"><a href="#二、执行顺序" class="headerlink" title="二、执行顺序"></a>二、执行顺序</h4><p>编写顺序</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">		字段列表</span><br><span class="line">FROM</span><br><span class="line">		表名列表</span><br><span class="line">WHERE</span><br><span class="line">		条件列表</span><br><span class="line">GROUP BY</span><br><span class="line">		分组字段列表</span><br><span class="line">HAVING</span><br><span class="line">		分组后条件列表</span><br><span class="line">ORDER BY</span><br><span class="line">		排列字段列表</span><br><span class="line">LIMIT</span><br><span class="line">		分页参数</span><br></pre></td></tr></table></figure>
-
-<p>执行顺序</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">FROM</span><br><span class="line">		表名列表</span><br><span class="line">WHERE</span><br><span class="line">		条件列表</span><br><span class="line">GROUP BY</span><br><span class="line">		分组字段列表</span><br><span class="line">HAVING</span><br><span class="line">		分组后条件列表</span><br><span class="line">SELECT</span><br><span class="line">		字段列表</span><br><span class="line">ORDER BY</span><br><span class="line">		排列字段列表</span><br><span class="line">LIMIT</span><br><span class="line">		分页参数</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/16/SQL-DQL/" data-id="cltu45i8q00017gfw82ki1nfj" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -952,23 +1042,23 @@
       <ul>
         
           <li>
+            <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/">huang2024-4-8-2024-4-14周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/09/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E4%BD%BF%E7%94%A8CCS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/08/java/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/%E4%BA%8B%E5%8A%A1/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/">huang2024-4-1-2024-4-7周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/31/%E7%BA%A6%E6%9D%9F/">(no title)</a>
           </li>
         
       </ul>

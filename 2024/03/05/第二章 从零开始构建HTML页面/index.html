@@ -6,18 +6,18 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="第二章 从零开始构建HTML页面文档基本格式 文本样式标签 HTML图像 【案例一】简单的网页 HTML文档基本格式1234&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;ht">
+  <meta name="description" content="第二章 从零开始构建HTML页面文档基本格式 文本样式标签 HTML图像 【案例一】简单的网页 HTML文档基本格式1234567&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&amp;lt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="https://snail0220.github.io/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="第二章 从零开始构建HTML页面文档基本格式 文本样式标签 HTML图像 【案例一】简单的网页 HTML文档基本格式1234&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;ht">
+<meta property="og:description" content="第二章 从零开始构建HTML页面文档基本格式 文本样式标签 HTML图像 【案例一】简单的网页 HTML文档基本格式1234567&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&amp;lt">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240309195718799.png">
 <meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240319143401995.png">
 <meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240324134455314.png">
 <meta property="article:published_time" content="2024-03-05T06:07:35.171Z">
-<meta property="article:modified_time" content="2024-03-24T05:45:09.115Z">
+<meta property="article:modified_time" content="2024-04-09T05:35:15.325Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240309195718799.png">
@@ -95,7 +95,7 @@
 <p>文本样式标签</p>
 <p>HTML图像</p>
 <h4 id="【案例一】简单的网页"><a href="#【案例一】简单的网页" class="headerlink" title="【案例一】简单的网页"></a>【案例一】简单的网页</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240309195718799.png" alt="image-20240309195718799"></p>
-<h5 id="HTML文档基本格式"><a href="#HTML文档基本格式" class="headerlink" title="HTML文档基本格式"></a>HTML文档基本格式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。</span><br><span class="line">&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;html&gt;标志着HTML文档的开始，&lt;/html&gt;标志着HTML文档的结束，在他们之间是文档的头部和主体内容。</span><br><span class="line">&lt;head&gt;:用于定义HTML文档的头部信息，也称为头部标签，紧跟在&lt;html&gt;之后。头部标签主要用来封装其他位于文档头部的标签，例如&lt;title&gt;、&lt;meta&gt;、&lt;link&gt;和&lt;stye&gt;等，用来描述文档的标题、作者，以及与其它文档的的关系。</span><br><span class="line">&lt;body&gt;;田干定义HTML文档所要显示的内容，也称为主体标签，浏监器中显示的所有文本、图像、音颛和视频等信息都必须位于&lt;body&gt;内，才能最终展示给用户。一个HTML文档中智能含有一对&lt;body&gt;，且&lt;body&gt;必须位于&lt;html&gt;内，位于&lt;head&gt;之后，与&lt;head&gt;是并列关系。</span><br></pre></td></tr></table></figure>
+<h5 id="HTML文档基本格式"><a href="#HTML文档基本格式" class="headerlink" title="HTML文档基本格式"></a>HTML文档基本格式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。</span><br><span class="line"></span><br><span class="line">&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;html&gt;标志着HTML文档的开始，&lt;/html&gt;标志着HTML文档的结束，在他们之间是文档的头部和主体内容。</span><br><span class="line"></span><br><span class="line">&lt;head&gt;:用于定义HTML文档的头部信息，也称为头部标签，紧跟在&lt;html&gt;之后。头部标签主要用来封装其他位于文档头部的标签，例如&lt;title&gt;、&lt;meta&gt;、&lt;link&gt;和&lt;stye&gt;等，用来描述文档的标题、作者，以及与其它文档的的关系。</span><br><span class="line"></span><br><span class="line">&lt;body&gt;;田干定义HTML文档所要显示的内容，也称为主体标签，浏监器中显示的所有文本、图像、音颛和视频等信息都必须位于&lt;body&gt;内，才能最终展示给用户。一个HTML文档中智能含有一对&lt;body&gt;，且&lt;body&gt;必须位于&lt;html&gt;内，位于&lt;head&gt;之后，与&lt;head&gt;是并列关系。</span><br></pre></td></tr></table></figure>
 
 
 
@@ -225,23 +225,23 @@
       <ul>
         
           <li>
+            <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/">huang2024-4-8-2024-4-14周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/09/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E4%BD%BF%E7%94%A8CCS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/08/java/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/%E4%BA%8B%E5%8A%A1/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/">huang2024-4-1-2024-4-7周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/31/%E7%BA%A6%E6%9D%9F/">(no title)</a>
           </li>
         
       </ul>

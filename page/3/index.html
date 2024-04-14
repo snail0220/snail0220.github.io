@@ -73,6 +73,234 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-排序笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/04/%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-02-04T01:34:30.081Z" itemprop="datePublished">2024-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="排序笔记"><a href="#排序笔记" class="headerlink" title="排序笔记"></a>排序笔记</h1><p>排序的类别：冒泡排序、快速排序、插入排序、希尔排序、选择排序、堆排序、归并排序、桶排序、基数排序和计数排序。</p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>冒泡排序是一种稳定的排序算法，它的工作原理是通过对待排序序列从前往后，依次比较相邻元素的排列码，若发现逆序则交换，使排序码较大的元素逐渐从前部移向后部。</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204095731092.png" alt="image-20240204095731092"></p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序是一种不稳定的排序算法，它的工作原理是通过一趟排序将待排记录分割成独立的两部分，其中一部分记录的关键字均比另一部分的关键字小，然后再分别对这两部分记录继续进行排序，以达到整个序列有序。</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204100008042.png" alt="image-20240204100008042"></p>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序是一种稳定的排序算法，它的工作原理是将未排序的数据插入到已排序的数据中的适当位置，从而使得整体数据有序。</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204100100608.png" alt="image-20240204100100608"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/02/04/%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/" data-id="cltbbykx0000clgfwbkde0daa" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-方法模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/04/%E6%96%B9%E6%B3%95%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2024-02-04T01:34:30.081Z" itemprop="datePublished">2024-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="方法模块笔记"><a href="#方法模块笔记" class="headerlink" title="方法模块笔记"></a>方法模块笔记</h2><h5 id="Java方法模块的基本流程："><a href="#Java方法模块的基本流程：" class="headerlink" title="Java方法模块的基本流程："></a>Java方法模块的基本流程：</h5><ol>
+<li>创建一个Java模块：这可以通过在你的Java项目中创建一个新的包来实现。在包中，你可以创建多个类文件，并且这些类文件将组成一个模块。</li>
+<li>在模块中定义一个类并实现方法：在刚创建的模块中，你需要定义一个类，并在该类中实现你需要调用的方法。</li>
+<li>在其他模块中引用该模块：现在，你已经在一个模块中定义了一个类和方法。接下来，你需要在其他模块中引用并调用这个方法。为了实现这一步，你需要在其他模块中导入这个模块，并通过创建该类的实例并调用方法。</li>
+</ol>
+<h5 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义"></a>方法定义</h5><ol>
+<li><strong><strong>修饰符：修饰符是可选的，它可以告诉编译器如何调用该方法。例如，<code>public</code> 表示该方法可以从任何地方被访问。</strong></strong></li>
+<li>**** 返回值类型：方法可能会返回值，<code>returnValueType</code> 是方法返回值的数据类型。如果方法不返回任何值，那么 <code>returnValueType</code> 是 <code>void</code>。****</li>
+<li>**** 方法名：方法名是方法的实际名称，它应该是描述性的，以便其他人阅读你的代码时能够理解它的作用。****</li>
+<li>**** 参数列表：参数是传递给方法的值。参数之间用逗号分隔，每个参数都有自己的数据类型和名称。****</li>
+<li>**** 方法体：方法体是方法执行的代码块。****</li>
+</ol>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>- 方法名应遵循驼峰命名法，首字母小写。<br>- 如果方法没有返回值，需要在方法声明时使用 <code>void</code> 关键字。<br>- 在方法体中，使用 <code>return</code> 语句来返回方法的值。<br>- 避免在方法中编写过多的代码，使方法尽可能地简洁和易于理解。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/02/04/%E6%96%B9%E6%B3%95%E6%A8%A1%E5%9D%97/" data-id="cltbbykx2000hlgfw99b0cw6j" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-1-22-2024-1-28学习周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/28/huang2024-1-22-2024-1-28%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-01-28T02:15:52.000Z" itemprop="datePublished">2024-01-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/01/28/huang2024-1-22-2024-1-28%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/">huang2024/1/22-2024/1/28</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><ol>
+<li>控制结构</li>
+<li>数组</li>
+</ol>
+<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
+<thead>
+<tr>
+<th>日历</th>
+<th>学习内容</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>顺序控制、分支控制（if,else,switch）</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>循环控制（for,while,do while,多重循环）</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>break,continue,return</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>数组</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>赋值机制</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期天</td>
+<td>二维数组</td>
+<td>\</td>
+</tr>
+</tbody></table>
+<h2 id="本周学习内容-及-收获"><a href="#本周学习内容-及-收获" class="headerlink" title="本周学习内容 及 收获"></a>本周学习内容 及 收获</h2><ol>
+<li><p>控制结构笔记</p>
+<p><a href="https://snail0220.github.io/2024/01/27/%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/">https://snail0220.github.io/2024/01/27/%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/</a></p>
+</li>
+<li><p>数组笔记</p>
+<p><a href="https://snail0220.github.io/2024/01/27/%E6%95%B0%E7%BB%84/">https://snail0220.github.io/2024/01/27/%E6%95%B0%E7%BB%84/</a></p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>控制结构内容较多，把握尚且不够全面，运用不熟</p>
+<p>数组的简单运用可以掌握，但是有点浅</p>
+<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><ol>
+<li>排序</li>
+<li>方法模块</li>
+<li>可变参数</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/01/28/huang2024-1-22-2024-1-28%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" data-id="cltbbykwu0002lgfwcv6jh7rn" data-title="huang2024/1/22-2024/1/28" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/27/%E6%95%B0%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2024-01-27T02:32:28.597Z" itemprop="datePublished">2024-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="数组笔记"><a href="#数组笔记" class="headerlink" title="数组笔记"></a>数组笔记</h2><p>Java数组是Java中一种重要的数据结构，用来存储固定大小的同类型元素。</p>
+<h3 id="基本内容"><a href="#基本内容" class="headerlink" title="基本内容"></a>基本内容</h3><h5 id="数组的特点包括："><a href="#数组的特点包括：" class="headerlink" title="数组的特点包括："></a>数组的特点包括：</h5><p>1.数组元素可以是基本数据类型，也可以是引用数据类型，数组本身是引用数据类型。</p>
+<p>2.在创建数组时，数组的所有元素会根据定义的类型进行初始化，整型数组元素会被初始化为0，浮点型数组元素会被初始化为0.0，布尔型数组元素会被初始化为false。</p>
+<p>3.数组的大小一旦确定，不能进行更改。</p>
+<p>4.数组的每一个元素之间的内存地址是连续的，开辟数组空间的时候是申请了一块连续的内存空间用于存放数组元素。</p>
+<p>5.数组中的元素都有对应的下标，且下标从0开始计数。</p>
+<h5 id="声明数组的语法如下："><a href="#声明数组的语法如下：" class="headerlink" title="声明数组的语法如下："></a>声明数组的语法如下：</h5><p>数据类型[] 数组名 &#x3D; new 数据类型[数组长度]; </p>
+<h5 id="访问数组元素的语法是："><a href="#访问数组元素的语法是：" class="headerlink" title="访问数组元素的语法是："></a>访问数组元素的语法是：</h5><p>数组名[下标]; </p>
+<p>其中，下标从0开始，最大值为数组长度减1。</p>
+<p>此外，Java还提供了一些方法来操作数组，比如System.arraycopy()方法可以用来复制数组，Arrays.sort()方法可以用来对数组进行排序，Arrays.binarySearch()方法可以用来在已排序的数组中查找特定元素等。</p>
+<h3 id="赋值机制"><a href="#赋值机制" class="headerlink" title="赋值机制"></a>赋值机制</h3><p>主要有两种类型</p>
+<p>基本数据类型赋值</p>
+<p>方式：值拷贝，即赋值的是具体的数据，而且相互不影响。</p>
+<p>引用数据类型赋值</p>
+<p>方式：引用赋值，即赋值的是地址，赋值后的数组元素会互相影响。</p>
+<p>此外，还有一种赋值方式叫做数组的初始化，例如</p>
+<p>int[] arr &#x3D; new int []{1,2,3};</p>
+<p>这样可以一次性初始化整个数组[6]</p>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><h4 id="定义和初始化"><a href="#定义和初始化" class="headerlink" title="定义和初始化"></a>定义和初始化</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240127110236393.png" alt="image-20240127110236393"></p>
+<h4 id="访问二维数组"><a href="#访问二维数组" class="headerlink" title="访问二维数组"></a>访问二维数组</h4><p>使用两个方括号来访问二维数组中的元素。</p>
+<p>第一个方括号表示我们要从中访问项目的数组，而第二个方括号表示我们要访问的项目的索引。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/01/27/%E6%95%B0%E7%BB%84/" data-id="cltbbykx1000glgfwcxcnfe4v" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-控制结构笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/01/27/%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" class="article-date">
@@ -505,62 +733,11 @@
 
 
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/13/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-12-13T10:51:54.507Z" itemprop="datePublished">2023-12-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/12/13/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2023/12/13/hello-world/" data-id="cltbbykwt0001lgfw46d6dhef" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -606,23 +783,23 @@
       <ul>
         
           <li>
+            <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/">huang2024-4-8-2024-4-14周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/09/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E4%BD%BF%E7%94%A8CCS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/08/java/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/%E4%BA%8B%E5%8A%A1/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/">huang2024-4-1-2024-4-7周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/31/%E7%BA%A6%E6%9D%9F/">(no title)</a>
           </li>
         
       </ul>
