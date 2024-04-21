@@ -17,8 +17,11 @@
 <meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240409220719993.png">
 <meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240411222025653.png">
 <meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240411223445097.png">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240416212333425.png">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240416221427183.png">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240417223404273.png">
 <meta property="article:published_time" content="2024-04-08T13:37:12.674Z">
-<meta property="article:modified_time" content="2024-04-14T07:08:10.996Z">
+<meta property="article:modified_time" content="2024-04-21T02:11:12.213Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240408213857363.png">
@@ -316,8 +319,90 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Part</span>&#123;</span><br><span class="line">	<span class="keyword">static</span> fianl <span class="type">double</span> PI=<span class="number">3.14</span>;</span><br><span class="line">	<span class="keyword">static</span> <span class="type">int</span> age=<span class="number">23</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] ages)</span>&#123;</span><br><span class="line">		<span class="keyword">final</span> <span class="type">int</span> number;</span><br><span class="line">		number = <span class="number">1235</span>;</span><br><span class="line">		age = <span class="number">22</span>;</span><br><span class="line">		number = <span class="number">1236</span>;</span><br><span class="line">		System.out.println(<span class="string">&quot;常量PI的值；&quot;</span>+PI);</span><br><span class="line">		System.out.println(<span class="string">&quot;赋值后number的值为：&quot;</span>+number)；</span><br><span class="line">		System.out.println(<span class="string">&quot;int型变量age的值为：&quot;</span>+age)；</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread<span class="string">&quot;main&quot;</span>java.lang.Error:无法解析的编译问题：</span><br><span class="line">	<span class="keyword">final</span> 局部变量 number 可能已经被赋过值</span><br><span class="line">	at <span class="title function_">Partmain</span><span class="params">(Part.java:<span class="number">10</span>)</span></span><br></pre></td></tr></table></figure>
 
+<p>从这个结果可以看到，Part类运行后发生了错误，异常日志中记载Part类出现编译问题，此编译问题正是常量number被第二次赋值。</p>
+<p>1.3.4  变量的有效范围</p>
+<p>由于变量被定义出来后只是暂存在内存中，等到程序执行到某一个点，该变量会被释放掉，也就是说变量有它的生命周期。因此，变量的有效范围是指程序代码能够访问该变量的区域，若超出该区域，则在编译时会出现错误。在程序中，一般会根据变量的“有效范围”将变量分为“成员变量”和“局部变量”。</p>
+<p>1.成员变量</p>
+<p>在类体中所声明的变量被称为成员变量，成员变量在整个类中都有效。类的成员变量又可分为两种，即静态变量和实例变量。例如下面这段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Demo</span>&#123;</span><br><span class="line">	<span class="type">int</span> x=<span class="number">45</span>;</span><br><span class="line">	<span class="keyword">static</span> <span class="type">int</span> y=<span class="number">90</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，x为实例变量，y为静态变量(也称类变量)。如果在成员变量的类型称为静态变量。静态变量的有效范围可以跨类，甚至可达到整个应用程序之内。对于静态变量，除了能在声明它的类内存区，还能直接以“类名.静态变量”的方式在其他类内使用。</p>
+<p>2.局部变量</p>
+<p>在类的方法体中声明的变量(方法内部定义，“{”与“}”之间的代码中声明的变量)称为局部变量。局部变量只在当前代码块中有效，也就是只能在“{”与“}”之内使用。</p>
+<p>在类的方法中声明的变量，包括方法的参数，都属于局部变量。局部变量只在当前定义的方法内有效，不能用于类的其他方法中。局部变量的生命周期取决于方法，当方法被调用时，Java虚拟机会为方法中的局部变量分配内存空间，当该方法的调用结束后，则会释放方法中的局部变量占用的内存空间，局部变量也将被销毁。</p>
+<p>局部变量可与成员变量的名字相同，此时成员变量将被隐藏，即这个成员变量在此方法中暂时失效。</p>
+<p>变量的有效范围如图所示</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240416212333425.png" alt="image-20240416212333425"></p>
+<p>【例1.6】把成员变量“排挤掉”的局部变量</p>
+<p>在项目中创建类Vel分别定义名称相同的局部变量与成员变量，当名称相同时成员变量将被隐藏。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Val</span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="type">int</span> <span class="variable">times</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">times</span> <span class="operator">=</span> <span class="number">4</span>;</span><br><span class="line">			System.out.println(<span class="string">&quot;times的值为：&quot;</span>+times);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">times的值为：4</span><br></pre></td></tr></table></figure>
+
+
+
+<p>1.4  运算符</p>
+<p>运算符是一些特殊的符号，主要用于数学函数、一些类型的赋值语句和逻辑比较方面。Java中提供了丰富的运算符，如赋值运算符、算数运算符、比较运算符等。</p>
+<p>1.4.1  赋值运算符</p>
+<p>赋值运算符以符号“&#x3D;”表示，它是一个二元运算符(对两个操作数作处理)，其功能是将右方操作数所含的值赋给左方的操作数。例如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<p>该表达式是将100赋值给变量a。作坊的操作数必须是一个变量，而右边的操作数则可以是任何表达式，包括变量(如a、number)、常量(如123、‘book’)、有效的表达式(如45*12)。</p>
+<p>由于赋值运算符”&#x3D;”处理时会先取得右方表达式处理后的结果，因此一个表达式中若含有两个以上的”&#x3D;”运算符，会从最右方的”&#x3D;”开始处理。</p>
+<p>【例1.7】使用赋值运算符同时为两个变量赋值</p>
+<p>在项目中创建类Eval，在主方法中定义变量，使用赋值运算符为变量赋值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Eval</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">int</span> a,b,c;</span><br><span class="line">		a = <span class="number">15</span>;</span><br><span class="line">		c=b=a+<span class="number">4</span>;</span><br><span class="line">		System.out.println(<span class="string">&quot;c的值为：&quot;</span>+c);</span><br><span class="line">		System.out.println(<span class="string">&quot;b的值为：&quot;</span>+b);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输入结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c的值为：19</span><br><span class="line">b的值为：19</span><br></pre></td></tr></table></figure>
+
+<p>说明</p>
+<p>在Java中可以把赋值运算符连在一起使用。如：</p>
+<p>x&#x3D;y&#x3D;z&#x3D;5;</p>
+<p>在这个语句中，变量x、y、z都得到同样的值5。但在实际开发中建议开发者分开赋值，这样可以让代码的层次更清晰。</p>
+<p>1.4.2  算术运算符</p>
+<p>Java中的算术运算符主要有+(加)、-(减)、*(乘)、&#x2F;(除)、%(求余)，它们都是二元运算符。Java中算术运算符的功能及使用方式，如图示。</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240416221427183.png" alt="image-20240416221427183"></p>
+<p>其中，”+”和”-“运算符还可以作为数值的正负符号，如+5、-7。</p>
+<p>注意</p>
+<p>在进行除法运算时，0不能做除数。例如，对于语句”int a &#x3D; 5&#x2F;0;”，系统会抛出ArithmeticException异常。</p>
+<p>【例1.8】使用算术运算符模拟计算器</p>
+<p>创建ArithmeticOperator类，让用户输入两个数字，分别用5种运算符对两个数字进行计算。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArithmeticOperator</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(Systen.in);</span><br><span class="line">		System.out.println(<span class="string">&quot;请输入两个数字，用空格隔开(num1 num2):&quot;</span>);</span><br><span class="line">		<span class="type">double</span> <span class="variable">num1</span> <span class="operator">=</span> sc.nextDouble();</span><br><span class="line">		<span class="type">double</span> <span class="variable">num2</span> <span class="operator">=</span> sc.nextDouble();</span><br><span class="line">		System.out.println(<span class="string">&quot;num1+num2的和为：&quot;</span>+(num1+num2));</span><br><span class="line">		System.out.println(<span class="string">&quot;num1-num2的差为：&quot;</span>+(num1-num2));</span><br><span class="line">		System.out.println(<span class="string">&quot;num1*num2的积为：&quot;</span>+(num1*num2));</span><br><span class="line">		System.out.println(<span class="string">&quot;num1/num2的商为：&quot;</span>+(num1/num2));</span><br><span class="line">		System.out.println(<span class="string">&quot;num1%num2的余数为：&quot;</span>+(num1%num2));</span><br><span class="line">		sc.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请输入两个数字：，用空格隔开(num1 num2):</span><br><span class="line">23 15</span><br><span class="line">num1+num2的和为：38.0</span><br><span class="line">num1-num2的差为：8.0</span><br><span class="line">num1*num2的积为：345.0</span><br><span class="line">num1/num2的商为：1.533333333333333334</span><br><span class="line">num1%num2的余数为：8.0</span><br></pre></td></tr></table></figure>
+
+
+
+<p>1.4.3  自增和自减运算符</p>
+<p>自增、自减运算符是单目运算符，可以放在操作元之前，也可以放在操作元之后。操作元必须是一个整型或浮点型变量。自增、自减运算符的作用是使变量的值增1或减1。放在操作元前面的自增、自减运算符，会先将变量的值加1(减1)，然后再使该变量参与表达式的运算。放在操作元后面的自增、自减运算符，会先使变量参与表达式的运算，然后再将该变量加1(减1)。例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">++a(--a)       <span class="comment">//表示在使用变量a之前，先使a的值加(减)1</span></span><br><span class="line">a++(a--)       <span class="comment">//表示在使用变量a之后，使a的值加(减)1</span></span><br></pre></td></tr></table></figure>
+
+<p>粗略的分析，“++a”与“a++”的作用都相当于a&#x3D;a+1。假设a&#x3D;4，则：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = ++a;             <span class="comment">//先将a的值加1，然后赋值给b，此时a的值为5，b的值为5</span></span><br></pre></td></tr></table></figure>
+
+<p>再看另一个语法，同样假设a&#x3D;4，则：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = a++;             <span class="comment">//先将a的值赋值给b，再将a的值变为5，此时a的值为5，b的值为4</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>1.4.4   比较运算符</p>
+<p>比较运算符属于二次运算符，用于程序中的变量之间、变量和自变量之间以及其他类型的信息之间的比较。比较运算符的运算结果是boolean型。当运算符对应的关系成立时，运算结果为true，否则为false。所有比较运算符通常作为判断的依据用在条件语句中。比较运算符共有6个，如图所示：</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240417223404273.png" alt="image-20240417223404273"></p>
+<p>【1.9】使用不同的比较运算符判断两个整数的关系</p>
+<p>在项目中创建类Compare，在主方法中创建整型变量，使用比较运算符对变量进行比较运算，并将运算后的结果输出。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Compare</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">int</span> number1=<span class="number">4</span>;</span><br><span class="line">		<span class="type">int</span> number2=<span class="number">5</span>;</span><br><span class="line">		System.out.println(<span class="string">&quot;number1&gt;number2的返回值为：&quot;</span>+(number1&gt;number2));</span><br><span class="line">		System.out.println(<span class="string">&quot;number1&lt;number2的返回值为：&quot;</span>+(number1&lt;number2));</span><br><span class="line">		System.out.println(<span class="string">&quot;number1==number2的返回值为：&quot;</span>+(number1==number2));</span><br><span class="line">		System.out.println(<span class="string">&quot;number1=number2的返回值为：&quot;</span>+(number1!=number2));</span><br><span class="line">		System.out.println(<span class="string">&quot;number1&gt;=number2的返回值为：&quot;</span>+(number1&gt;=number2));</span><br><span class="line">		System.out.println(<span class="string">&quot;number1&lt;=number2的返回值为：&quot;</span>+(number1&lt;=number2));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">number1&gt;number2的返回值为：false</span><br><span class="line">number1&lt;number2的返回值为：true</span><br><span class="line">number1==number2的返回值为：false</span><br><span class="line">number1!=number2的返回值为：true</span><br><span class="line">number1&gt;=number2的返回值为：false</span><br><span class="line">number1&lt;=number2的返回值为：true</span><br></pre></td></tr></table></figure>
+
+
+
+<p>1.4.5  逻辑运算符<br>返回类型为布尔型的表达式，如比较运算符，可以被组合在一起构成一个更复杂的表达式。这是通过逻辑运算符来实现的。逻辑运算符包括&amp;(&amp;&amp;)(逻辑与)、</p>
 
       
     </div>
@@ -364,7 +449,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li></ul>
     </div>
   </div>
 
@@ -374,7 +459,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a>
+      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a>
     </div>
   </div>
 
@@ -396,6 +481,14 @@
       <ul>
         
           <li>
+            <a href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">MySQL视图</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/">huang2024-4-15-2024-4-21周报</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
           </li>
         
@@ -405,14 +498,6 @@
         
           <li>
             <a href="/2024/04/09/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E4%BD%BF%E7%94%A8CCS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/08/java/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/">(no title)</a>
           </li>
         
       </ul>

@@ -73,6 +73,153 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-约束" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/31/%E7%BA%A6%E6%9D%9F/" class="article-date">
+  <time class="dt-published" datetime="2024-03-31T04:06:40.874Z" itemprop="datePublished">2024-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h4><p>MySQL约束是一种强制性的规则，它用于维护数据库的完整性 。这些约束保证了数据的准确性、一致性和可靠性。常用的几种约束及其作用如下</p>
+<h5 id="1-主键约束-PRIMARY-KEY"><a href="#1-主键约束-PRIMARY-KEY" class="headerlink" title="1.主键约束(PRIMARY KEY)"></a>1.主键约束(PRIMARY KEY)</h5><p>主键约束用于标识表中的每一行记录。每个表都只能有一个主键，且主键的值必须是唯一的，且不能为空。当你在创建表时，你可以通过PRIMARY KEY关键字来声明一个列作为主键。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATA TABLE users(</span><br><span class="line">id INT PRIMARY LEY,</span><br><span class="line">username VARCHAR(255)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，id列被设置为PRIMARY KEY，这意味着它是主键，其值必须是唯一的，且不能为空。</p>
+<h5 id="2-非空主键-NOT-NULL"><a href="#2-非空主键-NOT-NULL" class="headerlink" title="2.非空主键(NOT NULL)"></a>2.非空主键(NOT NULL)</h5><p>非空约束确保了列中的每个值都不能为空。当你在创建表时，你可以通过NOT NULL关键字来声明一个列作为非空列。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users(</span><br><span class="line">id INT PRIMARY KEY,</span><br><span class="line">username VARCHAR(255)</span><br><span class="line">NOT NULL</span><br><span class="line">); </span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，username列被设置为NOT NULL，这意味着它的值不能为空。</p>
+<h5 id="3-唯一约束（UNIQUE）"><a href="#3-唯一约束（UNIQUE）" class="headerlink" title="3.唯一约束（UNIQUE）"></a>3.唯一约束（UNIQUE）</h5><p>唯一约束确保了一个列或列组合中的每个值都是唯一的。这意味着在一个表中，这个列或列组合的值不能重复。当你在创建表时，你可以通过UNIQUE关键字来声明一个列或列组合作为唯一列。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users(</span><br><span class="line">id INT PRIMARY KEY,</span><br><span class="line">username VARCHAR(255) </span><br><span class="line">UNIQUE,</span><br><span class="line">email VARCHAR(255)</span><br><span class="line">); </span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，username列被设置为UNIQUE，这意味着它在表中必须是唯一的。而email列没有被设置为UNIQUE，所以它的值可以在表中重复。</p>
+<h5 id="4-外键约束（FOREIGN-KEY）"><a href="#4-外键约束（FOREIGN-KEY）" class="headerlink" title="4.外键约束（FOREIGN KEY）"></a>4.外键约束（FOREIGN KEY）</h5><p>外键约束用于维持两个表之间的关联性。当你在创建表时，你可以通过FOREIGN KEY关键字来声明一个列作为外键。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE orders(</span><br><span class="line">order_id INT PRIMARY KEY,</span><br><span class="line">product_id INT FOREIGN KEY REFERENCES products(product_id) </span><br><span class="line">); </span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，product_id列被设置为FOREIGN KEY，这意味着它的值必须存在于products表的product_id列中。如果product_id列的某个值不存在于products表的product_id列中用，那么MySQL将会抛出一个错误。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/03/31/%E7%BA%A6%E6%9D%9F/" data-id="cluf1geta00032wfw0mdyh0jw" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-3-25-2024-3-31周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/31/huang2024-3-25-2024-3-31%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-03-31T01:43:06.000Z" itemprop="datePublished">2024-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/31/huang2024-3-25-2024-3-31%E5%91%A8%E6%8A%A5/">huang2024-3-25-2024-3-31周报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.mysql</p>
+<p>2.题目</p>
+<p>3.笔记</p>
+<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
+<thead>
+<tr>
+<th align="center">日历</th>
+<th align="center">学习内容</th>
+<th align="center">其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">星期一</td>
+<td align="center">约束1</td>
+<td align="center">\</td>
+</tr>
+<tr>
+<td align="center">星期二</td>
+<td align="center">web网页设</td>
+<td align="center">\</td>
+</tr>
+<tr>
+<td align="center">星期三</td>
+<td align="center">C代码题</td>
+<td align="center">\</td>
+</tr>
+<tr>
+<td align="center">星期四</td>
+<td align="center">约束2</td>
+<td align="center">\</td>
+</tr>
+<tr>
+<td align="center">星期五</td>
+<td align="center">\</td>
+<td align="center">日周笔记</td>
+</tr>
+<tr>
+<td align="center">星期六</td>
+<td align="center">多表查询基础</td>
+<td align="center">\</td>
+</tr>
+<tr>
+<td align="center">星期天</td>
+<td align="center">C选择填空</td>
+<td align="center">\</td>
+</tr>
+</tbody></table>
+<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><p>1.笔记</p>
+<p><a href="https://snail0220.github.io/2024/03/31/%E7%BA%A6%E6%9D%9F/">https://snail0220.github.io/2024/03/31/%E7%BA%A6%E6%9D%9F/</a></p>
+<p>2.题目</p>
+<p><img src="file:///C:/Users/黄倩/AppData/Local/Packages/Microsoft.Windows.Photos_8wekyb3d8bbwe/TempState/ShareServiceTempFolder/屏幕截图%202024-03-26%20150436.jpeg" alt="img"></p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240331124302534.png" alt="image-20240331124302534"></p>
+<p>3.日周笔记</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240331100820444.png" alt="image-20240331100820444"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>平平常常的一周学习，题目的类型暂时没有找到合适的方式加入周报中，暂时只以照片的方式展示。</p>
+<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><p>1.MySQL</p>
+<p>2.题目</p>
+<p>3.日周笔记</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/03/31/huang2024-3-25-2024-3-31%E5%91%A8%E6%8A%A5/" data-id="cluf1gesx00002wfwa60c89t1" data-title="huang2024-3-25-2024-3-31周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-MySQL--函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/" class="article-date">
@@ -912,167 +1059,6 @@
 
 
   
-    <article id="post-MySQL笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time class="dt-published" datetime="2024-03-02T07:15:24.431Z" itemprop="datePublished">2024-03-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="MySQL概述"><a href="#MySQL概述" class="headerlink" title="MySQL概述"></a>MySQL概述</h3><h4 id="数据库相关概念"><a href="#数据库相关概念" class="headerlink" title="数据库相关概念"></a>数据库相关概念</h4><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>全称</th>
-<th>简称</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>数据库</td>
-<td>存储数据的仓库，数据是有组织的进行存储</td>
-<td>DataBase(DB)</td>
-</tr>
-<tr>
-<td>数据库管理系统</td>
-<td>操纵和管理数据库的大型软件</td>
-<td>DataBase Management System(DBMS)</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>操作关系型数据库的编程语言，定义了一套操作关系型数据库统一标准</td>
-<td>Structured Qunery Language(SQL)</td>
-</tr>
-</tbody></table>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303094054298.png" alt="image-20240303094054298"></p>
-<p>不同的数据库管理系统都有一个同样的标准：SQL</p>
-<h4 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h4><h5 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h5><p>启动：net start mysql80</p>
-<p>停止：net stop mysql80</p>
-<h5 id="客户端连接"><a href="#客户端连接" class="headerlink" title="客户端连接"></a>客户端连接</h5><p>方式一：MySQL提供的客户端命令行工具</p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303100740736.png" alt="image-20240303100740736"></p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303100824619.png" alt="image-20240303100824619"></p>
-<p>方式二：系统自带的命令行工具执行指令</p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303100938301.png" alt="image-20240303100938301"></p>
-<p>mysql -u root -p</p>
-<p>(需配置PATH环境变量)</p>
-<h5 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h5><p>概念：建立在关系模型基础上，有多张相互连接的二维表组成的数据库。</p>
-<p>特点：</p>
-<ol>
-<li>使用表存储数据，格式统一，便于维护。</li>
-<li>使用SQL语言操作，标准统一，使用方便。</li>
-</ol>
-<h5 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型<img src="file:///E:\QQ\2194861505\Image\C2C\A4B65070B9BF6C0ECDC32AD7956AECE9.jpg" alt="img"></h5><h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><h5 id="SQL通用语法"><a href="#SQL通用语法" class="headerlink" title="SQL通用语法"></a>SQL通用语法</h5><ol>
-<li>SQL语句可以单行或多行书写，以分号结尾。</li>
-<li>SQL语句可以使用空格&#x2F;缩进来增强语句的可读性。</li>
-<li>MySQL数据库的SQL语句不区分大小写，关键字建议使用大写。</li>
-<li>注释：<ul>
-<li>​	单行注释：–注释内容 或 # 注释内容（MySQL特有）</li>
-<li>​    多行注释：&#x2F;(<em>)注释内容(</em>)&#x2F;</li>
-</ul>
-</li>
-</ol>
-<h5 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h5><p><img src="file:///E:\QQ\2194861505\Image\C2C\4C8A1B042886A7EECB687245E8315CCA.jpg" alt="img"></p>
-<p>DDL-数据库操作</p>
-<ul>
-<li><p>查询：查询所有数据库   SHOW DATABASES</p>
-<p>​           查询当前数据库   SELECT DATABASE()</p>
-</li>
-<li><p>创建：CREATE DATABASE [IF NOT EXISTS] 数据库 [DEFAULT 			CHARSET 字符集] [COLLATE 排序规则]；</p>
-</li>
-<li><p>删除：DROP DATABASE [IF EXISTS] 数据库名；</p>
-</li>
-<li><p>使用：USE 数据库名；</p>
-</li>
-</ul>
-<p>DDL-表操作-查询</p>
-<ul>
-<li>查询当前数据库所有表：SHOW TABLES;</li>
-<li>查询表结构：DESC 表名；</li>
-<li>查询指定表的建表语句：SHOW CREATE TABLE 表名</li>
-</ul>
-<p>DDL-表操作-创建</p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240310131749346.png" alt="image-20240310131749346"></p>
-<ul>
-<li>注意：最后一个字段后面没有逗号。</li>
-</ul>
-<p>DDL-表操作-数据类型</p>
-<ul>
-<li>MySQL中的数据类型有很多，主要分为三类：数值类型、字符串类型、日期时间类型。</li>
-</ul>
-<p>【案例】</p>
-<p>![屏幕截图 2024-03-10 132245](C:\Users\黄倩\Pictures\Screenshots\屏幕截图 2024-03-10 132245.png)</p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240310132331183.png" alt="image-20240310132331183"></p>
-<p>DDL-表操作-修改</p>
-<ul>
-<li>添加字段：ALTER TABLE 表名 ADD 字段名 类型(长度) [COMMENT 注释] [约束]；</li>
-<li>修改数据类型：ALTER TABLE 表名 MODIFY 字段名 新数据类型(长度)；</li>
-<li>修改字段名和字段类型：ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型(长度) [COMMENT 注释] [约束]；</li>
-<li>删除字段：ALTER TABLE 表名 DROP 字段名；</li>
-<li>修改表名：ALTER TABLE 表名 RENAME TO 新表名；</li>
-</ul>
-<p>DDL-表操作-删除</p>
-<ul>
-<li>删除表：DROP TABLE [IF EXISTS] 表名；</li>
-<li>删除指定表，并重新创建该表：TRUNCATE TABLE 表名；</li>
-</ul>
-<h5 id="MySQL图形化界面【datagrip】"><a href="#MySQL图形化界面【datagrip】" class="headerlink" title="MySQL图形化界面【datagrip】"></a>MySQL图形化界面【datagrip】</h5><p>安装，创建空项目</p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240310134157544.png" alt="image-20240310134157544"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/" data-id="cltbbykwq0000lgfw1rwwgyui" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-可变参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/04/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2024-02-04T05:54:24.266Z" itemprop="datePublished">2024-02-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="可变参数笔记"><a href="#可变参数笔记" class="headerlink" title="可变参数笔记"></a>可变参数笔记</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Java中的可变参数是一种特殊的参数类型，它可以接受不定数量的参数。这种特性在Java 5中被引入，主要用于解决方法参数数量不确定的问题。</p>
-<h4 id="声明和使用"><a href="#声明和使用" class="headerlink" title="声明和使用"></a>声明和使用</h4><p>在Java中，我们通过在方法声明时使用<code>...</code>来标识一个可变参数。例如，如果我们希望一个方法接受任意数量的字符串参数，我们可以这样声明：</p>
-<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204134557521.png" alt="image-20240204134557521">特性</h4><ul>
-<li><strong>只能有一个可变参数</strong>：在方法声明中，只能有一个<code>...</code>标记的形参类型。这是因为可变参数在语法上是作为数组处理的，而一个方法只能有一个数组参数。</li>
-<li><strong>可变参数必须位于形参的最后一个位置</strong>：在方法声明中，可变参数之后不能有其他参数。这是因为可变参数的数量是不定的，如果它在其他参数后面，Java将无法确定哪个参数应该被视为可变参数的一部分。</li>
-<li><strong>可变参数是数组</strong>：在方法内部，可变参数被视为一个数组。这意味着你可以像操作数组一样操作可变参数。例如，你可以使用<code>length</code>属性获取可变参数的数量，或者使用索引访问每个参数。</li>
-</ul>
-<h4 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204134827189.png" alt="image-20240204134827189"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/02/04/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" data-id="cltbbykwy0007lgfw16dhaj8r" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1091,7 +1077,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li></ul>
     </div>
   </div>
 
@@ -1101,7 +1087,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a>
+      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a>
     </div>
   </div>
 
@@ -1123,6 +1109,14 @@
       <ul>
         
           <li>
+            <a href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">MySQL视图</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/">huang2024-4-15-2024-4-21周报</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
           </li>
         
@@ -1132,14 +1126,6 @@
         
           <li>
             <a href="/2024/04/09/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E4%BD%BF%E7%94%A8CCS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/08/java/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/">(no title)</a>
           </li>
         
       </ul>
