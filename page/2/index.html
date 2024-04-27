@@ -73,6 +73,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-多表查询" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" class="article-date">
+  <time class="dt-published" datetime="2024-04-03T12:09:20.189Z" itemprop="datePublished">2024-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h4><h5 id="1-基础"><a href="#1-基础" class="headerlink" title="1.基础"></a>1.基础</h5><p>在MySQL中，多表查询是一种强大的功能，它允许你在一次查询中联合多个表，并从中获取所需的数据。以下是一些关于MySQL多表查询的基础知识：</p>
+<p>(1) 多表查询的基本语法</p>
+<p>多表查询的基本语法是SELECT * FROM 表1, 表2。这里的*代表选择所有的列，可以根据需要替换成具体的列名。表1和表2是想要联接的表名。例如，如果想同时从students表和classes表中查询数据，可以这样写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM students, classes; </span><br></pre></td></tr></table></figure>
+
+<p>这个查询会返回students表和classes表的“乘积”，也就是说，students表的每一行都会与classes表的每一行进行配对，形成一个二维表 。</p>
+<p>(2) 多表查询的注意事项</p>
+<p>在使用多表查询时，你需要特别注意的一点是，由于结果是两个表的行数乘积，因此可能会得到大量的数据。比如，如果你的两个表各有100行记录，那么进行笛卡尔查询将会返回10000条记录。因此，在进行多表查询时，你应该尽可能地使用WHERE条件来限制查询的范围 。</p>
+<p>(3)多表查询的高级用法</p>
+<p>除了基本的笛卡尔查询，MySQL还提供了其他几种高级的多表查询方法，如INNER JOIN、LEFT JOIN、RIGHT JOIN和FULL JOIN。这些方法可以帮助你更有效地从多个表中获取数据。例如，如果你想查询students表中所有学生的名字和他们的班级，你可以使用INNER JOIN：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT students.name,classes.classroom FROM students INNER JOIN classes ON students.class_id = classes.class_id; </span><br></pre></td></tr></table></figure>
+
+<p>在这个查询中，ON关键字后面的是连接条件，也就是students表中的class_id列和classes表中的class_id列相等。通过这种方式，你可以精确地从多个表中获取你想要的数据 。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" data-id="clupj6g6x0004wsfwezgoe37k" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-约束" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/31/%E7%BA%A6%E6%9D%9F/" class="article-date">
@@ -952,113 +993,6 @@
 
 
   
-    <article id="post-huang2024-2-26-2024-3-3周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/03/huang2024-2-26-2024-3-3%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-03-03T06:15:52.000Z" itemprop="datePublished">2024-03-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/03/huang2024-2-26-2024-3-3%E5%91%A8%E6%8A%A5/">huang2024/2/26-2024/3/3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><ol>
-<li>MySQL数据库</li>
-<li>Web前端基础软件安装和调试</li>
-<li>Dev-C安装和基础认识</li>
-</ol>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日历</th>
-<th>学习内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>认识MySQL,安装及启动</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>数据模型和通用语法</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>安装Dev-C和基础认识</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>Web前端（Dreamweaver）安装及调试</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>离散、高数一周笔记整理</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>SQL-DDL-表操作</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期天</td>
-<td></td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容-及-收获"><a href="#本周学习内容-及-收获" class="headerlink" title="本周学习内容 及 收获"></a>本周学习内容 及 收获</h2><ol>
-<li><p>Dev-C和Dreamweaver安装实践成果</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240302151420020.png" alt="image-20240302151420020" style="zoom:50%;" />
-</li>
-<li><p>笔记</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240302154324820.png" alt="image-20240302154324820" style="zoom:67%;" />
-</li>
-<li><p>MySQL学习笔记</p>
-</li>
-</ol>
-<p><a href="https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/">https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/</a></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.刚开学，时间没有把控好，学习起来有些混乱，有点难以把握学习之间的进度。</p>
-<p>2.MySQL安装时，遇到问题，自己找了CSDN上面的解决方法，才能慢慢安装好，但是还是有点感觉不对，希望之后可以查证。</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><ol>
-<li>SQL图形操作</li>
-<li>继续数学笔记补充</li>
-<li>web前端，C程序</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/03/huang2024-2-26-2024-3-3%E5%91%A8%E6%8A%A5/" data-id="cltbbykwz000algfwh2ucd5rc" data-title="huang2024/2/26-2024/3/3" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1077,7 +1011,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li></ul>
     </div>
   </div>
 
@@ -1087,7 +1021,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a>
+      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a>
     </div>
   </div>
 
@@ -1109,6 +1043,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/">huang2024-4-22-2024-4-28周报</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">MySQL视图</a>
           </li>
         
@@ -1122,10 +1060,6 @@
         
           <li>
             <a href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/">huang2024-4-8-2024-4-14周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/09/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E4%BD%BF%E7%94%A8CCS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">(no title)</a>
           </li>
         
       </ul>

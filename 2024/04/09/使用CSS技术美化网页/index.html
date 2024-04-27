@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="第三章 使用CSS技术美化网页 HTML存在很大的局限和不足。 3.1【案例4】数字变色Logo 1.认识CSS 实现结构与表现的分离。CSS非常灵活，既可以嵌入在HTML文档中，也可以是一个单独的外部文档，如果是独立的文档，则必须以.css为后缀。 CSS集中写在HTML文档的头部，也是符合结构与表现相分离的。 1234567&lt;style type&#x3D;&quot;text&#x2F;css&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://snail0220.github.io/2024/04/09/%E4%BD%BF%E7%94%A8CSS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第三章 使用CSS技术美化网页 HTML存在很大的局限和不足。 3.1【案例4】数字变色Logo 1.认识CSS 实现结构与表现的分离。CSS非常灵活，既可以嵌入在HTML文档中，也可以是一个单独的外部文档，如果是独立的文档，则必须以.css为后缀。 CSS集中写在HTML文档的头部，也是符合结构与表现相分离的。 1234567&lt;style type&#x3D;&quot;text&#x2F;css&quot;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240427164652653.png">
+<meta property="article:published_time" content="2024-04-09T05:35:22.558Z">
+<meta property="article:modified_time" content="2024-04-27T08:47:00.572Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240427164652653.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://snail0220.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-使用CSS技术美化网页" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/09/%E4%BD%BF%E7%94%A8CSS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/" class="article-date">
+  <time class="dt-published" datetime="2024-04-09T05:35:22.558Z" itemprop="datePublished">2024-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>第三章 使用CSS技术美化网页</p>
+<p>HTML存在很大的局限和不足。</p>
+<p>3.1【案例4】数字变色Logo</p>
+<p>1.认识CSS</p>
+<p>实现结构与表现的分离。CSS非常灵活，既可以嵌入在HTML文档中，也可以是一个单独的外部文档，如果是独立的文档，则必须以.css为后缀。</p>
+<p>CSS集中写在HTML文档的头部，也是符合结构与表现相分离的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">	<span class="selector-tag">p</span>&#123;</span><br><span class="line">		<span class="attribute">font-size</span>:<span class="number">36px</span>;</span><br><span class="line">		<span class="attribute">color</span>:red;</span><br><span class="line">		<span class="attribute">text-align</span>:center</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>优势：节约成本、提高性能</p>
+<p>2.CSS样式规则</p>
+<p>具体语法规则如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">选择器&#123;</span><br><span class="line">		属性<span class="number">1</span>：属性值<span class="number">1</span>；</span><br><span class="line">		属性<span class="number">2</span>：属性值<span class="number">2</span>；</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特点</p>
+<ul>
+<li><p>严格区分大小写。</p>
+</li>
+<li><p>多个属性之间必须用英文状态下的分号隔开，最后一个属性后的分号可以省略，但是最好保留。</p>
+</li>
+<li><p>如果属性值由多个单词组成且中间包含空格，则必须为这个属性值加上英文状态下的引号。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">font-family</span>:<span class="string">&quot;Times New Roman&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以使用“&#x2F;<em>注释语句</em>&#x2F;”来进行注释</p>
+<p>例如，上面样式代码可添加</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">font-family</span>:<span class="string">&quot;Times New Roman&quot;</span>;&#125;</span><br><span class="line"><span class="comment">/* 这是CSS注释文本，有便于查找代码，此文本不会显示在浏览器窗口中 */</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>CSS中空格是不会被解析的，花括号以及分号前后的空格可有可无。因此可以使用空格键、tab键对样式进行排版。</p>
+</li>
+</ul>
+<p>3.引入CSS样式表</p>
+<p>要想使用CSS修饰网页，就需要在HTML文档中引入CSS样式表。CSS提供4种引入方式，分别为行内式、内嵌式、外链式、导入式。</p>
+<p>(1)行内式</p>
+<p>行内式也被称为内联样式，是通过标签的style属性来设置标签的样式，其基本语法格式如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> <span class="attr">style</span>=<span class="string">&quot;属性1：属性值1；属性2：属性值2；属性3：属性值3；&quot;</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>行内式也称内联样式，</p>
+<p>内嵌式</p>
+<p>内嵌式是将CSS代码集中写在HTML文档的<head>头部标签中，并且用<style>标签定义，其基本语法如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line">	选择器 &#123;属性1：属性值1；属性2：属性值2；属性3：属性值3；&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>外链式</p>
+<p>外链式也称链入式，是将所有的样式放在一个或多个以”.css”为扩展名的外部样式表文件中，通过<link/>标签将外部样式表文件连接到HTML文档中，其基本语法格式如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">herf</span>= <span class="string">&quot;CSS文件的路径&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<link/>标签需要放在<head>头部标签中，并且必须指定<link/>标签的3个属性，具体如下。
+
+<p>导入式</p>
+<p>导入式与外链式相同，都是将样式存放在外部样式表文件中。对HTML头部文档应用style标签，并在<style>标签内的开头处使用@import语句，即可导入外部样式表文件，其基本语法格式如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="keyword">@import</span> url(css文件路径)；或@import <span class="string">&quot;css文件路径&quot;</span>；</span></span><br><span class="line"><span class="language-css">	/*在此处还可以存放其他的CSS样式*/</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>4.CSS基础选择器</p>
+<p>(1)标签选择器</p>
+<p>(2)类选择器</p>
+<p>(3)id选择器</p>
+<p>(4)通配符选择器</p>
+<p>3.2【案例5】美食专题栏目</p>
+<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240427164652653.png" alt="image-20240427164652653" style="zoom:67%;" />
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/09/%E4%BD%BF%E7%94%A8CSS%E6%8A%80%E6%9C%AF%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/" data-id="clvhuzo5o0001jofwfpco2gld" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          huang2024-4-8-2024-4-14周报
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/04/08/java/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/">huang2024-4-22-2024-4-28周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">MySQL视图</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/">huang2024-4-15-2024-4-21周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/">huang2024-4-8-2024-4-14周报</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
