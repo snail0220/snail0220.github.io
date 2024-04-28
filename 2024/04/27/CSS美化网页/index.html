@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="c:\Users\%E9%BB%84%E5%80%A9\AppData\Roaming\Typora\typora-user-images\image-20240427164652653.png">
 <meta property="article:published_time" content="2024-04-27T08:56:25.000Z">
-<meta property="article:modified_time" content="2024-04-27T08:56:45.367Z">
+<meta property="article:modified_time" content="2024-04-28T06:31:55.074Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="CSS HEML">
 <meta name="twitter:card" content="summary">
@@ -139,17 +139,16 @@
 
 <p>行内式也称内联样式，</p>
 <p>内嵌式</p>
-<p>内嵌式是将CSS代码集中写在HTML文档的<head>头部标签中，并且用<style>标签定义，其基本语法如下。</p>
+<p>内嵌式是将CSS代码集中写在HTML文档的head头部标签中，并且用style标签定义，其基本语法如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line">	选择器 &#123;属性1：属性值1；属性2：属性值2；属性3：属性值3；&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>外链式</p>
-<p>外链式也称链入式，是将所有的样式放在一个或多个以”.css”为扩展名的外部样式表文件中，通过<link/>标签将外部样式表文件连接到HTML文档中，其基本语法格式如下。</p>
+<p>外链式也称链入式，是将所有的样式放在一个或多个以”.css”为扩展名的外部样式表文件中，通过link&#x2F;标签将外部样式表文件连接到HTML文档中，其基本语法格式如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">herf</span>= <span class="string">&quot;CSS文件的路径&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<link/>标签需要放在<head>头部标签中，并且必须指定<link/>标签的3个属性，具体如下。
-
+<p>link&#x2F;标签需要放在head头部标签中，并且必须指定link&#x2F;标签的3个属性，具体如下。</p>
 <p>导入式</p>
-<p>导入式与外链式相同，都是将样式存放在外部样式表文件中。对HTML头部文档应用style标签，并在<style>标签内的开头处使用@import语句，即可导入外部样式表文件，其基本语法格式如下。</p>
+<p>导入式与外链式相同，都是将样式存放在外部样式表文件中。对HTML头部文档应用style标签，并在style标签内的开头处使用@import语句，即可导入外部样式表文件，其基本语法格式如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="keyword">@import</span> url(css文件路径)；或@import <span class="string">&quot;css文件路径&quot;</span>；</span></span><br><span class="line"><span class="language-css">	/*在此处还可以存放其他的CSS样式*/</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>4.CSS基础选择器</p>
