@@ -73,6 +73,90 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第二章 从零开始构建HTML页面" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/" class="article-date">
+  <time class="dt-published" datetime="2024-03-05T06:07:35.171Z" itemprop="datePublished">2024-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="第二章-从零开始构建HTML页面"><a href="#第二章-从零开始构建HTML页面" class="headerlink" title="第二章 从零开始构建HTML页面"></a>第二章 从零开始构建HTML页面</h2><p>文档基本格式</p>
+<p>文本样式标签</p>
+<p>HTML图像</p>
+<h4 id="【案例一】简单的网页"><a href="#【案例一】简单的网页" class="headerlink" title="【案例一】简单的网页"></a>【案例一】简单的网页</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240309195718799.png" alt="image-20240309195718799"></p>
+<h5 id="HTML文档基本格式"><a href="#HTML文档基本格式" class="headerlink" title="HTML文档基本格式"></a>HTML文档基本格式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。</span><br><span class="line"></span><br><span class="line">&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;html&gt;标志着HTML文档的开始，&lt;/html&gt;标志着HTML文档的结束，在他们之间是文档的头部和主体内容。</span><br><span class="line"></span><br><span class="line">&lt;head&gt;:用于定义HTML文档的头部信息，也称为头部标签，紧跟在&lt;html&gt;之后。头部标签主要用来封装其他位于文档头部的标签，例如&lt;title&gt;、&lt;meta&gt;、&lt;link&gt;和&lt;stye&gt;等，用来描述文档的标题、作者，以及与其它文档的的关系。</span><br><span class="line"></span><br><span class="line">&lt;body&gt;;田干定义HTML文档所要显示的内容，也称为主体标签，浏监器中显示的所有文本、图像、音颛和视频等信息都必须位于&lt;body&gt;内，才能最终展示给用户。一个HTML文档中智能含有一对&lt;body&gt;，且&lt;body&gt;必须位于&lt;html&gt;内，位于&lt;head&gt;之后，与&lt;head&gt;是并列关系。</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="标签的分类"><a href="#标签的分类" class="headerlink" title="标签的分类"></a>标签的分类</h5><p>1.双标签（体标签）&lt;&gt;内容&lt;&#x2F;&gt;</p>
+<p>2.单标签(空标签)&lt;&#x2F;&gt;</p>
+<h5 id="标签的关系"><a href="#标签的关系" class="headerlink" title="标签的关系"></a>标签的关系</h5><p>1.嵌套关系（包含关系）<font>标签</p>
+<p>最外层的标签称之为“父级标签”，内层的标签称之为“子级标签“。只有双标签才能作为”父级标签“。</p>
+<p>2.并列关系（兄弟关系）</p>
+<p>两个标签处于同一级别，并且没有包含关系。如<head>标签和<body>标签就是并列关系。无论双标签还是单标签都可以拥有并列关系。</p>
+<h5 id="页面格式化标签"><a href="#页面格式化标签" class="headerlink" title="页面格式化标签"></a>页面格式化标签</h5><p>1.标题标签html head（6个）</p>
+<p>2.段落标签h1,h2…</p>
+<p>3.水平线标签hr</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性名</th>
+<th align="center">含义</th>
+<th align="center">属性值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">align</td>
+<td align="center">设置水平线的对齐方式</td>
+<td align="center">可选择left、right、center三种值，默认为center，居中对齐显示</td>
+</tr>
+<tr>
+<td align="center">size</td>
+<td align="center">设置水平线的粗细</td>
+<td align="center">以像素为单位，默认为2像素</td>
+</tr>
+<tr>
+<td align="center">color</td>
+<td align="center">设置水平线的颜色</td>
+<td align="center">可用颜色名称，十六进制#RGB、rgb(r,g,b)</td>
+</tr>
+<tr>
+<td align="center">width</td>
+<td align="center">设置水平线的宽度</td>
+<td align="center">可以是确定的像素值，也可以是浏览器窗口的百分比，默认为100%</td>
+</tr>
+</tbody></table>
+<p>换行<br/></p>
+<h4 id="【案例二】新闻页面"><a href="#【案例二】新闻页面" class="headerlink" title="【案例二】新闻页面"></a>【案例二】新闻页面</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240319143401995.png" alt="image-20240319143401995"></p>
+<p>1.标签的属性</p>
+<p>HTML标签设置属性的基本语法格式如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> <span class="attr">属性1</span>=<span class="string">&quot;属性值1&quot;</span> <span class="attr">属性2</span>=<span class="string">&quot;属性值2&quot;</span>…&gt;</span>内容<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.HTML文档头部相关标签</p>
+<p>3.文本样式标签</p>
+<p>4.文本格式化标签</p>
+<h4 id="【案例三】图文混排"><a href="#【案例三】图文混排" class="headerlink" title="【案例三】图文混排"></a>【案例三】图文混排</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240324134455314.png" alt="image-20240324134455314"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/" data-id="cltl3g1ax0001lwfwbh2a1dw4" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-huang2024-2-26-2024-3-3周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/03/huang2024-2-26-2024-3-3%E5%91%A8%E6%8A%A5/" class="article-date">
@@ -668,95 +752,6 @@
 
 
   
-    <article id="post-huang2024-1-15-2024-1-21学习周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/01/21/huang2024-1-15-2024-1-21%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-01-21T01:09:00.953Z" itemprop="datePublished">2024-01-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><ol>
-<li><strong>运算符</strong></li>
-</ol>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日历</th>
-<th>学习内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>算数运算符</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>关系（比较）运算符</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>逻辑运算符</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>赋值运算符</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>位运算符</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>三元运算符</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期天</td>
-<td>运算符优先级</td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容-及-收获"><a href="#本周学习内容-及-收获" class="headerlink" title="本周学习内容 及 收获"></a>本周学习内容 及 收获</h2><ol>
-<li><p>笔记</p>
-<p><a href="https://snail0220.github.io/2024/01/21/%E8%BF%90%E7%AE%97%E7%AC%A6%E7%AC%94%E8%AE%B0/">Hexo (snail0220.github.io)</a></p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这周的学习让我的逻辑认识更加清楚，运算符的认识更加完善。</p>
-<p>缺点是学习内容有些少，部分练习题没有整理出来</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><ol>
-<li>控制结构</li>
-<li>数组</li>
-</ol>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/01/21/huang2024-1-15-2024-1-21%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" data-id="cltbbykwx0005lgfw9heq9uf2" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -775,7 +770,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
     </div>
   </div>
 
@@ -785,7 +780,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a>
     </div>
   </div>
 
@@ -807,6 +802,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">MySQL存储过程</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">CSS美化网页</a>
           </li>
         
@@ -820,10 +819,6 @@
         
           <li>
             <a href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/">huang2024-4-15-2024-4-21周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
           </li>
         
       </ul>
