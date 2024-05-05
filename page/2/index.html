@@ -73,6 +73,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-多表查询2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/" class="article-date">
+  <time class="dt-published" datetime="2024-04-07T12:54:07.269Z" itemprop="datePublished">2024-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="mysql多表查询"><a href="#mysql多表查询" class="headerlink" title="mysql多表查询"></a>mysql多表查询</h2><p>MySQL的多表查询是一种强大的功能，它允许我们同时从多个表中获取数据。以下是一些关于如何进行多表查询的详细说明：</p>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>在MySQL中，多表查询通常通过JOIN操作符来实现。JOIN操作符可以连接两个或更多的表，并选择出满足特定条件的记录。</p>
+<h4 id="JOIN操作符"><a href="#JOIN操作符" class="headerlink" title="JOIN操作符"></a>JOIN操作符</h4><p>JOIN操作符有多种类型，包括INNER JOIN, LEFT JOIN, RIGHT JOIN和FULL JOIN。每种JOIN类型都有其特定的用途：</p>
+<ol>
+<li><p>INNER JOIN: 返回两个表中匹配的记录。如果任一表中没有匹配的记录，则不会出现在结果集中。</p>
+</li>
+<li><p>LEFT JOIN: 返回左边表的所有记录，以及右边表中匹配的记录。如果右边表中没有匹配的记录，则结果集中的相应字段将被设置为NULL。</p>
+</li>
+<li><p>RIGHT JOIN: 与LEFT JOIN相反，它返回右边表的所有记录，以及左边表中匹配的记录。</p>
+</li>
+<li><p>FULL JOIN: 返回左边表和右边表中的所有记录，但是当两边表都没有匹配的记录时，会抛出一个错误。</p>
+</li>
+</ol>
+<p>示例</p>
+<p>假设我们有三个表：students, courses和grades。我们需要找出所有选修了课程的学生。我们可以使用INNER JOIN来实现这个目标：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT students.name, </span><br><span class="line">courses.course_name FROM students INNER JOIN courses ON students.student_id = courses.student_id;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，students表和courses表通过student_id字段进行了关联。我们选择了students表中的name字段和courses表中的course_name字段。</p>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p>在进行多表查询时，需要注意以下几点：</p>
+<p>确保要连接的表之间存在关联关系。如果没有这样的关系，那么JOIN操作可能会导致错误的结果或者根本无法执行。</p>
+<p>注意JOIN操作对性能的影响。如果处理的表非常大，那么JOIN操作可能会非常慢。在这种情况下，可能需要考虑优化查询或者数据库设计。</p>
+<p>在某些情况下，可以使用子查询代替JOIN操作。子查询可以在一个查询内部执行另一个查询，并且可以处理更复杂的逻辑。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/" data-id="clupj6g6y0005wsfw56q0ag5l" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-事务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/07/%E4%BA%8B%E5%8A%A1/" class="article-date">
+  <time class="dt-published" datetime="2024-04-07T12:52:56.684Z" itemprop="datePublished">2024-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL事务"><a href="#MySQL事务" class="headerlink" title="MySQL事务"></a>MySQL事务</h2><p>MySQL事务是一种用于维护数据库完整性的机制，它保证了数据库操作的原子性、一致性、隔离性和持久性（ACID属性）。在MySQL中，只有使用了InnoDB存储引擎的数据库或表才支持事务。以下是关于MySQL事务的详细笔记：</p>
+<h4 id="ACID属性"><a href="#ACID属性" class="headerlink" title="ACID属性"></a>ACID属性</h4><p>1.原子性（Atomicity）：事务中的所有操作要么全部执行成功，要么全部失败回滚，不会只执行其中的一部分操作。</p>
+<p>2.一致性（Consistency）：事务执行前后，数据库的状态必须保持一致。</p>
+<p>3.隔离性（Isolation）：并发执行的多个事务之间互不干扰，一个事务的中间状态对其他事务是不可见的。</p>
+<p>4.持久性（Durability）：一旦事务提交，其对数据库的修改就是永久性的。</p>
+<h4 id="事务控制语句"><a href="#事务控制语句" class="headerlink" title="事务控制语句"></a>事务控制语句</h4><p>MySQL提供了以下四个事务控制语句：</p>
+<ol>
+<li><p>BEGIN：表示一个事务的开始。</p>
+</li>
+<li><p>COMMIT：表示一个事务的提交，将修改保存到数据库中。</p>
+</li>
+<li><p>ROLLBACK：表示一个事务的回滚，撤销对数据库的修改。</p>
+</li>
+<li><p>SAVEPOINT：表示设置一个保存点，可以在后续的操作中使用ROLLBACK TO语句来回滚到指定的保存点。</p>
+</li>
+</ol>
+<h4 id="事务的使用示例"><a href="#事务的使用示例" class="headerlink" title="事务的使用示例"></a>事务的使用示例</h4><p>以下是一个使用事务的示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">START TRANSACTION; </span><br><span class="line">-- 执行多条SQL语句 COMMIT; # 如果需要回滚，可以使用ROLLBACK; </span><br></pre></td></tr></table></figure>
+
+<p>在实际应用中，事务可以用于保证一系列数据库操作的完整性和一致性。例如，在一个转账的场景中，事务可以保证从一个账户扣款和向另一个账户存款这两个操作要么都成功，要么都不做，从而避免了只做了其中一部分操作导致的错误。</p>
+<p>需要注意的是，虽然事务可以提高数据库操作的可靠性，但同时也可能影响数据库的性能。因此，在实际使用中需要权衡事务带来的好处和可能的性能开销。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/07/%E4%BA%8B%E5%8A%A1/" data-id="clupj6g6w0002wsfw8m6d3wnq" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-huang2024-4-1-2024-4-7周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/" class="article-date">
@@ -803,212 +902,6 @@
 
 
   
-    <article id="post-huang2024-3-11-2024-3-17周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/16/huang2024-3-11-2024-3-17%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-03-16T09:12:41.000Z" itemprop="datePublished">2024-03-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/16/huang2024-3-11-2024-3-17%E5%91%A8%E6%8A%A5/">huang2024-3-11-2024-3-17周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><ol>
-<li>SQL-DQL案例–小结</li>
-<li>SQL-DCL</li>
-<li>日周笔记</li>
-</ol>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日历</th>
-<th>学习内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>DQL案例练习</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>DQL执行顺序</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>DCL管理用户</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>管理用户案例练习</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>笔记整理</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>DCL权限控制</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期天</td>
-<td>DCL</td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><p>1.SQL-DQL</p>
-<p><a href="https://snail0220.github.io/2024/03/16/SQL-DQL/">https://snail0220.github.io/2024/03/16/SQL-DQL/</a></p>
-<p>2.SQL-DCL</p>
-<p><a href="https://snail0220.github.io/2024/03/16/SQL-DCL/">https://snail0220.github.io/2024/03/16/SQL-DCL/</a></p>
-<p>3.日周笔记</p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240316172225025.png" alt="image-20240316172225025"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.对于数据库的分类运用的理解更加完善，但是也更加乱，会有记混的地方。感觉自己的时间安排上面还是有点没有掌握好，希望自己可以尽快掌握好时间的利用和分配。</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><p>1.题目</p>
-<p>2.MySQL继续</p>
-<p>3.日周笔记</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/16/huang2024-3-11-2024-3-17%E5%91%A8%E6%8A%A5/" data-id="cltuxizzf0000z4fw3wb3bgah" data-title="huang2024-3-11-2024-3-17周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-huang2024-3-4-2024-3-10周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/10/huang2024-3-4-2024-3-10%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-03-10T07:25:46.000Z" itemprop="datePublished">2024-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/10/huang2024-3-4-2024-3-10%E5%91%A8%E6%8A%A5/">huang2024/3/4-2024/3/10</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><ol>
-<li>SQL图形操作</li>
-<li>继续数学笔记补充</li>
-<li>web前端，C程序</li>
-</ol>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日历</th>
-<th>学习内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>DDL-数据库操作</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>DDL-表操作</td>
-<td>HTML案例一学习</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>安装gatagrip,创建新课程</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>SQL-DML</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>离散、高数一周笔记整理</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>SQL-DQL-基础查询、条件查询、聚合函数</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期天</td>
-<td>SQL-DQL-分组查询、排序查询、分页查询</td>
-<td>\SQL</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容-及-收获"><a href="#本周学习内容-及-收获" class="headerlink" title="本周学习内容 及 收获"></a>本周学习内容 及 收获</h2><ol>
-<li><p>MySQL学习笔记</p>
-<p><a href="https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/">https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/</a></p>
-</li>
-<li><p>笔记整理</p>
-<p><img src="file:///E:\QQ\2194861505\Image\C2C\87B882A7916BA3049D198D1E0EEA649C.jpg" alt="img"></p>
-</li>
-<li><p>web笔记</p>
-</li>
-</ol>
-<p>[Hexo (snail0220.github.io)](<a href="https://snail0220.github.io/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0">https://snail0220.github.io/2024/03/05/第二章</a> 从零开始构建HTML页面&#x2F;)</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.SQL相关的操作指令比较复杂，目前没有熟悉掌握</p>
-<p>2.应该复习下之前学的，有些遗忘。</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><ol>
-<li>SQL-DQL 案例分析</li>
-<li>SQL-DCL</li>
-<li>日周笔记</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/10/huang2024-3-4-2024-3-10%E5%91%A8%E6%8A%A5/" data-id="cltl3g1aw0000lwfw28p300l1" data-title="huang2024/3/4-2024/3/10" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1037,7 +930,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a>
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 16.67px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a>
     </div>
   </div>
 
@@ -1046,7 +939,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
     </div>
   </div>
 
@@ -1059,6 +952,14 @@
       <ul>
         
           <li>
+            <a href="/2024/05/05/mysql%E9%94%81/">mysql锁</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/05/huang2024-4-29-2024-5-5%E5%91%A8%E6%8A%A5/">huang2024-4-29-2024-5-5周报</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">MySQL存储过程</a>
           </li>
         
@@ -1068,14 +969,6 @@
         
           <li>
             <a href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/">huang2024-4-22-2024-4-28周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">MySQL视图</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/">huang2024-4-15-2024-4-21周报</a>
           </li>
         
       </ul>

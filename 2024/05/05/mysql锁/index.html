@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>mysql锁 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="MySQL全局锁的定义和作用定义MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞[3]。 作用全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql锁">
+<meta property="og:url" content="https://snail0220.github.io/2024/05/05/mysql%E9%94%81/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MySQL全局锁的定义和作用定义MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞[3]。 作用全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-05T12:59:24.000Z">
+<meta property="article:modified_time" content="2024-05-05T13:47:27.265Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://snail0220.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-mysql锁" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/05/mysql%E9%94%81/" class="article-date">
+  <time class="dt-published" datetime="2024-05-05T12:59:24.000Z" itemprop="datePublished">2024-05-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      mysql锁
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="MySQL全局锁的定义和作用"><a href="#MySQL全局锁的定义和作用" class="headerlink" title="MySQL全局锁的定义和作用"></a>MySQL全局锁的定义和作用</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞[3]。</p>
+<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修改，从而保证了备份数据的完整性。此外，在主从复制架构下，全局锁还可能用于主备切换的场景中，以确保数据的一致性传递[4]。</p>
+<h3 id="MySQL全局锁的使用场景"><a href="#MySQL全局锁的使用场景" class="headerlink" title="MySQL全局锁的使用场景"></a>MySQL全局锁的使用场景</h3><h4 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h4><p>在进行数据库逻辑备份时，为了避免备份过程中数据被修改，通常会对数据库加全局锁。这样可以确保备份出来的数据是一致的，没有因为并发操作导致的差异[1][2][3]。</p>
+<h4 id="主从复制与切换"><a href="#主从复制与切换" class="headerlink" title="主从复制与切换"></a>主从复制与切换</h4><p>在主从复制架构中，当需要进行主备切换时，也可能需要使用全局锁。这是因为在切换过程中，需要确保主库和备库的数据一致性，防止数据丢失或不一致[4]。</p>
+<h3 id="MySQL全局锁的操作步骤"><a href="#MySQL全局锁的操作步骤" class="headerlink" title="MySQL全局锁的操作步骤"></a>MySQL全局锁的操作步骤</h3><h4 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h4><p>加锁通常通过执行<code>FLUSH TABLES WITH READ LOCK;</code>（FTWRL）命令来实现。该命令会对数据库中的所有表加读锁，不允许任何写操作，但允许读取操作。这意味着，直到解锁前，数据库将处于只读状态[1][2][3]。</p>
+<h4 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h4><p>备份完成后，可以使用<code>UNLOCK TABLES;</code>命令来释放全局锁，这将使得数据库恢复到正常的读写状态[1][2][3]。</p>
+<h3 id="MySQL全局锁的特点"><a href="#MySQL全局锁的特点" class="headerlink" title="MySQL全局锁的特点"></a>MySQL全局锁的特点</h3><h4 id="特点概述"><a href="#特点概述" class="headerlink" title="特点概述"></a>特点概述</h4><p>全局锁是一种重量级的锁定机制，它对整个数据库实例生效。这种锁能有效阻止数据在备份过程中的更改，但也意味着在备份期间，数据库几乎不能进行任何更新操作，这可能会对业务造成影响[1][2][3]。</p>
+<h4 id="详细特点"><a href="#详细特点" class="headerlink" title="详细特点"></a>详细特点</h4><ul>
+<li>当对主库使用全局锁时，所有更新操作都会被阻塞，因此，业务基本上会暂停。</li>
+<li>如果选择在从库上使用全局锁进行备份，那么从库在备份期间无法同步主库的二进制日志（binlog），这可能会导致主从延迟[1][2]。</li>
+<li>使用全局锁时，必须非常小心，因为它会严重影响数据库的性能，并可能导致并发性能的显著下降[3]。</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>综上所述，MySQL全局锁是一种重要的数据库锁定机制，它在数据库备份和主从复制等方面起到了确保数据一致性的作用。然而，由于它会锁定整个数据库实例，因此在非必要时应尽量避免使用，以避免对业务造成不必要的干扰。在使用全局锁时，需要仔细评估其对数据库性能的影响，并采取适当的解锁措施，以保障数据库的正常运行。</p>
+<h2 id="MySQL表级锁概述"><a href="#MySQL表级锁概述" class="headerlink" title="MySQL表级锁概述"></a>MySQL表级锁概述</h2><h3 id="定义和作用"><a href="#定义和作用" class="headerlink" title="定义和作用"></a>定义和作用</h3><p>MySQL中的表级锁是一种锁定机制，用于控制对数据库表的访问，保证数据的安全性和完整性。它允许用户对特定的表进行锁定，从而防止其他用户对其进行修改，确保数据在读取或修改时的稳定性。</p>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>表级锁适用于多种场景，例如在进行大数据量的插入、删除或更新操作时，为了防止数据丢失或数据不一致，需要对这些操作进行锁定。此外，当多个用户或进程需要对同一数据进行访问时，也需要用到表级锁以确保数据的一致性。</p>
+<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><p>使用表级锁的基本步骤包括：</p>
+<ol>
+<li>确定需要锁定的数据范围，选择合适的锁类型。</li>
+<li>执行锁定命令，如<code>LOCK TABLES</code>。</li>
+<li>进行相关的数据操作。</li>
+<li>完成操作后，释放锁，使用<code>UNLOCK TABLES</code>命令。</li>
+</ol>
+<h3 id="MySQL表级锁详细解析"><a href="#MySQL表级锁详细解析" class="headerlink" title="MySQL表级锁详细解析"></a>MySQL表级锁详细解析</h3><h4 id="表级锁的种类"><a href="#表级锁的种类" class="headerlink" title="表级锁的种类"></a>表级锁的种类</h4><p>MySQL中的表级锁主要有以下几种：</p>
+<ul>
+<li><strong>表锁</strong>：分为读锁和写锁，用来控制对表的读写访问。</li>
+<li><strong>元数据锁（MDL）</strong>：用来控制对表的DDL操作，如创建、修改或删除表结构。</li>
+<li><strong>意向锁</strong>：用来协调不同类型的锁请求，避免不必要的锁冲突。</li>
+</ul>
+<h4 id="表级锁的工作机制"><a href="#表级锁的工作机制" class="headerlink" title="表级锁的工作机制"></a>表级锁的工作机制</h4><p>表级锁的工作基于以下几个关键组件：</p>
+<ul>
+<li><strong>锁队列</strong>：包含当前持有锁的线程信息和等待锁的线程信息。</li>
+<li><strong>锁类型</strong>：如普通读写锁、元数据锁等。</li>
+<li><strong>锁的升级和解锁</strong>：根据操作的需要，锁可以从一种类型升级为另一种类型，或者在操作完成后释放。</li>
+</ul>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p>在使用表级锁时，需要注意的事项包括：</p>
+<ul>
+<li>不要滥用锁，应只在必要时使用。</li>
+<li>要确保锁与操作相对应，比如读操作对应的是读锁，写操作对应的是写锁。</li>
+<li>在进行长时间运行的操作时，考虑可能的锁超时问题。</li>
+</ul>
+<h3 id="MySQL表级锁实践指南"><a href="#MySQL表级锁实践指南" class="headerlink" title="MySQL表级锁实践指南"></a>MySQL表级锁实践指南</h3><h4 id="实际操作示例"><a href="#实际操作示例" class="headerlink" title="实际操作示例"></a>实际操作示例</h4><p>假设需要对某个表进行修改，并且在这个过程中不允许其他线程对其进行干扰，可以按照以下步骤操作：</p>
+<ol>
+<li>使用<code>LOCK TABLES</code>命令对该表加写锁。</li>
+<li>进行必要的修改操作。</li>
+<li>使用<code>UNLOCK TABLES</code>命令释放写锁。</li>
+</ol>
+<h4 id="监控和调试"><a href="#监控和调试" class="headerlink" title="监控和调试"></a>监控和调试</h4><p>在实际工作中，可能需要监控锁的情况，可以使用<code>SHOW OPEN TABLES</code>命令来查看当前打开的锁。如果出现问题，可以通过<code>EXPLAIN PLAN FOR</code>命令来分析锁的情况。</p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>MySQL的表级锁是一个强大的工具，它可以有效地保护数据安全性和完整性。然而，不当使用可能会导致性能问题和锁争用。因此，合理规划和使用表级锁，结合业务需求和数据库特性，是数据库管理员的重要职责。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/05/05/mysql%E9%94%81/" data-id="clvtlepiz0002hofwazv7dtes" data-title="mysql锁" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/05/05/huang2024-4-29-2024-5-5%E5%91%A8%E6%8A%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">huang2024-4-29-2024-5-5周报</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 16.67px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/05/mysql%E9%94%81/">mysql锁</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/05/huang2024-4-29-2024-5-5%E5%91%A8%E6%8A%A5/">huang2024-4-29-2024-5-5周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">MySQL存储过程</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">CSS美化网页</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/">huang2024-4-22-2024-4-28周报</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
