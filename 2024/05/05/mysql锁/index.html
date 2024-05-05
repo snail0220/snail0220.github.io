@@ -6,15 +6,15 @@
   
   <title>mysql锁 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="MySQL全局锁的定义和作用定义MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞[3]。 作用全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修">
+  <meta name="description" content="MySQL全局锁的定义和作用定义MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞。 作用全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修改，从">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql锁">
 <meta property="og:url" content="https://snail0220.github.io/2024/05/05/mysql%E9%94%81/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="MySQL全局锁的定义和作用定义MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞[3]。 作用全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修">
+<meta property="og:description" content="MySQL全局锁的定义和作用定义MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞。 作用全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修改，从">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-05-05T12:59:24.000Z">
-<meta property="article:modified_time" content="2024-05-05T13:47:27.265Z">
+<meta property="article:modified_time" content="2024-05-05T13:56:54.904Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
@@ -98,17 +98,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="MySQL全局锁的定义和作用"><a href="#MySQL全局锁的定义和作用" class="headerlink" title="MySQL全局锁的定义和作用"></a>MySQL全局锁的定义和作用</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞[3]。</p>
-<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修改，从而保证了备份数据的完整性。此外，在主从复制架构下，全局锁还可能用于主备切换的场景中，以确保数据的一致性传递[4]。</p>
-<h3 id="MySQL全局锁的使用场景"><a href="#MySQL全局锁的使用场景" class="headerlink" title="MySQL全局锁的使用场景"></a>MySQL全局锁的使用场景</h3><h4 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h4><p>在进行数据库逻辑备份时，为了避免备份过程中数据被修改，通常会对数据库加全局锁。这样可以确保备份出来的数据是一致的，没有因为并发操作导致的差异[1][2][3]。</p>
-<h4 id="主从复制与切换"><a href="#主从复制与切换" class="headerlink" title="主从复制与切换"></a>主从复制与切换</h4><p>在主从复制架构中，当需要进行主备切换时，也可能需要使用全局锁。这是因为在切换过程中，需要确保主库和备库的数据一致性，防止数据丢失或不一致[4]。</p>
-<h3 id="MySQL全局锁的操作步骤"><a href="#MySQL全局锁的操作步骤" class="headerlink" title="MySQL全局锁的操作步骤"></a>MySQL全局锁的操作步骤</h3><h4 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h4><p>加锁通常通过执行<code>FLUSH TABLES WITH READ LOCK;</code>（FTWRL）命令来实现。该命令会对数据库中的所有表加读锁，不允许任何写操作，但允许读取操作。这意味着，直到解锁前，数据库将处于只读状态[1][2][3]。</p>
-<h4 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h4><p>备份完成后，可以使用<code>UNLOCK TABLES;</code>命令来释放全局锁，这将使得数据库恢复到正常的读写状态[1][2][3]。</p>
-<h3 id="MySQL全局锁的特点"><a href="#MySQL全局锁的特点" class="headerlink" title="MySQL全局锁的特点"></a>MySQL全局锁的特点</h3><h4 id="特点概述"><a href="#特点概述" class="headerlink" title="特点概述"></a>特点概述</h4><p>全局锁是一种重量级的锁定机制，它对整个数据库实例生效。这种锁能有效阻止数据在备份过程中的更改，但也意味着在备份期间，数据库几乎不能进行任何更新操作，这可能会对业务造成影响[1][2][3]。</p>
+        <h3 id="MySQL全局锁的定义和作用"><a href="#MySQL全局锁的定义和作用" class="headerlink" title="MySQL全局锁的定义和作用"></a>MySQL全局锁的定义和作用</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞。</p>
+<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修改，从而保证了备份数据的完整性。此外，在主从复制架构下，全局锁还可能用于主备切换的场景中，以确保数据的一致性传递。</p>
+<h3 id="MySQL全局锁的使用场景"><a href="#MySQL全局锁的使用场景" class="headerlink" title="MySQL全局锁的使用场景"></a>MySQL全局锁的使用场景</h3><h4 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h4><p>在进行数据库逻辑备份时，为了避免备份过程中数据被修改，通常会对数据库加全局锁。这样可以确保备份出来的数据是一致的，没有因为并发操作导致的差异。</p>
+<h4 id="主从复制与切换"><a href="#主从复制与切换" class="headerlink" title="主从复制与切换"></a>主从复制与切换</h4><p>在主从复制架构中，当需要进行主备切换时，也可能需要使用全局锁。这是因为在切换过程中，需要确保主库和备库的数据一致性，防止数据丢失或不一致。</p>
+<h3 id="MySQL全局锁的操作步骤"><a href="#MySQL全局锁的操作步骤" class="headerlink" title="MySQL全局锁的操作步骤"></a>MySQL全局锁的操作步骤</h3><h4 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h4><p>加锁通常通过执行<code>FLUSH TABLES WITH READ LOCK;</code>（FTWRL）命令来实现。该命令会对数据库中的所有表加读锁，不允许任何写操作，但允许读取操作。这意味着，直到解锁前，数据库将处于只读状态。</p>
+<h4 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h4><p>备份完成后，可以使用<code>UNLOCK TABLES;</code>命令来释放全局锁，这将使得数据库恢复到正常的读写状态。</p>
+<h3 id="MySQL全局锁的特点"><a href="#MySQL全局锁的特点" class="headerlink" title="MySQL全局锁的特点"></a>MySQL全局锁的特点</h3><h4 id="特点概述"><a href="#特点概述" class="headerlink" title="特点概述"></a>特点概述</h4><p>全局锁是一种重量级的锁定机制，它对整个数据库实例生效。这种锁能有效阻止数据在备份过程中的更改，但也意味着在备份期间，数据库几乎不能进行任何更新操作，这可能会对业务造成影响。</p>
 <h4 id="详细特点"><a href="#详细特点" class="headerlink" title="详细特点"></a>详细特点</h4><ul>
 <li>当对主库使用全局锁时，所有更新操作都会被阻塞，因此，业务基本上会暂停。</li>
-<li>如果选择在从库上使用全局锁进行备份，那么从库在备份期间无法同步主库的二进制日志（binlog），这可能会导致主从延迟[1][2]。</li>
-<li>使用全局锁时，必须非常小心，因为它会严重影响数据库的性能，并可能导致并发性能的显著下降[3]。</li>
+<li>如果选择在从库上使用全局锁进行备份，那么从库在备份期间无法同步主库的二进制日志（binlog），这可能会导致主从延迟。</li>
+<li>使用全局锁时，必须非常小心，因为它会严重影响数据库的性能，并可能导致并发性能的显著下降。</li>
 </ul>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>综上所述，MySQL全局锁是一种重要的数据库锁定机制，它在数据库备份和主从复制等方面起到了确保数据一致性的作用。然而，由于它会锁定整个数据库实例，因此在非必要时应尽量避免使用，以避免对业务造成不必要的干扰。在使用全局锁时，需要仔细评估其对数据库性能的影响，并采取适当的解锁措施，以保障数据库的正常运行。</p>
 <h2 id="MySQL表级锁概述"><a href="#MySQL表级锁概述" class="headerlink" title="MySQL表级锁概述"></a>MySQL表级锁概述</h2><h3 id="定义和作用"><a href="#定义和作用" class="headerlink" title="定义和作用"></a>定义和作用</h3><p>MySQL中的表级锁是一种锁定机制，用于控制对数据库表的访问，保证数据的安全性和完整性。它允许用户对特定的表进行锁定，从而防止其他用户对其进行修改，确保数据在读取或修改时的稳定性。</p>
