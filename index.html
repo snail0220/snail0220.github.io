@@ -73,6 +73,123 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-mysql笔记-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/" class="article-date">
+  <time class="dt-published" datetime="2024-05-12T10:27:27.000Z" itemprop="datePublished">2024-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/">mysql笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h2 id="游标的使用"><a href="#游标的使用" class="headerlink" title="游标的使用"></a>游标的使用</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>MySQL游标（cursor）是一种数据结构，用于在存储过程中对结果集中的每一行数据进行独立操作。它可以使开发者对数据库查询结果进行逐行处理，提供了更灵活的控制方式，使得在存储过程中实现复杂的逻辑成为可能。</p>
+<h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h3><ol>
+<li><p><strong>声明游标</strong>：在存储过程或函数内部，使用 <code>DECLARE</code> 关键字声明游标，格式为 <code>DECLARE 游标名 CURSOR FOR 查询语句;</code>[1][2][3][4][5]。</p>
+</li>
+<li><p><strong>打开游标</strong>：使用 <code>OPEN</code> 关键字打开游标，使游标指向的结果集准备好供进一步处理[1][2][3][4][5]。</p>
+</li>
+<li><p><strong>读取数据</strong>：通过 <code>FETCH</code> 语句从游标中读取数据，可以将数据存入变量中，以便进一步处理。<code>FETCH 游标名 INTO 变量名;</code> 可用于提取单一数据，若有多列则需提供多个变量名[1][2][3][4][5]。</p>
+</li>
+<li><p><strong>关闭游标</strong>：数据处理完成后，使用 <code>CLOSE</code> 关键字关闭游标，释放系统资源[1][2][3][4][5]。</p>
+</li>
+</ol>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>游标是<strong>只读</strong>的，不能用于修改数据。</li>
+<li>游标是<strong>不滚动</strong>的，只能逐行向前移动，不能跳跃。</li>
+<li>游标对于大数据量的处理性能较低，因为它逐行读取数据。</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>游标常用于存储过程的编写，其中涉及到对数据的复杂处理，如条件判断、数据汇总、数据转换等。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>假设有一个员工表 <code>employees</code>，包含员工信息，要求写一个存储过程来打印出所有员工的姓名和薪水。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> PrintEmployeeInfo()</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">DECLARE</span> finished <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">DECLARE</span> emp_name <span class="type">VARCHAR</span>(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">DECLARE</span> emp_salary <span class="type">DECIMAL</span>(<span class="number">10</span>, <span class="number">2</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 声明游标</span></span><br><span class="line">    <span class="keyword">DECLARE</span> cur <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> <span class="keyword">SELECT</span> name, salary <span class="keyword">FROM</span> employees;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 打开游标</span></span><br><span class="line">    <span class="keyword">OPEN</span> cur;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 读取数据</span></span><br><span class="line">    read_loop: LOOP</span><br><span class="line">        <span class="keyword">FETCH</span> cur <span class="keyword">INTO</span> emp_name, emp_salary;</span><br><span class="line">        IF finished <span class="keyword">THEN</span></span><br><span class="line">            LEAVE read_loop;</span><br><span class="line">        <span class="keyword">END</span> IF;</span><br><span class="line">        <span class="keyword">SELECT</span> CONCAT(<span class="string">&#x27;Employee Name: &#x27;</span>, emp_name, <span class="string">&#x27;, Salary: &#x27;</span>, emp_salary);</span><br><span class="line">    <span class="keyword">END</span> LOOP;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 关闭游标</span></span><br><span class="line">    <span class="keyword">CLOSE</span> cur;</span><br><span class="line"><span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">DELIMITER;</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>确保在使用游标前正确声明并打开它。</li>
+<li>在使用完游标后，要及时关闭它，避免资源泄漏。</li>
+<li>游标的使用可能会导致性能问题，特别是在大数据量的情况下。</li>
+</ul>
+<h3 id="综合分析"><a href="#综合分析" class="headerlink" title="综合分析"></a>综合分析</h3><p>游标在MySQL中提供了对结果集逐行处理的能力，使得在存储过程中实现复杂的逻辑变得容易。然而，由于它是逐行读取数据的，所以在处理大量数据时可能会导致性能下降。在使用游标时，需要注意它的特点和适用场景，合理地设计存储过程，以保证系统的效率和稳定性。</p>
+<h2 id="触发器概述"><a href="#触发器概述" class="headerlink" title="触发器概述"></a>触发器概述</h2><p>MySQL触发器是一种特殊的数据库对象，它能在特定的事件（如INSERT、UPDATE、DELETE）发生时执行预先定义好的SQL语句。触发器可以看作是与表相关联的存储过程，其执行时机完全依赖于特定的数据库事件。</p>
+<h3 id="创建触发器"><a href="#创建触发器" class="headerlink" title="创建触发器"></a>创建触发器</h3><p>创建触发器的基本语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> trigger_name</span><br><span class="line">&#123;BEFORE <span class="operator">|</span> AFTER <span class="operator">|</span> INSTEAD <span class="keyword">OF</span>&#125; triggering_event</span><br><span class="line"><span class="keyword">ON</span> table_name</span><br><span class="line">[<span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span>] <span class="operator">|</span> [<span class="keyword">FOR</span> <span class="keyword">EACH</span> STATEMENT]</span><br><span class="line">trigger_body;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>trigger_name</code>：触发器的名称。</li>
+<li><code>BEFORE | AFTER | INSTEAD OF</code>：定义触发器的类型。</li>
+<li><code>triggering_event</code>：定义触发器响应的具体事件。</li>
+<li><code>table_name</code>：指定触发器关联的表。</li>
+<li><code>FOR EACH ROW</code>：表示触发器对每一行数据变动都执行，<code>FOR EACH STATEMENT</code>表示触发器只在每条SQL语句执行后执行。</li>
+<li><code>trigger_body</code>：定义触发器内部的SQL语句。</li>
+</ul>
+<h3 id="触发器的应用场景"><a href="#触发器的应用场景" class="headerlink" title="触发器的应用场景"></a>触发器的应用场景</h3><ol>
+<li><strong>数据完整性</strong>：通过在INSERT、UPDATE、DELETE等操作前后执行触发器，可以确保数据的完整性和一致性。</li>
+<li><strong>日志记录</strong>：可以在数据发生变化时记录相关信息，便于追踪和审计。</li>
+<li><strong>业务逻辑处理</strong>：可以在触发器中加入复杂的业务逻辑，使得数据库操作更加智能化。</li>
+</ol>
+<h3 id="触发器的类型"><a href="#触发器的类型" class="headerlink" title="触发器的类型"></a>触发器的类型</h3><ul>
+<li><strong>BEFORE INSERT</strong>：在INSERT语句执行前触发。</li>
+<li><strong>AFTER INSERT</strong>：在INSERT语句执行后触发。</li>
+<li><strong>BEFORE UPDATE</strong>：在UPDATE语句执行前触发。</li>
+<li><strong>AFTER UPDATE</strong>：在UPDATE语句执行后触发。</li>
+<li><strong>BEFORE DELETE</strong>：在DELETE语句执行前触发。</li>
+<li><strong>AFTER DELETE</strong>：在DELETE语句执行后触发。</li>
+</ul>
+<h3 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h3><p>删除触发器的基本语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> trigger_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看触发器"><a href="#查看触发器" class="headerlink" title="查看触发器"></a>查看触发器</h3><p>可以通过<code>SHOW TRIGGERS;</code>命令查看数据库中的所有触发器。</p>
+<h2 id="MySQL触发器详细解析"><a href="#MySQL触发器详细解析" class="headerlink" title="MySQL触发器详细解析"></a>MySQL触发器详细解析</h2><h3 id="触发器的工作机制"><a href="#触发器的工作机制" class="headerlink" title="触发器的工作机制"></a>触发器的工作机制</h3><p>当数据库中定义了触发器后，每当有对应的事件发生时，MySQL就会自动执行触发器中定义的SQL语句。例如，当有数据插入到特定表中时，如果在触发器中定义了<code>AFTER INSERT</code>，那么这些SQL语句就会在INSERT语句执行后立即执行。</p>
+<h3 id="触发器中常用的特殊变量"><a href="#触发器中常用的特殊变量" class="headerlink" title="触发器中常用的特殊变量"></a>触发器中常用的特殊变量</h3><ul>
+<li><code>OLD</code>：在UPDATE或DELETE触发器中，可以使用<code>OLD</code>来引用原始数据。</li>
+<li><code>NEW</code>：在INSERT触发器中，可以使用<code>NEW</code>来引用新插入的数据。</li>
+</ul>
+<h3 id="触发器的使用示例"><a href="#触发器的使用示例" class="headerlink" title="触发器的使用示例"></a>触发器的使用示例</h3><h4 id="示例1：AFTER-INSERT触发器"><a href="#示例1：AFTER-INSERT触发器" class="headerlink" title="示例1：AFTER INSERT触发器"></a>示例1：AFTER INSERT触发器</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> after_insert_example</span><br><span class="line">AFTER <span class="keyword">INSERT</span></span><br><span class="line"><span class="keyword">ON</span> example_table</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">INSERT</span> <span class="keyword">INTO</span> audit_log (event, data) <span class="keyword">VALUES</span> (<span class="string">&#x27;New record inserted&#x27;</span>, <span class="built_in">JSON_OBJECT</span>(<span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span>));</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个触发器会在每次向<code>example_table</code>表插入数据后，将事件记录到<code>audit_log</code>表中。</p>
+<h4 id="示例2：BEFORE-DELETE触发器"><a href="#示例2：BEFORE-DELETE触发器" class="headerlink" title="示例2：BEFORE DELETE触发器"></a>示例2：BEFORE DELETE触发器</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> before_delete_example</span><br><span class="line">BEFORE <span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">ON</span> example_table</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    IF OLD.data_column <span class="operator">=</span> <span class="string">&#x27;Important data&#x27;</span> <span class="keyword">THEN</span></span><br><span class="line">        SIGNAL <span class="keyword">SQLSTATE</span> <span class="string">&#x27;45000&#x27;</span></span><br><span class="line">        <span class="keyword">SET</span> MESSAGE_TEXT <span class="operator">=</span> <span class="string">&#x27;Cannot delete important data&#x27;</span>;</span><br><span class="line">    <span class="keyword">END</span> IF;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个触发器会在每次删除<code>example_table</code>表中的数据前检查<code>data_column</code>列是否含有特定值，如果含有，则阻止删除操作。</p>
+<h2 id="MySQL触发器使用方法"><a href="#MySQL触发器使用方法" class="headerlink" title="MySQL触发器使用方法"></a>MySQL触发器使用方法</h2><h3 id="使用触发器进行数据校验"><a href="#使用触发器进行数据校验" class="headerlink" title="使用触发器进行数据校验"></a>使用触发器进行数据校验</h3><p>可以在触发器中添加数据校验逻辑，确保只有符合业务规则的数据才能被插入或更新。</p>
+<h3 id="使用触发器记录操作日志"><a href="#使用触发器记录操作日志" class="headerlink" title="使用触发器记录操作日志"></a>使用触发器记录操作日志</h3><p>可以将每次数据库操作的结果记录到日志表中，这对于监控数据库操作和生成报表非常有用。</p>
+<h3 id="使用触发器自动化业务流程"><a href="#使用触发器自动化业务流程" class="headerlink" title="使用触发器自动化业务流程"></a>使用触发器自动化业务流程</h3><p>可以设计触发器来简化重复性的任务，比如自动更新统计信息、发送通知邮件等。</p>
+<h2 id="MySQL触发器综合应用"><a href="#MySQL触发器综合应用" class="headerlink" title="MySQL触发器综合应用"></a>MySQL触发器综合应用</h2><h3 id="结合其他数据库对象使用触发器"><a href="#结合其他数据库对象使用触发器" class="headerlink" title="结合其他数据库对象使用触发器"></a>结合其他数据库对象使用触发器</h3><p>可以将触发器与存储过程、视图等数据库对象结合使用，构建更为复杂的数据处理逻辑。</p>
+<h3 id="使用触发器维护关联数据"><a href="#使用触发器维护关联数据" class="headerlink" title="使用触发器维护关联数据"></a>使用触发器维护关联数据</h3><p>当表之间存在关联关系时，可以使用触发器确保相关的数据在插入、更新或删除时同步更新。</p>
+<h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>触发器虽然强大，但也会带来额外的开销，应合理设计避免不必要的性能损耗。</li>
+<li>触发器中的SQL语句可能会被多次执行，要注意循环和递归的情况。</li>
+<li>某些情况下，触发器可能与事务冲突，需要妥善处理。</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>MySQL触发器是一个强大的数据库特性，它让我们能够在数据库层面实现很多原本需要在应用程序中处理的逻辑。正确使用触发器，可以增强数据的控制力，提高数据的完整性，简化应用程序的开发。在使用过程中，也需要注意其潜在的副作用，如对性能的影响，以及可能引入的复杂性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/" data-id="clw3e9wo80000u8fwhi122ntn" data-title="mysql笔记" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-huang2024-5-6-2024-5-12周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/05/12/huang2024-5-6-2024-5-12%E5%91%A8%E6%8A%A5/" class="article-date">
@@ -145,6 +262,7 @@
 </tbody></table>
 <h2 id="学习内容"><a href="#学习内容" class="headerlink" title="学习内容"></a>学习内容</h2><p>1.mysql笔记</p>
 <p>2.Java整理</p>
+<p><a href="https://snail0220.github.io/2024/05/09/Java2/">https://snail0220.github.io/2024/05/09/Java2/</a></p>
 <p>3.题目【web】</p>
 <img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240512170925016.png" alt="image-20240512170925016" style="zoom:67%;" />
 
@@ -928,126 +1046,6 @@
 
 
   
-    <article id="post-MySQL索引" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/" class="article-date">
-  <time class="dt-published" datetime="2024-04-14T07:14:18.000Z" itemprop="datePublished">2024-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="1-索引概述"><a href="#1-索引概述" class="headerlink" title="1.索引概述"></a>1.索引概述</h3><h4 id="1-1MySQL索引概述"><a href="#1-1MySQL索引概述" class="headerlink" title="1.1	MySQL索引概述"></a>1.1	MySQL索引概述</h4><p>​		索引是一种将数据库中单列或者多列的值进行排序的结构。应用索引，可以大幅度提高查询的速度。<br>​		用户通过索引查询数据，不但可以提高查询速度，也可以降低服务器的负载。用户查询数据时，系统可以不必遍历数据表中的所有记录，而是查询索引列。一般过程的数据查询是通过遍历全部数据，并寻找数据库中的匹配记录而实现的。与一般形式的查询相比，索引就像一本书的目录。而当用户通过目录查找书中内容时，就好比用户通过目录查询某章节的某个知识点。这样就为用户在查找内容过程中，缩短大量时间，帮助用户有效地提高查找速度。所以，使用索引可以有效地提高数据库系统的整体性能。<br>​		应用MySQL数据库时，并非用户在查询数据的时候，总需要应用索引来优化查询。凡事都有双面性，使用索引可以提高检索数据的速度，对于依赖关系的子表和父表之间的联合查询时，可以提高查询速度，并且可以提高整体的系统性能。但是，创建索引和维护需要耗费时间，并且该耗费时间与数据量的大小成正比；另外，索引需要占用物理空间，给数据的维护造成很多麻烦。<br>​		整体来说，索引可以提高查询的速度，但是会影响用户操作数据库的插入操作。因为，向有索引的表中插入记录时，数据库系统会按照索引进行排序。所以，用户可以将索引删除后，插入数据，当数据插入操作完成后，用户可以重新创建索引。</p>
-<p>​		说明：<br>​		不同的存储引擎定义每个表的最大索引数和最大索引长度。所有存储引擎对每个表至少支持16个索引。总索引长度至少为256字节。有些存储引擎支持更多的索引数和更大的索引长度。索引有两种存储类型，包括B树（BTREE）索引和哈希（HASH）索引。其中，B树为系统默认索引方法。</p>
-<h4 id="1-2-MySQL索引分类"><a href="#1-2-MySQL索引分类" class="headerlink" title="1.2　MySQL索引分类"></a>1.2　MySQL索引分类</h4><p>​		MySQL的索引包括普通索引、唯一性索引、全文索引、单列索引、多列索引和空间索引等。</p>
-<h5 id="1．普通索引"><a href="#1．普通索引" class="headerlink" title="1．普通索引"></a>1．普通索引</h5><p>​		普通索引，即不应用任何限制条件的索引，该索引可以在任何数据类型中创建。字段本身的约束条件可以判断其值是否为空或唯一。创建该类型索引后，用户在查询时，便可以通过索引进行查询。在某数据表的某一字段中，建立普通索引后。用户需要查询数据时，只需根据该索引进行查询即可。</p>
-<h5 id="2．唯一性索引"><a href="#2．唯一性索引" class="headerlink" title="2．唯一性索引"></a>2．唯一性索引</h5><p>​		使用UNIQUE参数可以设置唯一索引。创建该索引时，索引的值必须唯一，通过唯一索引，用户可以快速定位某条记录，主键是一种特殊唯一索引。</p>
-<h5 id="3．全文索引"><a href="#3．全文索引" class="headerlink" title="3．全文索引"></a>3．全文索引</h5><p>​		使用FULLTEXT参数可以设置索引为全文索引。全文索引只能创建在CHAR、VARCHAR或者TEXT类型的字段上。查询数据量较大的字符串类型的字段时，使用全文索引可以提高查询速度。例如，查询带有文章回复内容的字段，可以应用全文索引方式。需要注意的是，在默认情况下，应用全文搜索大小写不敏感。如果索引的列使用二进制排序后，可以执行大小写敏感的全文索引。</p>
-<h5 id="4．单列索引"><a href="#4．单列索引" class="headerlink" title="4．单列索引"></a>4．单列索引</h5><p>​		顾名思义，单列索引即只对应一个字段的索引。其可以包括上述叙述的3种索引方式。应用该索引的条件只需要保证该索引值对应一个字段即可。</p>
-<h5 id="5．多列索引"><a href="#5．多列索引" class="headerlink" title="5．多列索引"></a>5．多列索引</h5><p>​		多列索引是在表的多个字段上创建一个索引。该索引指向创建时对应的多个字段，用户可以通过这几个字段进行查询。要想应用该索引，用户必须使用这些字段中的第一个字段。</p>
-<h5 id="6．空间索引"><a href="#6．空间索引" class="headerlink" title="6．空间索引"></a>6．空间索引</h5><p>​		使用SPATIAL参数可以设置索引为空间索引。空间索引只能建立在空间数据类型上，这样可以提高系统获取空间数据的效率。MySQL中只有MyISAM存储引擎支持空间检索，而且索引的字段不能为空值。</p>
-<h3 id="2-创建索引"><a href="#2-创建索引" class="headerlink" title="2.　创建索引"></a>2.　创建索引</h3><p>​		创建索引是指在某个表中至少一列中建立索引，以便提高数据库性能。其中，建立索引可以提高表的访问速度。本节通过几种不同的方式创建索引。其中包括在建立数据库时创建索引、在已经建立的数据表中创建索引和修改数据表结构创建索引。</p>
-<h4 id="2-1-在建立数据表时创建索引"><a href="#2-1-在建立数据表时创建索引" class="headerlink" title="2.1　在建立数据表时创建索引"></a>2.1　在建立数据表时创建索引</h4><p>​		在建立数据表时可以直接创建索引，这种方式比较直接，且方便、易用。在建立数据表时创建索引的基本语法结构如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table table_name(</span><br><span class="line">    属性名 数据类型[约束条件],</span><br><span class="line">    属性名 数据类型[约束条件]</span><br><span class="line">    ...</span><br><span class="line">    属性名 数据类型</span><br><span class="line">    [UNIQUE | FULLTEXT | SPATIAL ]  INDEX &#125;KEY</span><br><span class="line">    [别名]( 属性名1 [(长度)] [ASC | DESC])</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>​		其中，属性名后的属性值，其含义如下。<br>（1）UNIQUE：可选项，表明索引为唯一性索引。<br>（2）FULLTEXT：可选项，表明索引为全文搜索。<br>（3）SPATIAL：可选项，表明索引为空间索引。<br>​		INDEX和KEY参数用于指定字段索引，用户在选择时，只需要选择其中的一种即可；另外别名为可选项，其作用是给创建的索引取新名称；别名的参数如下。<br>（1）属性名1：指索引对应的字段名称，该字段必须被预先定义。<br>（2）长度：可选项，指索引的长度，必须是字符串类型才可以使用。<br>（3）ASC&#x2F;DESC：可选项，ASC表示升序排列，DESC参数表示降序排列。</p>
-<h5 id="1．普通索引创建"><a href="#1．普通索引创建" class="headerlink" title="1．普通索引创建"></a>1．普通索引创建</h5><p>​		创建普通索引，即不添加UNIQUE、FULLTEXT等任何参数。</p>
-<p>​		下面创建表名为score的数据表，并在该表的id字段上建立索引，其主要代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table score(</span><br><span class="line">    id int(11) auto_increment primary key not null,</span><br><span class="line">    name varchar(50) not null,</span><br><span class="line">    math int(5) not null,</span><br><span class="line">    english int(5) not null,</span><br><span class="line">    chinese int(5) not null,</span><br><span class="line">    index(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>​		在命令提示符中使用SHOW CREATE TABLE语句查看该表的结构，在命令提示符中输入的代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create table score;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2．创建唯一性索引"><a href="#2．创建唯一性索引" class="headerlink" title="2．创建唯一性索引"></a>2．创建唯一性索引</h5><p>​		创建唯一性索引与创建一般索引的语法结构大体相同，但是在创建唯一索引的时候，需要使用UNIQUE参数进行约束。<br>​		创建一个表名为address的数据表，并指定该表的id字段上建立唯一索引，其代码如下所示。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table address(</span><br><span class="line">id int(11) auto_increment primary key not null,</span><br><span class="line">name varchar(50),</span><br><span class="line">address varchar(200),</span><br><span class="line">UNIQUE INDEX address(id ASC)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>​		说明<br>​		虽然添加唯一索引可以约束字段的唯一性，但是有时候并不能提高用户查找速度，即不能实现优化查询目的。所以，读者在使用过程中需要根据实际情况来选择唯一索引。</p>
-<h5 id="3．创建全文索引"><a href="#3．创建全文索引" class="headerlink" title="3．创建全文索引"></a>3．创建全文索引</h5><p>​		与创建普通索引和唯一索引不同，全文索引的创建只能作用在CHAR、VARCHAR、TEXT类型的字段上。创建全文索引需要使用FULLTEXT参数进行约束。<br>​	　创建一个名称为cards的数据表，并在该表的number字段上创建全文索引，其代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create table cards(</span><br><span class="line">id int(11) auto_increment primary key not null,</span><br><span class="line">name varchar(50),number bigint(11),</span><br><span class="line">info varchar(50),</span><br><span class="line">FULLTEXT KEY cards_info(info)) engine=MyISAM;</span><br></pre></td></tr></table></figure>
-
-<p>​		在命令提示符中应用SHOW CREATE TABLE语句查看表结构，其代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE TABLE cards;</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>    说明
-    只有MyISAM类型的数据表支持FULLTEXT全文索引，InnoDB或其他类型的数据表不支持全文索引。当用户在建立全文索引的时候，返回“ERROR 1283 (HY000): Column &#39;number&#39; cannot be part of FULLTEXT index”的错误，则说明用户操作的当前数据表不支持全文索引，即不为MyISAM类型的数据表。
-</code></pre>
-<h5 id="4．创建单列索引"><a href="#4．创建单列索引" class="headerlink" title="4．创建单列索引"></a>4．创建单列索引</h5><p>​		创建单列索引，即在数据表的单个字段上创建索引。创建该类型索引不需要引入约束参数，用户在建立时只需指定单列字段名，即可创建单列索引。<br>例11.4　创建名称为telephone的数据表，并指定在tel字段上建立名称为tel_num的单列索引，其代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table telephone(</span><br><span class="line">id int(11) primary key auto_increment not null,</span><br><span class="line">name varchar(50) not null,</span><br><span class="line">tel varchar(50) not null,</span><br><span class="line">index tel_num(tel(20))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>​		运行上述代码后，应用SHOW CREATE TABLE语句查看表的结构。<br>​		说明<br>​		数据表中的字段长度为50，而创建的索引的字段长度为20，这样做的目的是为了提高查询效率，优化查询速度。</p>
-<h5 id="5．创建多列索引"><a href="#5．创建多列索引" class="headerlink" title="5．创建多列索引"></a>5．创建多列索引</h5><p>​		与创建单列索引相仿，创建多列索引即指定表的多个字段即可实现。<br>例11.5　创建名称为information的数据表，并指定name和sex为多列索引，其代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table information(</span><br><span class="line">id int(11) auto_increment primary key not null,</span><br><span class="line">name varchar(50) not null,</span><br><span class="line">sex varchar(5) not null,</span><br><span class="line">birthday varchar(50) not null,</span><br><span class="line">INDEX info(name,sex)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>​		应用SHOW CREATE TABLE语句查看创建多列的数据表结构。<br>​		需要注意的是，在多列索引中，只有查询条件中使用了这些字段中的第一个字段（即上面示例中的name字段）时，索引才会被使用。<br>​		说明<br>​		触发多列索引的条件是用户必须使用索引的第一字段，如果没有用到第一字段，则索引不起任何作用，用户想要优化查询速度，可以应用该类索引形式。</p>
-<h5 id="6．创建空间索引"><a href="#6．创建空间索引" class="headerlink" title="6．创建空间索引"></a>6．创建空间索引</h5><p>​		创建空间索引时，需要设置SPATIAL参数。同样，必须说明的是，只有MyISAM类型表支持该类型索引。而且，索引字段必须有非空约束。<br>​	　创建一个名称为list的数据表，并创建一个名为listinfo的空间索引，其代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create table list(</span><br><span class="line">id int(11) primary key auto_increment not null,</span><br><span class="line">goods geometry not null,</span><br><span class="line">SPATIAL INDEX listinfo(goods)</span><br><span class="line">)engine=MyISAM;</span><br></pre></td></tr></table></figure>
-
-<p>​		运行上述代码，创建成功后，在命令提示符中应用SHOW CREATE TABLE语句查看表的结构。<br>​		说明<br>​		空间类型除了上述示例中提到的GEOMETRY类型外，还包括如POINT、LINESTRING、POLYGON等类型。这些空间数据类型在平常的操作中很少被用到。</p>
-<h4 id="2-2-在已建立的数据表中创建索引"><a href="#2-2-在已建立的数据表中创建索引" class="headerlink" title="2.2　在已建立的数据表中创建索引"></a>2.2　在已建立的数据表中创建索引</h4><p>​		在MySQL中，不但可以在用户创建数据表时创建索引，用户也可以直接在已经创建的表中，在已经存在的一个或几个字段上创建索引。其基本的命令结构如下所示。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE [UNIQUE | FULLTEXT |SPATIAL ] INDEX index_name</span><br><span class="line">ON table_name(属性 [(length)] [ ASC | DESC]);</span><br></pre></td></tr></table></figure>
-
-<p>​		命令的参数说明如下：<br>（1）index_name为索引名称，该参数作用是给用户创建的索引赋予新的名称。<br>（2）table_name为表名，即指定创建索引的表名称。<br>（3）可选参数，指定索引类型，包括UNIQUE（唯一索引）、FULLTEXT（全文索引）、SPATIAL（空间索引）。<br>（4）属性参数，指定索引对应的字段名称。该字段必须已经预存在用户想要操作的数据表中，如果该数据表中不存在用户指定的字段，则系统会提示异常。<br>（5）length为可选参数，用于指定索引长度。<br>（6）ASC和DESC参数，指定数据表的排序顺序。<br>与建立数据表时创建索引相同，在已建立的数据表中创建索引同样包含6种索引方式。</p>
-<h5 id="1．创建普通索引"><a href="#1．创建普通索引" class="headerlink" title="1．创建普通索引"></a>1．创建普通索引</h5><p>​	　首先，应用SHOW CREATE TABLE语句查看studentinfo表的结构。<br>​		然后，在该表中创建名称为stu_info的普通索引，在命令提示符中输入如下命令。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create INDEX stu_info ON studentinfo(sid);</span><br></pre></td></tr></table></figure>
-
-<p>​		输入上述命令后，应用SHOW CREATE TABLE语句查看该数据表的结构。</p>
-<h5 id="2．创建唯一索引"><a href="#2．创建唯一索引" class="headerlink" title="2．创建唯一索引"></a>2．创建唯一索引</h5><p>​		在已经存在的数据表中建立唯一索引的命令如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE UNIQUE INDEX 索引名 ON 数据表名称(字段名称);</span><br></pre></td></tr></table></figure>
-
-<p>​		其中，UNIQUE是用来设置索引唯一性的参数，该表中的字段名称既可以存在唯一性约束，也可以不存在唯一性约束。</p>
-<h5 id="3．创建全文索引-1"><a href="#3．创建全文索引-1" class="headerlink" title="3．创建全文索引"></a>3．创建全文索引</h5><p>在MySQL中，为已经存在的数据表创建全文索引的命令如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE FULLTEXT INDEX 索引名 ON 数据表名称(字段名称);</span><br></pre></td></tr></table></figure>
-
-<p>​		其中，FULLTEXT用来设置索引为全文索引。操作的数据表类型必须为MyISAM类型。字段类型必须为VARCHAR、CHAR、TEXT等类型。</p>
-<h5 id="4．创建单列索引-1"><a href="#4．创建单列索引-1" class="headerlink" title="4．创建单列索引"></a>4．创建单列索引</h5><p>​		与建立数据表时创建单列索引相同，用户可以设置单列索引。其命令结构如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD  INDEX 索引名称(字段名称(长度));</span><br></pre></td></tr></table></figure>
-
-<p>​		同样，用户可以设置字段名称长度，以便优化查询速度，提高执行效率。</p>
-<h5 id="5．添加多列索引"><a href="#5．添加多列索引" class="headerlink" title="5．添加多列索引"></a>5．添加多列索引</h5><p>​		添加多列索引与建立单列索引类似。其主要命令结构如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD  INDEX 索引名称(字段名称1,字段名称2,…);</span><br></pre></td></tr></table></figure>
-
-<p>​		使用ALTER修改数据表结构同样可以添加多列索引。与建立数据表时创建多列索引相同，当创建多列索引时，用户必须使用第一字段作为查询条件，否则索引不能生效。</p>
-<h5 id="6．添加空间索引"><a href="#6．添加空间索引" class="headerlink" title="6．添加空间索引"></a>6．添加空间索引</h5><p>​		添加空间索引，用户需要应用SPATIAL参数作为约束条件。其命令结构如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD  SPATIAL INDEX 索引名称(字段名称);</span><br></pre></td></tr></table></figure>
-
-<p>​		其中，SPATIAL用来设置索引为空间索引。用户要操作的数据表类型必须为MyISAM类型，并且字段名称必须存在非空约束，否则将不能正常创建空间索引。</p>
-<h3 id="3-删除索引"><a href="#3-删除索引" class="headerlink" title="3.　删除索引"></a>3.　删除索引</h3><p>​		在MySQL中，创建索引后，如果用户不再需要该索引，则可以删除指定表的索引。因为这些已经被建立且不常使用的索引，一方面可能会占用系统资源，另一方面也可能导致更新速度下降，这极大地影响了数据表的性能。所以，在用户不需要该表的索引时，可以手动删除指定索引。其中，删除索引可以通过DROP语句来实现。其基本的命令如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP INDEX index_name ON table_name;</span><br></pre></td></tr></table></figure>
-
-<p>​		其中，参数index_name是用户需要删除的索引名称，参数table_name指定数据表名称，下面应用示例向读者展示如何删除数据表中已经存在的索引。打开MySQL后，应用SHOW CREATE TABLE语句查看数据表的索引，<br>在用户顺利删除索引后，为确定该索引是否已被删除，用户可以再次应用SHOW CREATE TABLE语句来查看数据表结构。<br>　	本实例将使用DROP语句从数据表中删除不再需要的索引。<br>​		使用DROP语句删除workinfo表的唯一性索引index_id，具体代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP INDEX index_id ON workinfo;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-小结"><a href="#4-小结" class="headerlink" title="4.小结"></a>4.小结</h3><p>​		本章对MySQL数据库的索引的基础知识、创建索引、删除索引进行了详细讲解，创建索引的内容是本章的重点。读者应该重点掌握创建索引的3种方法，分别为创建表的时候创建索引、使用CREATE INDEX语句来创建索引和使用ALTER TABLE语句来创建索引。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/" data-id="cluz85hf20000wofwcsmidvhf" data-title="MySQL索引" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1076,7 +1074,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a>
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a>
     </div>
   </div>
 
@@ -1098,6 +1096,10 @@
       <ul>
         
           <li>
+            <a href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/">mysql笔记</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/12/huang2024-5-6-2024-5-12%E5%91%A8%E6%8A%A5/">huang2024-5-6-2024-5-12周报</a>
           </li>
         
@@ -1111,10 +1113,6 @@
         
           <li>
             <a href="/2024/05/05/huang2024-4-29-2024-5-5%E5%91%A8%E6%8A%A5/">huang2024-4-29-2024-5-5周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">MySQL存储过程</a>
           </li>
         
       </ul>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>mysql笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="MySQL游标的使用概述MySQL游标（cursor）是一种数据结构，用于在存储过程中对结果集中的每一行数据进行独立操作。它可以使开发者对数据库查询结果进行逐行处理，提供了更灵活的控制方式，使得在存储过程中实现复杂的逻辑成为可能。 使用步骤 声明游标：在存储过程或函数内部，使用 DECLARE 关键字声明游标，格式为 DECLARE 游标名 CURSOR FOR 查询语句;[1][2][3][4]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql笔记">
+<meta property="og:url" content="https://snail0220.github.io/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MySQL游标的使用概述MySQL游标（cursor）是一种数据结构，用于在存储过程中对结果集中的每一行数据进行独立操作。它可以使开发者对数据库查询结果进行逐行处理，提供了更灵活的控制方式，使得在存储过程中实现复杂的逻辑成为可能。 使用步骤 声明游标：在存储过程或函数内部，使用 DECLARE 关键字声明游标，格式为 DECLARE 游标名 CURSOR FOR 查询语句;[1][2][3][4]">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-12T10:27:27.000Z">
+<meta property="article:modified_time" content="2024-05-12T10:30:24.382Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://snail0220.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-mysql笔记-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/" class="article-date">
+  <time class="dt-published" datetime="2024-05-12T10:27:27.000Z" itemprop="datePublished">2024-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      mysql笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h2 id="游标的使用"><a href="#游标的使用" class="headerlink" title="游标的使用"></a>游标的使用</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>MySQL游标（cursor）是一种数据结构，用于在存储过程中对结果集中的每一行数据进行独立操作。它可以使开发者对数据库查询结果进行逐行处理，提供了更灵活的控制方式，使得在存储过程中实现复杂的逻辑成为可能。</p>
+<h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h3><ol>
+<li><p><strong>声明游标</strong>：在存储过程或函数内部，使用 <code>DECLARE</code> 关键字声明游标，格式为 <code>DECLARE 游标名 CURSOR FOR 查询语句;</code>[1][2][3][4][5]。</p>
+</li>
+<li><p><strong>打开游标</strong>：使用 <code>OPEN</code> 关键字打开游标，使游标指向的结果集准备好供进一步处理[1][2][3][4][5]。</p>
+</li>
+<li><p><strong>读取数据</strong>：通过 <code>FETCH</code> 语句从游标中读取数据，可以将数据存入变量中，以便进一步处理。<code>FETCH 游标名 INTO 变量名;</code> 可用于提取单一数据，若有多列则需提供多个变量名[1][2][3][4][5]。</p>
+</li>
+<li><p><strong>关闭游标</strong>：数据处理完成后，使用 <code>CLOSE</code> 关键字关闭游标，释放系统资源[1][2][3][4][5]。</p>
+</li>
+</ol>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>游标是<strong>只读</strong>的，不能用于修改数据。</li>
+<li>游标是<strong>不滚动</strong>的，只能逐行向前移动，不能跳跃。</li>
+<li>游标对于大数据量的处理性能较低，因为它逐行读取数据。</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>游标常用于存储过程的编写，其中涉及到对数据的复杂处理，如条件判断、数据汇总、数据转换等。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>假设有一个员工表 <code>employees</code>，包含员工信息，要求写一个存储过程来打印出所有员工的姓名和薪水。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> PrintEmployeeInfo()</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">DECLARE</span> finished <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">DECLARE</span> emp_name <span class="type">VARCHAR</span>(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">DECLARE</span> emp_salary <span class="type">DECIMAL</span>(<span class="number">10</span>, <span class="number">2</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 声明游标</span></span><br><span class="line">    <span class="keyword">DECLARE</span> cur <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> <span class="keyword">SELECT</span> name, salary <span class="keyword">FROM</span> employees;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 打开游标</span></span><br><span class="line">    <span class="keyword">OPEN</span> cur;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 读取数据</span></span><br><span class="line">    read_loop: LOOP</span><br><span class="line">        <span class="keyword">FETCH</span> cur <span class="keyword">INTO</span> emp_name, emp_salary;</span><br><span class="line">        IF finished <span class="keyword">THEN</span></span><br><span class="line">            LEAVE read_loop;</span><br><span class="line">        <span class="keyword">END</span> IF;</span><br><span class="line">        <span class="keyword">SELECT</span> CONCAT(<span class="string">&#x27;Employee Name: &#x27;</span>, emp_name, <span class="string">&#x27;, Salary: &#x27;</span>, emp_salary);</span><br><span class="line">    <span class="keyword">END</span> LOOP;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 关闭游标</span></span><br><span class="line">    <span class="keyword">CLOSE</span> cur;</span><br><span class="line"><span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">DELIMITER;</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>确保在使用游标前正确声明并打开它。</li>
+<li>在使用完游标后，要及时关闭它，避免资源泄漏。</li>
+<li>游标的使用可能会导致性能问题，特别是在大数据量的情况下。</li>
+</ul>
+<h3 id="综合分析"><a href="#综合分析" class="headerlink" title="综合分析"></a>综合分析</h3><p>游标在MySQL中提供了对结果集逐行处理的能力，使得在存储过程中实现复杂的逻辑变得容易。然而，由于它是逐行读取数据的，所以在处理大量数据时可能会导致性能下降。在使用游标时，需要注意它的特点和适用场景，合理地设计存储过程，以保证系统的效率和稳定性。</p>
+<h2 id="触发器概述"><a href="#触发器概述" class="headerlink" title="触发器概述"></a>触发器概述</h2><p>MySQL触发器是一种特殊的数据库对象，它能在特定的事件（如INSERT、UPDATE、DELETE）发生时执行预先定义好的SQL语句。触发器可以看作是与表相关联的存储过程，其执行时机完全依赖于特定的数据库事件。</p>
+<h3 id="创建触发器"><a href="#创建触发器" class="headerlink" title="创建触发器"></a>创建触发器</h3><p>创建触发器的基本语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> trigger_name</span><br><span class="line">&#123;BEFORE <span class="operator">|</span> AFTER <span class="operator">|</span> INSTEAD <span class="keyword">OF</span>&#125; triggering_event</span><br><span class="line"><span class="keyword">ON</span> table_name</span><br><span class="line">[<span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span>] <span class="operator">|</span> [<span class="keyword">FOR</span> <span class="keyword">EACH</span> STATEMENT]</span><br><span class="line">trigger_body;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>trigger_name</code>：触发器的名称。</li>
+<li><code>BEFORE | AFTER | INSTEAD OF</code>：定义触发器的类型。</li>
+<li><code>triggering_event</code>：定义触发器响应的具体事件。</li>
+<li><code>table_name</code>：指定触发器关联的表。</li>
+<li><code>FOR EACH ROW</code>：表示触发器对每一行数据变动都执行，<code>FOR EACH STATEMENT</code>表示触发器只在每条SQL语句执行后执行。</li>
+<li><code>trigger_body</code>：定义触发器内部的SQL语句。</li>
+</ul>
+<h3 id="触发器的应用场景"><a href="#触发器的应用场景" class="headerlink" title="触发器的应用场景"></a>触发器的应用场景</h3><ol>
+<li><strong>数据完整性</strong>：通过在INSERT、UPDATE、DELETE等操作前后执行触发器，可以确保数据的完整性和一致性。</li>
+<li><strong>日志记录</strong>：可以在数据发生变化时记录相关信息，便于追踪和审计。</li>
+<li><strong>业务逻辑处理</strong>：可以在触发器中加入复杂的业务逻辑，使得数据库操作更加智能化。</li>
+</ol>
+<h3 id="触发器的类型"><a href="#触发器的类型" class="headerlink" title="触发器的类型"></a>触发器的类型</h3><ul>
+<li><strong>BEFORE INSERT</strong>：在INSERT语句执行前触发。</li>
+<li><strong>AFTER INSERT</strong>：在INSERT语句执行后触发。</li>
+<li><strong>BEFORE UPDATE</strong>：在UPDATE语句执行前触发。</li>
+<li><strong>AFTER UPDATE</strong>：在UPDATE语句执行后触发。</li>
+<li><strong>BEFORE DELETE</strong>：在DELETE语句执行前触发。</li>
+<li><strong>AFTER DELETE</strong>：在DELETE语句执行后触发。</li>
+</ul>
+<h3 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h3><p>删除触发器的基本语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> trigger_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看触发器"><a href="#查看触发器" class="headerlink" title="查看触发器"></a>查看触发器</h3><p>可以通过<code>SHOW TRIGGERS;</code>命令查看数据库中的所有触发器。</p>
+<h2 id="MySQL触发器详细解析"><a href="#MySQL触发器详细解析" class="headerlink" title="MySQL触发器详细解析"></a>MySQL触发器详细解析</h2><h3 id="触发器的工作机制"><a href="#触发器的工作机制" class="headerlink" title="触发器的工作机制"></a>触发器的工作机制</h3><p>当数据库中定义了触发器后，每当有对应的事件发生时，MySQL就会自动执行触发器中定义的SQL语句。例如，当有数据插入到特定表中时，如果在触发器中定义了<code>AFTER INSERT</code>，那么这些SQL语句就会在INSERT语句执行后立即执行。</p>
+<h3 id="触发器中常用的特殊变量"><a href="#触发器中常用的特殊变量" class="headerlink" title="触发器中常用的特殊变量"></a>触发器中常用的特殊变量</h3><ul>
+<li><code>OLD</code>：在UPDATE或DELETE触发器中，可以使用<code>OLD</code>来引用原始数据。</li>
+<li><code>NEW</code>：在INSERT触发器中，可以使用<code>NEW</code>来引用新插入的数据。</li>
+</ul>
+<h3 id="触发器的使用示例"><a href="#触发器的使用示例" class="headerlink" title="触发器的使用示例"></a>触发器的使用示例</h3><h4 id="示例1：AFTER-INSERT触发器"><a href="#示例1：AFTER-INSERT触发器" class="headerlink" title="示例1：AFTER INSERT触发器"></a>示例1：AFTER INSERT触发器</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> after_insert_example</span><br><span class="line">AFTER <span class="keyword">INSERT</span></span><br><span class="line"><span class="keyword">ON</span> example_table</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">INSERT</span> <span class="keyword">INTO</span> audit_log (event, data) <span class="keyword">VALUES</span> (<span class="string">&#x27;New record inserted&#x27;</span>, <span class="built_in">JSON_OBJECT</span>(<span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span>));</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个触发器会在每次向<code>example_table</code>表插入数据后，将事件记录到<code>audit_log</code>表中。</p>
+<h4 id="示例2：BEFORE-DELETE触发器"><a href="#示例2：BEFORE-DELETE触发器" class="headerlink" title="示例2：BEFORE DELETE触发器"></a>示例2：BEFORE DELETE触发器</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> before_delete_example</span><br><span class="line">BEFORE <span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">ON</span> example_table</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    IF OLD.data_column <span class="operator">=</span> <span class="string">&#x27;Important data&#x27;</span> <span class="keyword">THEN</span></span><br><span class="line">        SIGNAL <span class="keyword">SQLSTATE</span> <span class="string">&#x27;45000&#x27;</span></span><br><span class="line">        <span class="keyword">SET</span> MESSAGE_TEXT <span class="operator">=</span> <span class="string">&#x27;Cannot delete important data&#x27;</span>;</span><br><span class="line">    <span class="keyword">END</span> IF;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个触发器会在每次删除<code>example_table</code>表中的数据前检查<code>data_column</code>列是否含有特定值，如果含有，则阻止删除操作。</p>
+<h2 id="MySQL触发器使用方法"><a href="#MySQL触发器使用方法" class="headerlink" title="MySQL触发器使用方法"></a>MySQL触发器使用方法</h2><h3 id="使用触发器进行数据校验"><a href="#使用触发器进行数据校验" class="headerlink" title="使用触发器进行数据校验"></a>使用触发器进行数据校验</h3><p>可以在触发器中添加数据校验逻辑，确保只有符合业务规则的数据才能被插入或更新。</p>
+<h3 id="使用触发器记录操作日志"><a href="#使用触发器记录操作日志" class="headerlink" title="使用触发器记录操作日志"></a>使用触发器记录操作日志</h3><p>可以将每次数据库操作的结果记录到日志表中，这对于监控数据库操作和生成报表非常有用。</p>
+<h3 id="使用触发器自动化业务流程"><a href="#使用触发器自动化业务流程" class="headerlink" title="使用触发器自动化业务流程"></a>使用触发器自动化业务流程</h3><p>可以设计触发器来简化重复性的任务，比如自动更新统计信息、发送通知邮件等。</p>
+<h2 id="MySQL触发器综合应用"><a href="#MySQL触发器综合应用" class="headerlink" title="MySQL触发器综合应用"></a>MySQL触发器综合应用</h2><h3 id="结合其他数据库对象使用触发器"><a href="#结合其他数据库对象使用触发器" class="headerlink" title="结合其他数据库对象使用触发器"></a>结合其他数据库对象使用触发器</h3><p>可以将触发器与存储过程、视图等数据库对象结合使用，构建更为复杂的数据处理逻辑。</p>
+<h3 id="使用触发器维护关联数据"><a href="#使用触发器维护关联数据" class="headerlink" title="使用触发器维护关联数据"></a>使用触发器维护关联数据</h3><p>当表之间存在关联关系时，可以使用触发器确保相关的数据在插入、更新或删除时同步更新。</p>
+<h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>触发器虽然强大，但也会带来额外的开销，应合理设计避免不必要的性能损耗。</li>
+<li>触发器中的SQL语句可能会被多次执行，要注意循环和递归的情况。</li>
+<li>某些情况下，触发器可能与事务冲突，需要妥善处理。</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>MySQL触发器是一个强大的数据库特性，它让我们能够在数据库层面实现很多原本需要在应用程序中处理的逻辑。正确使用触发器，可以增强数据的控制力，提高数据的完整性，简化应用程序的开发。在使用过程中，也需要注意其潜在的副作用，如对性能的影响，以及可能引入的复杂性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/" data-id="clw3e9wo80000u8fwhi122ntn" data-title="mysql笔记" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/05/12/huang2024-5-6-2024-5-12%E5%91%A8%E6%8A%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">huang2024-5-6-2024-5-12周报</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/">mysql笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/12/huang2024-5-6-2024-5-12%E5%91%A8%E6%8A%A5/">huang2024-5-6-2024-5-12周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/09/Java2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/05/mysql%E9%94%81/">mysql锁</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/05/huang2024-4-29-2024-5-5%E5%91%A8%E6%8A%A5/">huang2024-4-29-2024-5-5周报</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
