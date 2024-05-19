@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>mysql笔记（12） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="查看字符集 字符集是自然语言字符集合及其在计算机中的编码和字符串排序规则。每个字符集至少对应一个排序规则。 常见字符集 计算机系统存在大量字符集，常见的有：ASCII字符集、GB2312字符集、BIG5字符集、GB18030字符集、Unicode字符集、UTF-8字符集等。其中： Unicode支持现今世界各种不同语言的书面文本的交换、处理以及显示，以满足跨语言、跨平台进行文本交换、处理的请求。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql笔记（12）">
+<meta property="og:url" content="https://snail0220.github.io/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="查看字符集 字符集是自然语言字符集合及其在计算机中的编码和字符串排序规则。每个字符集至少对应一个排序规则。 常见字符集 计算机系统存在大量字符集，常见的有：ASCII字符集、GB2312字符集、BIG5字符集、GB18030字符集、Unicode字符集、UTF-8字符集等。其中： Unicode支持现今世界各种不同语言的书面文本的交换、处理以及显示，以满足跨语言、跨平台进行文本交换、处理的请求。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-19T13:04:51.886Z">
+<meta property="article:modified_time" content="2024-05-19T13:14:36.355Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://snail0220.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-mysql笔记（12）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2024-05-19T13:04:51.886Z" itemprop="datePublished">2024-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      mysql笔记（12）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>查看字符集</p>
+<p>字符集是自然语言字符集合及其在计算机中的编码和字符串排序规则。每个字符集至少对应一个排序规则。</p>
+<p>常见字符集</p>
+<p>计算机系统存在大量字符集，常见的有：ASCII字符集、GB2312字符集、BIG5字符集、GB18030字符集、Unicode字符集、UTF-8字符集等。其中：</p>
+<p>Unicode支持现今世界各种不同语言的书面文本的交换、处理以及显示，以满足跨语言、跨平台进行文本交换、处理的请求。</p>
+<p>UTF-8（8-bit Unicode Transformation Format）是Unicode的其中一个编码格式，是把Unicode字符集按某种格式存储，采用可变长度字节来储存Unicode字符。UTF-8是一种针对Unicode的可变长度字符编码，又称万国码。</p>
+<p>MySQL支持多种字符集，默认使用是UTF-8，可以设置不同级别的字符集：服务器级、数据库级、数据表级、字段级。</p>
+<p>查看当前MySQL系统支持的字符集：</p>
+<p><code>show character set</code></p>
+<p>查看当前服务器级字符集：</p>
+<p><code>show variables [like &#39;character_set_server&#39;]</code></p>
+<p> 查看当前数据库级字符集</p>
+<p><code>show variables like &#39;character_set_database&#39;</code></p>
+<p>查看字符集排序规则</p>
+<p><code>show collation [like &#39;charset_name% ]</code></p>
+<p>中括号【】包含内容是可选项。不写的时候是查看全部排序规则，写上的时候可以按指定的字符集名称匹配的方式查找字符集排序规则。‘%’是模式匹配符号，只要字符集是%前指定字符串开头的，都会显示比如:show collation like’utf8%’</p>
+<p>启动服务</p>
+<p>用命令行的方式启动 <code>net start mysql57</code></p>
+<p>打开windows+r，输入services.msc 找到MySQL的服务，右键启动。</p>
+<p>1、创建数据库\na)语句创建数据库</p>
+<p>语法：</p>
+<p><code>create &#123;database|schema&#125; [if not exists] db_name</code></p>
+<p><code> [default] character set [=] charset_name</code></p>
+<p><code>| [default] collate [=] collation_name</code></p>
+<p>语法说明：</p>
+<p> MySQL系统会自动在安装时的数据库默认目录下生成一个与新建数据库名相同的空文件夹</p>
+<p>数据库名不能使用MySQL关键字，也不能与其他数据库重名</p>
+<p>名称可以有任意字母、阿拉伯数字、下划线“_”和“$”组成，可以使用上述任意字符开头，但不能使用单独的数字命名，否则会造成它与数字混淆</p>
+<p>名称最长为64个字符，别名最长可达256个字符</p>
+<p>建议数据库名、表名用小写，不同平台度大小写敏感度不同，Windows不敏感二Linux敏感，统一小写方便平台移植</p>
+<p>character set用来设置数据库字符集，若不指定字符集，系统会使用my.ini指定的character-set-server参数设置的字符集</p>
+<p>collate表示字符集排序规则</p>
+<p>在MySQL中 create database和create schema是同义词，功能一致，这是与其他DBMS不同之处。\ncreate database db_test default char</p>
+<p>DML语句</p>
+<p>DML语句是数据操作语句，主要负责对数据的增删改操作，下面对这三种数据操作进行介绍</p>
+<p>1 添加数据（插入数据）</p>
+<p>语法：</p>
+<p>插入单条指定字段数据：<code>insert into 表名(name,id，字段1，字段2,......) values (&#39;张三丰&#39;,6,.......);</code></p>
+<p>插入单条所有字段数据：<code>insert into 表名 values (所有字段数据);</code></p>
+<p>插入多条数据：<code>insert into 表名 values (字段数据1)，（字段数据2），（字段数据3）......;</code></p>
+<p>需要插入多条数据的话直接在values关键字后用逗号继续添加括号即可。</p>
+<p>代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into student (name,id) values (&#x27;张三丰&#x27;,6);</span><br><span class="line">insert into student values (&#x27;lisi&#x27;,7,19,90,&#x27;男&#x27;);</span><br><span class="line">insert into student values (&#x27;lisi&#x27;,7,19,90,&#x27;男&#x27;),(&#x27;wangwu&#x27;,8,20,91,&#x27;女&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>2 删除数据</p>
+<p>语法：<code>delete from 表名 where 条件;</code></p>
+<p>代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from student where id = 1;</span><br></pre></td></tr></table></figure>
+
+<p>3 修改数据</p>
+<p>修改数据可也可以理解为更新某一条数据，常与where条件进行配合使用</p>
+<p>语法：<code>update 表名 set 字段1 = 数据1,字段2 = 数据2 where 条件;</code></p>
+<p>代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update student\nset name = &#x27;灭绝师太&#x27;,sex = &#x27;男&#x27;\nwhere id = 2;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/" data-id="clwdkgd9e0003v4fw6oh732j4" data-title="mysql笔记（12）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/05/18/huang2024-5-13-2024-5-19%E5%91%A8%E6%8A%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">huang2024-5-13-2024-5-19周报</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 17.5px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/">mysql笔记（12）</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/18/huang2024-5-13-2024-5-19%E5%91%A8%E6%8A%A5/">huang2024-5-13-2024-5-19周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%20-%20%E5%89%AF%E6%9C%AC/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/14/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/">mysql笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

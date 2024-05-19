@@ -73,6 +73,358 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-mysql笔记（12）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2024-05-19T13:04:51.886Z" itemprop="datePublished">2024-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/">mysql笔记（12）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>查看字符集</p>
+<p>字符集是自然语言字符集合及其在计算机中的编码和字符串排序规则。每个字符集至少对应一个排序规则。</p>
+<p>常见字符集</p>
+<p>计算机系统存在大量字符集，常见的有：ASCII字符集、GB2312字符集、BIG5字符集、GB18030字符集、Unicode字符集、UTF-8字符集等。其中：</p>
+<p>Unicode支持现今世界各种不同语言的书面文本的交换、处理以及显示，以满足跨语言、跨平台进行文本交换、处理的请求。</p>
+<p>UTF-8（8-bit Unicode Transformation Format）是Unicode的其中一个编码格式，是把Unicode字符集按某种格式存储，采用可变长度字节来储存Unicode字符。UTF-8是一种针对Unicode的可变长度字符编码，又称万国码。</p>
+<p>MySQL支持多种字符集，默认使用是UTF-8，可以设置不同级别的字符集：服务器级、数据库级、数据表级、字段级。</p>
+<p>查看当前MySQL系统支持的字符集：</p>
+<p><code>show character set</code></p>
+<p>查看当前服务器级字符集：</p>
+<p><code>show variables [like &#39;character_set_server&#39;]</code></p>
+<p> 查看当前数据库级字符集</p>
+<p><code>show variables like &#39;character_set_database&#39;</code></p>
+<p>查看字符集排序规则</p>
+<p><code>show collation [like &#39;charset_name% ]</code></p>
+<p>中括号【】包含内容是可选项。不写的时候是查看全部排序规则，写上的时候可以按指定的字符集名称匹配的方式查找字符集排序规则。‘%’是模式匹配符号，只要字符集是%前指定字符串开头的，都会显示比如:show collation like’utf8%’</p>
+<p>启动服务</p>
+<p>用命令行的方式启动 <code>net start mysql57</code></p>
+<p>打开windows+r，输入services.msc 找到MySQL的服务，右键启动。</p>
+<p>1、创建数据库\na)语句创建数据库</p>
+<p>语法：</p>
+<p><code>create &#123;database|schema&#125; [if not exists] db_name</code></p>
+<p><code> [default] character set [=] charset_name</code></p>
+<p><code>| [default] collate [=] collation_name</code></p>
+<p>语法说明：</p>
+<p> MySQL系统会自动在安装时的数据库默认目录下生成一个与新建数据库名相同的空文件夹</p>
+<p>数据库名不能使用MySQL关键字，也不能与其他数据库重名</p>
+<p>名称可以有任意字母、阿拉伯数字、下划线“_”和“$”组成，可以使用上述任意字符开头，但不能使用单独的数字命名，否则会造成它与数字混淆</p>
+<p>名称最长为64个字符，别名最长可达256个字符</p>
+<p>建议数据库名、表名用小写，不同平台度大小写敏感度不同，Windows不敏感二Linux敏感，统一小写方便平台移植</p>
+<p>character set用来设置数据库字符集，若不指定字符集，系统会使用my.ini指定的character-set-server参数设置的字符集</p>
+<p>collate表示字符集排序规则</p>
+<p>在MySQL中 create database和create schema是同义词，功能一致，这是与其他DBMS不同之处。\ncreate database db_test default char</p>
+<p>DML语句</p>
+<p>DML语句是数据操作语句，主要负责对数据的增删改操作，下面对这三种数据操作进行介绍</p>
+<p>1 添加数据（插入数据）</p>
+<p>语法：</p>
+<p>插入单条指定字段数据：<code>insert into 表名(name,id，字段1，字段2,......) values (&#39;张三丰&#39;,6,.......);</code></p>
+<p>插入单条所有字段数据：<code>insert into 表名 values (所有字段数据);</code></p>
+<p>插入多条数据：<code>insert into 表名 values (字段数据1)，（字段数据2），（字段数据3）......;</code></p>
+<p>需要插入多条数据的话直接在values关键字后用逗号继续添加括号即可。</p>
+<p>代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into student (name,id) values (&#x27;张三丰&#x27;,6);</span><br><span class="line">insert into student values (&#x27;lisi&#x27;,7,19,90,&#x27;男&#x27;);</span><br><span class="line">insert into student values (&#x27;lisi&#x27;,7,19,90,&#x27;男&#x27;),(&#x27;wangwu&#x27;,8,20,91,&#x27;女&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>2 删除数据</p>
+<p>语法：<code>delete from 表名 where 条件;</code></p>
+<p>代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from student where id = 1;</span><br></pre></td></tr></table></figure>
+
+<p>3 修改数据</p>
+<p>修改数据可也可以理解为更新某一条数据，常与where条件进行配合使用</p>
+<p>语法：<code>update 表名 set 字段1 = 数据1,字段2 = 数据2 where 条件;</code></p>
+<p>代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update student\nset name = &#x27;灭绝师太&#x27;,sex = &#x27;男&#x27;\nwhere id = 2;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/" data-id="clwdkgd9e0003v4fw6oh732j4" data-title="mysql笔记（12）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-5-13-2024-5-19周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/18/huang2024-5-13-2024-5-19%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-05-18T10:08:26.000Z" itemprop="datePublished">2024-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/18/huang2024-5-13-2024-5-19%E5%91%A8%E6%8A%A5/">huang2024-5-13-2024-5-19周报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.mysql学习</p>
+<p>2.Java笔记</p>
+<p>3.日周笔记</p>
+<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>内容</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>mysql–查看字符集</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>Java笔记</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>web网页美化</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>Java笔记</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>\</td>
+<td>日周笔记</td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>mysql–启动</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期日</td>
+<td>mysql–DML</td>
+<td>\</td>
+</tr>
+</tbody></table>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>1.mysql笔记</p>
+<p>2.Java笔记</p>
+<p>3.日周笔记</p>
+<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240519211930735.png" alt="image-20240519211930735" style="zoom:60%;" />
+
+<p>4.web设计</p>
+<img src="file:///C:/Users/黄倩/Pictures/Screenshots/屏幕截图%202024-05-14%20135755.png" alt="img" style="zoom:67%;" />
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>普普通通的一周，按照计划学习了该学习的内容，web网页的设计还是需要看着书上的方法去进行，还没能形成自己的思维。Java的笔记整理的还算OK。日周笔记的整理在慢慢进行。</p>
+<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><p>1.mysql</p>
+<p>2.Java笔记</p>
+<p>3.日周笔记</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/05/18/huang2024-5-13-2024-5-19%E5%91%A8%E6%8A%A5/" data-id="clwdkgd9d0002v4fwdp8rf29k" data-title="huang2024-5-13-2024-5-19周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java多线程基础 - 副本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/16/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%20-%20%E5%89%AF%E6%9C%AC/" class="article-date">
+  <time class="dt-published" datetime="2024-05-16T08:18:06.326Z" itemprop="datePublished">2024-05-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Java多线程基础"><a href="#Java多线程基础" class="headerlink" title="Java多线程基础"></a>Java多线程基础</h2><h4 id="等待和唤醒"><a href="#等待和唤醒" class="headerlink" title="等待和唤醒"></a>等待和唤醒</h4><p><code>wait()</code> 线程等待，等待的过程中，释放锁，需要其他线程调用notify去唤醒</p>
+<p><code>notify()</code>唤醒一个等待的线程，如果有多个线程等待，则随机一条唤醒</p>
+<p><code>notifyAll()</code> 唤醒所有等待的线程</p>
+<h4 id="Lock锁"><a href="#Lock锁" class="headerlink" title="Lock锁"></a>Lock锁</h4><p>是一个接口</p>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>获取 其 实现类 <code>ReentrantLock</code></p>
+<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p><code>lock()</code>获取锁</p>
+<p><code>unlock()</code>释放锁</p>
+<h5 id="synchronized-与lock的区别"><a href="#synchronized-与lock的区别" class="headerlink" title="synchronized 与lock的区别"></a>synchronized 与lock的区别</h5><p>synchronized:不管是同步代码块还是同步方法,都需要在结束一对{}之后,释放锁对象</p>
+<p>Lock:是通过两个方法控制需要被同步的代码,更灵活（两个方法为lock和unlock）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyTicket</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> &#123;</span><br><span class="line">	<span class="type">int</span> <span class="variable">ticket</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">	<span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">100L</span>);</span><br><span class="line">				lock.lock();</span><br><span class="line">				<span class="keyword">if</span> (ticket &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					System.out.println(Thread.currentThread().getName() + \<span class="string">&quot;买了第\&quot; + ticket + \&quot;张票\&quot;);</span></span><br><span class="line"><span class="string">					ticket--;</span></span><br><span class="line"><span class="string">					&#125;</span></span><br><span class="line"><span class="string">				&#125; catch (InterruptedException e) &#123;</span></span><br><span class="line"><span class="string">					throw new RuntimeException(e);</span></span><br><span class="line"><span class="string">				&#125;finally &#123;</span></span><br><span class="line"><span class="string">					lock.unlock();</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">public class Test01 &#123;</span></span><br><span class="line"><span class="string">	public static void main(String[] args) &#123;</span></span><br><span class="line"><span class="string">		MyTicket myTicket = new MyTicket();</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		Thread t1 = new Thread(myTicket, &quot;</span>张三<span class="string">&quot;);</span></span><br><span class="line"><span class="string">		Thread t2 = new Thread(myTicket, &quot;</span>李四<span class="string">&quot;);</span></span><br><span class="line"><span class="string">		Thread t3 = new Thread(myTicket, &quot;</span>王五<span class="string">&quot;);</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		t1.start();</span></span><br><span class="line"><span class="string">		t2.start();</span></span><br><span class="line"><span class="string">		t3.start();</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Callable"><a href="#Callable" class="headerlink" title="Callable"></a>Callable</h4><p>接口，实现多线程的一种方式</p>
+<p>Callable是一个接口,类似于Runnable</p>
+<h5 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h5><p>1.<code>V call()</code> 设置线程任务，类似于<code>run()</code>方法，与之不同的是call可以throw异常，并且还有返回值</p>
+<p>2.call方法和run方法的区别:</p>
+<p>a.相同点:都是设置线程任务的</p>
+<p>b.不同点:</p>
+<p>(1)call方法有返回值,而且有异常可以throws</p>
+<p>(2)run方法没有返回值,而且有异常不可以throws</p>
+<p>3.内容</p>
+<p>a.是一个泛型接口。</p>
+<p>b.泛型:用于指定我们操作什么类型的数据,&lt;&gt;中只能写引用数据类型,如果泛型不写,默认是Object类型数据。</p>
+<p>c.实现Callable接口时,指定泛型是什么类型的,重写的call方法返回值就是什么类型的。</p>
+<p>4.获取call方法返回值: <code>FutureTask&lt;V&gt;</code></p>
+<p>a. <code>FutureTask&lt;V&gt; </code>实现了一个接口: <code>Future &lt;V&gt;</code></p>
+<p>b.<code> FutureTask&lt;V&gt;</code>中有一个方法:</p>
+<p>5.<code>V get()</code> -&gt; 获取call方法的返回值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyCallable</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ssssss&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">		<span class="type">MyCallable</span> <span class="variable">myCallable</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyCallable</span>();</span><br><span class="line">		FutureTask&lt;String&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(myCallable);</span><br><span class="line">		<span class="type">Thread</span> <span class="variable">t1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask);</span><br><span class="line">		t1.start();</span><br><span class="line">        System.out.println(futureTask.get());</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><p>容器中有多条线程对象，来了线程任务，直接线程池中获取线程对象，用完还回去。</p>
+<h5 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> ExecutorService <span class="title function_">newFixedThreadPool</span><span class="params">(<span class="type">int</span> nThreads)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="执行线程任务"><a href="#执行线程任务" class="headerlink" title="执行线程任务"></a>执行线程任务</h5><p><code>Futhre&lt;?&gt; submit(Runnable task)</code> 提交一个Runnable任务用于执行</p>
+<p><code>Future&lt;T&gt; submit(Callable&lt;T&gt; task)</code> 提交一个Callable任务用于执行</p>
+<h5 id="返回值接口Futher"><a href="#返回值接口Futher" class="headerlink" title="返回值接口Futher"></a>返回值接口Futher</h5><p>用于接收run方法或者call方法返回值的,但是run方法没有返回值,所以可以不用Future接收,执行call方法需要用Future接收</p>
+<p>Future中有一个方法:V get() 用于获取call方法返回值</p>
+<p>关闭</p>
+<p>ExecutorService中的方法:</p>
+<p>\nvoid shutdown() 启动有序关闭，其中先前提交的任务将被执行，但不会接受任何新任务</p>
+<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><p>需求:创建两个线程任务,一个线程任务完成1-100的和,一个线程任务返回一个字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyString</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> Thread.currentThread().getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MySum</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;Integer&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            sum+=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">        <span class="comment">//创建线程池对象</span></span><br><span class="line">        <span class="type">ExecutorService</span> <span class="variable">es</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line">        Future&lt;String&gt; f1 = es.submit(<span class="keyword">new</span> <span class="title class_">MyString</span>());</span><br><span class="line">        Future&lt;Integer&gt; f2 = es.submit(<span class="keyword">new</span> <span class="title class_">MySum</span>());</span><br><span class="line">        System.out.println(f1.get());</span><br><span class="line">        System.out.println(f2.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/05/16/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%20-%20%E5%89%AF%E6%9C%AC/" data-id="clwdkgd9c0001v4fwc02da5if" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java多线程基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/14/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2024-05-14T04:31:04.201Z" itemprop="datePublished">2024-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Java多线程基础"><a href="#Java多线程基础" class="headerlink" title="Java多线程基础"></a>Java多线程基础</h2><h4 id="等待和唤醒"><a href="#等待和唤醒" class="headerlink" title="等待和唤醒"></a>等待和唤醒</h4><p><code>wait()</code> 线程等待，等待的过程中，释放锁，需要其他线程调用notify去唤醒</p>
+<p><code>notify()</code>唤醒一个等待的线程，如果有多个线程等待，则随机一条唤醒</p>
+<p><code>notifyAll()</code> 唤醒所有等待的线程</p>
+<h4 id="Lock锁"><a href="#Lock锁" class="headerlink" title="Lock锁"></a>Lock锁</h4><p>是一个接口</p>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>获取 其 实现类 <code>ReentrantLock</code></p>
+<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p><code>lock()</code>获取锁</p>
+<p><code>unlock()</code>释放锁</p>
+<h5 id="synchronized-与lock的区别"><a href="#synchronized-与lock的区别" class="headerlink" title="synchronized 与lock的区别"></a>synchronized 与lock的区别</h5><p>synchronized:不管是同步代码块还是同步方法,都需要在结束一对{}之后,释放锁对象</p>
+<p>Lock:是通过两个方法控制需要被同步的代码,更灵活（两个方法为lock和unlock）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyTicket</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> &#123;</span><br><span class="line">	<span class="type">int</span> <span class="variable">ticket</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">	<span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">100L</span>);</span><br><span class="line">				lock.lock();</span><br><span class="line">				<span class="keyword">if</span> (ticket &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					System.out.println(Thread.currentThread().getName() + \<span class="string">&quot;买了第\&quot; + ticket + \&quot;张票\&quot;);</span></span><br><span class="line"><span class="string">					ticket--;</span></span><br><span class="line"><span class="string">					&#125;</span></span><br><span class="line"><span class="string">				&#125; catch (InterruptedException e) &#123;</span></span><br><span class="line"><span class="string">					throw new RuntimeException(e);</span></span><br><span class="line"><span class="string">				&#125;finally &#123;</span></span><br><span class="line"><span class="string">					lock.unlock();</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">public class Test01 &#123;</span></span><br><span class="line"><span class="string">	public static void main(String[] args) &#123;</span></span><br><span class="line"><span class="string">		MyTicket myTicket = new MyTicket();</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		Thread t1 = new Thread(myTicket, &quot;</span>张三<span class="string">&quot;);</span></span><br><span class="line"><span class="string">		Thread t2 = new Thread(myTicket, &quot;</span>李四<span class="string">&quot;);</span></span><br><span class="line"><span class="string">		Thread t3 = new Thread(myTicket, &quot;</span>王五<span class="string">&quot;);</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		t1.start();</span></span><br><span class="line"><span class="string">		t2.start();</span></span><br><span class="line"><span class="string">		t3.start();</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Callable"><a href="#Callable" class="headerlink" title="Callable"></a>Callable</h4><p>接口，实现多线程的一种方式</p>
+<p>Callable是一个接口,类似于Runnable</p>
+<h5 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h5><p>1.<code>V call()</code> 设置线程任务，类似于<code>run()</code>方法，与之不同的是call可以throw异常，并且还有返回值</p>
+<p>2.call方法和run方法的区别:</p>
+<p>a.相同点:都是设置线程任务的</p>
+<p>b.不同点:</p>
+<p>(1)call方法有返回值,而且有异常可以throws</p>
+<p>(2)run方法没有返回值,而且有异常不可以throws</p>
+<p>3.内容</p>
+<p>a.是一个泛型接口。</p>
+<p>b.泛型:用于指定我们操作什么类型的数据,&lt;&gt;中只能写引用数据类型,如果泛型不写,默认是Object类型数据。</p>
+<p>c.实现Callable接口时,指定泛型是什么类型的,重写的call方法返回值就是什么类型的。</p>
+<p>4.获取call方法返回值: <code>FutureTask&lt;V&gt;</code></p>
+<p>a. <code>FutureTask&lt;V&gt; </code>实现了一个接口: <code>Future &lt;V&gt;</code></p>
+<p>b.<code> FutureTask&lt;V&gt;</code>中有一个方法:</p>
+<p>5.<code>V get()</code> -&gt; 获取call方法的返回值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyCallable</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ssssss&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">		<span class="type">MyCallable</span> <span class="variable">myCallable</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyCallable</span>();</span><br><span class="line">		FutureTask&lt;String&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(myCallable);</span><br><span class="line">		<span class="type">Thread</span> <span class="variable">t1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask);</span><br><span class="line">		t1.start();</span><br><span class="line">        System.out.println(futureTask.get());</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><p>容器中有多条线程对象，来了线程任务，直接线程池中获取线程对象，用完还回去。</p>
+<h5 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> ExecutorService <span class="title function_">newFixedThreadPool</span><span class="params">(<span class="type">int</span> nThreads)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="执行线程任务"><a href="#执行线程任务" class="headerlink" title="执行线程任务"></a>执行线程任务</h5><p><code>Futhre&lt;?&gt; submit(Runnable task)</code> 提交一个Runnable任务用于执行</p>
+<p><code>Future&lt;T&gt; submit(Callable&lt;T&gt; task)</code> 提交一个Callable任务用于执行</p>
+<h5 id="返回值接口Futher"><a href="#返回值接口Futher" class="headerlink" title="返回值接口Futher"></a>返回值接口Futher</h5><p>用于接收run方法或者call方法返回值的,但是run方法没有返回值,所以可以不用Future接收,执行call方法需要用Future接收</p>
+<p>Future中有一个方法:V get() 用于获取call方法返回值</p>
+<p>关闭</p>
+<p>ExecutorService中的方法:</p>
+<p>\nvoid shutdown() 启动有序关闭，其中先前提交的任务将被执行，但不会接受任何新任务</p>
+<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><p>需求:创建两个线程任务,一个线程任务完成1-100的和,一个线程任务返回一个字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyString</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> Thread.currentThread().getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MySum</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;Integer&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            sum+=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">        <span class="comment">//创建线程池对象</span></span><br><span class="line">        <span class="type">ExecutorService</span> <span class="variable">es</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line">        Future&lt;String&gt; f1 = es.submit(<span class="keyword">new</span> <span class="title class_">MyString</span>());</span><br><span class="line">        Future&lt;Integer&gt; f2 = es.submit(<span class="keyword">new</span> <span class="title class_">MySum</span>());</span><br><span class="line">        System.out.println(f1.get());</span><br><span class="line">        System.out.println(f2.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/05/14/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" data-id="clwdkgd930000v4fw3ca75bfb" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-mysql笔记-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/" class="article-date">
@@ -634,424 +986,11 @@
 
 
   
-    <article id="post-CSS美化网页" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/" class="article-date">
-  <time class="dt-published" datetime="2024-04-27T08:56:25.000Z" itemprop="datePublished">2024-04-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">CSS美化网页</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p> 使用CSS技术美化网页</p>
-<p>HTML存在很大的局限和不足。</p>
-<p>3.1【案例4】数字变色Logo</p>
-<p>1.认识CSS</p>
-<p>实现结构与表现的分离。CSS非常灵活，既可以嵌入在HTML文档中，也可以是一个单独的外部文档，如果是独立的文档，则必须以.css为后缀。</p>
-<p>CSS集中写在HTML文档的头部，也是符合结构与表现相分离的。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">	<span class="selector-tag">p</span>&#123;</span><br><span class="line">		<span class="attribute">font-size</span>:<span class="number">36px</span>;</span><br><span class="line">		<span class="attribute">color</span>:red;</span><br><span class="line">		<span class="attribute">text-align</span>:center</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<p>优势：节约成本、提高性能</p>
-<p>2.CSS样式规则</p>
-<p>具体语法规则如下</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">选择器&#123;</span><br><span class="line">		属性<span class="number">1</span>：属性值<span class="number">1</span>；</span><br><span class="line">		属性<span class="number">2</span>：属性值<span class="number">2</span>；</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p>特点</p>
-<ul>
-<li><p>严格区分大小写。</p>
-</li>
-<li><p>多个属性之间必须用英文状态下的分号隔开，最后一个属性后的分号可以省略，但是最好保留。</p>
-</li>
-<li><p>如果属性值由多个单词组成且中间包含空格，则必须为这个属性值加上英文状态下的引号。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">font-family</span>:<span class="string">&quot;Times New Roman&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以使用“&#x2F;<em>注释语句</em>&#x2F;”来进行注释</p>
-<p>例如，上面样式代码可添加</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">font-family</span>:<span class="string">&quot;Times New Roman&quot;</span>;&#125;</span><br><span class="line"><span class="comment">/* 这是CSS注释文本，有便于查找代码，此文本不会显示在浏览器窗口中 */</span></span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>CSS中空格是不会被解析的，花括号以及分号前后的空格可有可无。因此可以使用空格键、tab键对样式进行排版。</p>
-</li>
-</ul>
-<p>3.引入CSS样式表</p>
-<p>要想使用CSS修饰网页，就需要在HTML文档中引入CSS样式表。CSS提供4种引入方式，分别为行内式、内嵌式、外链式、导入式。</p>
-<p>(1)行内式</p>
-<p>行内式也被称为内联样式，是通过标签的style属性来设置标签的样式，其基本语法格式如下。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> <span class="attr">style</span>=<span class="string">&quot;属性1：属性值1；属性2：属性值2；属性3：属性值3；&quot;</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>行内式也称内联样式，</p>
-<p>内嵌式</p>
-<p>内嵌式是将CSS代码集中写在HTML文档的head头部标签中，并且用style标签定义，其基本语法如下。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line">	选择器 &#123;属性1：属性值1；属性2：属性值2；属性3：属性值3；&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>外链式</p>
-<p>外链式也称链入式，是将所有的样式放在一个或多个以”.css”为扩展名的外部样式表文件中，通过link&#x2F;标签将外部样式表文件连接到HTML文档中，其基本语法格式如下。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">herf</span>= <span class="string">&quot;CSS文件的路径&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>link&#x2F;标签需要放在head头部标签中，并且必须指定link&#x2F;标签的3个属性，具体如下。</p>
-<p>导入式</p>
-<p>导入式与外链式相同，都是将样式存放在外部样式表文件中。对HTML头部文档应用style标签，并在style标签内的开头处使用@import语句，即可导入外部样式表文件，其基本语法格式如下。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="keyword">@import</span> url(css文件路径)；或@import <span class="string">&quot;css文件路径&quot;</span>；</span></span><br><span class="line"><span class="language-css">	/*在此处还可以存放其他的CSS样式*/</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>4.CSS基础选择器</p>
-<p>(1)标签选择器</p>
-<p>(2)类选择器</p>
-<p>(3)id选择器</p>
-<p>(4)通配符选择器</p>
-<p>3.2【案例5】美食专题栏目</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240427164652653.png" alt="image-20240427164652653" style="zoom:67%;" />
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/" data-id="clvhvc4z60000j0fwamhfduvg" data-title="CSS美化网页" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-huang2024-4-22-2024-4-28周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-04-27T08:07:51.000Z" itemprop="datePublished">2024-04-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/">huang2024-4-22-2024-4-28周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习目标"><a href="#本周学习目标" class="headerlink" title="本周学习目标"></a>本周学习目标</h2><p>1.MySQL学习</p>
-<p>2.java笔记整理</p>
-<p>3.日周笔记</p>
-<h2 id="日历安排"><a href="#日历安排" class="headerlink" title="日历安排"></a>日历安排</h2><table>
-<thead>
-<tr>
-<th>时间</th>
-<th>内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>存储过程(基本、变量)</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>Java笔记</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>CSS技术美化网页</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>存储过程(if判断、循环)</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>日周笔记</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>Java笔记</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期日</td>
-<td>C语言题目</td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容"><a href="#本周学习内容" class="headerlink" title="本周学习内容"></a>本周学习内容</h2><p>1.MySQL笔记</p>
-<p><a href="https://snail0220.github.io/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">https://snail0220.github.io/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/</a></p>
-<p>2.CSS美化网页笔记</p>
-<p><a href="https://snail0220.github.io/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">https://snail0220.github.io/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/</a></p>
-<p>3.日周笔记</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240427161413855.png" alt="image-20240427161413855" style="zoom:50%;" />
-
-
-
-<p>4.c语言题目</p>
-<img src="C:\Users\黄倩\Pictures\Screenshots\屏幕截图 2024-04-28 134947.png" style="zoom:50%;" />
-
-<p>5.Java笔记</p>
-<p><a href="https://snail0220.github.io/2024/04/08/java/">https://snail0220.github.io/2024/04/08/java/</a></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本周的学习一如既往地缓慢且进行着，本周除了Java笔记的整理和MySQL的学，还进行了C语言第六单元的刷题。总体而言，本周的学习较为充足，对Java基础的认识也越来越完善，学完全部，再进行笔记整理，确实可以获得更多的知识。</p>
-<h2 id="下周学习安排"><a href="#下周学习安排" class="headerlink" title="下周学习安排"></a>下周学习安排</h2><p>1.mysql学习</p>
-<p>2.Java笔记整理</p>
-<p>3.日周笔记</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/" data-id="clvhuzo5j0000jofwe0n05nmu" data-title="huang2024-4-22-2024-4-28周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-MySQL视图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/" class="article-date">
-  <time class="dt-published" datetime="2024-04-21T04:01:29.000Z" itemprop="datePublished">2024-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">MySQL视图</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><h4 id="1-视图概述"><a href="#1-视图概述" class="headerlink" title="1.视图概述"></a>1.视图概述</h4><p>视图是由数据库中的一个表或多个表导出的虚拟表，方便用户对数据的操作。本节将详细讲解视图的概念及作用。</p>
-<h4 id="2-视图的概念"><a href="#2-视图的概念" class="headerlink" title="2.视图的概念"></a>2.视图的概念</h4><p>视图是一个虚拟表，是从数据库中一个或多个表中导出来的表，其内容由查询定义。同真实的表一样，视图包含一系列带有名称的列和行数据。但是，数据库中只存放了视图的定义，而并没有存放视图中的数据。这些数据存放在原来的表中。使用视图查询数据时，数据库系统会从原来的表中取出对应的数据。因此，视图中的数据是依赖于原来的表中的数据的。一旦表中的数据发生改变，显示在视图中的数据也会发生改变。<br>视图是存储在数据库中的查询的SQL语句，它主要出于两种原因：安全原因，视图可以隐藏一些数据，例如，员工信息表，可以用视图只显示姓名、工龄、地址，而不显示社会保险号和工资数等；另一个原因是可使复杂的查询易于理解和使用。</p>
-<h4 id="3-视图的作用"><a href="#3-视图的作用" class="headerlink" title="3.视图的作用"></a>3.视图的作用</h4><p>对其中所引用的基础表来说，视图的作用类似于筛选。定义视图的筛选可以来自当前或其他数据库的一个或多个表，或者其他视图。通过视图进行查询没有任何限制，通过它们进行数据修改时的限制也很少。下面将视图的作用归纳为如下几点。</p>
-<h5 id="1．简单性"><a href="#1．简单性" class="headerlink" title="1．简单性"></a>1．简单性</h5><p>看到的就是需要的。视图不仅可以简化用户对数据的理解，也可以简化他们的操作。那些被经常使用的查询可以被定义为视图，从而使得用户不必为以后的操作每次指定全部的条件。</p>
-<h5 id="2．安全性"><a href="#2．安全性" class="headerlink" title="2．安全性"></a>2．安全性</h5><p>视图的安全性可以防止未授权用户查看特定的行或列，使有权限用户只能看到表中特定行的方法如下。<br>（1）在表中增加一个标志用户名的列。<br>（2）建立视图，使用户只能看到标有自己用户名的行。<br>（3）把视图授权给其他用户。</p>
-<h5 id="3．逻辑数据独立性"><a href="#3．逻辑数据独立性" class="headerlink" title="3．逻辑数据独立性"></a>3．逻辑数据独立性</h5><p>视图可以使应用程序和数据库表在一定程度上独立。如果没有视图，程序一定是建立在表上的。有了视图之后，程序可以建立在视图之上，从而程序与数据库表被视图分割开来。视图可以在以下几个方面使程序与数据独立。<br>（1）如果应用建立在数据库表上，当数据库表发生变化时，可以在表上建</p>
-<p>（1）如果应用建立在数据库表上，当数据库表发生变化时，可以在表上建立视图，通过视图屏蔽表的变化，从而使应用程序可以不动。<br>（2）如果应用建立在数据库表上，当应用发生变化时，可以在表上建立视图，通过视图屏蔽应用的变化，从而使数据库表不动。<br>（3）如果应用建立在视图上，当数据库表发生变化时，可以在表上修改视图，通过视图屏蔽表的变化，从而使应用程序可以不动。<br>（4）如果应用建立在视图上，当应用发生变化时，可以在表上修改视图，通过视图屏蔽应用的变化，从而使数据库可以不动。</p>
-<h4 id="4-创建视图"><a href="#4-创建视图" class="headerlink" title="4.创建视图"></a>4.创建视图</h4><p>创建视图是指在已经存在的数据库表上建立视图，视图可以建立在一张表中，也可以建立在多张表中。本节主要讲解创建视图的方法。</p>
-<h5 id="1-查看创建视图的权限"><a href="#1-查看创建视图的权限" class="headerlink" title="1.查看创建视图的权限"></a>1.查看创建视图的权限</h5><p>创建视图需要具有CREATE VIEW的权限，同时应该具有查询涉及的列的SELECT权限。可以使用SELECT语句来查询这些权限信息，查询语法如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT Selete_priv,Create_view_priv FROM mysql.user WHERE user=&#x27;用户名&#x27;;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>（1）Selete_priv属性表示用户是否具有SELECT权限，Y表示拥有SELECT权限，N表示没有。<br>（2）Create_view_priv属性表示用户是否具有CREATE VIEW权限；mysql.user表示MySQL数据库下面的user表。<br>（3）“用户名”参数表示要查询是否拥有DROP权限的用户，该参数需要用单引号引起来。<br>【例1】　下面查询MySQL中root用户是否具有创建视图的权限，代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT Select_priv,Create_view_priv FROM mysql.user WHERE user=&#x27;root&#x27;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="2-创建视图的步骤"><a href="#2-创建视图的步骤" class="headerlink" title="2.创建视图的步骤"></a>2.创建视图的步骤</h5><p>MySQL中，创建视图是通过CREATE VIEW语句实现的，其语法如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE [ALGORITHM=&#123;</span><br><span class="line">        UNDEFINED|MERGE|TEMPTABLE&#125;]</span><br><span class="line">        VIEW 视图名[(属性清单)]</span><br><span class="line">        AS SELECT语句</span><br><span class="line">        [WITH [CASCADED|LOCAL] CHECK OPTION];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（1）ALGORITHM是可选参数，表示视图选择的算法；<br>（2）“视图名”参数表示要创建的视图名称；<br>（3）“属性清单”是可选参数，指定视图中各个属性的名词，默认情况下与SELECT语句中查询的属性相同；<br>（4）SELECT语句参数是一个完整的查询语句，表示从某个表中查出某些满足条件的记录，将这些记录导入视图中；<br>（5）WITH CHECK OPTION是可选参数，表示更新视图时要保证在该视图的权限范围之内。<br>【例2】在数据表tb_book中创建view1视图，视图命名为book_view1，并设置视图属性分别为a_sort、a_talk、a_books，代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEWbook_view1(a_sort,a_talk,a_books)AS SELECT sort,talk,booksFROM tb_book;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="3-创建视图的注意事项"><a href="#3-创建视图的注意事项" class="headerlink" title="3.创建视图的注意事项"></a>3.创建视图的注意事项</h5><p>创建视图时需要注意以下几点。<br>（1）运行创建视图的语句需要用户具有创建视图（create view）的权限，若加了[or replace]时，还需要用户具有删除视图（drop view）的权限。<br>（2）SELECT语句不能包含FROM子句中的子查询。<br>（3）SELECT语句不能引用系统或用户变量。<br>（4）SELECT语句不能引用预处理语句参数。<br>（5）在存储子程序内，定义不能引用子程序参数或局部变量。<br>（6）在定义中引用的表或视图必须存在。但是，创建了视图后，能够舍弃定义引用的表或视图。要想检查视图定义是否存在这类问题，可使用CHECK TABLE语句。<br>（7）在定义中不能引用temporary表，不能创建temporary视图。<br>（8）在视图定义中命名的表必须已存在。<br>（9）不能将触发程序与视图关联在一起。<br>（10）在视图定义中允许使用order by，但是，如果从特定视图进行了选择，而该视图使用了具有自己order by的语句，它将被忽略。</p>
-<h4 id="5-视图操作"><a href="#5-视图操作" class="headerlink" title="5.视图操作"></a>5.视图操作</h4><h5 id="1-查看视图"><a href="#1-查看视图" class="headerlink" title="1.查看视图"></a>1.查看视图</h5><p>查看视图是指查看数据库中已存在的视图。查看视图必须要有SHOW VIEW的权限。查看视图的方法主要包括DESCRIBE语句、SHOW TABLE STATUS语句、SHOW CREATE VIEW语句等。本节将主要介绍这几种查看视图的方法。<br>(1)DESCRIBE语句<br>DESCRIBE可以缩写成DESC，其语法格式如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE 视图名;</span><br></pre></td></tr></table></figure>
-
-<p>使用DESC语句查询book_view1视图中的结构<br>结果中显示了字段的名称（Field）、数据类型（Type）、是否为空（Null）、是否为主外键（Key）、默认值（Default）和额外信息（Extra）。<br>说明<br>如果只需了解视图中的各个字段的简单信息，可以使用DESCRIBE语句。DESCRIBE语句查看视图的方式与查看普通表的方式是相同的，结果显示的方式也相同。通常情况下，都是使用DESC代替DESCRIBE。<br>(2)SHOW TABLE STATUS语句<br>在MySQL中，可以使用SHOW TABLE STATUS语句查看视图的信息，其语法格式如下。<br>SHOW TABLE STATUS LIKE ‘视图名’;<br>（1）“LIKE”表示后面匹配的是字符串；<br>（2）“视图名”参数指要查看的视图名称，需要用单引号定义。<br>【例3】下面使用SHOW TABLE STATUS语句查看视图book_view1中的信息，代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW TABLE STATUS LIKE &#x27;book_view1&#x27;;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>从执行结果可以看出，存储引擎、数据长度等信息都显示为NULL，则说明视图为虚拟表，与普通数据表是有区别的。下面使用SHOW TABLE STATUS语句来查看tb_book表的信息。。<br>使用SHOW TABLE STATUS语句来查看tb_book表的信息<br>从上面的结果中可以看出，数据表的信息都已经显示出来了，这就是视图和普通数据表的区别。<br>(3)SHOW CREATE VIEW语句<br>在MySQL中，SHOW CREATE VIEW语句可以查看视图的详细定义，其语法格式如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE VIEW 视图名;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>【例4】　下面使用SHOW CREATE VIEW语句查看视图book_view1的信息，代码如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE VIEW book_view1;</span><br></pre></td></tr></table></figure>
-
-
-<p>通过SHOW CREATE VIEW语句，可以查看视图的所有信息。</p>
-<h5 id="2-修改视图"><a href="#2-修改视图" class="headerlink" title="2.修改视图"></a>2.修改视图</h5><p>修改视图是指修改数据库中已存在的表的定义。当基本表的某些字段发生改变时，可以通过修改视图来保持视图和基本表之间一致。MySQL中通过CREATE OR REPLACE VIEW语句和ALTER语句来修改视图。下面介绍这两种修改视图的方法。<br>1．CREATE OR REPLACE VIEW<br>在MySQL中，CREATE OR REPLACE VIEW语句可以用来修改视图。该语句的使用非常灵活。在视图已经存在的情况下，对视图进行修改；视图不存在时，可以创建视图。CREATE OR REPLACE VIEW语句的语法如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE OR REPLACE [ALGORITHM=&#123;</span><br><span class="line">                   UNDEFINED | MERGE | TEMPTABLE&#125;]</span><br><span class="line">                   VIEW 视图[(属性清单)]AS SELECT 语句[WITH [CASCADED | LOCAL] CHECK OPTION];</span><br></pre></td></tr></table></figure>
-
-
-
-<p>2．ALTER<br>ALTER VIEW语句改变了视图的定义，包括被索引视图，但不影响所依赖的存储过程或触发器。该语句与CREATE VIEW语句有着同样的限制，如果删除并重建了一个视图，就必须重新为它分配权限。<br>ALTER VIEW语句的语法如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter view [algorithm=&#123;merge | temptable | undefined&#125; ]view view_name [(column_list)] as select_statement[with[cascaded | local] check option]</span><br></pre></td></tr></table></figure>
-
-
-
-<p>（1）algorithm：该参数已经在创建视图中做了介绍，这里不再赘述。<br>（2）view_name：视图的名称。<br>（3）select_statement: SQL语句用于限定视图。<br>注意<br>在创建视图时，在使用了WITH CHECK OPTION, WITH ENCRYPTION,WITH SCHEMABING或VIEW_METADATA选项时，如果想保留这些选项提供的功能，必须在ALTER VIEW语句中将它们包括进去。</p>
-<h5 id="3-更新视图"><a href="#3-更新视图" class="headerlink" title="3.更新视图"></a>3.更新视图</h5><p>对视图的更新其实就是对表的更新，更新视图是指通过视图来插入（INSERT）、更新（UPDATE）和删除（DELETE）表中的数据。因为视图是一个虚拟表，其中没有数据。通过视图更新时，都是转换到基本表来更新。更新视图时，只能更新权限范围内的数据，超出了范围，就不能更新。本节讲解更新视图的方法和更新视图的限制。<br>1．更新视图<br>2．更新视图的限制<br>并不是所有的视图都可以更新，以下几种情况是不能更新视图的。<br>（1）视图中包含COUNT()、SUM()、MAX()和MIN()等函数。例如：<br>CREATE VIEW book_view1(a_sort,a_book)AS SELECT sort,books, COUNT(name) FROM tb_book;</p>
-<p>（2）视图中包含UNION、UNION ALL、DISTINCT、GROUP BY和HAVIG等关键字。例如：<br>CREATE VIEW book_view1(a_sort,a_book)AS SELECT sort,books, FROM tb_book GROUP BY id;<br>（3）常量视图。例如：<br>CREATE VIEW book_view1AS SELECT ‘Aric’ as a_book;<br>（4）视图中的SELECT中包含子查询。例如：<br>CREATE VIEW book_view1(a_sort)AS SELECT (SELECT name FROM tb_book);<br>（5）由不可更新的视图导出的视图。例如：<br>CREATE VIEW book_view1AS SELECT * FROM book_view2;<br>（6）创建视图时，ALGORITHM为TEMPTABLE类型。例如：<br>CREATE ALGORITHM&#x3D;TEMPTABLEVIEW book_view1AS SELECT * FROM tb_book;<br>（7）视图对应的表上存在没有默认值的列，而且该列没有包含在视图里。例如，表中包含的name字段没有默认值，但是视图中不包括该字段，那么这个视图是不能更新的。因为，在更新视图时，这个没有默认值的记录将没有值插入，也没有NULL值插入。数据库系统是不会允许这样的情况出现的，其会阻止这个视图更新。<br>上面的几种情况其实就是一种情况，即视图的数据和基本表的数据不一样了。<br>注意<br>视图中虽然可以更新数据，但是有很多的限制。一般情况下，最好将视图作为查询数据的虚拟表，而不要通过视图更新数据。因为，使用视图更新数据时，如果没有全面考虑在视图中更新数据的限制，可能会造成数据更新失败。</p>
-<h5 id="4-删除视图"><a href="#4-删除视图" class="headerlink" title="4.删除视图"></a>4.删除视图</h5><p>删除视图是指删除数据库中已存在的视图。删除视图时，只能删除视图的定义，不会删除数据。MySQL中，使用DROP VIEW语句来删除视图。但是，用户必须拥有DROP权限。本节将介绍删除视图的方法。<br>DROP VIEW语句的语法如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP VIEW IF EXISTS &lt;视图名&gt; [RESTRICT | CASCADE]</span><br></pre></td></tr></table></figure>
-
-
-
-<p>（1）IF EXISTS参数指判断视图是否存在，如果存在则执行，不存在则不执行。<br>（2）“视图名”列表参数表示要删除的视图的名称和列表，各个视图名称之间用逗号隔开。<br>该语句从数据字典中删除指定的视图定义；如果该视图导出了其他视图，则使用CASCADE级联删除，或者先显式删除导出的视图，再删除该视图；删除基表时，由该基表导出的所有视图定义都必须显式删除。<br>【例5】下面删除前面实例中一直使用的book_view1视图，执行语句如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP VIEW IF EXISTS book_view1;</span><br></pre></td></tr></table></figure>
-
-
-<p>执行结果显示删除成功。下面验证一下视图是否真正被删除，执行SHOW CREATE VIEW语句查看。</p>
-<p>结果显示，视图book_view1已经不存在了，说明DROP VIEW语句删除视图成功。</p>
-<h4 id="6-小结"><a href="#6-小结" class="headerlink" title="6.小结"></a>6.小结</h4><p>本章对MySQL数据库的视图的含义和作用进行了详细讲解，并且讲解了创建视图、修改视图和删除视图的方法。创建视图和修改视图是本章的重点内容，并且需要在计算机上实际操作。读者在创建视图和修改视图后，一定要查看视图的结构，以确保创建和修改的操作正确。更新视图是本章的一个难点，因为实际中存在一些造成视图不能更新的因素，希望可以在练习中认真分析。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/" data-id="clv91avam0000csfw493y6t1l" data-title="MySQL视图" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-huang2024-4-15-2024-4-21周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-04-21T03:50:01.000Z" itemprop="datePublished">2024-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/">huang2024-4-15-2024-4-21周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.MySQL学习</p>
-<p>2.Java笔记整理</p>
-<p>3.日周笔记</p>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日期</th>
-<th>学习内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>视图概述</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>Java笔记</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>创建视图</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>c题目</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>日周笔记</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>Java笔记</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期日</td>
-<td>视图操作</td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><p>1.MySQL笔记</p>
-<p><a href="https://snail0220.github.io/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">https://snail0220.github.io/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/</a></p>
-<p>2.Java笔记</p>
-<p><a href="https://snail0220.github.io/2024/04/08/java/">https://snail0220.github.io/2024/04/08/java/</a></p>
-<p>3.日周笔记</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240421122925872.png" alt="image-20240421122925872" style="zoom:67%;" />
-
-<p>4.C题目</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240421123049515.png" alt="image-20240421123049515" style="zoom:67%;" />
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本周的学习一如既往地缓慢且进行着，本周除了Java笔记的整理和MySQL的学，还进行了C语言第五单元的刷题。总体而言，本周的学习较为充足，对Java基础的认识也越来越完善，学完全部，再进行笔记整理，确实可以获得更多的知识。</p>
-<h2 id="下周学习"><a href="#下周学习" class="headerlink" title="下周学习"></a>下周学习</h2><p>1.mysql学习</p>
-<p>2.Java笔记整理</p>
-<p>3.日周笔记</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/" data-id="clv91avat0001csfwcia375sw" data-title="huang2024-4-15-2024-4-21周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1075,7 +1014,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a>
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 17.5px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a>
     </div>
   </div>
 
@@ -1097,23 +1036,23 @@
       <ul>
         
           <li>
+            <a href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/">mysql笔记（12）</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/18/huang2024-5-13-2024-5-19%E5%91%A8%E6%8A%A5/">huang2024-5-13-2024-5-19周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%20-%20%E5%89%AF%E6%9C%AC/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/14/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/">mysql笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/12/huang2024-5-6-2024-5-12%E5%91%A8%E6%8A%A5/">huang2024-5-6-2024-5-12周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/09/Java2/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/05/mysql%E9%94%81/">mysql锁</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/05/huang2024-4-29-2024-5-5%E5%91%A8%E6%8A%A5/">huang2024-4-29-2024-5-5周报</a>
           </li>
         
       </ul>

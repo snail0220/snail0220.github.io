@@ -73,6 +73,419 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CSS美化网页" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/" class="article-date">
+  <time class="dt-published" datetime="2024-04-27T08:56:25.000Z" itemprop="datePublished">2024-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">CSS美化网页</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p> 使用CSS技术美化网页</p>
+<p>HTML存在很大的局限和不足。</p>
+<p>3.1【案例4】数字变色Logo</p>
+<p>1.认识CSS</p>
+<p>实现结构与表现的分离。CSS非常灵活，既可以嵌入在HTML文档中，也可以是一个单独的外部文档，如果是独立的文档，则必须以.css为后缀。</p>
+<p>CSS集中写在HTML文档的头部，也是符合结构与表现相分离的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">	<span class="selector-tag">p</span>&#123;</span><br><span class="line">		<span class="attribute">font-size</span>:<span class="number">36px</span>;</span><br><span class="line">		<span class="attribute">color</span>:red;</span><br><span class="line">		<span class="attribute">text-align</span>:center</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>优势：节约成本、提高性能</p>
+<p>2.CSS样式规则</p>
+<p>具体语法规则如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">选择器&#123;</span><br><span class="line">		属性<span class="number">1</span>：属性值<span class="number">1</span>；</span><br><span class="line">		属性<span class="number">2</span>：属性值<span class="number">2</span>；</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特点</p>
+<ul>
+<li><p>严格区分大小写。</p>
+</li>
+<li><p>多个属性之间必须用英文状态下的分号隔开，最后一个属性后的分号可以省略，但是最好保留。</p>
+</li>
+<li><p>如果属性值由多个单词组成且中间包含空格，则必须为这个属性值加上英文状态下的引号。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">font-family</span>:<span class="string">&quot;Times New Roman&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以使用“&#x2F;<em>注释语句</em>&#x2F;”来进行注释</p>
+<p>例如，上面样式代码可添加</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">font-family</span>:<span class="string">&quot;Times New Roman&quot;</span>;&#125;</span><br><span class="line"><span class="comment">/* 这是CSS注释文本，有便于查找代码，此文本不会显示在浏览器窗口中 */</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>CSS中空格是不会被解析的，花括号以及分号前后的空格可有可无。因此可以使用空格键、tab键对样式进行排版。</p>
+</li>
+</ul>
+<p>3.引入CSS样式表</p>
+<p>要想使用CSS修饰网页，就需要在HTML文档中引入CSS样式表。CSS提供4种引入方式，分别为行内式、内嵌式、外链式、导入式。</p>
+<p>(1)行内式</p>
+<p>行内式也被称为内联样式，是通过标签的style属性来设置标签的样式，其基本语法格式如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> <span class="attr">style</span>=<span class="string">&quot;属性1：属性值1；属性2：属性值2；属性3：属性值3；&quot;</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>行内式也称内联样式，</p>
+<p>内嵌式</p>
+<p>内嵌式是将CSS代码集中写在HTML文档的head头部标签中，并且用style标签定义，其基本语法如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br><span class="line">	选择器 &#123;属性1：属性值1；属性2：属性值2；属性3：属性值3；&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>外链式</p>
+<p>外链式也称链入式，是将所有的样式放在一个或多个以”.css”为扩展名的外部样式表文件中，通过link&#x2F;标签将外部样式表文件连接到HTML文档中，其基本语法格式如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">herf</span>= <span class="string">&quot;CSS文件的路径&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>link&#x2F;标签需要放在head头部标签中，并且必须指定link&#x2F;标签的3个属性，具体如下。</p>
+<p>导入式</p>
+<p>导入式与外链式相同，都是将样式存放在外部样式表文件中。对HTML头部文档应用style标签，并在style标签内的开头处使用@import语句，即可导入外部样式表文件，其基本语法格式如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="keyword">@import</span> url(css文件路径)；或@import <span class="string">&quot;css文件路径&quot;</span>；</span></span><br><span class="line"><span class="language-css">	/*在此处还可以存放其他的CSS样式*/</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>4.CSS基础选择器</p>
+<p>(1)标签选择器</p>
+<p>(2)类选择器</p>
+<p>(3)id选择器</p>
+<p>(4)通配符选择器</p>
+<p>3.2【案例5】美食专题栏目</p>
+<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240427164652653.png" alt="image-20240427164652653" style="zoom:67%;" />
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/" data-id="clvhvc4z60000j0fwamhfduvg" data-title="CSS美化网页" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-4-22-2024-4-28周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-04-27T08:07:51.000Z" itemprop="datePublished">2024-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/">huang2024-4-22-2024-4-28周报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习目标"><a href="#本周学习目标" class="headerlink" title="本周学习目标"></a>本周学习目标</h2><p>1.MySQL学习</p>
+<p>2.java笔记整理</p>
+<p>3.日周笔记</p>
+<h2 id="日历安排"><a href="#日历安排" class="headerlink" title="日历安排"></a>日历安排</h2><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>内容</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>存储过程(基本、变量)</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>Java笔记</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>CSS技术美化网页</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>存储过程(if判断、循环)</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>\</td>
+<td>日周笔记</td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>Java笔记</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期日</td>
+<td>C语言题目</td>
+<td>\</td>
+</tr>
+</tbody></table>
+<h2 id="本周学习内容"><a href="#本周学习内容" class="headerlink" title="本周学习内容"></a>本周学习内容</h2><p>1.MySQL笔记</p>
+<p><a href="https://snail0220.github.io/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">https://snail0220.github.io/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/</a></p>
+<p>2.CSS美化网页笔记</p>
+<p><a href="https://snail0220.github.io/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">https://snail0220.github.io/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/</a></p>
+<p>3.日周笔记</p>
+<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240427161413855.png" alt="image-20240427161413855" style="zoom:50%;" />
+
+
+
+<p>4.c语言题目</p>
+<img src="C:\Users\黄倩\Pictures\Screenshots\屏幕截图 2024-04-28 134947.png" style="zoom:50%;" />
+
+<p>5.Java笔记</p>
+<p><a href="https://snail0220.github.io/2024/04/08/java/">https://snail0220.github.io/2024/04/08/java/</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本周的学习一如既往地缓慢且进行着，本周除了Java笔记的整理和MySQL的学，还进行了C语言第六单元的刷题。总体而言，本周的学习较为充足，对Java基础的认识也越来越完善，学完全部，再进行笔记整理，确实可以获得更多的知识。</p>
+<h2 id="下周学习安排"><a href="#下周学习安排" class="headerlink" title="下周学习安排"></a>下周学习安排</h2><p>1.mysql学习</p>
+<p>2.Java笔记整理</p>
+<p>3.日周笔记</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/" data-id="clvhuzo5j0000jofwe0n05nmu" data-title="huang2024-4-22-2024-4-28周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-MySQL视图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/" class="article-date">
+  <time class="dt-published" datetime="2024-04-21T04:01:29.000Z" itemprop="datePublished">2024-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">MySQL视图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><h4 id="1-视图概述"><a href="#1-视图概述" class="headerlink" title="1.视图概述"></a>1.视图概述</h4><p>视图是由数据库中的一个表或多个表导出的虚拟表，方便用户对数据的操作。本节将详细讲解视图的概念及作用。</p>
+<h4 id="2-视图的概念"><a href="#2-视图的概念" class="headerlink" title="2.视图的概念"></a>2.视图的概念</h4><p>视图是一个虚拟表，是从数据库中一个或多个表中导出来的表，其内容由查询定义。同真实的表一样，视图包含一系列带有名称的列和行数据。但是，数据库中只存放了视图的定义，而并没有存放视图中的数据。这些数据存放在原来的表中。使用视图查询数据时，数据库系统会从原来的表中取出对应的数据。因此，视图中的数据是依赖于原来的表中的数据的。一旦表中的数据发生改变，显示在视图中的数据也会发生改变。<br>视图是存储在数据库中的查询的SQL语句，它主要出于两种原因：安全原因，视图可以隐藏一些数据，例如，员工信息表，可以用视图只显示姓名、工龄、地址，而不显示社会保险号和工资数等；另一个原因是可使复杂的查询易于理解和使用。</p>
+<h4 id="3-视图的作用"><a href="#3-视图的作用" class="headerlink" title="3.视图的作用"></a>3.视图的作用</h4><p>对其中所引用的基础表来说，视图的作用类似于筛选。定义视图的筛选可以来自当前或其他数据库的一个或多个表，或者其他视图。通过视图进行查询没有任何限制，通过它们进行数据修改时的限制也很少。下面将视图的作用归纳为如下几点。</p>
+<h5 id="1．简单性"><a href="#1．简单性" class="headerlink" title="1．简单性"></a>1．简单性</h5><p>看到的就是需要的。视图不仅可以简化用户对数据的理解，也可以简化他们的操作。那些被经常使用的查询可以被定义为视图，从而使得用户不必为以后的操作每次指定全部的条件。</p>
+<h5 id="2．安全性"><a href="#2．安全性" class="headerlink" title="2．安全性"></a>2．安全性</h5><p>视图的安全性可以防止未授权用户查看特定的行或列，使有权限用户只能看到表中特定行的方法如下。<br>（1）在表中增加一个标志用户名的列。<br>（2）建立视图，使用户只能看到标有自己用户名的行。<br>（3）把视图授权给其他用户。</p>
+<h5 id="3．逻辑数据独立性"><a href="#3．逻辑数据独立性" class="headerlink" title="3．逻辑数据独立性"></a>3．逻辑数据独立性</h5><p>视图可以使应用程序和数据库表在一定程度上独立。如果没有视图，程序一定是建立在表上的。有了视图之后，程序可以建立在视图之上，从而程序与数据库表被视图分割开来。视图可以在以下几个方面使程序与数据独立。<br>（1）如果应用建立在数据库表上，当数据库表发生变化时，可以在表上建</p>
+<p>（1）如果应用建立在数据库表上，当数据库表发生变化时，可以在表上建立视图，通过视图屏蔽表的变化，从而使应用程序可以不动。<br>（2）如果应用建立在数据库表上，当应用发生变化时，可以在表上建立视图，通过视图屏蔽应用的变化，从而使数据库表不动。<br>（3）如果应用建立在视图上，当数据库表发生变化时，可以在表上修改视图，通过视图屏蔽表的变化，从而使应用程序可以不动。<br>（4）如果应用建立在视图上，当应用发生变化时，可以在表上修改视图，通过视图屏蔽应用的变化，从而使数据库可以不动。</p>
+<h4 id="4-创建视图"><a href="#4-创建视图" class="headerlink" title="4.创建视图"></a>4.创建视图</h4><p>创建视图是指在已经存在的数据库表上建立视图，视图可以建立在一张表中，也可以建立在多张表中。本节主要讲解创建视图的方法。</p>
+<h5 id="1-查看创建视图的权限"><a href="#1-查看创建视图的权限" class="headerlink" title="1.查看创建视图的权限"></a>1.查看创建视图的权限</h5><p>创建视图需要具有CREATE VIEW的权限，同时应该具有查询涉及的列的SELECT权限。可以使用SELECT语句来查询这些权限信息，查询语法如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT Selete_priv,Create_view_priv FROM mysql.user WHERE user=&#x27;用户名&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（1）Selete_priv属性表示用户是否具有SELECT权限，Y表示拥有SELECT权限，N表示没有。<br>（2）Create_view_priv属性表示用户是否具有CREATE VIEW权限；mysql.user表示MySQL数据库下面的user表。<br>（3）“用户名”参数表示要查询是否拥有DROP权限的用户，该参数需要用单引号引起来。<br>【例1】　下面查询MySQL中root用户是否具有创建视图的权限，代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT Select_priv,Create_view_priv FROM mysql.user WHERE user=&#x27;root&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-创建视图的步骤"><a href="#2-创建视图的步骤" class="headerlink" title="2.创建视图的步骤"></a>2.创建视图的步骤</h5><p>MySQL中，创建视图是通过CREATE VIEW语句实现的，其语法如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE [ALGORITHM=&#123;</span><br><span class="line">        UNDEFINED|MERGE|TEMPTABLE&#125;]</span><br><span class="line">        VIEW 视图名[(属性清单)]</span><br><span class="line">        AS SELECT语句</span><br><span class="line">        [WITH [CASCADED|LOCAL] CHECK OPTION];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（1）ALGORITHM是可选参数，表示视图选择的算法；<br>（2）“视图名”参数表示要创建的视图名称；<br>（3）“属性清单”是可选参数，指定视图中各个属性的名词，默认情况下与SELECT语句中查询的属性相同；<br>（4）SELECT语句参数是一个完整的查询语句，表示从某个表中查出某些满足条件的记录，将这些记录导入视图中；<br>（5）WITH CHECK OPTION是可选参数，表示更新视图时要保证在该视图的权限范围之内。<br>【例2】在数据表tb_book中创建view1视图，视图命名为book_view1，并设置视图属性分别为a_sort、a_talk、a_books，代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEWbook_view1(a_sort,a_talk,a_books)AS SELECT sort,talk,booksFROM tb_book;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-创建视图的注意事项"><a href="#3-创建视图的注意事项" class="headerlink" title="3.创建视图的注意事项"></a>3.创建视图的注意事项</h5><p>创建视图时需要注意以下几点。<br>（1）运行创建视图的语句需要用户具有创建视图（create view）的权限，若加了[or replace]时，还需要用户具有删除视图（drop view）的权限。<br>（2）SELECT语句不能包含FROM子句中的子查询。<br>（3）SELECT语句不能引用系统或用户变量。<br>（4）SELECT语句不能引用预处理语句参数。<br>（5）在存储子程序内，定义不能引用子程序参数或局部变量。<br>（6）在定义中引用的表或视图必须存在。但是，创建了视图后，能够舍弃定义引用的表或视图。要想检查视图定义是否存在这类问题，可使用CHECK TABLE语句。<br>（7）在定义中不能引用temporary表，不能创建temporary视图。<br>（8）在视图定义中命名的表必须已存在。<br>（9）不能将触发程序与视图关联在一起。<br>（10）在视图定义中允许使用order by，但是，如果从特定视图进行了选择，而该视图使用了具有自己order by的语句，它将被忽略。</p>
+<h4 id="5-视图操作"><a href="#5-视图操作" class="headerlink" title="5.视图操作"></a>5.视图操作</h4><h5 id="1-查看视图"><a href="#1-查看视图" class="headerlink" title="1.查看视图"></a>1.查看视图</h5><p>查看视图是指查看数据库中已存在的视图。查看视图必须要有SHOW VIEW的权限。查看视图的方法主要包括DESCRIBE语句、SHOW TABLE STATUS语句、SHOW CREATE VIEW语句等。本节将主要介绍这几种查看视图的方法。<br>(1)DESCRIBE语句<br>DESCRIBE可以缩写成DESC，其语法格式如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE 视图名;</span><br></pre></td></tr></table></figure>
+
+<p>使用DESC语句查询book_view1视图中的结构<br>结果中显示了字段的名称（Field）、数据类型（Type）、是否为空（Null）、是否为主外键（Key）、默认值（Default）和额外信息（Extra）。<br>说明<br>如果只需了解视图中的各个字段的简单信息，可以使用DESCRIBE语句。DESCRIBE语句查看视图的方式与查看普通表的方式是相同的，结果显示的方式也相同。通常情况下，都是使用DESC代替DESCRIBE。<br>(2)SHOW TABLE STATUS语句<br>在MySQL中，可以使用SHOW TABLE STATUS语句查看视图的信息，其语法格式如下。<br>SHOW TABLE STATUS LIKE ‘视图名’;<br>（1）“LIKE”表示后面匹配的是字符串；<br>（2）“视图名”参数指要查看的视图名称，需要用单引号定义。<br>【例3】下面使用SHOW TABLE STATUS语句查看视图book_view1中的信息，代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW TABLE STATUS LIKE &#x27;book_view1&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>从执行结果可以看出，存储引擎、数据长度等信息都显示为NULL，则说明视图为虚拟表，与普通数据表是有区别的。下面使用SHOW TABLE STATUS语句来查看tb_book表的信息。。<br>使用SHOW TABLE STATUS语句来查看tb_book表的信息<br>从上面的结果中可以看出，数据表的信息都已经显示出来了，这就是视图和普通数据表的区别。<br>(3)SHOW CREATE VIEW语句<br>在MySQL中，SHOW CREATE VIEW语句可以查看视图的详细定义，其语法格式如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE VIEW 视图名;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>【例4】　下面使用SHOW CREATE VIEW语句查看视图book_view1的信息，代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE VIEW book_view1;</span><br></pre></td></tr></table></figure>
+
+
+<p>通过SHOW CREATE VIEW语句，可以查看视图的所有信息。</p>
+<h5 id="2-修改视图"><a href="#2-修改视图" class="headerlink" title="2.修改视图"></a>2.修改视图</h5><p>修改视图是指修改数据库中已存在的表的定义。当基本表的某些字段发生改变时，可以通过修改视图来保持视图和基本表之间一致。MySQL中通过CREATE OR REPLACE VIEW语句和ALTER语句来修改视图。下面介绍这两种修改视图的方法。<br>1．CREATE OR REPLACE VIEW<br>在MySQL中，CREATE OR REPLACE VIEW语句可以用来修改视图。该语句的使用非常灵活。在视图已经存在的情况下，对视图进行修改；视图不存在时，可以创建视图。CREATE OR REPLACE VIEW语句的语法如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE OR REPLACE [ALGORITHM=&#123;</span><br><span class="line">                   UNDEFINED | MERGE | TEMPTABLE&#125;]</span><br><span class="line">                   VIEW 视图[(属性清单)]AS SELECT 语句[WITH [CASCADED | LOCAL] CHECK OPTION];</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2．ALTER<br>ALTER VIEW语句改变了视图的定义，包括被索引视图，但不影响所依赖的存储过程或触发器。该语句与CREATE VIEW语句有着同样的限制，如果删除并重建了一个视图，就必须重新为它分配权限。<br>ALTER VIEW语句的语法如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter view [algorithm=&#123;merge | temptable | undefined&#125; ]view view_name [(column_list)] as select_statement[with[cascaded | local] check option]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（1）algorithm：该参数已经在创建视图中做了介绍，这里不再赘述。<br>（2）view_name：视图的名称。<br>（3）select_statement: SQL语句用于限定视图。<br>注意<br>在创建视图时，在使用了WITH CHECK OPTION, WITH ENCRYPTION,WITH SCHEMABING或VIEW_METADATA选项时，如果想保留这些选项提供的功能，必须在ALTER VIEW语句中将它们包括进去。</p>
+<h5 id="3-更新视图"><a href="#3-更新视图" class="headerlink" title="3.更新视图"></a>3.更新视图</h5><p>对视图的更新其实就是对表的更新，更新视图是指通过视图来插入（INSERT）、更新（UPDATE）和删除（DELETE）表中的数据。因为视图是一个虚拟表，其中没有数据。通过视图更新时，都是转换到基本表来更新。更新视图时，只能更新权限范围内的数据，超出了范围，就不能更新。本节讲解更新视图的方法和更新视图的限制。<br>1．更新视图<br>2．更新视图的限制<br>并不是所有的视图都可以更新，以下几种情况是不能更新视图的。<br>（1）视图中包含COUNT()、SUM()、MAX()和MIN()等函数。例如：<br>CREATE VIEW book_view1(a_sort,a_book)AS SELECT sort,books, COUNT(name) FROM tb_book;</p>
+<p>（2）视图中包含UNION、UNION ALL、DISTINCT、GROUP BY和HAVIG等关键字。例如：<br>CREATE VIEW book_view1(a_sort,a_book)AS SELECT sort,books, FROM tb_book GROUP BY id;<br>（3）常量视图。例如：<br>CREATE VIEW book_view1AS SELECT ‘Aric’ as a_book;<br>（4）视图中的SELECT中包含子查询。例如：<br>CREATE VIEW book_view1(a_sort)AS SELECT (SELECT name FROM tb_book);<br>（5）由不可更新的视图导出的视图。例如：<br>CREATE VIEW book_view1AS SELECT * FROM book_view2;<br>（6）创建视图时，ALGORITHM为TEMPTABLE类型。例如：<br>CREATE ALGORITHM&#x3D;TEMPTABLEVIEW book_view1AS SELECT * FROM tb_book;<br>（7）视图对应的表上存在没有默认值的列，而且该列没有包含在视图里。例如，表中包含的name字段没有默认值，但是视图中不包括该字段，那么这个视图是不能更新的。因为，在更新视图时，这个没有默认值的记录将没有值插入，也没有NULL值插入。数据库系统是不会允许这样的情况出现的，其会阻止这个视图更新。<br>上面的几种情况其实就是一种情况，即视图的数据和基本表的数据不一样了。<br>注意<br>视图中虽然可以更新数据，但是有很多的限制。一般情况下，最好将视图作为查询数据的虚拟表，而不要通过视图更新数据。因为，使用视图更新数据时，如果没有全面考虑在视图中更新数据的限制，可能会造成数据更新失败。</p>
+<h5 id="4-删除视图"><a href="#4-删除视图" class="headerlink" title="4.删除视图"></a>4.删除视图</h5><p>删除视图是指删除数据库中已存在的视图。删除视图时，只能删除视图的定义，不会删除数据。MySQL中，使用DROP VIEW语句来删除视图。但是，用户必须拥有DROP权限。本节将介绍删除视图的方法。<br>DROP VIEW语句的语法如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP VIEW IF EXISTS &lt;视图名&gt; [RESTRICT | CASCADE]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（1）IF EXISTS参数指判断视图是否存在，如果存在则执行，不存在则不执行。<br>（2）“视图名”列表参数表示要删除的视图的名称和列表，各个视图名称之间用逗号隔开。<br>该语句从数据字典中删除指定的视图定义；如果该视图导出了其他视图，则使用CASCADE级联删除，或者先显式删除导出的视图，再删除该视图；删除基表时，由该基表导出的所有视图定义都必须显式删除。<br>【例5】下面删除前面实例中一直使用的book_view1视图，执行语句如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP VIEW IF EXISTS book_view1;</span><br></pre></td></tr></table></figure>
+
+
+<p>执行结果显示删除成功。下面验证一下视图是否真正被删除，执行SHOW CREATE VIEW语句查看。</p>
+<p>结果显示，视图book_view1已经不存在了，说明DROP VIEW语句删除视图成功。</p>
+<h4 id="6-小结"><a href="#6-小结" class="headerlink" title="6.小结"></a>6.小结</h4><p>本章对MySQL数据库的视图的含义和作用进行了详细讲解，并且讲解了创建视图、修改视图和删除视图的方法。创建视图和修改视图是本章的重点内容，并且需要在计算机上实际操作。读者在创建视图和修改视图后，一定要查看视图的结构，以确保创建和修改的操作正确。更新视图是本章的一个难点，因为实际中存在一些造成视图不能更新的因素，希望可以在练习中认真分析。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/" data-id="clv91avam0000csfw493y6t1l" data-title="MySQL视图" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-4-15-2024-4-21周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-04-21T03:50:01.000Z" itemprop="datePublished">2024-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/">huang2024-4-15-2024-4-21周报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.MySQL学习</p>
+<p>2.Java笔记整理</p>
+<p>3.日周笔记</p>
+<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>学习内容</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>视图概述</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>Java笔记</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>创建视图</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>c题目</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>\</td>
+<td>日周笔记</td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>Java笔记</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期日</td>
+<td>视图操作</td>
+<td>\</td>
+</tr>
+</tbody></table>
+<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><p>1.MySQL笔记</p>
+<p><a href="https://snail0220.github.io/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">https://snail0220.github.io/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/</a></p>
+<p>2.Java笔记</p>
+<p><a href="https://snail0220.github.io/2024/04/08/java/">https://snail0220.github.io/2024/04/08/java/</a></p>
+<p>3.日周笔记</p>
+<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240421122925872.png" alt="image-20240421122925872" style="zoom:67%;" />
+
+<p>4.C题目</p>
+<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240421123049515.png" alt="image-20240421123049515" style="zoom:67%;" />
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本周的学习一如既往地缓慢且进行着，本周除了Java笔记的整理和MySQL的学，还进行了C语言第五单元的刷题。总体而言，本周的学习较为充足，对Java基础的认识也越来越完善，学完全部，再进行笔记整理，确实可以获得更多的知识。</p>
+<h2 id="下周学习"><a href="#下周学习" class="headerlink" title="下周学习"></a>下周学习</h2><p>1.mysql学习</p>
+<p>2.Java笔记整理</p>
+<p>3.日周笔记</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/" data-id="clv91avat0001csfwcia375sw" data-title="huang2024-4-15-2024-4-21周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-MySQL索引" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/" class="article-date">
@@ -1068,378 +1481,11 @@
 
 
   
-    <article id="post-多表查询" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" class="article-date">
-  <time class="dt-published" datetime="2024-04-03T12:09:20.189Z" itemprop="datePublished">2024-04-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h4><h5 id="1-基础"><a href="#1-基础" class="headerlink" title="1.基础"></a>1.基础</h5><p>在MySQL中，多表查询是一种强大的功能，它允许你在一次查询中联合多个表，并从中获取所需的数据。以下是一些关于MySQL多表查询的基础知识：</p>
-<p>(1) 多表查询的基本语法</p>
-<p>多表查询的基本语法是SELECT * FROM 表1, 表2。这里的*代表选择所有的列，可以根据需要替换成具体的列名。表1和表2是想要联接的表名。例如，如果想同时从students表和classes表中查询数据，可以这样写：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM students, classes; </span><br></pre></td></tr></table></figure>
-
-<p>这个查询会返回students表和classes表的“乘积”，也就是说，students表的每一行都会与classes表的每一行进行配对，形成一个二维表 。</p>
-<p>(2) 多表查询的注意事项</p>
-<p>在使用多表查询时，你需要特别注意的一点是，由于结果是两个表的行数乘积，因此可能会得到大量的数据。比如，如果你的两个表各有100行记录，那么进行笛卡尔查询将会返回10000条记录。因此，在进行多表查询时，你应该尽可能地使用WHERE条件来限制查询的范围 。</p>
-<p>(3)多表查询的高级用法</p>
-<p>除了基本的笛卡尔查询，MySQL还提供了其他几种高级的多表查询方法，如INNER JOIN、LEFT JOIN、RIGHT JOIN和FULL JOIN。这些方法可以帮助你更有效地从多个表中获取数据。例如，如果你想查询students表中所有学生的名字和他们的班级，你可以使用INNER JOIN：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT students.name,classes.classroom FROM students INNER JOIN classes ON students.class_id = classes.class_id; </span><br></pre></td></tr></table></figure>
-
-<p>在这个查询中，ON关键字后面的是连接条件，也就是students表中的class_id列和classes表中的class_id列相等。通过这种方式，你可以精确地从多个表中获取你想要的数据 。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" data-id="clupj6g6x0004wsfwezgoe37k" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-约束" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/31/%E7%BA%A6%E6%9D%9F/" class="article-date">
-  <time class="dt-published" datetime="2024-03-31T04:06:40.874Z" itemprop="datePublished">2024-03-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h4><p>MySQL约束是一种强制性的规则，它用于维护数据库的完整性 。这些约束保证了数据的准确性、一致性和可靠性。常用的几种约束及其作用如下</p>
-<h5 id="1-主键约束-PRIMARY-KEY"><a href="#1-主键约束-PRIMARY-KEY" class="headerlink" title="1.主键约束(PRIMARY KEY)"></a>1.主键约束(PRIMARY KEY)</h5><p>主键约束用于标识表中的每一行记录。每个表都只能有一个主键，且主键的值必须是唯一的，且不能为空。当你在创建表时，你可以通过PRIMARY KEY关键字来声明一个列作为主键。</p>
-<p>例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATA TABLE users(</span><br><span class="line">id INT PRIMARY LEY,</span><br><span class="line">username VARCHAR(255)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中，id列被设置为PRIMARY KEY，这意味着它是主键，其值必须是唯一的，且不能为空。</p>
-<h5 id="2-非空主键-NOT-NULL"><a href="#2-非空主键-NOT-NULL" class="headerlink" title="2.非空主键(NOT NULL)"></a>2.非空主键(NOT NULL)</h5><p>非空约束确保了列中的每个值都不能为空。当你在创建表时，你可以通过NOT NULL关键字来声明一个列作为非空列。</p>
-<p>例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users(</span><br><span class="line">id INT PRIMARY KEY,</span><br><span class="line">username VARCHAR(255)</span><br><span class="line">NOT NULL</span><br><span class="line">); </span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中，username列被设置为NOT NULL，这意味着它的值不能为空。</p>
-<h5 id="3-唯一约束（UNIQUE）"><a href="#3-唯一约束（UNIQUE）" class="headerlink" title="3.唯一约束（UNIQUE）"></a>3.唯一约束（UNIQUE）</h5><p>唯一约束确保了一个列或列组合中的每个值都是唯一的。这意味着在一个表中，这个列或列组合的值不能重复。当你在创建表时，你可以通过UNIQUE关键字来声明一个列或列组合作为唯一列。</p>
-<p>例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users(</span><br><span class="line">id INT PRIMARY KEY,</span><br><span class="line">username VARCHAR(255) </span><br><span class="line">UNIQUE,</span><br><span class="line">email VARCHAR(255)</span><br><span class="line">); </span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中，username列被设置为UNIQUE，这意味着它在表中必须是唯一的。而email列没有被设置为UNIQUE，所以它的值可以在表中重复。</p>
-<h5 id="4-外键约束（FOREIGN-KEY）"><a href="#4-外键约束（FOREIGN-KEY）" class="headerlink" title="4.外键约束（FOREIGN KEY）"></a>4.外键约束（FOREIGN KEY）</h5><p>外键约束用于维持两个表之间的关联性。当你在创建表时，你可以通过FOREIGN KEY关键字来声明一个列作为外键。</p>
-<p>例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE orders(</span><br><span class="line">order_id INT PRIMARY KEY,</span><br><span class="line">product_id INT FOREIGN KEY REFERENCES products(product_id) </span><br><span class="line">); </span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中，product_id列被设置为FOREIGN KEY，这意味着它的值必须存在于products表的product_id列中。如果product_id列的某个值不存在于products表的product_id列中用，那么MySQL将会抛出一个错误。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/31/%E7%BA%A6%E6%9D%9F/" data-id="cluf1geta00032wfw0mdyh0jw" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-huang2024-3-25-2024-3-31周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/31/huang2024-3-25-2024-3-31%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-03-31T01:43:06.000Z" itemprop="datePublished">2024-03-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/31/huang2024-3-25-2024-3-31%E5%91%A8%E6%8A%A5/">huang2024-3-25-2024-3-31周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.mysql</p>
-<p>2.题目</p>
-<p>3.笔记</p>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th align="center">日历</th>
-<th align="center">学习内容</th>
-<th align="center">其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">星期一</td>
-<td align="center">约束1</td>
-<td align="center">\</td>
-</tr>
-<tr>
-<td align="center">星期二</td>
-<td align="center">web网页设</td>
-<td align="center">\</td>
-</tr>
-<tr>
-<td align="center">星期三</td>
-<td align="center">C代码题</td>
-<td align="center">\</td>
-</tr>
-<tr>
-<td align="center">星期四</td>
-<td align="center">约束2</td>
-<td align="center">\</td>
-</tr>
-<tr>
-<td align="center">星期五</td>
-<td align="center">\</td>
-<td align="center">日周笔记</td>
-</tr>
-<tr>
-<td align="center">星期六</td>
-<td align="center">多表查询基础</td>
-<td align="center">\</td>
-</tr>
-<tr>
-<td align="center">星期天</td>
-<td align="center">C选择填空</td>
-<td align="center">\</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><p>1.笔记</p>
-<p><a href="https://snail0220.github.io/2024/03/31/%E7%BA%A6%E6%9D%9F/">https://snail0220.github.io/2024/03/31/%E7%BA%A6%E6%9D%9F/</a></p>
-<p>2.题目</p>
-<p><img src="file:///C:/Users/黄倩/AppData/Local/Packages/Microsoft.Windows.Photos_8wekyb3d8bbwe/TempState/ShareServiceTempFolder/屏幕截图%202024-03-26%20150436.jpeg" alt="img"></p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240331124302534.png" alt="image-20240331124302534"></p>
-<p>3.日周笔记</p>
-<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240331100820444.png" alt="image-20240331100820444"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>平平常常的一周学习，题目的类型暂时没有找到合适的方式加入周报中，暂时只以照片的方式展示。</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><p>1.MySQL</p>
-<p>2.题目</p>
-<p>3.日周笔记</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/31/huang2024-3-25-2024-3-31%E5%91%A8%E6%8A%A5/" data-id="cluf1gesx00002wfwa60c89t1" data-title="huang2024-3-25-2024-3-31周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-MySQL--函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2024-03-24T05:50:13.133Z" itemprop="datePublished">2024-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="MySQL—函数"><a href="#MySQL—函数" class="headerlink" title="MySQL—函数"></a>MySQL—函数</h3><h5 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h5><p>函数是指一段可以直接被另一段程序调用的程序或代码。基本分类有字符串函数、数值函数、日期函数、流程函数</p>
-<h5 id="2-字符串函数"><a href="#2-字符串函数" class="headerlink" title="2.字符串函数"></a>2.字符串函数</h5><p>常见的如下</p>
-<table>
-<thead>
-<tr>
-<th align="center">函数</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">concat(s1,s2,…sn)</td>
-<td align="center">字符串拼接，将s1,s2,…sn拼接成一个字符串</td>
-</tr>
-<tr>
-<td align="center">lower(str)</td>
-<td align="center">将字符串str全部转化为小写</td>
-</tr>
-<tr>
-<td align="center">upper(str)</td>
-<td align="center">将字符串str全部转化为大写</td>
-</tr>
-<tr>
-<td align="center">lpad(str,n,pad)</td>
-<td align="center">左填充，用字符串pad对str的左边进行填充，达到n个字符串长度</td>
-</tr>
-<tr>
-<td align="center">rpad(str,n,pad)</td>
-<td align="center">右填充，用字符串pad对str的右边进行填充，达到n个字符串长度</td>
-</tr>
-<tr>
-<td align="center">trim(str)</td>
-<td align="center">去掉字符串头部和尾部的空格</td>
-</tr>
-<tr>
-<td align="center">substring(str,start,len)</td>
-<td align="center">返回从字符串str从start位置起的len个长度的字符串</td>
-</tr>
-</tbody></table>
-<h5 id="3-数值函数"><a href="#3-数值函数" class="headerlink" title="3.数值函数"></a>3.数值函数</h5><p>常见的如下</p>
-<table>
-<thead>
-<tr>
-<th align="center">函数</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">cell(x)</td>
-<td align="center">向上取整</td>
-</tr>
-<tr>
-<td align="center">floor(x)</td>
-<td align="center">向下取整</td>
-</tr>
-<tr>
-<td align="center">mod(x,y)</td>
-<td align="center">返回x&#x2F;y的模</td>
-</tr>
-<tr>
-<td align="center">rand()</td>
-<td align="center">返回0~1内的随机数</td>
-</tr>
-<tr>
-<td align="center">round(x,y)</td>
-<td align="center">求参数x的四舍五入的值，保留y位小数</td>
-</tr>
-</tbody></table>
-<p>案例</p>
-<p>通过数据库的函数，生成一个六位数的随机验证码。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> lpad(round(rand()<span class="operator">*</span><span class="number">1000000</span>,<span class="number">0</span>),<span class="number">6</span>,<span class="string">&#x27;0&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-日期函数"><a href="#4-日期函数" class="headerlink" title="4.日期函数"></a>4.日期函数</h5><p>常见的如下</p>
-<table>
-<thead>
-<tr>
-<th align="center">函数</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">curdate()</td>
-<td align="center">返回当前日期</td>
-</tr>
-<tr>
-<td align="center">curtime()</td>
-<td align="center">返回当前时间</td>
-</tr>
-<tr>
-<td align="center">now()</td>
-<td align="center">返回当前日期和时间</td>
-</tr>
-<tr>
-<td align="center">year(date)</td>
-<td align="center">获取指定date的年份</td>
-</tr>
-<tr>
-<td align="center">month(date)</td>
-<td align="center">获取指定date的月份</td>
-</tr>
-<tr>
-<td align="center">day(date)</td>
-<td align="center">获取指定date的日期</td>
-</tr>
-<tr>
-<td align="center">date_add(date,interval expr type)</td>
-<td align="center">返回一个时期&#x2F;时间值加上一个时间间隔 expr后的时间值</td>
-</tr>
-<tr>
-<td align="center">datediff(date1,date2)</td>
-<td align="center">返回起始时间date1和结束时间date2之间的天数</td>
-</tr>
-</tbody></table>
-<p>案例</p>
-<p>查询所有员工的入职天数，并根据入职天数倒序排序</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,datediff(cuidate(),entrydate) as &#x27;entrydays&#x27; from emp order by entrydays desc;</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-流程（控制）函数"><a href="#5-流程（控制）函数" class="headerlink" title="5.流程（控制）函数"></a>5.流程（控制）函数</h5><p>可以在SQL语句中实现条件筛选，从而提高语句的效率</p>
-<table>
-<thead>
-<tr>
-<th align="center">函数</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">if(value,t,f)</td>
-<td align="center">如果value为true，则返回t，否则返回f</td>
-</tr>
-<tr>
-<td align="center">ifnull(value1,value2)</td>
-<td align="center">如果value1不为空，返回value1.否则返回value2</td>
-</tr>
-<tr>
-<td align="center">case when [val1] then [res1] …else[default] end</td>
-<td align="center">如果val1为true，返回res1，…否则返回default默认值</td>
-</tr>
-<tr>
-<td align="center">case [expr] when [val1] then [res1]…else [default] end</td>
-<td align="center">如果expr的值等于val1，返回res1，…否则返回default默认值</td>
-</tr>
-</tbody></table>
-<p>案例</p>
-<p>统计班级各个学员的成绩，展示的规则如下：</p>
-<p>大于等于85，展示优秀</p>
-<p>大于等于65，展示及格</p>
-<p>否则，展示不及格</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create table score(</span><br><span class="line">	id int comment &#x27;ID&#x27;,</span><br><span class="line">	name varchar(20) comment &#x27;姓名&#x27;</span><br><span class="line">	math int comment &#x27;数学&#x27;</span><br><span class="line">	english int comment &#x27;英语&#x27;</span><br><span class="line">	chinese int comment &#x27;语文&#x27;</span><br><span class="line">)comment &#x27;学员成绩表&#x27;；</span><br><span class="line">insert into score(id,name,math,english,chinese) values (1,&#x27;Tom&#x27;,67,88,95),(2,&#x27;Rose&#x27;,23,66,98),(3,&#x27;Jack&#x27;,54,98,76)</span><br></pre></td></tr></table></figure>
-
-<p>先展示分数—等级</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">	id,</span><br><span class="line">	name,</span><br><span class="line">	(case when math &gt;= 85 then&#x27;优秀’when math &gt;=60 then&#x27;及格&#x27;else&#x27;不及格&#x27;end )&#x27;数学&#x27;,</span><br><span class="line">	(case when english &gt;= 85 then&#x27;优秀’when english &gt;=60 then&#x27;及格&#x27;else&#x27;不及格&#x27;end )&#x27;英语&#x27;,</span><br><span class="line">	(case when chinese &gt;= 85 then&#x27;优秀’when chinese &gt;=60 then&#x27;及格’else&#x27;不及格&#x27;end )&#x27;语文&#x27;</span><br><span class="line">from scoer</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/" data-id="clupj6g6m0000wsfw8o15610f" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1463,7 +1509,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a>
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 17.5px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a>
     </div>
   </div>
 
@@ -1485,23 +1531,23 @@
       <ul>
         
           <li>
+            <a href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/">mysql笔记（12）</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/18/huang2024-5-13-2024-5-19%E5%91%A8%E6%8A%A5/">huang2024-5-13-2024-5-19周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%20-%20%E5%89%AF%E6%9C%AC/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/14/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/">mysql笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/12/huang2024-5-6-2024-5-12%E5%91%A8%E6%8A%A5/">huang2024-5-6-2024-5-12周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/09/Java2/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/05/mysql%E9%94%81/">mysql锁</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/05/huang2024-4-29-2024-5-5%E5%91%A8%E6%8A%A5/">huang2024-4-29-2024-5-5周报</a>
           </li>
         
       </ul>
