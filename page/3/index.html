@@ -73,6 +73,155 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-事务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/07/%E4%BA%8B%E5%8A%A1/" class="article-date">
+  <time class="dt-published" datetime="2024-04-07T12:52:56.684Z" itemprop="datePublished">2024-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL事务"><a href="#MySQL事务" class="headerlink" title="MySQL事务"></a>MySQL事务</h2><p>MySQL事务是一种用于维护数据库完整性的机制，它保证了数据库操作的原子性、一致性、隔离性和持久性（ACID属性）。在MySQL中，只有使用了InnoDB存储引擎的数据库或表才支持事务。以下是关于MySQL事务的详细笔记：</p>
+<h4 id="ACID属性"><a href="#ACID属性" class="headerlink" title="ACID属性"></a>ACID属性</h4><p>1.原子性（Atomicity）：事务中的所有操作要么全部执行成功，要么全部失败回滚，不会只执行其中的一部分操作。</p>
+<p>2.一致性（Consistency）：事务执行前后，数据库的状态必须保持一致。</p>
+<p>3.隔离性（Isolation）：并发执行的多个事务之间互不干扰，一个事务的中间状态对其他事务是不可见的。</p>
+<p>4.持久性（Durability）：一旦事务提交，其对数据库的修改就是永久性的。</p>
+<h4 id="事务控制语句"><a href="#事务控制语句" class="headerlink" title="事务控制语句"></a>事务控制语句</h4><p>MySQL提供了以下四个事务控制语句：</p>
+<ol>
+<li><p>BEGIN：表示一个事务的开始。</p>
+</li>
+<li><p>COMMIT：表示一个事务的提交，将修改保存到数据库中。</p>
+</li>
+<li><p>ROLLBACK：表示一个事务的回滚，撤销对数据库的修改。</p>
+</li>
+<li><p>SAVEPOINT：表示设置一个保存点，可以在后续的操作中使用ROLLBACK TO语句来回滚到指定的保存点。</p>
+</li>
+</ol>
+<h4 id="事务的使用示例"><a href="#事务的使用示例" class="headerlink" title="事务的使用示例"></a>事务的使用示例</h4><p>以下是一个使用事务的示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">START TRANSACTION; </span><br><span class="line">-- 执行多条SQL语句 COMMIT; # 如果需要回滚，可以使用ROLLBACK; </span><br></pre></td></tr></table></figure>
+
+<p>在实际应用中，事务可以用于保证一系列数据库操作的完整性和一致性。例如，在一个转账的场景中，事务可以保证从一个账户扣款和向另一个账户存款这两个操作要么都成功，要么都不做，从而避免了只做了其中一部分操作导致的错误。</p>
+<p>需要注意的是，虽然事务可以提高数据库操作的可靠性，但同时也可能影响数据库的性能。因此，在实际使用中需要权衡事务带来的好处和可能的性能开销。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/07/%E4%BA%8B%E5%8A%A1/" data-id="clupj6g6w0002wsfw8m6d3wnq" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-4-1-2024-4-7周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-04-07T12:41:58.000Z" itemprop="datePublished">2024-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/">huang2024-4-1-2024-4-7周报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.MySQL</p>
+<p>2.笔记</p>
+<p>3.题目</p>
+<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
+<thead>
+<tr>
+<th>日历</th>
+<th>学习内容</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>多表统计1</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>多表统计2</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>函数</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>事务1</td>
+<td>日周笔记</td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>事务2</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期天</td>
+<td>\</td>
+<td>\</td>
+</tr>
+</tbody></table>
+<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><p>1.MySQL</p>
+<p>多表查询</p>
+<p><a href="https://snail0220.github.io/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/">https://snail0220.github.io/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/</a></p>
+<p>事务</p>
+<p><a href="https://snail0220.github.io/2024/04/07/%E4%BA%8B%E5%8A%A1/">https://snail0220.github.io/2024/04/07/%E4%BA%8B%E5%8A%A1/</a></p>
+<p>函数</p>
+<p><a href="https://snail0220.github.io/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/">https://snail0220.github.io/2024/03/24/MySQL--%E5%87%BD%E6%95%B0/</a></p>
+<p>2.日周笔记</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240407204756701.png" alt="image-20240407204756701"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本周的学习把之前的多表查询详细学了下，题目方面没有做到。本周的学习有点草率，没有认真学习的，希望下周可以投入学习中。</p>
+<h2 id="下周学习"><a href="#下周学习" class="headerlink" title="下周学习"></a>下周学习</h2><p>1.MySQL</p>
+<p>2.题目</p>
+<p>3.日周笔记</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/04/07/huang2024-4-1-2024-4-7%E5%91%A8%E6%8A%A5/" data-id="clupj6g6t0001wsfw8dlygeb8" data-title="huang2024-4-1-2024-4-7周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-多表查询" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/03/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" class="article-date">
@@ -802,197 +951,6 @@
 
 
   
-    <article id="post-huang2024-3-4-2024-3-10周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/10/huang2024-3-4-2024-3-10%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-03-10T07:25:46.000Z" itemprop="datePublished">2024-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/10/huang2024-3-4-2024-3-10%E5%91%A8%E6%8A%A5/">huang2024/3/4-2024/3/10</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><ol>
-<li>SQL图形操作</li>
-<li>继续数学笔记补充</li>
-<li>web前端，C程序</li>
-</ol>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日历</th>
-<th>学习内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>DDL-数据库操作</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>DDL-表操作</td>
-<td>HTML案例一学习</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>安装gatagrip,创建新课程</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>SQL-DML</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>离散、高数一周笔记整理</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>SQL-DQL-基础查询、条件查询、聚合函数</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期天</td>
-<td>SQL-DQL-分组查询、排序查询、分页查询</td>
-<td>\SQL</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容-及-收获"><a href="#本周学习内容-及-收获" class="headerlink" title="本周学习内容 及 收获"></a>本周学习内容 及 收获</h2><ol>
-<li><p>MySQL学习笔记</p>
-<p><a href="https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/">https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/</a></p>
-</li>
-<li><p>笔记整理</p>
-<p><img src="file:///E:\QQ\2194861505\Image\C2C\87B882A7916BA3049D198D1E0EEA649C.jpg" alt="img"></p>
-</li>
-<li><p>web笔记</p>
-</li>
-</ol>
-<p>[Hexo (snail0220.github.io)](<a href="https://snail0220.github.io/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0">https://snail0220.github.io/2024/03/05/第二章</a> 从零开始构建HTML页面&#x2F;)</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.SQL相关的操作指令比较复杂，目前没有熟悉掌握</p>
-<p>2.应该复习下之前学的，有些遗忘。</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><ol>
-<li>SQL-DQL 案例分析</li>
-<li>SQL-DCL</li>
-<li>日周笔记</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/10/huang2024-3-4-2024-3-10%E5%91%A8%E6%8A%A5/" data-id="cltl3g1aw0000lwfw28p300l1" data-title="huang2024/3/4-2024/3/10" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-第二章 从零开始构建HTML页面" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/" class="article-date">
-  <time class="dt-published" datetime="2024-03-05T06:07:35.171Z" itemprop="datePublished">2024-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="第二章-从零开始构建HTML页面"><a href="#第二章-从零开始构建HTML页面" class="headerlink" title="第二章 从零开始构建HTML页面"></a>第二章 从零开始构建HTML页面</h2><p>文档基本格式</p>
-<p>文本样式标签</p>
-<p>HTML图像</p>
-<h4 id="【案例一】简单的网页"><a href="#【案例一】简单的网页" class="headerlink" title="【案例一】简单的网页"></a>【案例一】简单的网页</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240309195718799.png" alt="image-20240309195718799"></p>
-<h5 id="HTML文档基本格式"><a href="#HTML文档基本格式" class="headerlink" title="HTML文档基本格式"></a>HTML文档基本格式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYER&gt;;位于文档的最前面，用于向浏览器说明当前文档使用哪种HTML或XHTML标准规范。因此只有在开头处使用。</span><br><span class="line"></span><br><span class="line">&lt;html&gt;:位于&lt;!DOCTYER&gt;之后，也被称为根标签。主要用于告知浏览器其自身是一个HTML文档，&lt;html&gt;标志着HTML文档的开始，&lt;/html&gt;标志着HTML文档的结束，在他们之间是文档的头部和主体内容。</span><br><span class="line"></span><br><span class="line">&lt;head&gt;:用于定义HTML文档的头部信息，也称为头部标签，紧跟在&lt;html&gt;之后。头部标签主要用来封装其他位于文档头部的标签，例如&lt;title&gt;、&lt;meta&gt;、&lt;link&gt;和&lt;stye&gt;等，用来描述文档的标题、作者，以及与其它文档的的关系。</span><br><span class="line"></span><br><span class="line">&lt;body&gt;;田干定义HTML文档所要显示的内容，也称为主体标签，浏监器中显示的所有文本、图像、音颛和视频等信息都必须位于&lt;body&gt;内，才能最终展示给用户。一个HTML文档中智能含有一对&lt;body&gt;，且&lt;body&gt;必须位于&lt;html&gt;内，位于&lt;head&gt;之后，与&lt;head&gt;是并列关系。</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="标签的分类"><a href="#标签的分类" class="headerlink" title="标签的分类"></a>标签的分类</h5><p>1.双标签（体标签）&lt;&gt;内容&lt;&#x2F;&gt;</p>
-<p>2.单标签(空标签)&lt;&#x2F;&gt;</p>
-<h5 id="标签的关系"><a href="#标签的关系" class="headerlink" title="标签的关系"></a>标签的关系</h5><p>1.嵌套关系（包含关系）<font>标签</p>
-<p>最外层的标签称之为“父级标签”，内层的标签称之为“子级标签“。只有双标签才能作为”父级标签“。</p>
-<p>2.并列关系（兄弟关系）</p>
-<p>两个标签处于同一级别，并且没有包含关系。如<head>标签和<body>标签就是并列关系。无论双标签还是单标签都可以拥有并列关系。</p>
-<h5 id="页面格式化标签"><a href="#页面格式化标签" class="headerlink" title="页面格式化标签"></a>页面格式化标签</h5><p>1.标题标签html head（6个）</p>
-<p>2.段落标签h1,h2…</p>
-<p>3.水平线标签hr</p>
-<table>
-<thead>
-<tr>
-<th align="center">属性名</th>
-<th align="center">含义</th>
-<th align="center">属性值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">align</td>
-<td align="center">设置水平线的对齐方式</td>
-<td align="center">可选择left、right、center三种值，默认为center，居中对齐显示</td>
-</tr>
-<tr>
-<td align="center">size</td>
-<td align="center">设置水平线的粗细</td>
-<td align="center">以像素为单位，默认为2像素</td>
-</tr>
-<tr>
-<td align="center">color</td>
-<td align="center">设置水平线的颜色</td>
-<td align="center">可用颜色名称，十六进制#RGB、rgb(r,g,b)</td>
-</tr>
-<tr>
-<td align="center">width</td>
-<td align="center">设置水平线的宽度</td>
-<td align="center">可以是确定的像素值，也可以是浏览器窗口的百分比，默认为100%</td>
-</tr>
-</tbody></table>
-<p>换行<br/></p>
-<h4 id="【案例二】新闻页面"><a href="#【案例二】新闻页面" class="headerlink" title="【案例二】新闻页面"></a>【案例二】新闻页面</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240319143401995.png" alt="image-20240319143401995"></p>
-<p>1.标签的属性</p>
-<p>HTML标签设置属性的基本语法格式如下</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">标签名</span> <span class="attr">属性1</span>=<span class="string">&quot;属性值1&quot;</span> <span class="attr">属性2</span>=<span class="string">&quot;属性值2&quot;</span>…&gt;</span>内容<span class="tag">&lt;/<span class="name">标签名</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2.HTML文档头部相关标签</p>
-<p>3.文本样式标签</p>
-<p>4.文本格式化标签</p>
-<h4 id="【案例三】图文混排"><a href="#【案例三】图文混排" class="headerlink" title="【案例三】图文混排"></a>【案例三】图文混排</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240324134455314.png" alt="image-20240324134455314"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/03/05/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2/" data-id="cltl3g1ax0001lwfwbh2a1dw4" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1043,6 +1001,14 @@
       <ul>
         
           <li>
+            <a href="/2024/05/26/huang2024-5-13-2024-5-26%E5%91%A8%E6%8A%A5/">huang2024-5-13-2024-5-26周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/">mysql笔记（13）</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/">mysql笔记（12）</a>
           </li>
         
@@ -1052,14 +1018,6 @@
         
           <li>
             <a href="/2024/05/16/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%20-%20%E5%89%AF%E6%9C%AC/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/14/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/">mysql笔记</a>
           </li>
         
       </ul>

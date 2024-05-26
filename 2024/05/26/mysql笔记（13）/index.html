@@ -4,14 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2024/4 | Hexo</title>
+  <title>mysql笔记（13） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://snail0220.github.io/archives/2024/04/index.html">
+  <meta name="description" content="创建表时应当设置not null，添加一个默认值0或’’去替代null。 sum(‘field’)的坑若一列的所有值都是null，那么sum函数的结果不是0，而是null，所以可能会因为值的类型兼容问题，出现意料之外的情况。 null值会有NPE问题。 count(‘field’)的坑有null的列，count不会+1。 where(‘field’)的坑null是没有设置值的一种状态，并不是某个值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql笔记（13）">
+<meta property="og:url" content="https://snail0220.github.io/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="创建表时应当设置not null，添加一个默认值0或’’去替代null。 sum(‘field’)的坑若一列的所有值都是null，那么sum函数的结果不是0，而是null，所以可能会因为值的类型兼容问题，出现意料之外的情况。 null值会有NPE问题。 count(‘field’)的坑有null的列，count不会+1。 where(‘field’)的坑null是没有设置值的一种状态，并不是某个值">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-26T04:56:59.000Z">
+<meta property="article:modified_time" content="2024-05-26T05:11:45.610Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -71,198 +76,80 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-28T06:43:15.000Z" itemprop="datePublished">Apr 28</time>
+        <section id="main"><article id="post-mysql笔记（13）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2024-05-26T04:56:59.000Z" itemprop="datePublished">2024-05-26</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/04/28/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">MySQL存储过程</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      mysql笔记（13）
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-27T08:56:25.000Z" itemprop="datePublished">Apr 27</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/04/27/CSS%E7%BE%8E%E5%8C%96%E7%BD%91%E9%A1%B5/">CSS美化网页</a>
-    </h1>
-  
+        <p>创建表时应当设置not null，添加一个默认值0或’’去替代null。</p>
+<h5 id="sum-‘field’-的坑"><a href="#sum-‘field’-的坑" class="headerlink" title="sum(‘field’)的坑"></a>sum(‘field’)的坑</h5><p>若一列的所有值都是null，那么sum函数的结果不是0，而是null，所以可能会因为值的类型兼容问题，出现意料之外的情况。</p>
+<p>null值会有NPE问题。</p>
+<h5 id="count-‘field’-的坑"><a href="#count-‘field’-的坑" class="headerlink" title="count(‘field’)的坑"></a>count(‘field’)的坑</h5><p>有null的列，count不会+1。</p>
+<h5 id="where-‘field’-的坑"><a href="#where-‘field’-的坑" class="headerlink" title="where(‘field’)的坑"></a>where(‘field’)的坑</h5><p>null是没有设置值的一种状态，并不是某个值，若用<code>where field = null, where field = &#39;&#39;, where field = false, where field = true</code>，都无法匹配。</p>
+<p>需要使用<code>where field is null，where field &lt;=&gt; null</code>来匹配。</p>
+<h5 id="group-by-‘field’-的坑"><a href="#group-by-‘field’-的坑" class="headerlink" title="group by(‘field’)的坑"></a>group by(‘field’)的坑</h5><p>null值会被自动归类为一类，某些场景下，可能不适用。</p>
+<h5 id="order-by-‘field’-的坑"><a href="#order-by-‘field’-的坑" class="headerlink" title="order by(‘field’)的坑"></a>order by(‘field’)的坑</h5><p>null值会被视为最小值，放在0的前方，某些场景下，可能不适用。</p>
+<h5 id="distinct-‘field’-的坑"><a href="#distinct-‘field’-的坑" class="headerlink" title="distinct(‘field’)的坑"></a>distinct(‘field’)的坑</h5><p>有null的值，也会被去重，某些场景下，可能不适用。</p>
+<h5 id="null相关运算的坑"><a href="#null相关运算的坑" class="headerlink" title="null相关运算的坑"></a>null相关运算的坑</h5><p>null值与任何数据进行四则运算或者大于小于等于不等于的运算，都返回null，某些场景下，可能不适用。</p>
+<h5 id="导入数据的坑"><a href="#导入数据的坑" class="headerlink" title="导入数据的坑"></a>导入数据的坑</h5><p>若两个MySQL环境或配置不一样，A设备导出的数据，B设备导入，可能会因为null值所在的字段缺少值从而报错。</p>
+<h5 id="外键的坑"><a href="#外键的坑" class="headerlink" title="外键的坑"></a>外键的坑</h5><p>在 MySQL 中，如果使用了外键约束，并且外键列允许 NULL 值，那么当引用的列中出现 NULL 值时，可能会导致一些意想不到的行为，如无法正确匹配行或者导致级联更新或删除的问题。</p>
+<h5 id="结果兼容性的坑"><a href="#结果兼容性的坑" class="headerlink" title="结果兼容性的坑"></a>结果兼容性的坑</h5><p>对于静态强类型语言，可能类型上会不兼容。</p>
+<p>对于动态若类型的语言，null，0，false，‘’，都是false，可能会影响一些逻辑。</p>
+<h5 id="对唯一索引的影响"><a href="#对唯一索引的影响" class="headerlink" title="对唯一索引的影响"></a>对唯一索引的影响</h5><p>null值会导致数据有多个相同的null值，破坏了唯一性约束。</p>
+<h5 id="对索引的影响"><a href="#对索引的影响" class="headerlink" title="对索引的影响"></a>对索引的影响</h5><p>有的说null值就不走索引，经过实测，就算全是null值，也显示的Using index。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-27T08:07:51.000Z" itemprop="datePublished">Apr 27</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/04/27/huang2024-4-22-2024-4-28%E5%91%A8%E6%8A%A5/">huang2024-4-22-2024-4-28周报</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/" data-id="clwn3lm3500027gfw5opd6xm1" data-title="mysql笔记（13）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-21T04:01:29.000Z" itemprop="datePublished">Apr 21</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/04/21/MySQL%E8%A7%86%E5%9B%BE/">MySQL视图</a>
-    </h1>
+    <a href="/2024/05/26/huang2024-5-13-2024-5-26%E5%91%A8%E6%8A%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          huang2024-5-13-2024-5-26周报
+        
+      </div>
+    </a>
   
+  
+    <a href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">mysql笔记（12）</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-21T03:50:01.000Z" itemprop="datePublished">Apr 21</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/04/21/huang2024-4-15-2024-4-21%E5%91%A8%E6%8A%A5/">huang2024-4-15-2024-4-21周报</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-14T07:14:18.000Z" itemprop="datePublished">Apr 14</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/04/14/MySQL%E7%B4%A2%E5%BC%95/">MySQL索引</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-14T05:32:17.000Z" itemprop="datePublished">Apr 14</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/04/14/huang2024-4-8-2024-4-14%E5%91%A8%E6%8A%A5/">huang2024-4-8-2024-4-14周报</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/08/java/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-08T13:37:12.674Z" itemprop="datePublished">Apr 8</time>
-</a>
-      
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/07/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A22/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-07T12:54:07.269Z" itemprop="datePublished">Apr 7</time>
-</a>
-      
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/04/07/%E4%BA%8B%E5%8A%A1/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-04-07T12:52:56.684Z" itemprop="datePublished">Apr 7</time>
-</a>
-      
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2024/04/page/2/">2</a><a class="extend next" rel="next" href="/archives/2024/04/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         
