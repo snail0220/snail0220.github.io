@@ -73,6 +73,239 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-java3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/02/java3/" class="article-date">
+  <time class="dt-published" datetime="2024-06-02T07:57:37.000Z" itemprop="datePublished">2024-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/02/java3/">java3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="4-1-容器概述"><a href="#4-1-容器概述" class="headerlink" title="4.1 容器概述"></a>4.1 容器概述</h4><h5 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h5><p>现在需要统计某公司员工的工资情况，例如计算平均工资、找到最高工资等。假设该公司有50名员工，用前面所学的知识，程序首先需要声明50个变量来分别记住每位员工的工资，然后在进行操作，这样做会显得很麻烦，而且错误率也会很高。因此我们可以使用容器进行操作。将所有的数据全部存储到一个容器中，统一操作。</p>
+<h5 id="容器概念"><a href="#容器概念" class="headerlink" title="容器概念"></a>容器概念</h5><p>容器：是将多个数据存储到一起，每个数据称为该容器的元素。<br>生活中的容器：水杯，衣柜，教室</p>
+<h4 id="4-2-数组的概念"><a href="#4-2-数组的概念" class="headerlink" title="4.2 数组的概念"></a>4.2 数组的概念</h4><h5 id="数组概念："><a href="#数组概念：" class="headerlink" title="数组概念："></a>数组概念：</h5><p> 数组就是用于存储数据的长度固定的容器，保证多个数据的数据类型要一致。</p>
+<h5 id="百度百科中对数组的定义："><a href="#百度百科中对数组的定义：" class="headerlink" title="百度百科中对数组的定义："></a>百度百科中对数组的定义：</h5><p>所谓数组(array)，就是相同数据类型的元素按一定顺序排列的集合，就是把有限个类型相同的变量用一个名字命名，以便统一管理他们，然后用编号区分他们，这个名字称为数组名，编号称为下标或索引(index)。组成数组的各个变量称为数组的元素(element)。数组中元素的个数称为数组的长度(length)。</p>
+<h5 id="数组的特点："><a href="#数组的特点：" class="headerlink" title="数组的特点："></a>数组的特点：</h5><p>1、数组的长度一旦确定就不能修改</p>
+<p>2、创建数组时会在内存中开辟一整块连续的空间。</p>
+<p>3、存取元素的速度快，因为可以通过[下标]，直接定位到任意一个元素。</p>
+<h4 id="4-3-数组的定义"><a href="#4-3-数组的定义" class="headerlink" title="4.3 数组的定义"></a>4.3 数组的定义</h4><h5 id="方式一：静态初始化"><a href="#方式一：静态初始化" class="headerlink" title="方式一：静态初始化"></a>方式一：静态初始化</h5><p>格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型[] 数组名 = &#123;元素<span class="number">1</span>,元素<span class="number">2</span>,元素<span class="number">3.</span>..&#125;;<span class="comment">//必须在一个语句中完成，不能分开两个语句写</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>举例：<br>定义存储1，2，3，4，5整数的数组容器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;<span class="comment">//正确</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span>[] arr;</span><br><span class="line">arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;<span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="方式二：静态初始化"><a href="#方式二：静态初始化" class="headerlink" title="方式二：静态初始化"></a>方式二：静态初始化</h5><p>格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">数据类型[] 数组名 = <span class="keyword">new</span> 数据类型[]&#123;元素<span class="number">1</span>,元素<span class="number">2</span>,元素<span class="number">3.</span>..&#125;;</span><br><span class="line">或</span><br><span class="line">数据类型[] 数组名;</span><br><span class="line">数组名 = <span class="keyword">new</span> 数据类型[]&#123;元素<span class="number">1</span>,元素<span class="number">2</span>,元素<span class="number">3.</span>..&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>举例：<br>定义存储1，2，3，4，5整数的数组容器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int[] arr = new int[]&#123;1,2,3,4,5&#125;;//正确</span><br><span class="line"></span><br><span class="line">int[] arr;</span><br><span class="line">arr = new int[]&#123;1,2,3,4,5&#125;;//正确</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="方式三：动态初始化"><a href="#方式三：动态初始化" class="headerlink" title="方式三：动态初始化"></a>方式三：动态初始化</h5><p>格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">数组存储的元素的数据类型[] 数组名字 = <span class="keyword">new</span> 数组存储的元素的数据类型[长度];</span><br><span class="line"></span><br><span class="line">  或</span><br><span class="line"></span><br><span class="line"> 数组存储的数据类型[] 数组名字;</span><br><span class="line"> 数组名字 = <span class="keyword">new</span> 数组存储的数据类型[长度];</span><br></pre></td></tr></table></figure>
+
+
+<p>数组定义格式详解：<br>数组存储的元素的数据类型： 创建的数组容器可以存储什么数据类型的数据。<br>元素的类型可以是任意的Java的数据类型。例如：int, String, Student等<br>[] : 表示数组。<br>数组名字：为定义的数组起个变量名，满足标识符规范，可以使用名字操作数组。<br>new：关键字，创建数组使用的关键字。因为数组本身是引用数据类型，所以要用new创建数组对象。<br>[长度]：数组的长度，表示数组容器中可以存储多少个元素。<br>注意：数组有定长特性，长度一旦指定，不可更改。<br>和水杯道理相同，买了一个2升的水杯，总容量就是2升，不能多也不能少。<br>举例：<br>定义可以存储5个整数的数组容器，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span>[] arr;</span><br><span class="line">arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-4-数组元素的访问"><a href="#4-4-数组元素的访问" class="headerlink" title="4.4 数组元素的访问"></a>4.4 数组元素的访问</h4><p>索引： 每一个存储到数组的元素，都会自动的拥有一个编号，从0开始，这个自动编号称为数组索引(index)，可以通过数组的索引访问到数组中的元素。<br>索引范围：[0, 数组的长度-1]<br>格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名[索引]</span><br></pre></td></tr></table></figure>
+
+<p>索引访问数组中的元素：<br>数组名[索引]&#x3D;数值，为数组中的元素赋值<br>变量&#x3D;数组名[索引]，获取出数组中的元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="comment">//定义存储int类型数组，赋值元素1，2，3，4，5</span></span><br><span class="line">    <span class="type">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="comment">//为0索引元素赋值为6</span></span><br><span class="line">    arr[<span class="number">0</span>] = <span class="number">6</span>;</span><br><span class="line">    <span class="comment">//获取数组0索引上的元素</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> arr[<span class="number">0</span>];</span><br><span class="line">    System.out.println(i);</span><br><span class="line">    <span class="comment">//直接输出数组0索引元素</span></span><br><span class="line">    System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/06/02/java3/" data-id="clwx9sz2400026sfw55hjgtfq" data-title="java3" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-mysql总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/02/mysql%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2024-06-02T07:57:19.000Z" itemprop="datePublished">2024-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/02/mysql%E6%80%BB%E7%BB%93/">mysql总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><img src="https://img-blog.csdnimg.cn/6749ad2fb574434fb467cf0d263a8589.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/36fbfd4ac0cd411ca313dd018194a7e0.jpeg#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/90ac82b2d16044bc9edac28e04980278.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/c3b32f47c83b4dd796b4e1d26ffda15c.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/119a0f82bd3d4eb8b678a7d495dd88b4.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/8d50bb4f1cd54d748a5317a1f57a1a72.jpeg#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/28d0ce965bb749c597e2f998e239dafd.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/59d30cb6a40a4991835593259139c594.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/be64616713fc42189e181a35201b1c4e.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/9c2bf7228e714a62a38b8f7fdd94bcee.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/af296f49493f4950a49b1de404421103.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/312400158a8f4e719cf16b8ff5982871.jpeg#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/a4180780d0994430b0423fc7f2e35029.jpeg#pic_center" alt="img"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/06/02/mysql%E6%80%BB%E7%BB%93/" data-id="clwx9sz2500036sfw4pbp9m4z" data-title="mysql总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-5-26-2024-6-2周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/02/huang2024-5-26-2024-6-2%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-06-02T07:55:44.000Z" itemprop="datePublished">2024-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/02/huang2024-5-26-2024-6-2%E5%91%A8%E6%8A%A5/">huang2024-5-26-2024-6-2周报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.mysql学习</p>
+<p>2.Java笔记</p>
+<p>3.日周笔记</p>
+<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>内容</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>mysql总结</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>Java笔记</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>C程序</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>Java笔记</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>\</td>
+<td>日周笔记</td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>mysql查看思维导图</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期日</td>
+<td>mysql整理</td>
+<td>\</td>
+</tr>
+</tbody></table>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>1.mysql笔记</p>
+<p>2.Java笔记</p>
+<p>3.日周笔记</p>
+<img src="file:///E:\QQ\2194861505\Image\C2C\4c8fb7a3ad8b4a75bfdcc92367c459d2.jpg" alt="img" style="zoom:67%;" />
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>普普通通的一周，按照计划学习了该学习的内容，Java的笔记整理稳步进行。Mysql的学习也在渐进尾声。日周笔记的整理在慢慢进行。</p>
+<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><p>1.mysql</p>
+<p>2.Java笔记</p>
+<p>3.日周笔记</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/06/02/huang2024-5-26-2024-6-2%E5%91%A8%E6%8A%A5/" data-id="clwx9sz1z00006sfw224f66zp" data-title="huang2024-5-26-2024-6-2周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-huang2024-5-13-2024-5-26周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/05/26/huang2024-5-13-2024-5-26%E5%91%A8%E6%8A%A5/" class="article-date">
@@ -703,335 +936,6 @@
 
 
   
-    <article id="post-huang2024-5-6-2024-5-12周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/12/huang2024-5-6-2024-5-12%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-05-12T08:57:54.000Z" itemprop="datePublished">2024-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/12/huang2024-5-6-2024-5-12%E5%91%A8%E6%8A%A5/">huang2024-5-6-2024-5-12周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.mysql学习</p>
-<p>2.Java整理</p>
-<p>3.题目</p>
-<p>4.日周笔记</p>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>时间</th>
-<th>内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>周一</td>
-<td>游标</td>
-<td>\</td>
-</tr>
-<tr>
-<td>周二</td>
-<td>题目</td>
-<td>\</td>
-</tr>
-<tr>
-<td>周三</td>
-<td>Java笔记整理</td>
-<td>\</td>
-</tr>
-<tr>
-<td>周四</td>
-<td>触发器</td>
-<td>\</td>
-</tr>
-<tr>
-<td>周五</td>
-<td>公用表表达式</td>
-<td>\</td>
-</tr>
-<tr>
-<td>周六</td>
-<td>\</td>
-<td>日周笔记</td>
-</tr>
-<tr>
-<td>周日</td>
-<td>Java笔记整理</td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="学习内容"><a href="#学习内容" class="headerlink" title="学习内容"></a>学习内容</h2><p>1.mysql笔记</p>
-<p><a href="https://snail0220.github.io/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/">https://snail0220.github.io/2024/05/12/mysql%E7%AC%94%E8%AE%B0-0/</a></p>
-<p>2.Java整理</p>
-<p><a href="https://snail0220.github.io/2024/05/09/Java2/">https://snail0220.github.io/2024/05/09/Java2/</a></p>
-<p>3.题目【web】</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240512170925016.png" alt="image-20240512170925016" style="zoom:67%;" />
-
-<p>4.日周笔记</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240512170820030.png" alt="image-20240512170820030" style="zoom:67%;" />
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本周的学习一如既往地缓慢且进行着，本周除了Java笔记的整理和MySQL的学，还进行了C语言第五单元的刷题。总体而言，本周的学习较为充足，对Java基础的认识也越来越完善，学完全部，再进行笔记整理，确实可以获得更多的知识。</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><p>1.mysql学习</p>
-<p>2.Java整理</p>
-<p>3.题目</p>
-<p>4.日周笔记</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/05/12/huang2024-5-6-2024-5-12%E5%91%A8%E6%8A%A5/" data-id="clw3c9m3i0000osfw4z5xdf78" data-title="huang2024-5-6-2024-5-12周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Java2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/09/Java2/" class="article-date">
-  <time class="dt-published" datetime="2024-05-09T12:44:26.860Z" itemprop="datePublished">2024-05-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>2.2.1  if条件语句</p>
-<p>if条件语句是一个重要的编程语句，用于告诉程序在某个条件成立的情况下执行某段语句，而在另一种情况下执行另外的语句。</p>
-<p>使用if条件语句，可选择是否要执行紧跟在条·件之后的那个语句。关键字if之后是作为条件的”布尔表达式”。如果该表达式返回的结果为true，则执行其后的语句；如果为false，则不执行if条件之后的语句。if条件语句可分为简单的if条件语句、if…else语句和if…else if多分支语句。</p>
-<p>1.简单的if条件语句</p>
-<p>语法如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(布尔表达式)&#123;</span><br><span class="line">	语句序列</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>*布尔表达式：必要参数，表示最后返回的结果必须是一个布尔值。它可以是一个单纯的布尔变量或常量，也可以是使用关系或布尔运算符的表达式</p>
-<p>*语句序列：可选参数。可以是一条或多条语句，当表达式的值为true时执行这些语句。若语句序列中仅有一条语句，则可以省略条件语句中的“{}”。</p>
-<p>如果语句序列中只有一条语句，可以采用以下写法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">	<span class="keyword">if</span>(a == <span class="number">100</span>)</span><br><span class="line">	System.out.println(<span class="string">&quot;a的值是100&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>过程如下：</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240509211626560.png" alt="image-20240509211626560" style="zoom:67%;" />
-
-<p>【例2.1】判断手机号码是否存在</p>
-<p>创建TP类，模拟拨打电话场景，如果电话号码不是84972266，则提示拨打号码不存在。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TP</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">Number</span> <span class="operator">=</span> <span class="number">123456789</span>;</span><br><span class="line">		<span class="keyword">if</span>(Number != <span class="number">84972266</span>)&#123;</span><br><span class="line">			System.out.prinyln(<span class="string">&quot;对不起，您拨打的号码不存在！&quot;</span>)；</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.if···else语句</p>
-<p>if···else语句是条件语句中最常用的一种形式，它会针对某种条件有选择地做出处理。通常表现为“如果满足某种条件，就进行某种处理，否则就进行另一种处理”。语法如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(条件表达式)&#123;</span><br><span class="line">	语法序列<span class="number">1</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	语句序列<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>if后面”( )”内的表达式的值必须是boolean型的。如果表达式的值为true，则执行紧跟if语句的复合语句；如果表达式的值为false，则执行else后面的复合语句。过程如下</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240509211652957.png" alt="image-20240509211652957" style="zoom:67%;" />
-
-<p>【例2.2】使用if···else语句校验密码</p>
-<p>在项目中创建Login类，在主方法中定义变量，并通过使用if···else语句判断变量的值来决定输出结果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Login</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">password</span> <span class="operator">=</span> <span class="number">987654321</span>;</span><br><span class="line">		<span class="keyword">if</span>(<span class="number">123456789</span> == password)&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;密码正确，欢迎登录&quot;</span>)；</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;密码错误，拒绝登录&quot;</span>)；</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.if…else if多分支语句</p>
-<p>if…else if 多分支语句用于针对某一事件的多种情况进行处理。通常表现为“如果满足某种条件，就进行某种处理，否则如果满足另一种条件则执行另一种处理”。语法如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(条件表达式<span class="number">1</span>)&#123;</span><br><span class="line">	语句序列<span class="number">1</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(条件表达式<span class="number">2</span>)&#123;</span><br><span class="line">	语句序列<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(条件表达式n)&#123;</span><br><span class="line">	语句序列n</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行过程如图所示</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240512161207307.png" alt="image-20240512161207307" style="zoom:67%;" />
-
-<p>【例2.3】使用if…else if语句实现饭店座位分配</p>
-<p>创建rest类，声明整型变量count表示用餐人数，根据人数安排客人到4人桌，8人桌或包厢用餐</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">rest</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;欢迎光临，请问有多少人用餐？&quot;</span>)；</span><br><span class="line">		<span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">9</span>；</span><br><span class="line">		System.out.println(<span class="string">&quot;回答：&quot;</span>+count+<span class="string">&quot;人&quot;</span>)；</span><br><span class="line">		<span class="keyword">if</span>(count&lt;=<span class="number">4</span>)&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;客人请到大厅4人桌用餐&quot;</span>)；</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(count&gt;<span class="number">4</span>&amp;&amp;count&lt;=<span class="number">16</span>)&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;客人请到大厅8人桌用餐&quot;</span>)；</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(count&gt;<span class="number">8</span>&amp;&amp;count&lt;=<span class="number">16</span>)&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;客人请到楼上包厢用餐&quot;</span>)；</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;抱歉，我们店暂时没有这么大的包厢！&quot;</span>)；</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.2.2  Switch多分支语句</p>
-<p>在编程中，一个常见的问题就是检测一个变量是否符合某个条件。如果不符合，再用另外一个值来检测，以此类推。当然用if条件语句也可以完成。</p>
-<p>例如，使用if语句对考试成绩进行评估，关键代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(grade == <span class="string">&#x27;A&#x27;</span>)&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;真棒&quot;</span>)；</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(grade == <span class="string">&#x27;B&#x27;</span>)&#123;</span><br><span class="line">	System.out.println(<span class="string">&quot;做的不错&quot;</span>)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在Java中，可以用Switch语句将动作组织起来，以一个比较简单明了的方式来实现“多选一”的选择。语法如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(表达式)&#123;</span><br><span class="line"><span class="keyword">case</span> 常量值<span class="number">1</span>：</span><br><span class="line">	语句块<span class="number">1</span></span><br><span class="line">	[<span class="keyword">break</span>;]</span><br><span class="line">...</span><br><span class="line"><span class="keyword">case</span> 常量值n:</span><br><span class="line">	语句块n</span><br><span class="line">	[<span class="keyword">break</span>;]</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">	语句块n+<span class="number">1</span>;</span><br><span class="line">	[<span class="keyword">break</span>;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>switch语句中表达式的值必须是整型、字符型、字符串类型或枚举类型，常量值1~n的数据类型必须与表达式的值的类型相同。</p>
-<p>switch语句首先计算表达式的值，如果表达式的计算结果和某个case后面的常量值相同，则执行该case语句后的若干个语句直到遇到break语句为止。此时，如果该case语句中没有break语句，将继续执行后面case中的若干个语句，直到遇到break语句为止。若没有一个常量的值与表达式的值相同，则执行default后面的语句。default语句为可选的，如果它不存在，且switch语句中表达式的值不与任何case的常量值相同，switch语句则不做任何处理。</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240512163659523.png" alt="image-20240512163659523" style="zoom:67%;" />
-
-<p>注意<br>（1）同一个switch语句，case的常量值必须互不相同。<br>（2）在switch语句中，case语句后常量表达式的值可以为整数，但绝不可以是非整数的实数。例如，下面的代码就是错误的：</p>
-<p>【例2.4】使用switch语句分为考试分数分级</p>
-<p>创建Grade类，使用Scanner类在控制台输入分数，然后用switch多分支语句判断输入的分数属于哪类成绩。10分和9分属于优，8分属于良，7分和6分属于中，5分、4分、3分、2分、1分以及0分均属于差。</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240512165633843.png" alt="image-20240512165633843" style="zoom:67%;" />
-
-<h2 id="Java多线程基础"><a href="#Java多线程基础" class="headerlink" title="Java多线程基础"></a>Java多线程基础</h2><h4 id="等待和唤醒"><a href="#等待和唤醒" class="headerlink" title="等待和唤醒"></a>等待和唤醒</h4><p><code>wait()</code> 线程等待，等待的过程中，释放锁，需要其他线程调用notify去唤醒</p>
-<p><code>notify()</code>唤醒一个等待的线程，如果有多个线程等待，则随机一条唤醒</p>
-<p><code>notifyAll()</code> 唤醒所有等待的线程</p>
-<h4 id="Lock锁"><a href="#Lock锁" class="headerlink" title="Lock锁"></a>Lock锁</h4><p>是一个接口</p>
-<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>获取 其 实现类 <code>ReentrantLock</code></p>
-<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p><code>lock()</code>获取锁</p>
-<p><code>unlock()</code>释放锁</p>
-<h5 id="synchronized-与lock的区别"><a href="#synchronized-与lock的区别" class="headerlink" title="synchronized 与lock的区别"></a>synchronized 与lock的区别</h5><p>synchronized:不管是同步代码块还是同步方法,都需要在结束一对{}之后,释放锁对象</p>
-<p>Lock:是通过两个方法控制需要被同步的代码,更灵活（两个方法为lock和unlock）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyTicket</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> &#123;</span><br><span class="line">	<span class="type">int</span> <span class="variable">ticket</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">	<span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">100L</span>);</span><br><span class="line">				lock.lock();</span><br><span class="line">				<span class="keyword">if</span> (ticket &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					System.out.println(Thread.currentThread().getName() + \<span class="string">&quot;买了第\&quot; + ticket + \&quot;张票\&quot;);</span></span><br><span class="line"><span class="string">					ticket--;</span></span><br><span class="line"><span class="string">					&#125;</span></span><br><span class="line"><span class="string">				&#125; catch (InterruptedException e) &#123;</span></span><br><span class="line"><span class="string">					throw new RuntimeException(e);</span></span><br><span class="line"><span class="string">				&#125;finally &#123;</span></span><br><span class="line"><span class="string">					lock.unlock();</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">public class Test01 &#123;</span></span><br><span class="line"><span class="string">	public static void main(String[] args) &#123;</span></span><br><span class="line"><span class="string">		MyTicket myTicket = new MyTicket();</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		Thread t1 = new Thread(myTicket, &quot;</span>张三<span class="string">&quot;);</span></span><br><span class="line"><span class="string">		Thread t2 = new Thread(myTicket, &quot;</span>李四<span class="string">&quot;);</span></span><br><span class="line"><span class="string">		Thread t3 = new Thread(myTicket, &quot;</span>王五<span class="string">&quot;);</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">		t1.start();</span></span><br><span class="line"><span class="string">		t2.start();</span></span><br><span class="line"><span class="string">		t3.start();</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="Callable"><a href="#Callable" class="headerlink" title="Callable"></a>Callable</h4><p>接口，实现多线程的一种方式</p>
-<p>Callable是一个接口,类似于Runnable</p>
-<h5 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h5><p>1.<code>V call()</code> 设置线程任务，类似于<code>run()</code>方法，与之不同的是call可以throw异常，并且还有返回值</p>
-<p>2.call方法和run方法的区别:</p>
-<p>a.相同点:都是设置线程任务的</p>
-<p>b.不同点:</p>
-<p>(1)call方法有返回值,而且有异常可以throws</p>
-<p>(2)run方法没有返回值,而且有异常不可以throws</p>
-<p>3.内容</p>
-<p>a.是一个泛型接口。</p>
-<p>b.泛型:用于指定我们操作什么类型的数据,&lt;&gt;中只能写引用数据类型,如果泛型不写,默认是Object类型数据。</p>
-<p>c.实现Callable接口时,指定泛型是什么类型的,重写的call方法返回值就是什么类型的。</p>
-<p>4.获取call方法返回值: <code>FutureTask&lt;V&gt;</code></p>
-<p>a. <code>FutureTask&lt;V&gt; </code>实现了一个接口: <code>Future &lt;V&gt;</code></p>
-<p>b.<code> FutureTask&lt;V&gt;</code>中有一个方法:</p>
-<p>5.<code>V get()</code> -&gt; 获取call方法的返回值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyCallable</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ssssss&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">		<span class="type">MyCallable</span> <span class="variable">myCallable</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyCallable</span>();</span><br><span class="line">		FutureTask&lt;String&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(myCallable);</span><br><span class="line">		<span class="type">Thread</span> <span class="variable">t1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask);</span><br><span class="line">		t1.start();</span><br><span class="line">        System.out.println(futureTask.get());</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><p>容器中有多条线程对象，来了线程任务，直接线程池中获取线程对象，用完还回去。</p>
-<h5 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> ExecutorService <span class="title function_">newFixedThreadPool</span><span class="params">(<span class="type">int</span> nThreads)</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="执行线程任务"><a href="#执行线程任务" class="headerlink" title="执行线程任务"></a>执行线程任务</h5><p><code>Futhre&lt;?&gt; submit(Runnable task)</code> 提交一个Runnable任务用于执行</p>
-<p><code>Future&lt;T&gt; submit(Callable&lt;T&gt; task)</code> 提交一个Callable任务用于执行</p>
-<h5 id="返回值接口Futher"><a href="#返回值接口Futher" class="headerlink" title="返回值接口Futher"></a>返回值接口Futher</h5><p>用于接收run方法或者call方法返回值的,但是run方法没有返回值,所以可以不用Future接收,执行call方法需要用Future接收</p>
-<p>Future中有一个方法:V get() 用于获取call方法返回值</p>
-<p>关闭</p>
-<p>ExecutorService中的方法:</p>
-<p>\nvoid shutdown() 启动有序关闭，其中先前提交的任务将被执行，但不会接受任何新任务</p>
-<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><p>需求:创建两个线程任务,一个线程任务完成1-100的和,一个线程任务返回一个字符串</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyString</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> Thread.currentThread().getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MySum</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;Integer&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            sum+=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException &#123;</span><br><span class="line">        <span class="comment">//创建线程池对象</span></span><br><span class="line">        <span class="type">ExecutorService</span> <span class="variable">es</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line">        Future&lt;String&gt; f1 = es.submit(<span class="keyword">new</span> <span class="title class_">MyString</span>());</span><br><span class="line">        Future&lt;Integer&gt; f2 = es.submit(<span class="keyword">new</span> <span class="title class_">MySum</span>());</span><br><span class="line">        System.out.println(f1.get());</span><br><span class="line">        System.out.println(f2.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/05/09/Java2/" data-id="clw3c9m3n0001osfw29w57czm" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-mysql锁" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/05/mysql%E9%94%81/" class="article-date">
-  <time class="dt-published" datetime="2024-05-05T12:59:24.000Z" itemprop="datePublished">2024-05-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/05/mysql%E9%94%81/">mysql锁</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="MySQL全局锁的定义和作用"><a href="#MySQL全局锁的定义和作用" class="headerlink" title="MySQL全局锁的定义和作用"></a>MySQL全局锁的定义和作用</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>MySQL全局锁是指对整个数据库实例加锁，即数据库中的所有表都将被加上锁。当全局锁被应用时，整个数据库实例会处于只读状态，后续的DML（数据操纵语言）的写语句，如数据的增删改操作，DDL（数据定义语言）语句，如建表、修改表结构等操作，以及更新操作的事务提交语句都将被阻塞。</p>
-<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>全局锁的主要作用是确保数据库备份的完整性和一致性。它防止了在备份过程中对数据库进行修改，从而保证了备份数据的完整性。此外，在主从复制架构下，全局锁还可能用于主备切换的场景中，以确保数据的一致性传递。</p>
-<h3 id="MySQL全局锁的使用场景"><a href="#MySQL全局锁的使用场景" class="headerlink" title="MySQL全局锁的使用场景"></a>MySQL全局锁的使用场景</h3><h4 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h4><p>在进行数据库逻辑备份时，为了避免备份过程中数据被修改，通常会对数据库加全局锁。这样可以确保备份出来的数据是一致的，没有因为并发操作导致的差异。</p>
-<h4 id="主从复制与切换"><a href="#主从复制与切换" class="headerlink" title="主从复制与切换"></a>主从复制与切换</h4><p>在主从复制架构中，当需要进行主备切换时，也可能需要使用全局锁。这是因为在切换过程中，需要确保主库和备库的数据一致性，防止数据丢失或不一致。</p>
-<h3 id="MySQL全局锁的操作步骤"><a href="#MySQL全局锁的操作步骤" class="headerlink" title="MySQL全局锁的操作步骤"></a>MySQL全局锁的操作步骤</h3><h4 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h4><p>加锁通常通过执行<code>FLUSH TABLES WITH READ LOCK;</code>（FTWRL）命令来实现。该命令会对数据库中的所有表加读锁，不允许任何写操作，但允许读取操作。这意味着，直到解锁前，数据库将处于只读状态。</p>
-<h4 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h4><p>备份完成后，可以使用<code>UNLOCK TABLES;</code>命令来释放全局锁，这将使得数据库恢复到正常的读写状态。</p>
-<h3 id="MySQL全局锁的特点"><a href="#MySQL全局锁的特点" class="headerlink" title="MySQL全局锁的特点"></a>MySQL全局锁的特点</h3><h4 id="特点概述"><a href="#特点概述" class="headerlink" title="特点概述"></a>特点概述</h4><p>全局锁是一种重量级的锁定机制，它对整个数据库实例生效。这种锁能有效阻止数据在备份过程中的更改，但也意味着在备份期间，数据库几乎不能进行任何更新操作，这可能会对业务造成影响。</p>
-<h4 id="详细特点"><a href="#详细特点" class="headerlink" title="详细特点"></a>详细特点</h4><ul>
-<li>当对主库使用全局锁时，所有更新操作都会被阻塞，因此，业务基本上会暂停。</li>
-<li>如果选择在从库上使用全局锁进行备份，那么从库在备份期间无法同步主库的二进制日志（binlog），这可能会导致主从延迟。</li>
-<li>使用全局锁时，必须非常小心，因为它会严重影响数据库的性能，并可能导致并发性能的显著下降。</li>
-</ul>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>综上所述，MySQL全局锁是一种重要的数据库锁定机制，它在数据库备份和主从复制等方面起到了确保数据一致性的作用。然而，由于它会锁定整个数据库实例，因此在非必要时应尽量避免使用，以避免对业务造成不必要的干扰。在使用全局锁时，需要仔细评估其对数据库性能的影响，并采取适当的解锁措施，以保障数据库的正常运行。</p>
-<h2 id="MySQL表级锁概述"><a href="#MySQL表级锁概述" class="headerlink" title="MySQL表级锁概述"></a>MySQL表级锁概述</h2><h3 id="定义和作用"><a href="#定义和作用" class="headerlink" title="定义和作用"></a>定义和作用</h3><p>MySQL中的表级锁是一种锁定机制，用于控制对数据库表的访问，保证数据的安全性和完整性。它允许用户对特定的表进行锁定，从而防止其他用户对其进行修改，确保数据在读取或修改时的稳定性。</p>
-<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>表级锁适用于多种场景，例如在进行大数据量的插入、删除或更新操作时，为了防止数据丢失或数据不一致，需要对这些操作进行锁定。此外，当多个用户或进程需要对同一数据进行访问时，也需要用到表级锁以确保数据的一致性。</p>
-<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><p>使用表级锁的基本步骤包括：</p>
-<ol>
-<li>确定需要锁定的数据范围，选择合适的锁类型。</li>
-<li>执行锁定命令，如<code>LOCK TABLES</code>。</li>
-<li>进行相关的数据操作。</li>
-<li>完成操作后，释放锁，使用<code>UNLOCK TABLES</code>命令。</li>
-</ol>
-<h3 id="MySQL表级锁详细解析"><a href="#MySQL表级锁详细解析" class="headerlink" title="MySQL表级锁详细解析"></a>MySQL表级锁详细解析</h3><h4 id="表级锁的种类"><a href="#表级锁的种类" class="headerlink" title="表级锁的种类"></a>表级锁的种类</h4><p>MySQL中的表级锁主要有以下几种：</p>
-<ul>
-<li><strong>表锁</strong>：分为读锁和写锁，用来控制对表的读写访问。</li>
-<li><strong>元数据锁（MDL）</strong>：用来控制对表的DDL操作，如创建、修改或删除表结构。</li>
-<li><strong>意向锁</strong>：用来协调不同类型的锁请求，避免不必要的锁冲突。</li>
-</ul>
-<h4 id="表级锁的工作机制"><a href="#表级锁的工作机制" class="headerlink" title="表级锁的工作机制"></a>表级锁的工作机制</h4><p>表级锁的工作基于以下几个关键组件：</p>
-<ul>
-<li><strong>锁队列</strong>：包含当前持有锁的线程信息和等待锁的线程信息。</li>
-<li><strong>锁类型</strong>：如普通读写锁、元数据锁等。</li>
-<li><strong>锁的升级和解锁</strong>：根据操作的需要，锁可以从一种类型升级为另一种类型，或者在操作完成后释放。</li>
-</ul>
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p>在使用表级锁时，需要注意的事项包括：</p>
-<ul>
-<li>不要滥用锁，应只在必要时使用。</li>
-<li>要确保锁与操作相对应，比如读操作对应的是读锁，写操作对应的是写锁。</li>
-<li>在进行长时间运行的操作时，考虑可能的锁超时问题。</li>
-</ul>
-<h3 id="MySQL表级锁实践指南"><a href="#MySQL表级锁实践指南" class="headerlink" title="MySQL表级锁实践指南"></a>MySQL表级锁实践指南</h3><h4 id="实际操作示例"><a href="#实际操作示例" class="headerlink" title="实际操作示例"></a>实际操作示例</h4><p>假设需要对某个表进行修改，并且在这个过程中不允许其他线程对其进行干扰，可以按照以下步骤操作：</p>
-<ol>
-<li>使用<code>LOCK TABLES</code>命令对该表加写锁。</li>
-<li>进行必要的修改操作。</li>
-<li>使用<code>UNLOCK TABLES</code>命令释放写锁。</li>
-</ol>
-<h4 id="监控和调试"><a href="#监控和调试" class="headerlink" title="监控和调试"></a>监控和调试</h4><p>在实际工作中，可能需要监控锁的情况，可以使用<code>SHOW OPEN TABLES</code>命令来查看当前打开的锁。如果出现问题，可以通过<code>EXPLAIN PLAN FOR</code>命令来分析锁的情况。</p>
-<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>MySQL的表级锁是一个强大的工具，它可以有效地保护数据安全性和完整性。然而，不当使用可能会导致性能问题和锁争用。因此，合理规划和使用表级锁，结合业务需求和数据库特性，是数据库管理员的重要职责。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/05/05/mysql%E9%94%81/" data-id="clvtlepiz0002hofwazv7dtes" data-title="mysql锁" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1060,7 +964,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 17.5px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a>
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 16.67px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a>
     </div>
   </div>
 
@@ -1069,7 +973,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
     </div>
   </div>
 
@@ -1082,23 +986,23 @@
       <ul>
         
           <li>
+            <a href="/2024/06/02/java3/">java3</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/02/mysql%E6%80%BB%E7%BB%93/">mysql总结</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/02/huang2024-5-26-2024-6-2%E5%91%A8%E6%8A%A5/">huang2024-5-26-2024-6-2周报</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/26/huang2024-5-13-2024-5-26%E5%91%A8%E6%8A%A5/">huang2024-5-13-2024-5-26周报</a>
           </li>
         
           <li>
             <a href="/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/">mysql笔记（13）</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/">mysql笔记（12）</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/18/huang2024-5-13-2024-5-19%E5%91%A8%E6%8A%A5/">huang2024-5-13-2024-5-19周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%20-%20%E5%89%AF%E6%9C%AC/">(no title)</a>
           </li>
         
       </ul>
