@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>mysql-sql优化 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一、SQL执行流程MySQL是客户端-服务器的模式。 在执行过程中，主要有三类角色：客户端、服务器、存储引擎。 大致可以分为三层： 第一层：客户端连接到服务器，构造SQL并发送给服务器。 第二层：服务器收到SQL进行解析及优化，最终生成执行计划并执行 第三层：服务器调用存储引擎的API，进行数据的查询和存储。 二、执行计划分析可以通过explain提前知道当前MySQL是如何处理SQL语句的。 在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql-sql优化">
+<meta property="og:url" content="https://snail0220.github.io/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、SQL执行流程MySQL是客户端-服务器的模式。 在执行过程中，主要有三类角色：客户端、服务器、存储引擎。 大致可以分为三层： 第一层：客户端连接到服务器，构造SQL并发送给服务器。 第二层：服务器收到SQL进行解析及优化，最终生成执行计划并执行 第三层：服务器调用存储引擎的API，进行数据的查询和存储。 二、执行计划分析可以通过explain提前知道当前MySQL是如何处理SQL语句的。 在">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-09T14:29:17.000Z">
+<meta property="article:modified_time" content="2024-06-09T14:31:12.969Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://snail0220.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-mysql-sql优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2024-06-09T14:29:17.000Z" itemprop="datePublished">2024-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      mysql-sql优化
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>一、SQL执行流程<br>MySQL是客户端-服务器的模式。</p>
+<p>在执行过程中，主要有三类角色：客户端、服务器、存储引擎。</p>
+<p>大致可以分为三层：</p>
+<p>第一层：客户端连接到服务器，构造SQL并发送给服务器。</p>
+<p>第二层：服务器收到SQL进行解析及优化，最终生成执行计划并执行</p>
+<p>第三层：服务器调用存储引擎的API，进行数据的查询和存储。</p>
+<p>二、执行计划分析<br>可以通过explain提前知道当前MySQL是如何处理SQL语句的。</p>
+<p>在我们要执行的SQL前加上explain即可。</p>
+<p>explain select * from user;</p>
+<p>explain insert into user values(user_name, password, email) values(‘1’, ‘1’, ‘1’);</p>
+<p>通过分析执行计划，我们可以得出以下几点：</p>
+<ol>
+<li><p>1.表的读取顺序 -&gt; id</p>
+</li>
+<li><p>2.表读取操作的类型 -&gt; select_type</p>
+</li>
+<li><p>3.可以被使用的索引 -&gt; possible_keys</p>
+</li>
+<li><p>4.实际使用的索引 -&gt; key</p>
+</li>
+<li><p>5.表之间的引用 -&gt; ref</p>
+</li>
+<li><p>6.每张表有多少行被优化器查询 -&gt; rows</p>
+</li>
+</ol>
+<p>上述查询结果字段的含义：</p>
+<p>1.id：表示查询中执行select子句或操作表的顺序，id越大，执行优先级越高，id相同，则从上至下</p>
+<p>2.select_type：表示查询的类型，用来区分普通查询、联合查询、子查询等。一共有9种类型。</p>
+<p>3.table:  输出行所引用的表名，如果使用了别名则显示别名</p>
+<p>4.partitions：使用的哪个分区</p>
+<p>5.type：查询使用了那种类型。描述的是当前如何去找数据的，如：all 表示扫描全表。</p>
+<p>6.possible_keys：可能有助于查询的索引</p>
+<p>7.key：实际使用的索引</p>
+<p>8.key_len:  使用的索引的长度</p>
+<p>9.ref：显示索引的哪一列被使用了 </p>
+<p>10.rows：请求数据大概返回的行数</p>
+<p>11.filtered：表示存储引擎返回的数据在server层过滤后，剩下多少满足查询的记录数量的比例</p>
+<p>12.extra:  其他信息，出现Using filesort、Using temporary 意味着不能使用索引,效率会受到重大影响。应尽可能对此进行优化。</p>
+<p>其中比较重要的字段：</p>
+<p>1.type：可以看出是如何查询数据的方式。一般需要达到 ref、eq_ref 级别，范围查找需要达到 range。</p>
+<p>2.key：是否使用索引，如果为NULL表示没有使用索引，需要优化调整。</p>
+<p>3.rows：表示返回的行数，可以直观观察到结果。</p>
+<p>4.extra：有Using filesort、Using temporary 的一定需要优化。</p>
+<p>三、表结构优化<br>数据库效率的影响主要是因为数据量太大，进行一次查找需要扫描很多数据(硬盘上的磁头需要越过很多数据来找到目标数据)，通过表结构优化的方式可以减轻当前访问的数据量。</p>
+<p>3.1 数据类型优化<br>主旨就是能用小字段类型就不用大字段类型～</p>
+<p>使用简单的数据类型。int 要比 varchar 类型在mysql处理简单<br>尽量使用 tinyint、smallint、mediumint 作为整数类型而非 int<br>尽可能使用 not null 定义字段，因为 null 占用4字节空间。数字可以默认0，字符串默认“”<br>尽量少用 text 类型，非用不可时最好考虑分表<br>尽量使用 timestamp而非 datetime<br>单表不要有太多字段，建议在 20 以内<br>3.2 分库分表优化<br>当数据太多的时候，即使走索引啥的也不能解决效率问题，根本就在于要扫描的数据太多了，并且存储也是比较难的。</p>
+<p>这时候就可以采用分表的方式，将一张表拆分成多张，然后通过编号等手段进行查询。</p>
+<p>拆分大致也有两种方式：</p>
+<p>垂直拆分：</p>
+<pre><code>    按照列的维度，将表中的列拆分开来，分别放在多张表中。例如：某些字段在一张表中可能更加平凡的查询，可以将这些字段放到一张表中，不常用的放在另一张表中。
+
+    但需要注意的是，这种方式需要保证原子性！可以在进行插入的时候使用事务～
+</code></pre>
+<p>水平拆分：</p>
+<pre><code>    按照行的维度，将一张表的数据切分。如0-100的数据放在这张表中，101-200的数据放在另一张表中。
+</code></pre>
+<p>3.3 读写分离优化<br>由于一台数据库服务器的性能肯定是有瓶颈的，可以进行部署一个数据库集群。并采用主从的方式。设置一些主库，一些从库，主库用来负责写入数据，从库用来负责读取数据，当一个新的数据写入的时候，主库需要将数据同步到从库中，以保证数据的完整性。</p>
+<p>四、查询语句优化<br>4.1避免使用 select *<br>sql在解析过程中，还需要把*依次转换为所有的列名，这个工作需要查询数据字典完成。额外开销！因此建议将需要的列写出来。</p>
+<p>4.2多表联查时，小表在前，大表在后<br>from 后的表关联查询是从左往右执行的（Oracle相反），第一张表会涉及到全表扫描，所以将小表放在前面，先扫小表，扫描快效率较高，在扫描后面的大表。</p>
+<p>4.3调整where子句中的连接顺序<br>where子句是从左往右，自上而下的顺序执行的（Oracle相反），根据这个原理，应将过滤数据多的条件往前放，最快速度缩小结果集。</p>
+<p>4.4调整group by和order by子句中的顺序<br>group by和order by子句是从左往右的顺序执行的，根据这个原理，应将排序影响数据多的条件往前放，最快速度缩小结果集。</p>
+<p>4.5用exists、not exists和in、not in相互替代<br>exists以外层表为驱动表，先被访问，适合于外表小而内表大的情况。</p>
+<p>in则是先执行子查询，适合外表大而内表小的情况，一般情况是不推荐使用not in，因为效率非常低。</p>
+<p>原则是哪个的子查询产生的结果集小，就选哪个</p>
+<p>4.6用where子句替换having子句<br>where子句搜索条件在进行分组操作之前应用；而having子句条件在进行分组操作之后应用。</p>
+<p>尽可能让where来缩小结果集！</p>
+<p>4.7分段和分页查询<br>使用合理的分页方式，在数据表量级逐渐增加的时候，limit分页查询的效率会降低。</p>
+<p>可以根据字段索引进行快速定位，直接找到偏移量。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/" data-id="clx7ngpjb0002rsfwd2xc4gez" data-title="mysql-sql优化" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/06/09/huang2024-6-3-2024-6-9%E5%91%A8%E6%8A%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">huang2024-6-3-2024-6-9周报</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/mysql/" style="font-size: 17.5px;">mysql</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/">mysql-sql优化</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/09/huang2024-6-3-2024-6-9%E5%91%A8%E6%8A%A5/">huang2024-6-3-2024-6-9周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/04/HTML%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">HTML常用代码</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/02/java3/">java3</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/02/mysql%E6%80%BB%E7%BB%93/">mysql总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

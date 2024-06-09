@@ -73,6 +73,118 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-可变参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/04/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-02-04T05:54:24.266Z" itemprop="datePublished">2024-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="可变参数笔记"><a href="#可变参数笔记" class="headerlink" title="可变参数笔记"></a>可变参数笔记</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Java中的可变参数是一种特殊的参数类型，它可以接受不定数量的参数。这种特性在Java 5中被引入，主要用于解决方法参数数量不确定的问题。</p>
+<h4 id="声明和使用"><a href="#声明和使用" class="headerlink" title="声明和使用"></a>声明和使用</h4><p>在Java中，我们通过在方法声明时使用<code>...</code>来标识一个可变参数。例如，如果我们希望一个方法接受任意数量的字符串参数，我们可以这样声明：</p>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204134557521.png" alt="image-20240204134557521">特性</h4><ul>
+<li><strong>只能有一个可变参数</strong>：在方法声明中，只能有一个<code>...</code>标记的形参类型。这是因为可变参数在语法上是作为数组处理的，而一个方法只能有一个数组参数。</li>
+<li><strong>可变参数必须位于形参的最后一个位置</strong>：在方法声明中，可变参数之后不能有其他参数。这是因为可变参数的数量是不定的，如果它在其他参数后面，Java将无法确定哪个参数应该被视为可变参数的一部分。</li>
+<li><strong>可变参数是数组</strong>：在方法内部，可变参数被视为一个数组。这意味着你可以像操作数组一样操作可变参数。例如，你可以使用<code>length</code>属性获取可变参数的数量，或者使用索引访问每个参数。</li>
+</ul>
+<h4 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h4><p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204134827189.png" alt="image-20240204134827189"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/02/04/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" data-id="cltbbykwy0007lgfw16dhaj8r" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-排序笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/04/%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-02-04T01:34:30.081Z" itemprop="datePublished">2024-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="排序笔记"><a href="#排序笔记" class="headerlink" title="排序笔记"></a>排序笔记</h1><p>排序的类别：冒泡排序、快速排序、插入排序、希尔排序、选择排序、堆排序、归并排序、桶排序、基数排序和计数排序。</p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>冒泡排序是一种稳定的排序算法，它的工作原理是通过对待排序序列从前往后，依次比较相邻元素的排列码，若发现逆序则交换，使排序码较大的元素逐渐从前部移向后部。</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204095731092.png" alt="image-20240204095731092"></p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序是一种不稳定的排序算法，它的工作原理是通过一趟排序将待排记录分割成独立的两部分，其中一部分记录的关键字均比另一部分的关键字小，然后再分别对这两部分记录继续进行排序，以达到整个序列有序。</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204100008042.png" alt="image-20240204100008042"></p>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序是一种稳定的排序算法，它的工作原理是将未排序的数据插入到已排序的数据中的适当位置，从而使得整体数据有序。</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240204100100608.png" alt="image-20240204100100608"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/02/04/%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/" data-id="cltbbykx0000clgfwbkde0daa" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-方法模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/04/%E6%96%B9%E6%B3%95%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2024-02-04T01:34:30.081Z" itemprop="datePublished">2024-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="方法模块笔记"><a href="#方法模块笔记" class="headerlink" title="方法模块笔记"></a>方法模块笔记</h2><h5 id="Java方法模块的基本流程："><a href="#Java方法模块的基本流程：" class="headerlink" title="Java方法模块的基本流程："></a>Java方法模块的基本流程：</h5><ol>
+<li>创建一个Java模块：这可以通过在你的Java项目中创建一个新的包来实现。在包中，你可以创建多个类文件，并且这些类文件将组成一个模块。</li>
+<li>在模块中定义一个类并实现方法：在刚创建的模块中，你需要定义一个类，并在该类中实现你需要调用的方法。</li>
+<li>在其他模块中引用该模块：现在，你已经在一个模块中定义了一个类和方法。接下来，你需要在其他模块中引用并调用这个方法。为了实现这一步，你需要在其他模块中导入这个模块，并通过创建该类的实例并调用方法。</li>
+</ol>
+<h5 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义"></a>方法定义</h5><ol>
+<li><strong><strong>修饰符：修饰符是可选的，它可以告诉编译器如何调用该方法。例如，<code>public</code> 表示该方法可以从任何地方被访问。</strong></strong></li>
+<li>**** 返回值类型：方法可能会返回值，<code>returnValueType</code> 是方法返回值的数据类型。如果方法不返回任何值，那么 <code>returnValueType</code> 是 <code>void</code>。****</li>
+<li>**** 方法名：方法名是方法的实际名称，它应该是描述性的，以便其他人阅读你的代码时能够理解它的作用。****</li>
+<li>**** 参数列表：参数是传递给方法的值。参数之间用逗号分隔，每个参数都有自己的数据类型和名称。****</li>
+<li>**** 方法体：方法体是方法执行的代码块。****</li>
+</ol>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>- 方法名应遵循驼峰命名法，首字母小写。<br>- 如果方法没有返回值，需要在方法声明时使用 <code>void</code> 关键字。<br>- 在方法体中，使用 <code>return</code> 语句来返回方法的值。<br>- 避免在方法中编写过多的代码，使方法尽可能地简洁和易于理解。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/02/04/%E6%96%B9%E6%B3%95%E6%A8%A1%E5%9D%97/" data-id="cltbbykx2000hlgfw99b0cw6j" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-huang2024-1-22-2024-1-28学习周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/01/28/huang2024-1-22-2024-1-28%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" class="article-date">
@@ -556,163 +668,11 @@
 
 
   
-    <article id="post-huang2023-12-11-2023-12-17学习周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/18/huang2023-12-11-2023-12-17%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2023-12-18T10:26:46.000Z" itemprop="datePublished">2023-12-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/12/18/huang2023-12-11-2023-12-17%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/">huang2023/12/11-2023/12/17学习周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><ol>
-<li><strong>搭建个人博客</strong></li>
-<li><strong>python</strong>模块</li>
-</ol>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日历</th>
-<th>学习内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>python创建模块</td>
-<td></td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>Python创建安装包</td>
-<td>线代</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>安装Git，Node.js、Hexo</td>
-<td></td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>GitHub创建个人仓库</td>
-<td></td>
-</tr>
-<tr>
-<td>星期五</td>
-<td></td>
-<td>准备四级</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>添加SSH到GitHub</td>
-<td></td>
-</tr>
-<tr>
-<td>星期天</td>
-<td>将hexo部署到GitHub</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容-及-收获"><a href="#本周学习内容-及-收获" class="headerlink" title="本周学习内容 及 收获"></a>本周学习内容 及 收获</h2><ol>
-<li><p>安装博客</p>
-</li>
-<li><p>Python创建模块，创建安装包</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好多内容看不懂，感谢组长帮忙。</p>
-<p>需要多看书上的内容</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><ol>
-<li>完善自己的博客</li>
-<li>学习Python的面向对象程序设计</li>
-<li>复习期末考试： 高数 、线代、英语</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2023/12/18/huang2023-12-11-2023-12-17%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" data-id="cltbbykwv0003lgfwcraw24fi" data-title="huang2023/12/11-2023/12/17学习周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/13/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-12-13T10:51:54.507Z" itemprop="datePublished">2023-12-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/12/13/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2023/12/13/hello-world/" data-id="cltbbykwt0001lgfw46d6dhef" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -726,7 +686,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
     </div>
   </div>
 
@@ -736,7 +696,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 16.67px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a>
+      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/mysql/" style="font-size: 17.5px;">mysql</a>
     </div>
   </div>
 
@@ -758,23 +718,23 @@
       <ul>
         
           <li>
+            <a href="/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/">mysql-sql优化</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/09/huang2024-6-3-2024-6-9%E5%91%A8%E6%8A%A5/">huang2024-6-3-2024-6-9周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/04/HTML%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">HTML常用代码</a>
+          </li>
+        
+          <li>
             <a href="/2024/06/02/java3/">java3</a>
           </li>
         
           <li>
             <a href="/2024/06/02/mysql%E6%80%BB%E7%BB%93/">mysql总结</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/02/huang2024-5-26-2024-6-2%E5%91%A8%E6%8A%A5/">huang2024-5-26-2024-6-2周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/26/huang2024-5-13-2024-5-26%E5%91%A8%E6%8A%A5/">huang2024-5-13-2024-5-26周报</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/">mysql笔记（13）</a>
           </li>
         
       </ul>
