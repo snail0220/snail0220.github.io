@@ -73,6 +73,131 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MySQL笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-02T07:15:24.431Z" itemprop="datePublished">2024-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="MySQL概述"><a href="#MySQL概述" class="headerlink" title="MySQL概述"></a>MySQL概述</h3><h4 id="数据库相关概念"><a href="#数据库相关概念" class="headerlink" title="数据库相关概念"></a>数据库相关概念</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>全称</th>
+<th>简称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据库</td>
+<td>存储数据的仓库，数据是有组织的进行存储</td>
+<td>DataBase(DB)</td>
+</tr>
+<tr>
+<td>数据库管理系统</td>
+<td>操纵和管理数据库的大型软件</td>
+<td>DataBase Management System(DBMS)</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>操作关系型数据库的编程语言，定义了一套操作关系型数据库统一标准</td>
+<td>Structured Qunery Language(SQL)</td>
+</tr>
+</tbody></table>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303094054298.png" alt="image-20240303094054298"></p>
+<p>不同的数据库管理系统都有一个同样的标准：SQL</p>
+<h4 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h4><h5 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h5><p>启动：net start mysql80</p>
+<p>停止：net stop mysql80</p>
+<h5 id="客户端连接"><a href="#客户端连接" class="headerlink" title="客户端连接"></a>客户端连接</h5><p>方式一：MySQL提供的客户端命令行工具</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303100740736.png" alt="image-20240303100740736"></p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303100824619.png" alt="image-20240303100824619"></p>
+<p>方式二：系统自带的命令行工具执行指令</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240303100938301.png" alt="image-20240303100938301"></p>
+<p>mysql -u root -p</p>
+<p>(需配置PATH环境变量)</p>
+<h5 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h5><p>概念：建立在关系模型基础上，有多张相互连接的二维表组成的数据库。</p>
+<p>特点：</p>
+<ol>
+<li>使用表存储数据，格式统一，便于维护。</li>
+<li>使用SQL语言操作，标准统一，使用方便。</li>
+</ol>
+<h5 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型<img src="file:///E:\QQ\2194861505\Image\C2C\A4B65070B9BF6C0ECDC32AD7956AECE9.jpg" alt="img"></h5><h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><h5 id="SQL通用语法"><a href="#SQL通用语法" class="headerlink" title="SQL通用语法"></a>SQL通用语法</h5><ol>
+<li>SQL语句可以单行或多行书写，以分号结尾。</li>
+<li>SQL语句可以使用空格&#x2F;缩进来增强语句的可读性。</li>
+<li>MySQL数据库的SQL语句不区分大小写，关键字建议使用大写。</li>
+<li>注释：<ul>
+<li>​	单行注释：–注释内容 或 # 注释内容（MySQL特有）</li>
+<li>​    多行注释：&#x2F;(<em>)注释内容(</em>)&#x2F;</li>
+</ul>
+</li>
+</ol>
+<h5 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h5><p><img src="file:///E:\QQ\2194861505\Image\C2C\4C8A1B042886A7EECB687245E8315CCA.jpg" alt="img"></p>
+<p>DDL-数据库操作</p>
+<ul>
+<li><p>查询：查询所有数据库   SHOW DATABASES</p>
+<p>​           查询当前数据库   SELECT DATABASE()</p>
+</li>
+<li><p>创建：CREATE DATABASE [IF NOT EXISTS] 数据库 [DEFAULT 			CHARSET 字符集] [COLLATE 排序规则]；</p>
+</li>
+<li><p>删除：DROP DATABASE [IF EXISTS] 数据库名；</p>
+</li>
+<li><p>使用：USE 数据库名；</p>
+</li>
+</ul>
+<p>DDL-表操作-查询</p>
+<ul>
+<li>查询当前数据库所有表：SHOW TABLES;</li>
+<li>查询表结构：DESC 表名；</li>
+<li>查询指定表的建表语句：SHOW CREATE TABLE 表名</li>
+</ul>
+<p>DDL-表操作-创建</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240310131749346.png" alt="image-20240310131749346"></p>
+<ul>
+<li>注意：最后一个字段后面没有逗号。</li>
+</ul>
+<p>DDL-表操作-数据类型</p>
+<ul>
+<li>MySQL中的数据类型有很多，主要分为三类：数值类型、字符串类型、日期时间类型。</li>
+</ul>
+<p>【案例】</p>
+<p>![屏幕截图 2024-03-10 132245](C:\Users\黄倩\Pictures\Screenshots\屏幕截图 2024-03-10 132245.png)</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240310132331183.png" alt="image-20240310132331183"></p>
+<p>DDL-表操作-修改</p>
+<ul>
+<li>添加字段：ALTER TABLE 表名 ADD 字段名 类型(长度) [COMMENT 注释] [约束]；</li>
+<li>修改数据类型：ALTER TABLE 表名 MODIFY 字段名 新数据类型(长度)；</li>
+<li>修改字段名和字段类型：ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型(长度) [COMMENT 注释] [约束]；</li>
+<li>删除字段：ALTER TABLE 表名 DROP 字段名；</li>
+<li>修改表名：ALTER TABLE 表名 RENAME TO 新表名；</li>
+</ul>
+<p>DDL-表操作-删除</p>
+<ul>
+<li>删除表：DROP TABLE [IF EXISTS] 表名；</li>
+<li>删除指定表，并重新创建该表：TRUNCATE TABLE 表名；</li>
+</ul>
+<h5 id="MySQL图形化界面【datagrip】"><a href="#MySQL图形化界面【datagrip】" class="headerlink" title="MySQL图形化界面【datagrip】"></a>MySQL图形化界面【datagrip】</h5><p>安装，创建空项目</p>
+<p><img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240310134157544.png" alt="image-20240310134157544"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/03/02/MySQL%E7%AC%94%E8%AE%B0/" data-id="cltbbykwq0000lgfw1rwwgyui" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-可变参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/04/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" class="article-date">
@@ -630,44 +755,6 @@
 
 
   
-    <article id="post-面向对象程序设计笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/19/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time class="dt-published" datetime="2023-12-19T11:28:23.271Z" itemprop="datePublished">2023-12-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>面向对象程序设计</strong><br>三大基本特征：封装（核心）、继承、多态</p>
-<p>类的定义：用class关键字实现</p>
-<p>__init__魔术方法</p>
-<p>注意要包含一个self函数，且必须要为第一个参数。</p>
-<p><strong>访问限制</strong>：<br><strong><strong>foo</strong></strong>:表示定义特殊方法，一般是系统定义名字，如__init__()<br>_foo:是protected（保护）类型的成员，只允许本身和子类进行访问<br>___foo:是private（私有）类型的成员，只允许定义该方法的类本身进行访问，而且也不能通过类的实例进行访问，但是可以通过”类的实例名.类名__×××“</p>
-<p><strong>创建类的成员并访问</strong></p>
-<p><img src="file:///C:/Users/黄倩/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img"></p>
-<p><strong>继承的基本语法</strong><img src="file:///C:/Users/黄倩/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img"></p>
-<p><strong>银行账户资金交易管理</strong></p>
-<p><img src="file:///C:/Users/黄倩/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" alt="img"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2023/12/19/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/" data-id="cltbbykx3000jlgfwe28t2vdh" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -718,6 +805,10 @@
       <ul>
         
           <li>
+            <a href="/2024/06/16/huang2024-6-10-2024-6-16%E5%91%A8%E6%8A%A5/">huang2024-6-10-2024-6-16周报</a>
+          </li>
+        
+          <li>
             <a href="/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/">mysql-sql优化</a>
           </li>
         
@@ -731,10 +822,6 @@
         
           <li>
             <a href="/2024/06/02/java3/">java3</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/02/mysql%E6%80%BB%E7%BB%93/">mysql总结</a>
           </li>
         
       </ul>
