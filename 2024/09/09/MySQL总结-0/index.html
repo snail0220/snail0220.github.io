@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MySQL总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="常用的SQL语句 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677-- 创建部门表DROP TABLE IF EXISTS dept; CREATE TABL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL总结">
+<meta property="og:url" content="https://snail0220.github.io/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="常用的SQL语句 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677-- 创建部门表DROP TABLE IF EXISTS dept; CREATE TABL">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-09T10:25:21.000Z">
+<meta property="article:modified_time" content="2024-09-09T10:32:41.288Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://snail0220.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-MySQL总结-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/" class="article-date">
+  <time class="dt-published" datetime="2024-09-09T10:25:21.000Z" itemprop="datePublished">2024-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MySQL总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>常用的SQL语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">-- 创建部门表</span><br><span class="line">DROP TABLE IF EXISTS dept; </span><br><span class="line">CREATE TABLE dept(</span><br><span class="line">    -- 部门编号</span><br><span class="line">    deptno int PRIMARY KEY, </span><br><span class="line">    -- 部门名称</span><br><span class="line">    dname VARCHAR(14), </span><br><span class="line">    -- 部门所在地</span><br><span class="line">    loc VARCHAR(13)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">-- 向部门表插入数据</span><br><span class="line">INSERT INTO dept VALUES (10,&#x27;ACCOUNTING&#x27;,&#x27;NEW YORK&#x27;);</span><br><span class="line">INSERT INTO dept VALUES (20,&#x27;RESEARCH&#x27;,&#x27;DALLAS&#x27;);</span><br><span class="line">INSERT INTO dept VALUES (30,&#x27;SALES&#x27;,&#x27;CHICAGO&#x27;);</span><br><span class="line">INSERT INTO dept VALUES (40,&#x27;OPERATIONS&#x27;,&#x27;BOSTON&#x27;);</span><br><span class="line"></span><br><span class="line">-- 创建员工表</span><br><span class="line">DROP TABLE IF EXISTS emp;</span><br><span class="line">CREATE TABLE emp(</span><br><span class="line">  -- 员工编号</span><br><span class="line">  empno int PRIMARY KEY, </span><br><span class="line">  -- 员工姓名</span><br><span class="line">  ename VARCHAR(10), </span><br><span class="line">  -- 工作岗位</span><br><span class="line">  job VARCHAR(9), </span><br><span class="line">  -- 直属领导</span><br><span class="line">  mgr int, </span><br><span class="line">  -- 入职时间</span><br><span class="line">  hiredate DATE, </span><br><span class="line">  -- 工资</span><br><span class="line">  sal double, </span><br><span class="line">  -- 奖金</span><br><span class="line">  comm double, </span><br><span class="line">  -- 所属部门</span><br><span class="line">  deptno int</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 为员工表表添加外键约束</span><br><span class="line">ALTER TABLE emp ADD CONSTRAINT FOREIGN KEY EMP(deptno) REFERENCES dept (deptno);</span><br><span class="line"></span><br><span class="line">-- 向员工表插入数据</span><br><span class="line">INSERT INTO emp VALUES(7369,&#x27;SMITH&#x27;,&#x27;CLERK&#x27;,7902,&quot;1980-12-17&quot;,800,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7499,&#x27;ALLEN&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;1981-02-20&#x27;,1600,300,30);</span><br><span class="line">INSERT INTO emp VALUES(7521,&#x27;WARD&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;1981-02-22&#x27;,1250,500,30);</span><br><span class="line">INSERT INTO emp VALUES(7566,&#x27;JONES&#x27;,&#x27;MANAGER&#x27;,7839,&#x27;1981-04-02&#x27;,2975,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7654,&#x27;MARTIN&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;1981-09-28&#x27;,1250,1400,30);</span><br><span class="line">INSERT INTO emp VALUES(7698,&#x27;BLAKE&#x27;,&#x27;MANAGER&#x27;,7839,&#x27;1981-05-01&#x27;,2850,NULL,30);</span><br><span class="line">INSERT INTO emp VALUES(7782,&#x27;CLARK&#x27;,&#x27;MANAGER&#x27;,7839,&#x27;1981-06-09&#x27;,2450,NULL,10);</span><br><span class="line">INSERT INTO emp VALUES(7788,&#x27;SCOTT&#x27;,&#x27;ANALYST&#x27;,7566,&#x27;1987-07-03&#x27;,3000,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7839,&#x27;KING&#x27;,&#x27;PRESIDENT&#x27;,NULL,&#x27;1981-11-17&#x27;,5000,NULL,10);</span><br><span class="line">INSERT INTO emp VALUES(7844,&#x27;TURNER&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;1981-09-08&#x27;,1500,0,30);</span><br><span class="line">INSERT INTO emp VALUES(7876,&#x27;ADAMS&#x27;,&#x27;CLERK&#x27;,7788,&#x27;1987-07-13&#x27;,1100,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7900,&#x27;JAMES&#x27;,&#x27;CLERK&#x27;,7698,&#x27;1981-12-03&#x27;,950,NULL,30);</span><br><span class="line">INSERT INTO emp VALUES(7902,&#x27;FORD&#x27;,&#x27;ANALYST&#x27;,7566,&#x27;1981-12-03&#x27;,3000,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7934,&#x27;MILLER&#x27;,&#x27;CLERK&#x27;,7782,&#x27;1981-01-23&#x27;,1300,NULL,10);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 创建工资等级表</span><br><span class="line">DROP TABLE IF EXISTS salgrade;</span><br><span class="line">CREATE TABLE salgrade(</span><br><span class="line">  -- 等级</span><br><span class="line">  grade int, </span><br><span class="line">  -- 最低工资</span><br><span class="line">  losal double, </span><br><span class="line">  -- 最高工资</span><br><span class="line">  hisal double</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 向工资等级表插入数据</span><br><span class="line">INSERT INTO salgrade VALUES (1,700,1200);</span><br><span class="line">INSERT INTO salgrade VALUES (2,1201,1400);</span><br><span class="line">INSERT INTO salgrade VALUES (3,1401,2000);</span><br><span class="line">INSERT INTO salgrade VALUES (4,2001,3000);</span><br><span class="line">INSERT INTO salgrade VALUES (5,3001,9999);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/" data-id="cm0uvjx970005y0fw7ye12jbw" data-title="MySQL总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/09/09/C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/09/09/huang2024-9-2-2024-9-8%E5%91%A8%E6%8A%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">huang2024-9-2-2024-9-8周报</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code%E7%BB%84%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">Code组学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaweb/" rel="tag">javaweb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/Code%E7%BB%84%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">Code组学习周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/javaweb/" style="font-size: 12.5px;">javaweb</a> <a href="/tags/mysql/" style="font-size: 17.5px;">mysql</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/09/09/C/">C</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/">MySQL总结</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/09/huang2024-9-2-2024-9-8%E5%91%A8%E6%8A%A5/">huang2024-9-2-2024-9-8周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/09/termtwo01/">termtwo01</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/24/Maven/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -73,6 +73,846 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-C" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/09/C/" class="article-date">
+  <time class="dt-published" datetime="2024-09-09T10:36:25.000Z" itemprop="datePublished">2024-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/09/09/C/">C</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="第一章-C语言基本知识"><a href="#第一章-C语言基本知识" class="headerlink" title="第一章 C语言基本知识"></a>第一章 C语言基本知识</h3><h5 id="【考点1】C程序"><a href="#【考点1】C程序" class="headerlink" title="【考点1】C程序"></a>【考点1】C程序</h5><p>用C语言编写的程序称为C语言源程序，源程序文件后缀名为“.c”。</p>
+<p>源程序经编译后生成后缀名为“.obj”的目标文件。</p>
+<p>再把目标文件与各种库函数连接起来，生成后缀名为“.exe”可执行文件。</p>
+<p>C语言有三种基本结构：顺序结构、选择结构、循环结构。</p>
+<h5 id="【考点2】main函数"><a href="#【考点2】main函数" class="headerlink" title="【考点2】main函数"></a>【考点2】main函数</h5><p>main函数（又称主函数），是C程序的入口。main后面跟一对小括号和一对花括号，花括号括起来的bu分称为main函数的函数体。一个C程序从main函数开始执行，到main函数体执行完结束，而不论main函数在整个程序中的位置如何。每一个程序有且仅有一个main函数，其他函数都是为main函数服务的。</p>
+<h5 id="【考点3】存储形式"><a href="#【考点3】存储形式" class="headerlink" title="【考点3】存储形式"></a>【考点3】存储形式</h5><p>计算机在电脑中保存数据是采用二进制形式，由0或1构成的二进制称为位（bit），八个位构成一个字节（Byte），1个Byte&#x3D;8个bit。</p>
+<p>二进制、八进制、十六进制转化为十进制采用乘法。</p>
+<p>十进制转化为二进制、八进制、十六进制采用除法。</p>
+<p>数据的存放位置就是它的地址。</p>
+<h5 id="【考点4】注释"><a href="#【考点4】注释" class="headerlink" title="【考点4】注释"></a>【考点4】注释</h5><p>是对程序的说明，可出现在程序中任意合适的地方，注释从“&#x2F;<em>”开始到最近一个“</em>&#x2F;”结束，其间任何内容都不会被计算机执行，注释不可以嵌套。</p>
+<h5 id="【考点5】书写格式"><a href="#【考点5】书写格式" class="headerlink" title="【考点5】书写格式"></a>【考点5】书写格式</h5><p>每条语句的后面必须有一个分号，分号是语句的一部分。</p>
+<p>一行内可写多条语句，一个语句可写在多行上。</p>
+<h5 id="【考点6】标识符"><a href="#【考点6】标识符" class="headerlink" title="【考点6】标识符"></a>【考点6】标识符</h5><p>是标识名字的有效字符序列，可以理解为C程序中的单词。</p>
+<p>标识符的命名规则是：</p>
+<p>（1）标识符只能由字母、数字和下划线组成，字母区分大小写。</p>
+<p>（2）标识符的第一个字符必须是字母或下划线，不能为数字。</p>
+<p>C语言标识符分如下3类：</p>
+<p>（1）关键字（保留字）。它们在程序中有固定的含义，不能另作他用。如int、for、switch等。</p>
+<p>（2）预定义标识符。预先定义并具有特定含义的标识符。如define、include等。</p>
+<p>（3）用户标识符。用户根据需要定义的标识符，符合命名规则且不与关键字相同。</p>
+<h5 id="【考点7】常量与变量"><a href="#【考点7】常量与变量" class="headerlink" title="【考点7】常量与变量"></a>【考点7】常量与变量</h5><p>常量是指在程序运行过程中，其值不能改变的量。分为整型常量、实型常量、字符常量、字符串常量、符号常量5种。</p>
+<p>在程序运行过程中其值可以改变的量称为变量。C语言中没有字符串变量。存放字符串使用字符数组。</p>
+<h5 id="【考点8】整型数据"><a href="#【考点8】整型数据" class="headerlink" title="【考点8】整型数据"></a>【考点8】整型数据</h5><p>整型常量有十进制、八进制、十六进制三种表示形式，没有二进制形式。</p>
+<p>八进制整型常量加前导数字“0”，十进制常量可不加前导数字，也可以加“0O”，十六进制常量加前导“0X”。</p>
+<p>整型变量可分为基本整型（int）、短整型（short）、长整型（long）、和无符号整型（unsigned）。一个基本整型占4个字节，长整型占8个字节。。</p>
+<h5 id="【考点9】实型数据"><a href="#【考点9】实型数据" class="headerlink" title="【考点9】实型数据"></a>【考点9】实型数据</h5><p>实型数据有两种表示形式：小数形式和指数形式。掌握判定指数形式合法性。</p>
+<p>实型变量分为单精度型（float）和双精度型（double），单精度型占四个字节。</p>
+<h5 id="【考点10】算术运算"><a href="#【考点10】算术运算" class="headerlink" title="【考点10】算术运算"></a>【考点10】算术运算</h5><p>算术运算符一共有+、—、*、&#x2F;、%这五个。求余运算要求运算对象只能为整型，除法运算符两边运算对象都为整型时，运算结果也为整型即舍掉小数部分。</p>
+<h5 id="【考点11】强制类型转换"><a href="#【考点11】强制类型转换" class="headerlink" title="【考点11】强制类型转换"></a>【考点11】强制类型转换</h5><p>将一个运算对象转换成指定类型，格式为“（类型名）表达式”，注意小括号位置。</p>
+<h5 id="【考点12】赋值"><a href="#【考点12】赋值" class="headerlink" title="【考点12】赋值"></a>【考点12】赋值</h5><p>赋值运算符为“&#x3D;”，不同于关系等于“&#x3D; &#x3D;”。</p>
+<p>赋值表达式格式为：变量名&#x3D;表达式，赋值运算符左边必须为变量，赋值运算是把赋值运算符右边表达式的值赋给左边变量。</p>
+<p>复合赋值运算符是将算术运算符或位运算符与赋值运算符组合在一起组成的运算符，掌握复合赋值表达式转化为赋值表达式的方法。如n+&#x3D;100可转化为n&#x3D;n+100。</p>
+<h5 id="【考点13】自加自减运算"><a href="#【考点13】自加自减运算" class="headerlink" title="【考点13】自加自减运算"></a>【考点13】自加自减运算</h5><p>自加运算符“++”与自减运算符“–”是单目运算符，运算对象必须是变量。</p>
+<p>自增自减运算分前缀运算和后缀运算，它们所对应的表达式的值是有区别的，如j&#x3D;i++;等价于j&#x3D;i;i&#x3D;i+1;（先等于后加）;而j&#x3D;++i;等价于i&#x3D;i+1;j&#x3D;i;（先加再等于）。</p>
+<h5 id="【考点14】逗号运算"><a href="#【考点14】逗号运算" class="headerlink" title="【考点14】逗号运算"></a>【考点14】逗号运算</h5><p>逗号运算符运算优先级最低，可将多个表达式构成一个新的表达式。</p>
+<h3 id="第二章-顺序结构"><a href="#第二章-顺序结构" class="headerlink" title="第二章 顺序结构"></a>第二章 顺序结构</h3><h5 id="【考点1】运算符、表达式、语句"><a href="#【考点1】运算符、表达式、语句" class="headerlink" title="【考点1】运算符、表达式、语句"></a>【考点1】运算符、表达式、语句</h5><p>表达式：运算对象加运算符。</p>
+<p>表达式语句：表达式加分号。</p>
+<p>运算对象可以是表达式、常量、变量。</p>
+<p>赋值表达式：赋值运算符加运算对象。</p>
+<p>赋值语句：赋值表达式加分号。</p>
+<h5 id="【考点2】运算符的优先级和结合顺序"><a href="#【考点2】运算符的优先级和结合顺序" class="headerlink" title="【考点2】运算符的优先级和结合顺序"></a>【考点2】运算符的优先级和结合顺序</h5><p>运算符按参加运算的对象数目可分为单目运算符、双目运算符和三目运算符。</p>
+<p>初等运算符优先级别最高，然后依次是单目运算符、算术运算符、关系运算符、逻辑运算符（除逻辑非！）、条件运算符、赋值运算符、逗号运算符。</p>
+<p>位运算符优先级介于算术运算符与逻辑运算符之间。结合顺序大多为自左向右，而自右向左的有三个：单目运算符、条件运算符和赋值运算符。</p>
+<h5 id="【考点3】printf函数"><a href="#【考点3】printf函数" class="headerlink" title="【考点3】printf函数"></a>【考点3】printf函数</h5><p>格式为：printf(输出控制，输出列表)。输出控制是用一对双引号括起来的，包含格式说明和原样信息。输出列表包含若干输出项。</p>
+<h5 id="【考点4】printf函数中格式说明"><a href="#【考点4】printf函数中格式说明" class="headerlink" title="【考点4】printf函数中格式说明"></a>【考点4】printf函数中格式说明</h5><p>%d对应整型</p>
+<p>%f对应单精度实型</p>
+<p>%lf对应双精度实型</p>
+<p>%c对应字符型</p>
+<p>%o对应八进制无符号整型</p>
+<p>%x对应十六进制无符号整型</p>
+<p>%u对应无符号整型</p>
+<p>%e对应指数型</p>
+<p>%s对应字符串型</p>
+<p>可在%和格式字符之间加一个数来控制数据所占的宽度和小数位数。</p>
+<h5 id="【考点5】scanf函数"><a href="#【考点5】scanf函数" class="headerlink" title="【考点5】scanf函数"></a>【考点5】scanf函数</h5><p>输入项要求带取地址符&amp;。</p>
+<p>当用键盘输入多个数据时，数据之间用分隔符。分隔符包括空格符、制表符和回车符（不包括逗号）。</p>
+<h5 id="【考点6】如何交换两个变量"><a href="#【考点6】如何交换两个变量" class="headerlink" title="【考点6】如何交换两个变量"></a>【考点6】如何交换两个变量</h5><p>要使用中间变量，语句为：t&#x3D;x; x&#x3D;y; x&#x3D;t;。</p>
+<h3 id="第三章-选择结构"><a href="#第三章-选择结构" class="headerlink" title="第三章 选择结构"></a>第三章 选择结构</h3><h5 id="【考点1】关系运算"><a href="#【考点1】关系运算" class="headerlink" title="【考点1】关系运算"></a>【考点1】关系运算</h5><p>C语言用非0表示逻辑真，用0表示逻辑假。</p>
+<p>关系运算符有6个，分别是“&gt;，&gt;&#x3D;，&lt;，&lt;&#x3D;，&#x3D;&#x3D;，!&#x3D;”，前四种优先级高于后两种。关系表达式真时为1，假时为0。</p>
+<p>注意：a&lt;b&lt;c是不可以的，可用(a&lt;b)&amp;&amp;(b&lt;c)来表示。</p>
+<h5 id="【考点2】逻辑运算"><a href="#【考点2】逻辑运算" class="headerlink" title="【考点2】逻辑运算"></a>【考点2】逻辑运算</h5><p>逻辑运算符共有3个：逻辑与（&amp;&amp;），逻辑或（||），逻辑非（!）。</p>
+<p>注意短路现象，例a++||b++，如果表达式a++的值非零，则表达式b++不再执行。</p>
+<h5 id="【考点3】if语句"><a href="#【考点3】if语句" class="headerlink" title="【考点3】if语句"></a>【考点3】if语句</h5><p>可以单独出现，也可以与else匹配出现。</p>
+<p>if语句可以嵌套，这时else总是与离它最近的且没有与else匹配的if匹配。</p>
+<h5 id="【考点4】条件运算"><a href="#【考点4】条件运算" class="headerlink" title="【考点4】条件运算"></a>【考点4】条件运算</h5><p>是唯一的三目运算符，格式为：表达式1?表达式2:表达式3。</p>
+<p>表达式1值为非0时，整个表达式值为表达式2的值，表达式1值为0时，整个表达式值为表达式3的值。</p>
+<h5 id="【考点5】switch语句"><a href="#【考点5】switch语句" class="headerlink" title="【考点5】switch语句"></a>【考点5】switch语句</h5><p>要注意每条case后有没有break语句的区别。</p>
+<p>还要注意switch后小括号里面的表达式不能为实型，case后表达式不能有变量。</p>
+<h3 id="第四章-循环结构"><a href="#第四章-循环结构" class="headerlink" title="第四章  循环结构"></a>第四章  循环结构</h3><h5 id="【考点1】三种循环结构"><a href="#【考点1】三种循环结构" class="headerlink" title="【考点1】三种循环结构"></a>【考点1】三种循环结构</h5><p>三种循环结构分别为：while，do-while，for。</p>
+<p>注意for循环中的小括号中必须是两个分号；</p>
+<p>循环一定要有结束条件，否则成了死循环；</p>
+<p>do-while()循环最后的while()；后一定要有分号。</p>
+<h5 id="【考点2】break与continue"><a href="#【考点2】break与continue" class="headerlink" title="【考点2】break与continue"></a>【考点2】break与continue</h5><p>break是终止所在整个循环，而continue是提前结束本轮循环。</p>
+<p>break语句可出现在循环结构与switch语句中，continue只出现在循环结构中。</p>
+<h5 id="【考点3】循环的嵌套"><a href="#【考点3】循环的嵌套" class="headerlink" title="【考点3】循环的嵌套"></a>【考点3】循环的嵌套</h5><p>就是循环里面还有循环，计算要一层一层分析，一般只考查两层嵌套，循环嵌套通常是处理二维数组。</p>
+<h5 id="【考点4】循环结构的复习"><a href="#【考点4】循环结构的复习" class="headerlink" title="【考点4】循环结构的复习"></a>【考点4】循环结构的复习</h5><p>循环结构是重点，应用性很强。要求学员重点理解并多加练习，领会掌握。</p>
+<h3 id="第五章-字符型数据-位运算"><a href="#第五章-字符型数据-位运算" class="headerlink" title="第五章 字符型数据 位运算"></a>第五章 字符型数据 位运算</h3><h5 id="【考点1】字符常量"><a href="#【考点1】字符常量" class="headerlink" title="【考点1】字符常量"></a>【考点1】字符常量</h5><p>一个字符常量用一对单引号括起来，字符常量只能包括一个字符，’ab’是非法的。空格常用’□’来表示（此处用□来代表一个空格，不能写成’’两个连续的单引号）。</p>
+<p>字符常量可用对应的ASCII码表示，需记住：’0’的ASCII码为48，’A’的ASCII码为65，’a’的ASCII码为97。</p>
+<h5 id="【考点2】转义字符"><a href="#【考点2】转义字符" class="headerlink" title="【考点2】转义字符"></a>【考点2】转义字符</h5><p>一对单引号中以一个反斜线后跟一个特定字符或八进制、十六进制数来构成转义字符。比如’\n’表示换行，’\101’或’\x41’表示ASCII码为65的字符’A’。</p>
+<h5 id="【考点3】字符型数据可以和整型数据相互转换"><a href="#【考点3】字符型数据可以和整型数据相互转换" class="headerlink" title="【考点3】字符型数据可以和整型数据相互转换"></a>【考点3】字符型数据可以和整型数据相互转换</h5><p>如：’0’-0&#x3D;48  ‘A’+32&#x3D;’a’  char a&#x3D;65;printf(“%d%c”,a,a); 结果为65A</p>
+<h5 id="【考点4】位运算符"><a href="#【考点4】位运算符" class="headerlink" title="【考点4】位运算符"></a>【考点4】位运算符</h5><p>C语言提供6种位运算符：</p>
+<p>按位求反~<br>按位左移&lt;&lt;<br>按位右移&gt;&gt;<br>按位与&amp;<br>按位异或^<br>按位或|<br>一般情况下需要先转化进制。异或运算的规则：0异或1得到1，0异或0得到0，1异或1得到0。可记为“相同为0，不同为1”。</p>
+<h5 id="【考点5】putchar与getchar函数"><a href="#【考点5】putchar与getchar函数" class="headerlink" title="【考点5】putchar与getchar函数"></a>【考点5】putchar与getchar函数</h5><p>可用于输出或输入单个字符，这两个函数是stdio.h文件中的库函数，它们是printf与scanf函数的简化。</p>
+<h3 id="第六章-函数"><a href="#第六章-函数" class="headerlink" title="第六章 函数"></a>第六章 函数</h3><h5 id="【考点1】函数的定义"><a href="#【考点1】函数的定义" class="headerlink" title="【考点1】函数的定义"></a>【考点1】函数的定义</h5><p>函数：具有一定功能的一个程序块。</p>
+<p>函数的首部为：函数类型 函数名（类型1 形参1，类型2 形参2，……）。</p>
+<p>在函数定义中不可以再定义函数，即不能嵌套定义函数。函数类型默认为int型。</p>
+<h5 id="【考点2】库函数"><a href="#【考点2】库函数" class="headerlink" title="【考点2】库函数"></a>【考点2】库函数</h5><p>调用C语言标准库函数时要包含include命令，include命令行以#开头，后面是””或&lt;&gt;括起来的后缀为”.h”的头文件。以#开头的一行称为编译预处理命令行，编译预处理不是C语言语句，不加分号，不占运行时间。</p>
+<h5 id="【考点3】函数的返回值"><a href="#【考点3】函数的返回值" class="headerlink" title="【考点3】函数的返回值"></a>【考点3】函数的返回值</h5><p>函数通过return语句返回一个值，返回的值类型与函数类型一样。return语句只执行一次，执行完或函数体结束后退出函数。</p>
+<h5 id="【考点4】函数的声明"><a href="#【考点4】函数的声明" class="headerlink" title="【考点4】函数的声明"></a>【考点4】函数的声明</h5><p>函数要“先定义后调用”，或“先声明再调用后定义”。</p>
+<p>函数的声明一定要有函数名、函数返回值类型、函数参数类型，但不一定要有形参的名称。</p>
+<h5 id="【考点5】函数的调用"><a href="#【考点5】函数的调用" class="headerlink" title="【考点5】函数的调用"></a>【考点5】函数的调用</h5><p>程序从上往下执行，当碰到函数名后，把值传给调用函数，当程序得到了返回值或调用函数结束，再顺序往下执行。</p>
+<h5 id="【考点6】函数的参数及值传递"><a href="#【考点6】函数的参数及值传递" class="headerlink" title="【考点6】函数的参数及值传递"></a>【考点6】函数的参数及值传递</h5><p>形式参数简称形参，是定义函数时函数名后面括号中的参数。</p>
+<p>实在参数简称实参，是调用函数时函数名后面括号中的参数。</p>
+<p>实参和形参分别占据不同的存储单元。实参向形参单向传递数值。</p>
+<p>“传值”与“传址”的区别：</p>
+<p>传数值：形参的变化不会改变实参的变化。</p>
+<p>传地址：形参的变化就有可能改变实参所对应的量。</p>
+<h5 id="【考点7】函数的递归调用"><a href="#【考点7】函数的递归调用" class="headerlink" title="【考点7】函数的递归调用"></a>【考点7】函数的递归调用</h5><p>函数直接或间接地调用自己称为函数的递归调用。</p>
+<p>递归调用必须有一个明确的结束递归的条件。</p>
+<p>在做递归题时可把递归的步骤一步步写下来，不要弄颠倒了。</p>
+<h5 id="【考点8】要求掌握的库函数"><a href="#【考点8】要求掌握的库函数" class="headerlink" title="【考点8】要求掌握的库函数"></a>【考点8】要求掌握的库函数</h5><p>sqrt()算术平方根函数</p>
+<p>fabs()绝对值函数</p>
+<p>pow()幂函数</p>
+<p>sin()正弦函数</p>
+<h3 id="第七章-指针"><a href="#第七章-指针" class="headerlink" title="第七章 指针"></a>第七章 指针</h3><h5 id="【考点1】指针变量"><a href="#【考点1】指针变量" class="headerlink" title="【考点1】指针变量"></a>【考点1】指针变量</h5><p>指针变量是用来存储地址的，而一般变量是存储数值的。</p>
+<p>指针变量可指向任意一种数据类型。</p>
+<h5 id="【考点2】指针变量的定义"><a href="#【考点2】指针变量的定义" class="headerlink" title="【考点2】指针变量的定义"></a>【考点2】指针变量的定义</h5><p>格式为：类型名 *指针变量名。</p>
+<p>二维指针int **p;可以理解为基类型为(int *)类型。</p>
+<h5 id="【考点3】指针变量的初始化"><a href="#【考点3】指针变量的初始化" class="headerlink" title="【考点3】指针变量的初始化"></a>【考点3】指针变量的初始化</h5><p>指针变量在使用前必须要初始化，把一个具体的地址赋给它，否则引用时会有副作用，如果不指向任何数据就赋“空值”NULL。</p>
+<h5 id="【考点4】指针变量的引用"><a href="#【考点4】指针变量的引用" class="headerlink" title="【考点4】指针变量的引用"></a>【考点4】指针变量的引用</h5><p>&amp;是取地址符</p>
+<p>*是间接访问运算符</p>
+<p>它们是互逆的两个运算符。在指针变量名前加间接访问运算符（*指针变量名）就等价它所指向的量。</p>
+<h5 id="【考点5】指针的运算"><a href="#【考点5】指针的运算" class="headerlink" title="【考点5】指针的运算"></a>【考点5】指针的运算</h5><p>*p++和(<em>p)++之间的差别：</em>p++是地址变化，(*p)++是指针变量所指的数据变化。</p>
+<p>一个指针变量加一个整数不是简单的数学相加，而是连续移动若干地址。</p>
+<p>当两个指针指向同一数组时，它们可以比较大小进行减法运算。</p>
+<h3 id="第八章-数组"><a href="#第八章-数组" class="headerlink" title="第八章 数组"></a>第八章 数组</h3><h5 id="【考点1】数组的定义"><a href="#【考点1】数组的定义" class="headerlink" title="【考点1】数组的定义"></a>【考点1】数组的定义</h5><p>数组：一组具有相同类型的数据的集合，这些数据称为数组元素。</p>
+<p>格式为：类型名 数组名[常量表达式]。</p>
+<p>数组所占字节数为元素个数与基类型所占字节数的乘积。（基类型是类型的一种。 通过继续机制，可以利用已有的数据类型来定义新的数据类型。所定义的新的数据类型不仅拥有新定义的成员，而且还同时拥有旧的成员。我们称已存在的用来派生新类的类为基类，又称为父类。由已存在的类派生出的新类称为派生类，又称为子类。）</p>
+<h5 id="【考点2】数组的初始化"><a href="#【考点2】数组的初始化" class="headerlink" title="【考点2】数组的初始化"></a>【考点2】数组的初始化</h5><p>第一维长度可以不写，其它维必须写。</p>
+<p>int a[]&#x3D;{1,2};合法，int a[][3]&#x3D;{2,3,4};合法，int a[2][]&#x3D;{2,3,4};非法。</p>
+<p>数组初始化元素值默认为0，没有初始化元素值为随机。</p>
+<p>如在int a[5]&#x3D;{0,1,2};中，元素a[4]值为0；而在int a[5];中，元素a[4]值为一个不确定的随机数。</p>
+<h5 id="【考点3】元素的引用"><a href="#【考点3】元素的引用" class="headerlink" title="【考点3】元素的引用"></a>【考点3】元素的引用</h5><p>数组元素的下标从0开始，到数组长度减1结束。</p>
+<p>所以int a[5];中数组最后一个元素是a[4]。</p>
+<p>要把数组元素看作一个整体，可以把a[4]当作一个整型变量。</p>
+<h5 id="【考点4】二维数组"><a href="#【考点4】二维数组" class="headerlink" title="【考点4】二维数组"></a>【考点4】二维数组</h5><p>数组<code>a[2][3]=&#123;1,2,3,4,5,6&#125;</code>;中含6个元素，有2行3列。</p>
+<p><code>a[0][0]: 1  a[0][1]: 2</code></p>
+<p><code>a[1][0]: 3  a[1][1]: 4</code></p>
+<p><code>a[2][0]: 5  a[2][1]: 6</code></p>
+<p>第一行为a[0]行，第2行为a[1]行，a[0]、a[1]叫行首地址，是地址常量。*(a[0]+1)是第一行第一个元素往后跳一列，即元素<code>a[0][1]</code>值为2，*(a[0]+3)是第一行第一个元素往后跳三个，即元素<code>a[1][0]</code>值为4。</p>
+<h5 id="【考点5】行指针"><a href="#【考点5】行指针" class="headerlink" title="【考点5】行指针"></a>【考点5】行指针</h5><p>是一个指针变量，占四个字节，行指针指向一行连续数据，形式为：int (*p)[2];，p只能存放含有两个整型元素的一维数组的首地址。</p>
+<p>注意：(*p)两边的小括号不能省略，否则就成了指针数组，是若干指针元素的集合。</p>
+<h5 id="【考点6】数组名"><a href="#【考点6】数组名" class="headerlink" title="【考点6】数组名"></a>【考点6】数组名</h5><p>数组名是数组的首地址。</p>
+<p>数组名不能单独引用，不能通过一个数组名代表全部元素。</p>
+<p>数组名是地址常量，不能对数组名赋值，所以a++是错误的。</p>
+<p>但数组名可以作为地址与一个整数相加得到一个新地址。</p>
+<h5 id="【考点7】元素形式的转换"><a href="#【考点7】元素形式的转换" class="headerlink" title="【考点7】元素形式的转换"></a>【考点7】元素形式的转换</h5><p>助记： a[2]变成*(a+2)，<code>a[2][3]</code>变成*(a+2)[3]再可变成*(*(a+2)+3)。</p>
+<h3 id="第九章-字符串"><a href="#第九章-字符串" class="headerlink" title="第九章 字符串"></a>第九章 字符串</h3><h5 id="【考点1】字符串常量及表示"><a href="#【考点1】字符串常量及表示" class="headerlink" title="【考点1】字符串常量及表示"></a>【考点1】字符串常量及表示</h5><p>字符串常量：双引号括起来的一串字符，如”ABC”。</p>
+<p>存储字符串时，系统会自动在其尾部加上一个空值’\0’，空值也要占用一个字节，也就是字符串”ABC”需要占四个字节。</p>
+<h5 id="【考点2】字符数组"><a href="#【考点2】字符数组" class="headerlink" title="【考点2】字符数组"></a>【考点2】字符数组</h5><p>C语言没有字符串变量，只能采用字符数组来存储字符串。</p>
+<p>数组的大小应该比它将要实际存放的最长字符串多一个元素，从而存放’\0’。</p>
+<h5 id="【考点3】字符串赋值"><a href="#【考点3】字符串赋值" class="headerlink" title="【考点3】字符串赋值"></a>【考点3】字符串赋值</h5><p>可以用下面的形式进行赋值：char str[]&#x3D;”Hello! “;或char *p;p&#x3D;”Hello! “;</p>
+<p>但不能用下面的形式：char str[10];str&#x3D;”Hello”;</p>
+<p>因为str是一个地址常量，不能进行赋值操作。</p>
+<h5 id="【考点4】字符串的输入与输出"><a href="#【考点4】字符串的输入与输出" class="headerlink" title="【考点4】字符串的输入与输出"></a>【考点4】字符串的输入与输出</h5><p>可以用scanf和printf函数，如scanf(“%s”,str);，也可用专门处理字符串的两个函数gets和puts函数，还可以对字符数组逐个元素进行赋值，但一定要在最后赋一个’\0’。</p>
+<p>使用gets函数可以接收空格，使用puts函数在最后输出一个换行。</p>
+<h5 id="【考点5】字符串函数"><a href="#【考点5】字符串函数" class="headerlink" title="【考点5】字符串函数"></a>【考点5】字符串函数</h5><p>要掌握的四个字符串函数：</p>
+<p>字符串拷贝函数strcpy（）</p>
+<p>求字符串长度函数strlen（）</p>
+<p>字符串链接函数strcat（）</p>
+<p>字符串比较函数strcmp（）</p>
+<p>使用这些函数需在预处理部分包含头文件”string.h”。</p>
+<p>字符串长度要小于字符数组的长度，例：char str[10]&#x3D; “Hello”;sizeof(str)的值为10（数组长度），strlen(str)的值为5（字符串长度）。</p>
+<p>这些函数是考试常用到的函数，大家一定要熟练应用这几个函数。</p>
+<h3 id="第十章-结构体与共用体"><a href="#第十章-结构体与共用体" class="headerlink" title="第十章 结构体与共用体"></a>第十章 结构体与共用体</h3><h5 id="【考点1】结构体类型的说明"><a href="#【考点1】结构体类型的说明" class="headerlink" title="【考点1】结构体类型的说明"></a>【考点1】结构体类型的说明</h5><p>结构体：若干个类型数据的集合。</p>
+<p>结构体类型说明格式如下：struct 类型名 {类型1 成员名1;类型2 成员名2;……};</p>
+<p>以上整个部分是一个数据类型，与整型的int是同样地位。</p>
+<p>可用typedef把结构体类型替换成一个只有几个字母的简短标识符。</p>
+<h5 id="【考点2】结构体变量的定义"><a href="#【考点2】结构体变量的定义" class="headerlink" title="【考点2】结构体变量的定义"></a>【考点2】结构体变量的定义</h5><p>结构体变量：用说明的结构体类型所定义的一个变量，与结构体类型不是一回事。</p>
+<p>一个结构体变量所占字节数为其所有成员所占字节数之和。如struct stu{char name[10];int age;} a,b;则表明定义了两个结构体变量a,b,每个变量占14个字节。a,b与int i,j;中的变量i,j是同样地位。</p>
+<h5 id="【考点3】结构体成员的引用"><a href="#【考点3】结构体成员的引用" class="headerlink" title="【考点3】结构体成员的引用"></a>【考点3】结构体成员的引用</h5><p>引用成员可用以下3种方式：</p>
+<p>（1）结构体变量名.成员名；</p>
+<p>（2）指针变量名-&gt;成员名：</p>
+<p>（3）（*指针变量名）.成员名。</p>
+<p>点（.）称为成员运算符，箭头（-&gt;）称为结构指向运算符。</p>
+<h5 id="【考点4】链表"><a href="#【考点4】链表" class="headerlink" title="【考点4】链表"></a>【考点4】链表</h5><p>链表是由一个个结点构成的，一个结点就是一个结构体变量。</p>
+<p>每个结点可以分为数据域与指针域两个部分。</p>
+<p>数据域：存放要存储的数据</p>
+<p>指针域：指向下一个结点</p>
+<p>链表是考试中的难点，在C语言和公共基础部分都会考到，要领悟掌握。</p>
+<h5 id="【考点5】共用体"><a href="#【考点5】共用体" class="headerlink" title="【考点5】共用体"></a>【考点5】共用体</h5><p>共用体的使用格式与结构体相似，共用体定义的关键字为union，共用体所占字节数是所有成员中字节数最大的那个。</p>
+<h3 id="第十一章-文件"><a href="#第十一章-文件" class="headerlink" title="第十一章 文件"></a>第十一章 文件</h3><h5 id="【考点1】文件类型指针"><a href="#【考点1】文件类型指针" class="headerlink" title="【考点1】文件类型指针"></a>【考点1】文件类型指针</h5><p>文件指针：一个指向结构体类型的指针。</p>
+<p>定义格式为：FILE *指针变量名。</p>
+<p>在使用文件时，都需要先定义文件指针。</p>
+<h5 id="【考点2】文本文件与二进制文件"><a href="#【考点2】文本文件与二进制文件" class="headerlink" title="【考点2】文本文件与二进制文件"></a>【考点2】文本文件与二进制文件</h5><p>文本形式：存放的是字符的ASCII码。</p>
+<p>进制形式：存放的是数据的二进制。</p>
+<p>例如“100”如果是文本形式就是存储’1’、 ’0’、 ’0’三个字符的ASCII码（00110001 00110000 00110000），如果是二进制形式就把100转化成二进制（01100100）。</p>
+<h5 id="【考点3】打开文件"><a href="#【考点3】打开文件" class="headerlink" title="【考点3】打开文件"></a>【考点3】打开文件</h5><p>文件的打开形式如下：FILE *fp;  fp&#x3D;fopen(“c:\lab.c”,”rb”);。</p>
+<p>fopen函数的前面一部分为文件名，后面一部分为文件的使用方式。其中r：读，w：写，a：添加，b：二进制位的。</p>
+<h5 id="【考点4】文件函数"><a href="#【考点4】文件函数" class="headerlink" title="【考点4】文件函数"></a>【考点4】文件函数</h5><p>判断文件结束：feof函数</p>
+<p>移动文件指针位置：fseek函数</p>
+<p>获得文件位置：ftell函数</p>
+<p>文件位置移到开头：rewind函数</p>
+<p>文件字符输入输出：fgetc函数和fputc函数</p>
+<p>文件输入输出：fscanf函数和fprintf函数</p>
+<p>文件字符串输入输出：fgets函数和fputs函数</p>
+<p>读写二进制文件：fread函数和fwrite函数</p>
+<p>以上函数要求知道格式会用，清楚是用于二进制文件还是文本文件，要把教材文件这章仔细复习下，不要在考试的时候把这些文件函数搞混了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/09/09/C/" data-id="cm0uvjx960004y0fw3arxeeo6" data-title="C" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-MySQL总结-0" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/" class="article-date">
+  <time class="dt-published" datetime="2024-09-09T10:25:21.000Z" itemprop="datePublished">2024-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/">MySQL总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>常用的SQL语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">-- 创建部门表</span><br><span class="line">DROP TABLE IF EXISTS dept; </span><br><span class="line">CREATE TABLE dept(</span><br><span class="line">    -- 部门编号</span><br><span class="line">    deptno int PRIMARY KEY, </span><br><span class="line">    -- 部门名称</span><br><span class="line">    dname VARCHAR(14), </span><br><span class="line">    -- 部门所在地</span><br><span class="line">    loc VARCHAR(13)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">-- 向部门表插入数据</span><br><span class="line">INSERT INTO dept VALUES (10,&#x27;ACCOUNTING&#x27;,&#x27;NEW YORK&#x27;);</span><br><span class="line">INSERT INTO dept VALUES (20,&#x27;RESEARCH&#x27;,&#x27;DALLAS&#x27;);</span><br><span class="line">INSERT INTO dept VALUES (30,&#x27;SALES&#x27;,&#x27;CHICAGO&#x27;);</span><br><span class="line">INSERT INTO dept VALUES (40,&#x27;OPERATIONS&#x27;,&#x27;BOSTON&#x27;);</span><br><span class="line"></span><br><span class="line">-- 创建员工表</span><br><span class="line">DROP TABLE IF EXISTS emp;</span><br><span class="line">CREATE TABLE emp(</span><br><span class="line">  -- 员工编号</span><br><span class="line">  empno int PRIMARY KEY, </span><br><span class="line">  -- 员工姓名</span><br><span class="line">  ename VARCHAR(10), </span><br><span class="line">  -- 工作岗位</span><br><span class="line">  job VARCHAR(9), </span><br><span class="line">  -- 直属领导</span><br><span class="line">  mgr int, </span><br><span class="line">  -- 入职时间</span><br><span class="line">  hiredate DATE, </span><br><span class="line">  -- 工资</span><br><span class="line">  sal double, </span><br><span class="line">  -- 奖金</span><br><span class="line">  comm double, </span><br><span class="line">  -- 所属部门</span><br><span class="line">  deptno int</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 为员工表表添加外键约束</span><br><span class="line">ALTER TABLE emp ADD CONSTRAINT FOREIGN KEY EMP(deptno) REFERENCES dept (deptno);</span><br><span class="line"></span><br><span class="line">-- 向员工表插入数据</span><br><span class="line">INSERT INTO emp VALUES(7369,&#x27;SMITH&#x27;,&#x27;CLERK&#x27;,7902,&quot;1980-12-17&quot;,800,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7499,&#x27;ALLEN&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;1981-02-20&#x27;,1600,300,30);</span><br><span class="line">INSERT INTO emp VALUES(7521,&#x27;WARD&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;1981-02-22&#x27;,1250,500,30);</span><br><span class="line">INSERT INTO emp VALUES(7566,&#x27;JONES&#x27;,&#x27;MANAGER&#x27;,7839,&#x27;1981-04-02&#x27;,2975,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7654,&#x27;MARTIN&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;1981-09-28&#x27;,1250,1400,30);</span><br><span class="line">INSERT INTO emp VALUES(7698,&#x27;BLAKE&#x27;,&#x27;MANAGER&#x27;,7839,&#x27;1981-05-01&#x27;,2850,NULL,30);</span><br><span class="line">INSERT INTO emp VALUES(7782,&#x27;CLARK&#x27;,&#x27;MANAGER&#x27;,7839,&#x27;1981-06-09&#x27;,2450,NULL,10);</span><br><span class="line">INSERT INTO emp VALUES(7788,&#x27;SCOTT&#x27;,&#x27;ANALYST&#x27;,7566,&#x27;1987-07-03&#x27;,3000,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7839,&#x27;KING&#x27;,&#x27;PRESIDENT&#x27;,NULL,&#x27;1981-11-17&#x27;,5000,NULL,10);</span><br><span class="line">INSERT INTO emp VALUES(7844,&#x27;TURNER&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;1981-09-08&#x27;,1500,0,30);</span><br><span class="line">INSERT INTO emp VALUES(7876,&#x27;ADAMS&#x27;,&#x27;CLERK&#x27;,7788,&#x27;1987-07-13&#x27;,1100,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7900,&#x27;JAMES&#x27;,&#x27;CLERK&#x27;,7698,&#x27;1981-12-03&#x27;,950,NULL,30);</span><br><span class="line">INSERT INTO emp VALUES(7902,&#x27;FORD&#x27;,&#x27;ANALYST&#x27;,7566,&#x27;1981-12-03&#x27;,3000,NULL,20);</span><br><span class="line">INSERT INTO emp VALUES(7934,&#x27;MILLER&#x27;,&#x27;CLERK&#x27;,7782,&#x27;1981-01-23&#x27;,1300,NULL,10);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 创建工资等级表</span><br><span class="line">DROP TABLE IF EXISTS salgrade;</span><br><span class="line">CREATE TABLE salgrade(</span><br><span class="line">  -- 等级</span><br><span class="line">  grade int, </span><br><span class="line">  -- 最低工资</span><br><span class="line">  losal double, </span><br><span class="line">  -- 最高工资</span><br><span class="line">  hisal double</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 向工资等级表插入数据</span><br><span class="line">INSERT INTO salgrade VALUES (1,700,1200);</span><br><span class="line">INSERT INTO salgrade VALUES (2,1201,1400);</span><br><span class="line">INSERT INTO salgrade VALUES (3,1401,2000);</span><br><span class="line">INSERT INTO salgrade VALUES (4,2001,3000);</span><br><span class="line">INSERT INTO salgrade VALUES (5,3001,9999);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/" data-id="cm0uvjx970005y0fw7ye12jbw" data-title="MySQL总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-9-2-2024-9-8周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/09/huang2024-9-2-2024-9-8%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-09-09T10:24:08.000Z" itemprop="datePublished">2024-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/09/09/huang2024-9-2-2024-9-8%E5%91%A8%E6%8A%A5/">huang2024-9-2-2024-9-8周报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习目标"><a href="#本周学习目标" class="headerlink" title="本周学习目标"></a>本周学习目标</h2><p>1.MySQL学习</p>
+<p>2.java笔记整理</p>
+<p>3.日周笔记</p>
+<h2 id="日历安排"><a href="#日历安排" class="headerlink" title="日历安排"></a>日历安排</h2><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>内容</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>MySQL学习</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>MySQL</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>C语言二级</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期日</td>
+<td>\</td>
+<td>\</td>
+</tr>
+</tbody></table>
+<h2 id="本周学习内容"><a href="#本周学习内容" class="headerlink" title="本周学习内容"></a>本周学习内容</h2><p>1.MySQL笔记</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h2 id="下周学习安排"><a href="#下周学习安排" class="headerlink" title="下周学习安排"></a>下周学习安排</h2><p>1.mysql学习</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/09/09/huang2024-9-2-2024-9-8%E5%91%A8%E6%8A%A5/" data-id="cm0uvjx990009y0fw99vebgfg" data-title="huang2024-9-2-2024-9-8周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-termtwo01" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/09/termtwo01/" class="article-date">
+  <time class="dt-published" datetime="2024-09-09T03:59:46.000Z" itemprop="datePublished">2024-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/09/09/termtwo01/">termtwo01</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h3><p>1.JavaIO流<br>2.数据库</p>
+<h3 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h3><table>
+<thead>
+<tr>
+<th>日历</th>
+<th>学习内容</th>
+<th>时长(h)</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>无</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>IO流</td>
+<td>4h</td>
+<td></td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>IO流</td>
+<td>2h</td>
+<td></td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>数据库</td>
+<td>2h</td>
+<td></td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>常见数据结构（栈，队列，数组，链表）</td>
+<td>1h</td>
+<td></td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>数据结构、数据库</td>
+<td>3h</td>
+<td></td>
+</tr>
+<tr>
+<td>星期天</td>
+<td>无</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/09/09/termtwo01/" data-id="cm0uvjx9a000dy0fw1l0fclgu" data-title="termtwo01" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Code%E7%BB%84%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">Code组学习周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Maven" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/24/Maven/" class="article-date">
+  <time class="dt-published" datetime="2024-07-24T03:25:26.374Z" itemprop="datePublished">2024-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>一、Maven</p>
+<p>1.什么是Maven？为什么要用到Maven？</p>
+<p>Maven是一个项目架构管理工具，用它导入jar包的功能。</p>
+<p>2.Maven的核心思想——约定大于配置</p>
+<ul>
+<li>约定不要去违反</li>
+<li>根据约定的目录结构去写Javaweb代码</li>
+</ul>
+<p>二、配置环境变量</p>
+<p>在系统变量中进行3个配置</p>
+<p>三、Maven仓库</p>
+<p>1.定义</p>
+<p>在Maven世界中，任何一个依赖、插件或者项目建构的输出，都可以称为构件。</p>
+<p>Maven可以在某个位置统一存储所有Maven项目共享的构件，这个统一的位置就是仓库。实际的Maven项目将不再各自存储其依赖文件，它们只是需要声明这些依赖的坐标，在需要的时候，Maven会自动根据坐标找到仓库中的构件，并使用它们。</p>
+<p>2.布局</p>
+<p>任何一个构件都有其唯一的坐标，根据这个坐标可以定义其在仓库中的唯一存储路径，这便是Maven的仓库布局方式。</p>
+<p>该路径与坐标的大致对应关系为：<code>groupId/artifactId/version/artifactId-version.packaging</code></p>
+<p>3.分类</p>
+<p>1.依赖搜索机制</p>
+<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240819145958304.png" alt="image-20240819145958304" style="zoom:50%;" />
+
+<p>对于Maven来说，仓库只分为两类：本地仓库和远程仓库</p>
+<p>依赖搜索机制：</p>
+<blockquote>
+<p>当 Maven根据坐标寻找构件的时候，</p>
+<p>它首先会查看本地仓库，如果本地仓库存在此构件，则直接使用；</p>
+<p>如果本地仓库不存在此构件，或者需要查看是否有更新的构件版本， Maven就会去远程仓库查找，发现需要的构件之后，下载到本地仓库再使用。</p>
+<p>如果本地仓库和远程仓库都没有需要的构件， Maven就会报错。</p>
+</blockquote>
+<p>2 本地仓库</p>
+<p>一个构件只有在本地仓库中之后，才能由其他 Maven 项目使用。</p>
+<p>构件进入到本地仓库的方法：</p>
+<ul>
+<li><p>远程下载：最常见的是依赖Maven从远程仓库下载到本地仓库中。</p>
+</li>
+<li><p>本地安装：还有一种常见的情况是，将本地项目的构件安装到 Maven仓库中。</p>
+</li>
+</ul>
+<p>3 远程仓库</p>
+<p>对于Maven来说，每个用户只有一个本地仓库，但可以配置访问很多远程仓库。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/07/24/Maven/" data-id="cm0uvjx8s0001y0fwbvkm0w1g" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-huang2024-7-1-2024-7-7周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/07/huang2024-7-1-2024-7-7%E5%91%A8%E6%8A%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-07-07T08:47:39.207Z" itemprop="datePublished">2024-07-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/07/huang2024-7-1-2024-7-7%E5%91%A8%E6%8A%A5/">huang2024-7-1-2024-7-7周报</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>学习内容</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>\</td>
+<td>物理概念复习</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>html设计</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>c题目</td>
+<td>\</td>
+</tr>
+<tr>
+<td>星期五</td>
+<td>\</td>
+<td>高数复习</td>
+</tr>
+<tr>
+<td>星期六</td>
+<td>\</td>
+<td>英语六级</td>
+</tr>
+<tr>
+<td>星期日</td>
+<td>\</td>
+<td>离散第一章</td>
+</tr>
+</tbody></table>
+<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h2 id="下周学习"><a href="#下周学习" class="headerlink" title="下周学习"></a>下周学习</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/07/07/huang2024-7-1-2024-7-7%E5%91%A8%E6%8A%A5/" data-id="cm0uvjx9b000fy0fwccnk8ngl" data-title="huang2024-7-1-2024-7-7周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-http" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/07/http/" class="article-date">
+  <time class="dt-published" datetime="2024-07-07T08:47:17.438Z" itemprop="datePublished">2024-07-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/07/http/">http</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Http"><a href="#Http" class="headerlink" title="Http"></a>Http</h2><h4 id="1-什么是http"><a href="#1-什么是http" class="headerlink" title="1. 什么是http"></a>1. 什么是http</h4><p>HTTP（超文本传输协议）是一个简单的请求-响应协议，它通常运行在TCP之上</p>
+<ul>
+<li>文本：html、字符串…</li>
+<li>超文本：图片、音乐、视频、定位、地图…</li>
+<li>端口：80、https：443</li>
+</ul>
+<h4 id="2-两个时代"><a href="#2-两个时代" class="headerlink" title="2. 两个时代"></a>2. 两个时代</h4><ul>
+<li><p>http1.0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">客户端/1.0：客户端可以与web服务器连接后，只能获得一个web资源，断开连接</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>http2.0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">客户端/1.0：客户端可以与web服务器连接后，可以获得多个web资源</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-http请求"><a href="#3-http请求" class="headerlink" title="3.http请求"></a>3.http请求</h4><p>1.客户端—发请求—-服务器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">百度</span><br><span class="line">General</span><br><span class="line"></span><br><span class="line">Request URL: https://www.baidu.com/   请求地址</span><br><span class="line">Request Method: GET					请求方法</span><br><span class="line">Status Code: 200 OK					状态码</span><br><span class="line">Remote Address: 36.152.44.95:443	远程地址</span><br><span class="line">Referrer Policy: strict-origin-when-cross-origin	协议</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Request Headers</span><br><span class="line"></span><br><span class="line">Accept:text/html</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9,en;q=0.8</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.请求行</p>
+<p>请求方式：get(post)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">get：请求能够携带的参数比较少，大小有限制，会在浏览器URL地址栏显示，不安全，但高效</span><br><span class="line">post：请求能够携带数据没有限制，大小没有限制，不会再浏览器显示，安全，但不高效</span><br></pre></td></tr></table></figure>
+
+<p>3.消息头</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Accept:text/html			告诉浏览器，它所支持的数据类型</span><br><span class="line">Accept-Encoding: gzip, deflate, br	支持哪种编码格式</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9,en;q=0.8 告诉浏览器，它的语言环境</span><br><span class="line">Cache-Control: max-age=0	缓存控制</span><br><span class="line">Connection: keep-alive		告诉浏览器，请求完成时断开还是保持连接</span><br><span class="line">HOST：	主机</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-http响应"><a href="#4-http响应" class="headerlink" title="4.http响应"></a>4.http响应</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">百度</span><br><span class="line">Response Headers</span><br><span class="line"></span><br><span class="line">Cache-Control: private      缓存控制</span><br><span class="line">Connection: keep-alive		连接：保证连接</span><br><span class="line">Content-Encoding: gzip		编码</span><br><span class="line">Content-Type: text/html		类型</span><br></pre></td></tr></table></figure>
+
+<p>响应体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Accept:text/html			告诉浏览器，它所支持的数据类型</span><br><span class="line">Accept-Encoding: gzip, deflate, br	支持哪种编码格式</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9,en;q=0.8 告诉浏览器，它的语言环境</span><br><span class="line">Cache-Control: max-age=0	缓存控制</span><br><span class="line">Connection: keep-alive		告诉浏览器，请求完成时断开还是保持连接</span><br><span class="line">HOST：	主机</span><br><span class="line">Refresh：告诉客户端多久刷新一次</span><br><span class="line">Location：让网页重新定位</span><br></pre></td></tr></table></figure>
+
+<p>响应状态码</p>
+<ul>
+<li>200：请求响应成功</li>
+<li>3xx：请求重定向（你重新到我给你新的位置去）</li>
+<li>404：找不到资源</li>
+<li>5xx：服务器代码错误：500（502网关错误）</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/07/07/http/" data-id="cm0uvjx980007y0fwe303fve9" data-title="http" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaweb/" rel="tag">javaweb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-web应用服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/07/web%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2024-07-07T08:39:36.661Z" itemprop="datePublished">2024-07-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/07/web%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/">web应用服务器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="web应用服务器"><a href="#web应用服务器" class="headerlink" title="web应用服务器"></a>web应用服务器</h3><h4 id="1-服务器概念"><a href="#1-服务器概念" class="headerlink" title="1.服务器概念"></a>1.服务器概念</h4><ul>
+<li>Web 服务器一般指网站服务器，也称之为 WWW(World Wide Web)服务器。是指驻留于因特网上某种类型计算机的程序。这个服务器并不是硬件服务器，而是软件服务器。其主要功能是提供网上信息浏览服务，可以向发出请求的浏览器提供文档，也可以放置网站文件，让全世界浏览；还可以放置数据文件，让全世界下载等。</li>
+</ul>
+<h4 id="2-常见的web服务器"><a href="#2-常见的web服务器" class="headerlink" title="2.常见的web服务器"></a>2.常见的web服务器</h4><ul>
+<li><p>①Apache是世界使用排名第一的Web服务器软件。它几乎可以运行在所有的计算机平台上。由于Apache是开源免费的，因此有很多人参与到新功能的开发设计，不断对其进行完善。Apache的特点是简单、速度快、性能稳定，并可做代理服务器来使用。</p>
+</li>
+<li><p>②WebLogic 是美国 Oracle 公司出品的一个应用程序服务器，主要用于开发、集成、部署和管理大型分布式 Web 应用、网络应用和数据库应用的 Java 应用服务器，主要用于部署大型分布式项目使用。</p>
+</li>
+<li><p>③IIS 是一种 Web 服务组件，其中包括 Web 服务器、FTP 服务器、NNTP 服务器和 SMTP 服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面，主要用来部署 ASP.NET 项目使用。</p>
+</li>
+<li><p>④Nginx不仅是一个小巧且高效的HTTP服务器，也可以做一个高效的负载均衡反向代理，通过它接受用户的请求并分发到多个Mongrel进程可以极大提高Rails应用的并发能力。</p>
+</li>
+<li><p>⑤Tomcat是Apache软件基金会（ApacheSoftwareFoundation）的Jakarta项目中的一个核心项目，由Apache、Sun和其他一些公司及个人共同开发而成。Tomcat技术先进、性能稳定，而且免费，因而深受Java爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web应用服务器。</p>
+</li>
+</ul>
+<p>主要包括：Tomcat、Jboos、Weblogic、IIS、Jetty（就相当一个服务）</p>
+<p>服务器是一种被动的操作，用来处理用户的一些请求和给用户一些响应信息</p>
+<h4 id="IIS"><a href="#IIS" class="headerlink" title="IIS"></a>IIS</h4><ul>
+<li>微软的；ASP…Windows自带的</li>
+</ul>
+<h4 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h4><ul>
+<li><p>Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta 项目中的一个核心项目，由Apache、Sun 和其他一些公司及个人共同开发而成。由于有了Sun 的参与和支持，最新的Servlet 和JSP 规范总是能在Tomcat 中得到体现，Tomcat 5支持最新的Servlet 2.4 和JSP 2.0 规范。因为Tomcat 技术先进、性能稳定，而且免费，因而深受Java 爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web 应用服务器。</p>
+</li>
+<li><p>Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个Java初学web的人来说，是最佳选择。</p>
+</li>
+<li><p>而Tomcat 实际上运行JSP 页面和Servlet。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/07/07/web%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cm0uvjx9a000by0fw2vvz1ept" data-title="web应用服务器" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaweb/" rel="tag">javaweb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JavaWeb基本概念" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/07/JavaWeb%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="article-date">
+  <time class="dt-published" datetime="2024-07-07T08:34:34.257Z" itemprop="datePublished">2024-07-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/07/07/JavaWeb%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">JavaWeb基本概念</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="JavaWeb基本概念"><a href="#JavaWeb基本概念" class="headerlink" title="JavaWeb基本概念"></a>JavaWeb基本概念</h2><h4 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h4><h5 id="1-web开发："><a href="#1-web开发：" class="headerlink" title="1.web开发："></a>1.web开发：</h5><p>web：网页的意思（从网上获取相应的资源页面）</p>
+<ul>
+<li>静态web</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">html、css</span><br><span class="line">提供给所有人看的数据始终不会发生</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>动态web</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">提供给所有人看的数据始终发生变化，</span><br><span class="line">每个人在不同的时间，不同的地点看到的信息各不相同</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>技术栈</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Servlet/JSP、ASP、PHP</span><br></pre></td></tr></table></figure>
+
+<p>在Java中，动态web资源开发的技术统称为Javaweb</p>
+<h5 id="2-web应用程序"><a href="#2-web应用程序" class="headerlink" title="2.web应用程序"></a>2.web应用程序</h5><p>web应用程序：可以提供浏览器访问的程序</p>
+<ul>
+<li><p>a.html、b.html…多个web资源，这些web资源可以被外界访问，对外界提供服务</p>
+</li>
+<li><p>你们能访问到的任何一个页面或者资源，都存在这个世界的某一个角落的计算机上</p>
+</li>
+<li><p>通过URL进行查找访问</p>
+</li>
+<li><p>这些统一的web资源会被放在同一个文件下，变成一个web应用程序，要依赖于Tomcat：服务器</p>
+</li>
+<li><p>一个web应用程序由多部分组成（静态web、动态web）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">html、css、js</span><br><span class="line">jsp、servlet程序</span><br><span class="line">java程序</span><br><span class="line">jar包</span><br><span class="line">配置文件（Properties）</span><br></pre></td></tr></table></figure>
+
+<p>web应用程序编写完毕后，若想提供给外界访问，需要一个服务器来统一管理</p>
+</li>
+</ul>
+<h5 id="3-静态web"><a href="#3-静态web" class="headerlink" title="3.静态web"></a>3.静态web</h5><ul>
+<li><p>htm、.html，这些都是网页的后缀，如果服务器上一直存在这些东西，我们就可以直接进行读取，通络。</p>
+<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240707163044149.png" alt="image-20240707163044149" style="zoom:50%;" /></li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>页面无法动态更新，所有用户看到的都是同一个页面</li>
+<li>无法和数据库交互（数据无法持久化、用户无法交互）</li>
+</ul>
+<h5 id="4-动态web"><a href="#4-动态web" class="headerlink" title="4.动态web"></a>4.动态web</h5><p>页面会动态展示</p>
+<p>缺点：</p>
+<ul>
+<li>假如服务器的动态web资源出现了错误，我们需要重写编写我们的后台程序重新发布</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>web页面可以动态更新</li>
+<li>可以与数据库交互（数据持久化：注册）</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/07/07/JavaWeb%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" data-id="cm0uvjx8n0000y0fw23z403qb" data-title="JavaWeb基本概念" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaweb/" rel="tag">javaweb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-huang2024-6-10-2024-6-16周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/06/16/huang2024-6-10-2024-6-16%E5%91%A8%E6%8A%A5/" class="article-date">
@@ -167,777 +1007,11 @@
 
 
   
-    <article id="post-mysql-sql优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/" class="article-date">
-  <time class="dt-published" datetime="2024-06-09T14:29:17.000Z" itemprop="datePublished">2024-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/">mysql-sql优化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>一、SQL执行流程<br>MySQL是客户端-服务器的模式。</p>
-<p>在执行过程中，主要有三类角色：客户端、服务器、存储引擎。</p>
-<p>大致可以分为三层：</p>
-<p>第一层：客户端连接到服务器，构造SQL并发送给服务器。</p>
-<p>第二层：服务器收到SQL进行解析及优化，最终生成执行计划并执行</p>
-<p>第三层：服务器调用存储引擎的API，进行数据的查询和存储。</p>
-<p>二、执行计划分析<br>可以通过explain提前知道当前MySQL是如何处理SQL语句的。</p>
-<p>在我们要执行的SQL前加上explain即可。</p>
-<p>explain select * from user;</p>
-<p>explain insert into user values(user_name, password, email) values(‘1’, ‘1’, ‘1’);</p>
-<p>通过分析执行计划，我们可以得出以下几点：</p>
-<ol>
-<li><p>1.表的读取顺序 -&gt; id</p>
-</li>
-<li><p>2.表读取操作的类型 -&gt; select_type</p>
-</li>
-<li><p>3.可以被使用的索引 -&gt; possible_keys</p>
-</li>
-<li><p>4.实际使用的索引 -&gt; key</p>
-</li>
-<li><p>5.表之间的引用 -&gt; ref</p>
-</li>
-<li><p>6.每张表有多少行被优化器查询 -&gt; rows</p>
-</li>
-</ol>
-<p>上述查询结果字段的含义：</p>
-<p>1.id：表示查询中执行select子句或操作表的顺序，id越大，执行优先级越高，id相同，则从上至下</p>
-<p>2.select_type：表示查询的类型，用来区分普通查询、联合查询、子查询等。一共有9种类型。</p>
-<p>3.table:  输出行所引用的表名，如果使用了别名则显示别名</p>
-<p>4.partitions：使用的哪个分区</p>
-<p>5.type：查询使用了那种类型。描述的是当前如何去找数据的，如：all 表示扫描全表。</p>
-<p>6.possible_keys：可能有助于查询的索引</p>
-<p>7.key：实际使用的索引</p>
-<p>8.key_len:  使用的索引的长度</p>
-<p>9.ref：显示索引的哪一列被使用了 </p>
-<p>10.rows：请求数据大概返回的行数</p>
-<p>11.filtered：表示存储引擎返回的数据在server层过滤后，剩下多少满足查询的记录数量的比例</p>
-<p>12.extra:  其他信息，出现Using filesort、Using temporary 意味着不能使用索引,效率会受到重大影响。应尽可能对此进行优化。</p>
-<p>其中比较重要的字段：</p>
-<p>1.type：可以看出是如何查询数据的方式。一般需要达到 ref、eq_ref 级别，范围查找需要达到 range。</p>
-<p>2.key：是否使用索引，如果为NULL表示没有使用索引，需要优化调整。</p>
-<p>3.rows：表示返回的行数，可以直观观察到结果。</p>
-<p>4.extra：有Using filesort、Using temporary 的一定需要优化。</p>
-<p>三、表结构优化<br>数据库效率的影响主要是因为数据量太大，进行一次查找需要扫描很多数据(硬盘上的磁头需要越过很多数据来找到目标数据)，通过表结构优化的方式可以减轻当前访问的数据量。</p>
-<p>3.1 数据类型优化<br>主旨就是能用小字段类型就不用大字段类型～</p>
-<p>使用简单的数据类型。int 要比 varchar 类型在mysql处理简单<br>尽量使用 tinyint、smallint、mediumint 作为整数类型而非 int<br>尽可能使用 not null 定义字段，因为 null 占用4字节空间。数字可以默认0，字符串默认“”<br>尽量少用 text 类型，非用不可时最好考虑分表<br>尽量使用 timestamp而非 datetime<br>单表不要有太多字段，建议在 20 以内<br>3.2 分库分表优化<br>当数据太多的时候，即使走索引啥的也不能解决效率问题，根本就在于要扫描的数据太多了，并且存储也是比较难的。</p>
-<p>这时候就可以采用分表的方式，将一张表拆分成多张，然后通过编号等手段进行查询。</p>
-<p>拆分大致也有两种方式：</p>
-<p>垂直拆分：</p>
-<pre><code>    按照列的维度，将表中的列拆分开来，分别放在多张表中。例如：某些字段在一张表中可能更加平凡的查询，可以将这些字段放到一张表中，不常用的放在另一张表中。
-
-    但需要注意的是，这种方式需要保证原子性！可以在进行插入的时候使用事务～
-</code></pre>
-<p>水平拆分：</p>
-<pre><code>    按照行的维度，将一张表的数据切分。如0-100的数据放在这张表中，101-200的数据放在另一张表中。
-</code></pre>
-<p>3.3 读写分离优化<br>由于一台数据库服务器的性能肯定是有瓶颈的，可以进行部署一个数据库集群。并采用主从的方式。设置一些主库，一些从库，主库用来负责写入数据，从库用来负责读取数据，当一个新的数据写入的时候，主库需要将数据同步到从库中，以保证数据的完整性。</p>
-<p>四、查询语句优化<br>4.1避免使用 select *<br>sql在解析过程中，还需要把*依次转换为所有的列名，这个工作需要查询数据字典完成。额外开销！因此建议将需要的列写出来。</p>
-<p>4.2多表联查时，小表在前，大表在后<br>from 后的表关联查询是从左往右执行的（Oracle相反），第一张表会涉及到全表扫描，所以将小表放在前面，先扫小表，扫描快效率较高，在扫描后面的大表。</p>
-<p>4.3调整where子句中的连接顺序<br>where子句是从左往右，自上而下的顺序执行的（Oracle相反），根据这个原理，应将过滤数据多的条件往前放，最快速度缩小结果集。</p>
-<p>4.4调整group by和order by子句中的顺序<br>group by和order by子句是从左往右的顺序执行的，根据这个原理，应将排序影响数据多的条件往前放，最快速度缩小结果集。</p>
-<p>4.5用exists、not exists和in、not in相互替代<br>exists以外层表为驱动表，先被访问，适合于外表小而内表大的情况。</p>
-<p>in则是先执行子查询，适合外表大而内表小的情况，一般情况是不推荐使用not in，因为效率非常低。</p>
-<p>原则是哪个的子查询产生的结果集小，就选哪个</p>
-<p>4.6用where子句替换having子句<br>where子句搜索条件在进行分组操作之前应用；而having子句条件在进行分组操作之后应用。</p>
-<p>尽可能让where来缩小结果集！</p>
-<p>4.7分段和分页查询<br>使用合理的分页方式，在数据表量级逐渐增加的时候，limit分页查询的效率会降低。</p>
-<p>可以根据字段索引进行快速定位，直接找到偏移量。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/" data-id="clx7ngpjb0002rsfwd2xc4gez" data-title="mysql-sql优化" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-huang2024-6-3-2024-6-9周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/09/huang2024-6-3-2024-6-9%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-06-09T14:21:13.000Z" itemprop="datePublished">2024-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/09/huang2024-6-3-2024-6-9%E5%91%A8%E6%8A%A5/">huang2024-6-3-2024-6-9周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.MySQL学习</p>
-<p>2.Java笔记整理</p>
-<p>3.日周笔记</p>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日期</th>
-<th>学习内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>sql优化</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>html常用代码</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>html设计</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>c题目</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>日周笔记</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>\</td>
-<td>离散期末复习</td>
-</tr>
-<tr>
-<td>星期日</td>
-<td>\</td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="本周学习内容及收获"><a href="#本周学习内容及收获" class="headerlink" title="本周学习内容及收获"></a>本周学习内容及收获</h2><p>1.sql优化</p>
-<p><a href="https://snail0220.github.io/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/">https://snail0220.github.io/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/</a></p>
-<p>2.html常用代码</p>
-<p><a href="https://snail0220.github.io/2024/06/04/HTML%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">https://snail0220.github.io/2024/06/04/HTML%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</a></p>
-<p>3.日周笔记</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240421122925872.png" alt="image-20240421122925872" style="zoom:67%;" />
-
-<p>4.C题目</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240609223511371.png" alt="image-20240609223511371" style="zoom:67%;" />
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>临近期末，复习的任务加重，再加上这周是端午假期，学习时间大大减少，下周的学习应该也会重点回到期末复习上面。</p>
-<h2 id="下周学习"><a href="#下周学习" class="headerlink" title="下周学习"></a>下周学习</h2><p>1.期末复习：高数、离散</p>
-<p>2.java笔记整理</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/06/09/huang2024-6-3-2024-6-9%E5%91%A8%E6%8A%A5/" data-id="clx7ngpj40000rsfw0vzac9c0" data-title="huang2024-6-3-2024-6-9周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-HTML常用代码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/04/HTML%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/" class="article-date">
-  <time class="dt-published" datetime="2024-06-04T05:39:15.000Z" itemprop="datePublished">2024-06-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/04/HTML%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">HTML常用代码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="网页制作基础学习"><a href="#网页制作基础学习" class="headerlink" title="网页制作基础学习"></a>网页制作基础学习</h3><h4 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h4><h5 id="1-HTML5的优势："><a href="#1-HTML5的优势：" class="headerlink" title="1.HTML5的优势："></a>1.HTML5的优势：</h5><ol>
-<li>化繁为简</li>
-<li>跨平台</li>
-<li>跨浏览器</li>
-<li>功能强大，新增特性</li>
-</ol>
-<h5 id="2-HTML基本结构"><a href="#2-HTML基本结构" class="headerlink" title="2.HTML基本结构"></a>2.HTML基本结构</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meat</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>网页标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	我的第一个网页 </span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span>文档类型声明</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span>语言类型声明</span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;<span class="name">head</span>&gt;</span>头部</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;<span class="name">body</span>&gt;</span>主体</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="二、标签"><a href="#二、标签" class="headerlink" title="二、标签"></a>二、标签</h4><ol>
-<li><h5 id="标题标签"><a href="#标题标签" class="headerlink" title="标题标签"></a>标题标签</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">标题标签，用于定义网页的标题</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h4</span>&gt;</span><span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h5</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h6</span>&gt;</span><span class="tag">&lt;/<span class="name">h6</span>&gt;</span></span><br><span class="line">h1最大，h6最小</span><br><span class="line"></span><br><span class="line">特点：</span><br><span class="line">1.会将文字自动加粗及放大</span><br><span class="line">2.独占一行，属于块级标签</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="段落标签"><a href="#段落标签" class="headerlink" title="段落标签"></a>段落标签</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">特点：</span><br><span class="line">1.对字段对照网页大小进行自适应分段</span><br><span class="line">2.属于块级标签，独占一行</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="换行标签"><a href="#换行标签" class="headerlink" title="换行标签"></a>换行标签</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">用于手动将页面内容换行</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="水平线标签"><a href="#水平线标签" class="headerlink" title="水平线标签"></a>水平线标签</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hr</span>/&gt;</span></span><br><span class="line">在界面中添加水平线</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="字体样式标签"><a href="#字体样式标签" class="headerlink" title="字体样式标签"></a>字体样式标签</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>加粗<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>加粗<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>倾斜<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span>倾斜<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="注释标签"><a href="#注释标签" class="headerlink" title="注释标签"></a>注释标签</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--注释--&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="字符实体"><a href="#字符实体" class="headerlink" title="字符实体"></a>字符实体</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&amp;nbsp;</span> 空格</span><br><span class="line">&gt; 大于&gt;</span><br><span class="line">&lt; 小于&lt;</span><br><span class="line">&quot; &quot;引号</span><br><span class="line"><span class="symbol">&amp;copy;</span> 版权符号</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="图像标签"><a href="#图像标签" class="headerlink" title="图像标签"></a>图像标签</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">scr</span>=<span class="string">&quot;路径(绝对路径/相对路径)&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="超链接标签"><a href="#超链接标签" class="headerlink" title="超链接标签"></a>超链接标签</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;连接地址&quot;</span> <span class="attr">taret</span>=<span class="string">&quot;&quot;</span>&gt;</span>  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">taret属性常用值</span><br><span class="line">_self:在当前窗口打开目标页面</span><br><span class="line">_blank:在新窗口打开目标页面</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/06/04/HTML%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/" data-id="clx7ngpjc0003rsfw8of8ho4o" data-title="HTML常用代码" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-java3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/02/java3/" class="article-date">
-  <time class="dt-published" datetime="2024-06-02T07:57:37.000Z" itemprop="datePublished">2024-06-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/02/java3/">java3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="4-1-容器概述"><a href="#4-1-容器概述" class="headerlink" title="4.1 容器概述"></a>4.1 容器概述</h4><h5 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h5><p>现在需要统计某公司员工的工资情况，例如计算平均工资、找到最高工资等。假设该公司有50名员工，用前面所学的知识，程序首先需要声明50个变量来分别记住每位员工的工资，然后在进行操作，这样做会显得很麻烦，而且错误率也会很高。因此我们可以使用容器进行操作。将所有的数据全部存储到一个容器中，统一操作。</p>
-<h5 id="容器概念"><a href="#容器概念" class="headerlink" title="容器概念"></a>容器概念</h5><p>容器：是将多个数据存储到一起，每个数据称为该容器的元素。<br>生活中的容器：水杯，衣柜，教室</p>
-<h4 id="4-2-数组的概念"><a href="#4-2-数组的概念" class="headerlink" title="4.2 数组的概念"></a>4.2 数组的概念</h4><h5 id="数组概念："><a href="#数组概念：" class="headerlink" title="数组概念："></a>数组概念：</h5><p> 数组就是用于存储数据的长度固定的容器，保证多个数据的数据类型要一致。</p>
-<h5 id="百度百科中对数组的定义："><a href="#百度百科中对数组的定义：" class="headerlink" title="百度百科中对数组的定义："></a>百度百科中对数组的定义：</h5><p>所谓数组(array)，就是相同数据类型的元素按一定顺序排列的集合，就是把有限个类型相同的变量用一个名字命名，以便统一管理他们，然后用编号区分他们，这个名字称为数组名，编号称为下标或索引(index)。组成数组的各个变量称为数组的元素(element)。数组中元素的个数称为数组的长度(length)。</p>
-<h5 id="数组的特点："><a href="#数组的特点：" class="headerlink" title="数组的特点："></a>数组的特点：</h5><p>1、数组的长度一旦确定就不能修改</p>
-<p>2、创建数组时会在内存中开辟一整块连续的空间。</p>
-<p>3、存取元素的速度快，因为可以通过[下标]，直接定位到任意一个元素。</p>
-<h4 id="4-3-数组的定义"><a href="#4-3-数组的定义" class="headerlink" title="4.3 数组的定义"></a>4.3 数组的定义</h4><h5 id="方式一：静态初始化"><a href="#方式一：静态初始化" class="headerlink" title="方式一：静态初始化"></a>方式一：静态初始化</h5><p>格式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型[] 数组名 = &#123;元素<span class="number">1</span>,元素<span class="number">2</span>,元素<span class="number">3.</span>..&#125;;<span class="comment">//必须在一个语句中完成，不能分开两个语句写</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>举例：<br>定义存储1，2，3，4，5整数的数组容器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;<span class="comment">//正确</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span>[] arr;</span><br><span class="line">arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;<span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="方式二：静态初始化"><a href="#方式二：静态初始化" class="headerlink" title="方式二：静态初始化"></a>方式二：静态初始化</h5><p>格式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">数据类型[] 数组名 = <span class="keyword">new</span> 数据类型[]&#123;元素<span class="number">1</span>,元素<span class="number">2</span>,元素<span class="number">3.</span>..&#125;;</span><br><span class="line">或</span><br><span class="line">数据类型[] 数组名;</span><br><span class="line">数组名 = <span class="keyword">new</span> 数据类型[]&#123;元素<span class="number">1</span>,元素<span class="number">2</span>,元素<span class="number">3.</span>..&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>举例：<br>定义存储1，2，3，4，5整数的数组容器。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int[] arr = new int[]&#123;1,2,3,4,5&#125;;//正确</span><br><span class="line"></span><br><span class="line">int[] arr;</span><br><span class="line">arr = new int[]&#123;1,2,3,4,5&#125;;//正确</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="方式三：动态初始化"><a href="#方式三：动态初始化" class="headerlink" title="方式三：动态初始化"></a>方式三：动态初始化</h5><p>格式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">数组存储的元素的数据类型[] 数组名字 = <span class="keyword">new</span> 数组存储的元素的数据类型[长度];</span><br><span class="line"></span><br><span class="line">  或</span><br><span class="line"></span><br><span class="line"> 数组存储的数据类型[] 数组名字;</span><br><span class="line"> 数组名字 = <span class="keyword">new</span> 数组存储的数据类型[长度];</span><br></pre></td></tr></table></figure>
-
-
-<p>数组定义格式详解：<br>数组存储的元素的数据类型： 创建的数组容器可以存储什么数据类型的数据。<br>元素的类型可以是任意的Java的数据类型。例如：int, String, Student等<br>[] : 表示数组。<br>数组名字：为定义的数组起个变量名，满足标识符规范，可以使用名字操作数组。<br>new：关键字，创建数组使用的关键字。因为数组本身是引用数据类型，所以要用new创建数组对象。<br>[长度]：数组的长度，表示数组容器中可以存储多少个元素。<br>注意：数组有定长特性，长度一旦指定，不可更改。<br>和水杯道理相同，买了一个2升的水杯，总容量就是2升，不能多也不能少。<br>举例：<br>定义可以存储5个整数的数组容器，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span>[] arr;</span><br><span class="line">arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-4-数组元素的访问"><a href="#4-4-数组元素的访问" class="headerlink" title="4.4 数组元素的访问"></a>4.4 数组元素的访问</h4><p>索引： 每一个存储到数组的元素，都会自动的拥有一个编号，从0开始，这个自动编号称为数组索引(index)，可以通过数组的索引访问到数组中的元素。<br>索引范围：[0, 数组的长度-1]<br>格式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名[索引]</span><br></pre></td></tr></table></figure>
-
-<p>索引访问数组中的元素：<br>数组名[索引]&#x3D;数值，为数组中的元素赋值<br>变量&#x3D;数组名[索引]，获取出数组中的元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="comment">//定义存储int类型数组，赋值元素1，2，3，4，5</span></span><br><span class="line">    <span class="type">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="comment">//为0索引元素赋值为6</span></span><br><span class="line">    arr[<span class="number">0</span>] = <span class="number">6</span>;</span><br><span class="line">    <span class="comment">//获取数组0索引上的元素</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> arr[<span class="number">0</span>];</span><br><span class="line">    System.out.println(i);</span><br><span class="line">    <span class="comment">//直接输出数组0索引元素</span></span><br><span class="line">    System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/06/02/java3/" data-id="clwx9sz2400026sfw55hjgtfq" data-title="java3" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-mysql总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/02/mysql%E6%80%BB%E7%BB%93/" class="article-date">
-  <time class="dt-published" datetime="2024-06-02T07:57:19.000Z" itemprop="datePublished">2024-06-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/02/mysql%E6%80%BB%E7%BB%93/">mysql总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://img-blog.csdnimg.cn/6749ad2fb574434fb467cf0d263a8589.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/36fbfd4ac0cd411ca313dd018194a7e0.jpeg#pic_center" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/90ac82b2d16044bc9edac28e04980278.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/c3b32f47c83b4dd796b4e1d26ffda15c.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/119a0f82bd3d4eb8b678a7d495dd88b4.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/8d50bb4f1cd54d748a5317a1f57a1a72.jpeg#pic_center" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/28d0ce965bb749c597e2f998e239dafd.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/59d30cb6a40a4991835593259139c594.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/be64616713fc42189e181a35201b1c4e.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/9c2bf7228e714a62a38b8f7fdd94bcee.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/af296f49493f4950a49b1de404421103.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/312400158a8f4e719cf16b8ff5982871.jpeg#pic_center" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/a4180780d0994430b0423fc7f2e35029.jpeg#pic_center" alt="img"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/06/02/mysql%E6%80%BB%E7%BB%93/" data-id="clwx9sz2500036sfw4pbp9m4z" data-title="mysql总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-huang2024-5-26-2024-6-2周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/02/huang2024-5-26-2024-6-2%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-06-02T07:55:44.000Z" itemprop="datePublished">2024-06-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/02/huang2024-5-26-2024-6-2%E5%91%A8%E6%8A%A5/">huang2024-5-26-2024-6-2周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.mysql学习</p>
-<p>2.Java笔记</p>
-<p>3.日周笔记</p>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日期</th>
-<th>内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>mysql总结</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>Java笔记</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>C程序</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>Java笔记</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>日周笔记</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>mysql查看思维导图</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期日</td>
-<td>mysql整理</td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>1.mysql笔记</p>
-<p><a href="https://snail0220.github.io/2024/06/02/mysql%E6%80%BB%E7%BB%93/">https://snail0220.github.io/2024/06/02/mysql%E6%80%BB%E7%BB%93/</a></p>
-<p>2.Java笔记</p>
-<p><a href="https://snail0220.github.io/2024/06/02/java3/">https://snail0220.github.io/2024/06/02/java3/</a></p>
-<p>3.日周笔记</p>
-<img src="file:///E:\QQ\2194861505\Image\C2C\4c8fb7a3ad8b4a75bfdcc92367c459d2.jpg" alt="img" style="zoom:67%;" />
-
-
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>普普通通的一周，按照计划学习了该学习的内容，Java的笔记整理稳步进行。Mysql的学习也在渐进尾声。日周笔记的整理在慢慢进行。</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><p>1.mysql</p>
-<p>2.Java笔记</p>
-<p>3.日周笔记</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/06/02/huang2024-5-26-2024-6-2%E5%91%A8%E6%8A%A5/" data-id="clwx9sz1z00006sfw224f66zp" data-title="huang2024-5-26-2024-6-2周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-huang2024-5-13-2024-5-26周报" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/26/huang2024-5-13-2024-5-26%E5%91%A8%E6%8A%A5/" class="article-date">
-  <time class="dt-published" datetime="2024-05-26T04:57:21.000Z" itemprop="datePublished">2024-05-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/26/huang2024-5-13-2024-5-26%E5%91%A8%E6%8A%A5/">huang2024-5-13-2024-5-26周报</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="本周学习大纲"><a href="#本周学习大纲" class="headerlink" title="本周学习大纲"></a>本周学习大纲</h2><p>1.mysql学习</p>
-<p>2.Java笔记</p>
-<p>3.日周笔记</p>
-<h2 id="本周学习日历"><a href="#本周学习日历" class="headerlink" title="本周学习日历"></a>本周学习日历</h2><table>
-<thead>
-<tr>
-<th>日期</th>
-<th>内容</th>
-<th>其他</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>星期一</td>
-<td>mysql–null</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期二</td>
-<td>Java笔记</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期三</td>
-<td>web网页美化</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期四</td>
-<td>Java笔记</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期五</td>
-<td>\</td>
-<td>日周笔记</td>
-</tr>
-<tr>
-<td>星期六</td>
-<td>mysql–null not误差理解</td>
-<td>\</td>
-</tr>
-<tr>
-<td>星期日</td>
-<td>mysql–数据</td>
-<td>\</td>
-</tr>
-</tbody></table>
-<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>1.mysql笔记</p>
-<p><a href="https://snail0220.github.io/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/">mysql笔记（13） | Hexo (snail0220.github.io)</a></p>
-<p>2.Java笔记</p>
-<p><a href="https://snail0220.github.io/2024/05/09/Java2/">Hexo (snail0220.github.io)</a></p>
-<p>3.日周笔记</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240526132501816.png" alt="image-20240526132501816" style="zoom:60%;" />
-
-<p>4.web设计</p>
-<img src="C:\Users\黄倩\AppData\Roaming\Typora\typora-user-images\image-20240526132619790.png" alt="image-20240526132619790" style="zoom:60%;" />
-
-
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>普普通通的一周，按照计划学习了该学习的内容，Java的笔记整理的还算OK。Mysql的学习也在稳步向下学习着。日周笔记的整理在慢慢进行。web网页的设计还是需要看着书上的方法去进行，还没能形成自己的思维。</p>
-<h2 id="下周学习大纲"><a href="#下周学习大纲" class="headerlink" title="下周学习大纲"></a>下周学习大纲</h2><p>1.mysql</p>
-<p>2.Java笔记</p>
-<p>3.日周笔记</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/05/26/huang2024-5-13-2024-5-26%E5%91%A8%E6%8A%A5/" data-id="clwn3lm2v00007gfwfzdn6khh" data-title="huang2024-5-13-2024-5-26周报" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-mysql笔记（13）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/" class="article-date">
-  <time class="dt-published" datetime="2024-05-26T04:56:59.000Z" itemprop="datePublished">2024-05-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/">mysql笔记（13）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>创建表时应当设置not null，添加一个默认值0或’’去替代null。</p>
-<h5 id="sum-‘field’-的坑"><a href="#sum-‘field’-的坑" class="headerlink" title="sum(‘field’)的坑"></a>sum(‘field’)的坑</h5><p>若一列的所有值都是null，那么sum函数的结果不是0，而是null，所以可能会因为值的类型兼容问题，出现意料之外的情况。</p>
-<p>null值会有NPE问题。</p>
-<h5 id="count-‘field’-的坑"><a href="#count-‘field’-的坑" class="headerlink" title="count(‘field’)的坑"></a>count(‘field’)的坑</h5><p>有null的列，count不会+1。</p>
-<h5 id="where-‘field’-的坑"><a href="#where-‘field’-的坑" class="headerlink" title="where(‘field’)的坑"></a>where(‘field’)的坑</h5><p>null是没有设置值的一种状态，并不是某个值，若用<code>where field = null, where field = &#39;&#39;, where field = false, where field = true</code>，都无法匹配。</p>
-<p>需要使用<code>where field is null，where field &lt;=&gt; null</code>来匹配。</p>
-<h5 id="group-by-‘field’-的坑"><a href="#group-by-‘field’-的坑" class="headerlink" title="group by(‘field’)的坑"></a>group by(‘field’)的坑</h5><p>null值会被自动归类为一类，某些场景下，可能不适用。</p>
-<h5 id="order-by-‘field’-的坑"><a href="#order-by-‘field’-的坑" class="headerlink" title="order by(‘field’)的坑"></a>order by(‘field’)的坑</h5><p>null值会被视为最小值，放在0的前方，某些场景下，可能不适用。</p>
-<h5 id="distinct-‘field’-的坑"><a href="#distinct-‘field’-的坑" class="headerlink" title="distinct(‘field’)的坑"></a>distinct(‘field’)的坑</h5><p>有null的值，也会被去重，某些场景下，可能不适用。</p>
-<h5 id="null相关运算的坑"><a href="#null相关运算的坑" class="headerlink" title="null相关运算的坑"></a>null相关运算的坑</h5><p>null值与任何数据进行四则运算或者大于小于等于不等于的运算，都返回null，某些场景下，可能不适用。</p>
-<h5 id="导入数据的坑"><a href="#导入数据的坑" class="headerlink" title="导入数据的坑"></a>导入数据的坑</h5><p>若两个MySQL环境或配置不一样，A设备导出的数据，B设备导入，可能会因为null值所在的字段缺少值从而报错。</p>
-<h5 id="外键的坑"><a href="#外键的坑" class="headerlink" title="外键的坑"></a>外键的坑</h5><p>在 MySQL 中，如果使用了外键约束，并且外键列允许 NULL 值，那么当引用的列中出现 NULL 值时，可能会导致一些意想不到的行为，如无法正确匹配行或者导致级联更新或删除的问题。</p>
-<h5 id="结果兼容性的坑"><a href="#结果兼容性的坑" class="headerlink" title="结果兼容性的坑"></a>结果兼容性的坑</h5><p>对于静态强类型语言，可能类型上会不兼容。</p>
-<p>对于动态若类型的语言，null，0，false，‘’，都是false，可能会影响一些逻辑。</p>
-<h5 id="对唯一索引的影响"><a href="#对唯一索引的影响" class="headerlink" title="对唯一索引的影响"></a>对唯一索引的影响</h5><p>null值会导致数据有多个相同的null值，破坏了唯一性约束。</p>
-<h5 id="对索引的影响"><a href="#对索引的影响" class="headerlink" title="对索引的影响"></a>对索引的影响</h5><p>有的说null值就不走索引，经过实测，就算全是null值，也显示的Using index。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/05/26/mysql%E7%AC%94%E8%AE%B0%EF%BC%8813%EF%BC%89/" data-id="clwn3lm3500027gfw5opd6xm1" data-title="mysql笔记（13）" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-mysql笔记（12）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/" class="article-date">
-  <time class="dt-published" datetime="2024-05-19T13:04:51.886Z" itemprop="datePublished">2024-05-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/">mysql笔记（12）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>查看字符集</p>
-<p>字符集是自然语言字符集合及其在计算机中的编码和字符串排序规则。每个字符集至少对应一个排序规则。</p>
-<p>常见字符集</p>
-<p>计算机系统存在大量字符集，常见的有：ASCII字符集、GB2312字符集、BIG5字符集、GB18030字符集、Unicode字符集、UTF-8字符集等。其中：</p>
-<p>Unicode支持现今世界各种不同语言的书面文本的交换、处理以及显示，以满足跨语言、跨平台进行文本交换、处理的请求。</p>
-<p>UTF-8（8-bit Unicode Transformation Format）是Unicode的其中一个编码格式，是把Unicode字符集按某种格式存储，采用可变长度字节来储存Unicode字符。UTF-8是一种针对Unicode的可变长度字符编码，又称万国码。</p>
-<p>MySQL支持多种字符集，默认使用是UTF-8，可以设置不同级别的字符集：服务器级、数据库级、数据表级、字段级。</p>
-<p>查看当前MySQL系统支持的字符集：</p>
-<p><code>show character set</code></p>
-<p>查看当前服务器级字符集：</p>
-<p><code>show variables [like &#39;character_set_server&#39;]</code></p>
-<p> 查看当前数据库级字符集</p>
-<p><code>show variables like &#39;character_set_database&#39;</code></p>
-<p>查看字符集排序规则</p>
-<p><code>show collation [like &#39;charset_name% ]</code></p>
-<p>中括号【】包含内容是可选项。不写的时候是查看全部排序规则，写上的时候可以按指定的字符集名称匹配的方式查找字符集排序规则。‘%’是模式匹配符号，只要字符集是%前指定字符串开头的，都会显示比如:show collation like’utf8%’</p>
-<p>启动服务</p>
-<p>用命令行的方式启动 <code>net start mysql57</code></p>
-<p>打开windows+r，输入services.msc 找到MySQL的服务，右键启动。</p>
-<p>1、创建数据库\na)语句创建数据库</p>
-<p>语法：</p>
-<p><code>create &#123;database|schema&#125; [if not exists] db_name</code></p>
-<p><code> [default] character set [=] charset_name</code></p>
-<p><code>| [default] collate [=] collation_name</code></p>
-<p>语法说明：</p>
-<p> MySQL系统会自动在安装时的数据库默认目录下生成一个与新建数据库名相同的空文件夹</p>
-<p>数据库名不能使用MySQL关键字，也不能与其他数据库重名</p>
-<p>名称可以有任意字母、阿拉伯数字、下划线“_”和“$”组成，可以使用上述任意字符开头，但不能使用单独的数字命名，否则会造成它与数字混淆</p>
-<p>名称最长为64个字符，别名最长可达256个字符</p>
-<p>建议数据库名、表名用小写，不同平台度大小写敏感度不同，Windows不敏感二Linux敏感，统一小写方便平台移植</p>
-<p>character set用来设置数据库字符集，若不指定字符集，系统会使用my.ini指定的character-set-server参数设置的字符集</p>
-<p>collate表示字符集排序规则</p>
-<p>在MySQL中 create database和create schema是同义词，功能一致，这是与其他DBMS不同之处。\ncreate database db_test default char</p>
-<p>DML语句</p>
-<p>DML语句是数据操作语句，主要负责对数据的增删改操作，下面对这三种数据操作进行介绍</p>
-<p>1 添加数据（插入数据）</p>
-<p>语法：</p>
-<p>插入单条指定字段数据：<code>insert into 表名(name,id，字段1，字段2,......) values (&#39;张三丰&#39;,6,.......);</code></p>
-<p>插入单条所有字段数据：<code>insert into 表名 values (所有字段数据);</code></p>
-<p>插入多条数据：<code>insert into 表名 values (字段数据1)，（字段数据2），（字段数据3）......;</code></p>
-<p>需要插入多条数据的话直接在values关键字后用逗号继续添加括号即可。</p>
-<p>代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into student (name,id) values (&#x27;张三丰&#x27;,6);</span><br><span class="line">insert into student values (&#x27;lisi&#x27;,7,19,90,&#x27;男&#x27;);</span><br><span class="line">insert into student values (&#x27;lisi&#x27;,7,19,90,&#x27;男&#x27;),(&#x27;wangwu&#x27;,8,20,91,&#x27;女&#x27;);</span><br></pre></td></tr></table></figure>
-
-<p>2 删除数据</p>
-<p>语法：<code>delete from 表名 where 条件;</code></p>
-<p>代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from student where id = 1;</span><br></pre></td></tr></table></figure>
-
-<p>3 修改数据</p>
-<p>修改数据可也可以理解为更新某一条数据，常与where条件进行配合使用</p>
-<p>语法：<code>update 表名 set 字段1 = 数据1,字段2 = 数据2 where 条件;</code></p>
-<p>代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update student\nset name = &#x27;灭绝师太&#x27;,sex = &#x27;男&#x27;\nwhere id = 2;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://snail0220.github.io/2024/05/19/mysql%E7%AC%94%E8%AE%B0%EF%BC%8812%EF%BC%89/" data-id="clwdkgd9e0003v4fw6oh732j4" data-title="mysql笔记（12）" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -951,7 +1025,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code%E7%BB%84%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">Code组学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaweb/" rel="tag">javaweb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
     </div>
   </div>
 
@@ -961,7 +1035,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/mysql/" style="font-size: 17.5px;">mysql</a>
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/Code%E7%BB%84%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">Code组学习周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/javaweb/" style="font-size: 12.5px;">javaweb</a> <a href="/tags/mysql/" style="font-size: 17.5px;">mysql</a>
     </div>
   </div>
 
@@ -970,7 +1044,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
     </div>
   </div>
 
@@ -983,23 +1057,23 @@
       <ul>
         
           <li>
-            <a href="/2024/06/16/huang2024-6-10-2024-6-16%E5%91%A8%E6%8A%A5/">huang2024-6-10-2024-6-16周报</a>
+            <a href="/2024/09/09/C/">C</a>
           </li>
         
           <li>
-            <a href="/2024/06/09/mysql-sql%E4%BC%98%E5%8C%96/">mysql-sql优化</a>
+            <a href="/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/">MySQL总结</a>
           </li>
         
           <li>
-            <a href="/2024/06/09/huang2024-6-3-2024-6-9%E5%91%A8%E6%8A%A5/">huang2024-6-3-2024-6-9周报</a>
+            <a href="/2024/09/09/huang2024-9-2-2024-9-8%E5%91%A8%E6%8A%A5/">huang2024-9-2-2024-9-8周报</a>
           </li>
         
           <li>
-            <a href="/2024/06/04/HTML%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/">HTML常用代码</a>
+            <a href="/2024/09/09/termtwo01/">termtwo01</a>
           </li>
         
           <li>
-            <a href="/2024/06/02/java3/">java3</a>
+            <a href="/2024/07/24/Maven/">(no title)</a>
           </li>
         
       </ul>

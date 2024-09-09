@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>C | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="第一章 C语言基本知识【考点1】C程序用C语言编写的程序称为C语言源程序，源程序文件后缀名为“.c”。 源程序经编译后生成后缀名为“.obj”的目标文件。 再把目标文件与各种库函数连接起来，生成后缀名为“.exe”可执行文件。 C语言有三种基本结构：顺序结构、选择结构、循环结构。 【考点2】main函数main函数（又称主函数），是C程序的入口。main后面跟一对小括号和一对花括号，花括号括起来的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C">
+<meta property="og:url" content="https://snail0220.github.io/2024/09/09/C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一章 C语言基本知识【考点1】C程序用C语言编写的程序称为C语言源程序，源程序文件后缀名为“.c”。 源程序经编译后生成后缀名为“.obj”的目标文件。 再把目标文件与各种库函数连接起来，生成后缀名为“.exe”可执行文件。 C语言有三种基本结构：顺序结构、选择结构、循环结构。 【考点2】main函数main函数（又称主函数），是C程序的入口。main后面跟一对小括号和一对花括号，花括号括起来的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-09T10:36:25.000Z">
+<meta property="article:modified_time" content="2024-09-09T10:42:47.356Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://snail0220.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-C" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/09/C/" class="article-date">
+  <time class="dt-published" datetime="2024-09-09T10:36:25.000Z" itemprop="datePublished">2024-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      C
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="第一章-C语言基本知识"><a href="#第一章-C语言基本知识" class="headerlink" title="第一章 C语言基本知识"></a>第一章 C语言基本知识</h3><h5 id="【考点1】C程序"><a href="#【考点1】C程序" class="headerlink" title="【考点1】C程序"></a>【考点1】C程序</h5><p>用C语言编写的程序称为C语言源程序，源程序文件后缀名为“.c”。</p>
+<p>源程序经编译后生成后缀名为“.obj”的目标文件。</p>
+<p>再把目标文件与各种库函数连接起来，生成后缀名为“.exe”可执行文件。</p>
+<p>C语言有三种基本结构：顺序结构、选择结构、循环结构。</p>
+<h5 id="【考点2】main函数"><a href="#【考点2】main函数" class="headerlink" title="【考点2】main函数"></a>【考点2】main函数</h5><p>main函数（又称主函数），是C程序的入口。main后面跟一对小括号和一对花括号，花括号括起来的bu分称为main函数的函数体。一个C程序从main函数开始执行，到main函数体执行完结束，而不论main函数在整个程序中的位置如何。每一个程序有且仅有一个main函数，其他函数都是为main函数服务的。</p>
+<h5 id="【考点3】存储形式"><a href="#【考点3】存储形式" class="headerlink" title="【考点3】存储形式"></a>【考点3】存储形式</h5><p>计算机在电脑中保存数据是采用二进制形式，由0或1构成的二进制称为位（bit），八个位构成一个字节（Byte），1个Byte&#x3D;8个bit。</p>
+<p>二进制、八进制、十六进制转化为十进制采用乘法。</p>
+<p>十进制转化为二进制、八进制、十六进制采用除法。</p>
+<p>数据的存放位置就是它的地址。</p>
+<h5 id="【考点4】注释"><a href="#【考点4】注释" class="headerlink" title="【考点4】注释"></a>【考点4】注释</h5><p>是对程序的说明，可出现在程序中任意合适的地方，注释从“&#x2F;<em>”开始到最近一个“</em>&#x2F;”结束，其间任何内容都不会被计算机执行，注释不可以嵌套。</p>
+<h5 id="【考点5】书写格式"><a href="#【考点5】书写格式" class="headerlink" title="【考点5】书写格式"></a>【考点5】书写格式</h5><p>每条语句的后面必须有一个分号，分号是语句的一部分。</p>
+<p>一行内可写多条语句，一个语句可写在多行上。</p>
+<h5 id="【考点6】标识符"><a href="#【考点6】标识符" class="headerlink" title="【考点6】标识符"></a>【考点6】标识符</h5><p>是标识名字的有效字符序列，可以理解为C程序中的单词。</p>
+<p>标识符的命名规则是：</p>
+<p>（1）标识符只能由字母、数字和下划线组成，字母区分大小写。</p>
+<p>（2）标识符的第一个字符必须是字母或下划线，不能为数字。</p>
+<p>C语言标识符分如下3类：</p>
+<p>（1）关键字（保留字）。它们在程序中有固定的含义，不能另作他用。如int、for、switch等。</p>
+<p>（2）预定义标识符。预先定义并具有特定含义的标识符。如define、include等。</p>
+<p>（3）用户标识符。用户根据需要定义的标识符，符合命名规则且不与关键字相同。</p>
+<h5 id="【考点7】常量与变量"><a href="#【考点7】常量与变量" class="headerlink" title="【考点7】常量与变量"></a>【考点7】常量与变量</h5><p>常量是指在程序运行过程中，其值不能改变的量。分为整型常量、实型常量、字符常量、字符串常量、符号常量5种。</p>
+<p>在程序运行过程中其值可以改变的量称为变量。C语言中没有字符串变量。存放字符串使用字符数组。</p>
+<h5 id="【考点8】整型数据"><a href="#【考点8】整型数据" class="headerlink" title="【考点8】整型数据"></a>【考点8】整型数据</h5><p>整型常量有十进制、八进制、十六进制三种表示形式，没有二进制形式。</p>
+<p>八进制整型常量加前导数字“0”，十进制常量可不加前导数字，也可以加“0O”，十六进制常量加前导“0X”。</p>
+<p>整型变量可分为基本整型（int）、短整型（short）、长整型（long）、和无符号整型（unsigned）。一个基本整型占4个字节，长整型占8个字节。。</p>
+<h5 id="【考点9】实型数据"><a href="#【考点9】实型数据" class="headerlink" title="【考点9】实型数据"></a>【考点9】实型数据</h5><p>实型数据有两种表示形式：小数形式和指数形式。掌握判定指数形式合法性。</p>
+<p>实型变量分为单精度型（float）和双精度型（double），单精度型占四个字节。</p>
+<h5 id="【考点10】算术运算"><a href="#【考点10】算术运算" class="headerlink" title="【考点10】算术运算"></a>【考点10】算术运算</h5><p>算术运算符一共有+、—、*、&#x2F;、%这五个。求余运算要求运算对象只能为整型，除法运算符两边运算对象都为整型时，运算结果也为整型即舍掉小数部分。</p>
+<h5 id="【考点11】强制类型转换"><a href="#【考点11】强制类型转换" class="headerlink" title="【考点11】强制类型转换"></a>【考点11】强制类型转换</h5><p>将一个运算对象转换成指定类型，格式为“（类型名）表达式”，注意小括号位置。</p>
+<h5 id="【考点12】赋值"><a href="#【考点12】赋值" class="headerlink" title="【考点12】赋值"></a>【考点12】赋值</h5><p>赋值运算符为“&#x3D;”，不同于关系等于“&#x3D; &#x3D;”。</p>
+<p>赋值表达式格式为：变量名&#x3D;表达式，赋值运算符左边必须为变量，赋值运算是把赋值运算符右边表达式的值赋给左边变量。</p>
+<p>复合赋值运算符是将算术运算符或位运算符与赋值运算符组合在一起组成的运算符，掌握复合赋值表达式转化为赋值表达式的方法。如n+&#x3D;100可转化为n&#x3D;n+100。</p>
+<h5 id="【考点13】自加自减运算"><a href="#【考点13】自加自减运算" class="headerlink" title="【考点13】自加自减运算"></a>【考点13】自加自减运算</h5><p>自加运算符“++”与自减运算符“–”是单目运算符，运算对象必须是变量。</p>
+<p>自增自减运算分前缀运算和后缀运算，它们所对应的表达式的值是有区别的，如j&#x3D;i++;等价于j&#x3D;i;i&#x3D;i+1;（先等于后加）;而j&#x3D;++i;等价于i&#x3D;i+1;j&#x3D;i;（先加再等于）。</p>
+<h5 id="【考点14】逗号运算"><a href="#【考点14】逗号运算" class="headerlink" title="【考点14】逗号运算"></a>【考点14】逗号运算</h5><p>逗号运算符运算优先级最低，可将多个表达式构成一个新的表达式。</p>
+<h3 id="第二章-顺序结构"><a href="#第二章-顺序结构" class="headerlink" title="第二章 顺序结构"></a>第二章 顺序结构</h3><h5 id="【考点1】运算符、表达式、语句"><a href="#【考点1】运算符、表达式、语句" class="headerlink" title="【考点1】运算符、表达式、语句"></a>【考点1】运算符、表达式、语句</h5><p>表达式：运算对象加运算符。</p>
+<p>表达式语句：表达式加分号。</p>
+<p>运算对象可以是表达式、常量、变量。</p>
+<p>赋值表达式：赋值运算符加运算对象。</p>
+<p>赋值语句：赋值表达式加分号。</p>
+<h5 id="【考点2】运算符的优先级和结合顺序"><a href="#【考点2】运算符的优先级和结合顺序" class="headerlink" title="【考点2】运算符的优先级和结合顺序"></a>【考点2】运算符的优先级和结合顺序</h5><p>运算符按参加运算的对象数目可分为单目运算符、双目运算符和三目运算符。</p>
+<p>初等运算符优先级别最高，然后依次是单目运算符、算术运算符、关系运算符、逻辑运算符（除逻辑非！）、条件运算符、赋值运算符、逗号运算符。</p>
+<p>位运算符优先级介于算术运算符与逻辑运算符之间。结合顺序大多为自左向右，而自右向左的有三个：单目运算符、条件运算符和赋值运算符。</p>
+<h5 id="【考点3】printf函数"><a href="#【考点3】printf函数" class="headerlink" title="【考点3】printf函数"></a>【考点3】printf函数</h5><p>格式为：printf(输出控制，输出列表)。输出控制是用一对双引号括起来的，包含格式说明和原样信息。输出列表包含若干输出项。</p>
+<h5 id="【考点4】printf函数中格式说明"><a href="#【考点4】printf函数中格式说明" class="headerlink" title="【考点4】printf函数中格式说明"></a>【考点4】printf函数中格式说明</h5><p>%d对应整型</p>
+<p>%f对应单精度实型</p>
+<p>%lf对应双精度实型</p>
+<p>%c对应字符型</p>
+<p>%o对应八进制无符号整型</p>
+<p>%x对应十六进制无符号整型</p>
+<p>%u对应无符号整型</p>
+<p>%e对应指数型</p>
+<p>%s对应字符串型</p>
+<p>可在%和格式字符之间加一个数来控制数据所占的宽度和小数位数。</p>
+<h5 id="【考点5】scanf函数"><a href="#【考点5】scanf函数" class="headerlink" title="【考点5】scanf函数"></a>【考点5】scanf函数</h5><p>输入项要求带取地址符&amp;。</p>
+<p>当用键盘输入多个数据时，数据之间用分隔符。分隔符包括空格符、制表符和回车符（不包括逗号）。</p>
+<h5 id="【考点6】如何交换两个变量"><a href="#【考点6】如何交换两个变量" class="headerlink" title="【考点6】如何交换两个变量"></a>【考点6】如何交换两个变量</h5><p>要使用中间变量，语句为：t&#x3D;x; x&#x3D;y; x&#x3D;t;。</p>
+<h3 id="第三章-选择结构"><a href="#第三章-选择结构" class="headerlink" title="第三章 选择结构"></a>第三章 选择结构</h3><h5 id="【考点1】关系运算"><a href="#【考点1】关系运算" class="headerlink" title="【考点1】关系运算"></a>【考点1】关系运算</h5><p>C语言用非0表示逻辑真，用0表示逻辑假。</p>
+<p>关系运算符有6个，分别是“&gt;，&gt;&#x3D;，&lt;，&lt;&#x3D;，&#x3D;&#x3D;，!&#x3D;”，前四种优先级高于后两种。关系表达式真时为1，假时为0。</p>
+<p>注意：a&lt;b&lt;c是不可以的，可用(a&lt;b)&amp;&amp;(b&lt;c)来表示。</p>
+<h5 id="【考点2】逻辑运算"><a href="#【考点2】逻辑运算" class="headerlink" title="【考点2】逻辑运算"></a>【考点2】逻辑运算</h5><p>逻辑运算符共有3个：逻辑与（&amp;&amp;），逻辑或（||），逻辑非（!）。</p>
+<p>注意短路现象，例a++||b++，如果表达式a++的值非零，则表达式b++不再执行。</p>
+<h5 id="【考点3】if语句"><a href="#【考点3】if语句" class="headerlink" title="【考点3】if语句"></a>【考点3】if语句</h5><p>可以单独出现，也可以与else匹配出现。</p>
+<p>if语句可以嵌套，这时else总是与离它最近的且没有与else匹配的if匹配。</p>
+<h5 id="【考点4】条件运算"><a href="#【考点4】条件运算" class="headerlink" title="【考点4】条件运算"></a>【考点4】条件运算</h5><p>是唯一的三目运算符，格式为：表达式1?表达式2:表达式3。</p>
+<p>表达式1值为非0时，整个表达式值为表达式2的值，表达式1值为0时，整个表达式值为表达式3的值。</p>
+<h5 id="【考点5】switch语句"><a href="#【考点5】switch语句" class="headerlink" title="【考点5】switch语句"></a>【考点5】switch语句</h5><p>要注意每条case后有没有break语句的区别。</p>
+<p>还要注意switch后小括号里面的表达式不能为实型，case后表达式不能有变量。</p>
+<h3 id="第四章-循环结构"><a href="#第四章-循环结构" class="headerlink" title="第四章  循环结构"></a>第四章  循环结构</h3><h5 id="【考点1】三种循环结构"><a href="#【考点1】三种循环结构" class="headerlink" title="【考点1】三种循环结构"></a>【考点1】三种循环结构</h5><p>三种循环结构分别为：while，do-while，for。</p>
+<p>注意for循环中的小括号中必须是两个分号；</p>
+<p>循环一定要有结束条件，否则成了死循环；</p>
+<p>do-while()循环最后的while()；后一定要有分号。</p>
+<h5 id="【考点2】break与continue"><a href="#【考点2】break与continue" class="headerlink" title="【考点2】break与continue"></a>【考点2】break与continue</h5><p>break是终止所在整个循环，而continue是提前结束本轮循环。</p>
+<p>break语句可出现在循环结构与switch语句中，continue只出现在循环结构中。</p>
+<h5 id="【考点3】循环的嵌套"><a href="#【考点3】循环的嵌套" class="headerlink" title="【考点3】循环的嵌套"></a>【考点3】循环的嵌套</h5><p>就是循环里面还有循环，计算要一层一层分析，一般只考查两层嵌套，循环嵌套通常是处理二维数组。</p>
+<h5 id="【考点4】循环结构的复习"><a href="#【考点4】循环结构的复习" class="headerlink" title="【考点4】循环结构的复习"></a>【考点4】循环结构的复习</h5><p>循环结构是重点，应用性很强。要求学员重点理解并多加练习，领会掌握。</p>
+<h3 id="第五章-字符型数据-位运算"><a href="#第五章-字符型数据-位运算" class="headerlink" title="第五章 字符型数据 位运算"></a>第五章 字符型数据 位运算</h3><h5 id="【考点1】字符常量"><a href="#【考点1】字符常量" class="headerlink" title="【考点1】字符常量"></a>【考点1】字符常量</h5><p>一个字符常量用一对单引号括起来，字符常量只能包括一个字符，’ab’是非法的。空格常用’□’来表示（此处用□来代表一个空格，不能写成’’两个连续的单引号）。</p>
+<p>字符常量可用对应的ASCII码表示，需记住：’0’的ASCII码为48，’A’的ASCII码为65，’a’的ASCII码为97。</p>
+<h5 id="【考点2】转义字符"><a href="#【考点2】转义字符" class="headerlink" title="【考点2】转义字符"></a>【考点2】转义字符</h5><p>一对单引号中以一个反斜线后跟一个特定字符或八进制、十六进制数来构成转义字符。比如’\n’表示换行，’\101’或’\x41’表示ASCII码为65的字符’A’。</p>
+<h5 id="【考点3】字符型数据可以和整型数据相互转换"><a href="#【考点3】字符型数据可以和整型数据相互转换" class="headerlink" title="【考点3】字符型数据可以和整型数据相互转换"></a>【考点3】字符型数据可以和整型数据相互转换</h5><p>如：’0’-0&#x3D;48  ‘A’+32&#x3D;’a’  char a&#x3D;65;printf(“%d%c”,a,a); 结果为65A</p>
+<h5 id="【考点4】位运算符"><a href="#【考点4】位运算符" class="headerlink" title="【考点4】位运算符"></a>【考点4】位运算符</h5><p>C语言提供6种位运算符：</p>
+<p>按位求反~<br>按位左移&lt;&lt;<br>按位右移&gt;&gt;<br>按位与&amp;<br>按位异或^<br>按位或|<br>一般情况下需要先转化进制。异或运算的规则：0异或1得到1，0异或0得到0，1异或1得到0。可记为“相同为0，不同为1”。</p>
+<h5 id="【考点5】putchar与getchar函数"><a href="#【考点5】putchar与getchar函数" class="headerlink" title="【考点5】putchar与getchar函数"></a>【考点5】putchar与getchar函数</h5><p>可用于输出或输入单个字符，这两个函数是stdio.h文件中的库函数，它们是printf与scanf函数的简化。</p>
+<h3 id="第六章-函数"><a href="#第六章-函数" class="headerlink" title="第六章 函数"></a>第六章 函数</h3><h5 id="【考点1】函数的定义"><a href="#【考点1】函数的定义" class="headerlink" title="【考点1】函数的定义"></a>【考点1】函数的定义</h5><p>函数：具有一定功能的一个程序块。</p>
+<p>函数的首部为：函数类型 函数名（类型1 形参1，类型2 形参2，……）。</p>
+<p>在函数定义中不可以再定义函数，即不能嵌套定义函数。函数类型默认为int型。</p>
+<h5 id="【考点2】库函数"><a href="#【考点2】库函数" class="headerlink" title="【考点2】库函数"></a>【考点2】库函数</h5><p>调用C语言标准库函数时要包含include命令，include命令行以#开头，后面是””或&lt;&gt;括起来的后缀为”.h”的头文件。以#开头的一行称为编译预处理命令行，编译预处理不是C语言语句，不加分号，不占运行时间。</p>
+<h5 id="【考点3】函数的返回值"><a href="#【考点3】函数的返回值" class="headerlink" title="【考点3】函数的返回值"></a>【考点3】函数的返回值</h5><p>函数通过return语句返回一个值，返回的值类型与函数类型一样。return语句只执行一次，执行完或函数体结束后退出函数。</p>
+<h5 id="【考点4】函数的声明"><a href="#【考点4】函数的声明" class="headerlink" title="【考点4】函数的声明"></a>【考点4】函数的声明</h5><p>函数要“先定义后调用”，或“先声明再调用后定义”。</p>
+<p>函数的声明一定要有函数名、函数返回值类型、函数参数类型，但不一定要有形参的名称。</p>
+<h5 id="【考点5】函数的调用"><a href="#【考点5】函数的调用" class="headerlink" title="【考点5】函数的调用"></a>【考点5】函数的调用</h5><p>程序从上往下执行，当碰到函数名后，把值传给调用函数，当程序得到了返回值或调用函数结束，再顺序往下执行。</p>
+<h5 id="【考点6】函数的参数及值传递"><a href="#【考点6】函数的参数及值传递" class="headerlink" title="【考点6】函数的参数及值传递"></a>【考点6】函数的参数及值传递</h5><p>形式参数简称形参，是定义函数时函数名后面括号中的参数。</p>
+<p>实在参数简称实参，是调用函数时函数名后面括号中的参数。</p>
+<p>实参和形参分别占据不同的存储单元。实参向形参单向传递数值。</p>
+<p>“传值”与“传址”的区别：</p>
+<p>传数值：形参的变化不会改变实参的变化。</p>
+<p>传地址：形参的变化就有可能改变实参所对应的量。</p>
+<h5 id="【考点7】函数的递归调用"><a href="#【考点7】函数的递归调用" class="headerlink" title="【考点7】函数的递归调用"></a>【考点7】函数的递归调用</h5><p>函数直接或间接地调用自己称为函数的递归调用。</p>
+<p>递归调用必须有一个明确的结束递归的条件。</p>
+<p>在做递归题时可把递归的步骤一步步写下来，不要弄颠倒了。</p>
+<h5 id="【考点8】要求掌握的库函数"><a href="#【考点8】要求掌握的库函数" class="headerlink" title="【考点8】要求掌握的库函数"></a>【考点8】要求掌握的库函数</h5><p>sqrt()算术平方根函数</p>
+<p>fabs()绝对值函数</p>
+<p>pow()幂函数</p>
+<p>sin()正弦函数</p>
+<h3 id="第七章-指针"><a href="#第七章-指针" class="headerlink" title="第七章 指针"></a>第七章 指针</h3><h5 id="【考点1】指针变量"><a href="#【考点1】指针变量" class="headerlink" title="【考点1】指针变量"></a>【考点1】指针变量</h5><p>指针变量是用来存储地址的，而一般变量是存储数值的。</p>
+<p>指针变量可指向任意一种数据类型。</p>
+<h5 id="【考点2】指针变量的定义"><a href="#【考点2】指针变量的定义" class="headerlink" title="【考点2】指针变量的定义"></a>【考点2】指针变量的定义</h5><p>格式为：类型名 *指针变量名。</p>
+<p>二维指针int **p;可以理解为基类型为(int *)类型。</p>
+<h5 id="【考点3】指针变量的初始化"><a href="#【考点3】指针变量的初始化" class="headerlink" title="【考点3】指针变量的初始化"></a>【考点3】指针变量的初始化</h5><p>指针变量在使用前必须要初始化，把一个具体的地址赋给它，否则引用时会有副作用，如果不指向任何数据就赋“空值”NULL。</p>
+<h5 id="【考点4】指针变量的引用"><a href="#【考点4】指针变量的引用" class="headerlink" title="【考点4】指针变量的引用"></a>【考点4】指针变量的引用</h5><p>&amp;是取地址符</p>
+<p>*是间接访问运算符</p>
+<p>它们是互逆的两个运算符。在指针变量名前加间接访问运算符（*指针变量名）就等价它所指向的量。</p>
+<h5 id="【考点5】指针的运算"><a href="#【考点5】指针的运算" class="headerlink" title="【考点5】指针的运算"></a>【考点5】指针的运算</h5><p>*p++和(<em>p)++之间的差别：</em>p++是地址变化，(*p)++是指针变量所指的数据变化。</p>
+<p>一个指针变量加一个整数不是简单的数学相加，而是连续移动若干地址。</p>
+<p>当两个指针指向同一数组时，它们可以比较大小进行减法运算。</p>
+<h3 id="第八章-数组"><a href="#第八章-数组" class="headerlink" title="第八章 数组"></a>第八章 数组</h3><h5 id="【考点1】数组的定义"><a href="#【考点1】数组的定义" class="headerlink" title="【考点1】数组的定义"></a>【考点1】数组的定义</h5><p>数组：一组具有相同类型的数据的集合，这些数据称为数组元素。</p>
+<p>格式为：类型名 数组名[常量表达式]。</p>
+<p>数组所占字节数为元素个数与基类型所占字节数的乘积。（基类型是类型的一种。 通过继续机制，可以利用已有的数据类型来定义新的数据类型。所定义的新的数据类型不仅拥有新定义的成员，而且还同时拥有旧的成员。我们称已存在的用来派生新类的类为基类，又称为父类。由已存在的类派生出的新类称为派生类，又称为子类。）</p>
+<h5 id="【考点2】数组的初始化"><a href="#【考点2】数组的初始化" class="headerlink" title="【考点2】数组的初始化"></a>【考点2】数组的初始化</h5><p>第一维长度可以不写，其它维必须写。</p>
+<p>int a[]&#x3D;{1,2};合法，int a[][3]&#x3D;{2,3,4};合法，int a[2][]&#x3D;{2,3,4};非法。</p>
+<p>数组初始化元素值默认为0，没有初始化元素值为随机。</p>
+<p>如在int a[5]&#x3D;{0,1,2};中，元素a[4]值为0；而在int a[5];中，元素a[4]值为一个不确定的随机数。</p>
+<h5 id="【考点3】元素的引用"><a href="#【考点3】元素的引用" class="headerlink" title="【考点3】元素的引用"></a>【考点3】元素的引用</h5><p>数组元素的下标从0开始，到数组长度减1结束。</p>
+<p>所以int a[5];中数组最后一个元素是a[4]。</p>
+<p>要把数组元素看作一个整体，可以把a[4]当作一个整型变量。</p>
+<h5 id="【考点4】二维数组"><a href="#【考点4】二维数组" class="headerlink" title="【考点4】二维数组"></a>【考点4】二维数组</h5><p>数组<code>a[2][3]=&#123;1,2,3,4,5,6&#125;</code>;中含6个元素，有2行3列。</p>
+<p><code>a[0][0]: 1  a[0][1]: 2</code></p>
+<p><code>a[1][0]: 3  a[1][1]: 4</code></p>
+<p><code>a[2][0]: 5  a[2][1]: 6</code></p>
+<p>第一行为a[0]行，第2行为a[1]行，a[0]、a[1]叫行首地址，是地址常量。*(a[0]+1)是第一行第一个元素往后跳一列，即元素<code>a[0][1]</code>值为2，*(a[0]+3)是第一行第一个元素往后跳三个，即元素<code>a[1][0]</code>值为4。</p>
+<h5 id="【考点5】行指针"><a href="#【考点5】行指针" class="headerlink" title="【考点5】行指针"></a>【考点5】行指针</h5><p>是一个指针变量，占四个字节，行指针指向一行连续数据，形式为：int (*p)[2];，p只能存放含有两个整型元素的一维数组的首地址。</p>
+<p>注意：(*p)两边的小括号不能省略，否则就成了指针数组，是若干指针元素的集合。</p>
+<h5 id="【考点6】数组名"><a href="#【考点6】数组名" class="headerlink" title="【考点6】数组名"></a>【考点6】数组名</h5><p>数组名是数组的首地址。</p>
+<p>数组名不能单独引用，不能通过一个数组名代表全部元素。</p>
+<p>数组名是地址常量，不能对数组名赋值，所以a++是错误的。</p>
+<p>但数组名可以作为地址与一个整数相加得到一个新地址。</p>
+<h5 id="【考点7】元素形式的转换"><a href="#【考点7】元素形式的转换" class="headerlink" title="【考点7】元素形式的转换"></a>【考点7】元素形式的转换</h5><p>助记： a[2]变成*(a+2)，<code>a[2][3]</code>变成*(a+2)[3]再可变成*(*(a+2)+3)。</p>
+<h3 id="第九章-字符串"><a href="#第九章-字符串" class="headerlink" title="第九章 字符串"></a>第九章 字符串</h3><h5 id="【考点1】字符串常量及表示"><a href="#【考点1】字符串常量及表示" class="headerlink" title="【考点1】字符串常量及表示"></a>【考点1】字符串常量及表示</h5><p>字符串常量：双引号括起来的一串字符，如”ABC”。</p>
+<p>存储字符串时，系统会自动在其尾部加上一个空值’\0’，空值也要占用一个字节，也就是字符串”ABC”需要占四个字节。</p>
+<h5 id="【考点2】字符数组"><a href="#【考点2】字符数组" class="headerlink" title="【考点2】字符数组"></a>【考点2】字符数组</h5><p>C语言没有字符串变量，只能采用字符数组来存储字符串。</p>
+<p>数组的大小应该比它将要实际存放的最长字符串多一个元素，从而存放’\0’。</p>
+<h5 id="【考点3】字符串赋值"><a href="#【考点3】字符串赋值" class="headerlink" title="【考点3】字符串赋值"></a>【考点3】字符串赋值</h5><p>可以用下面的形式进行赋值：char str[]&#x3D;”Hello! “;或char *p;p&#x3D;”Hello! “;</p>
+<p>但不能用下面的形式：char str[10];str&#x3D;”Hello”;</p>
+<p>因为str是一个地址常量，不能进行赋值操作。</p>
+<h5 id="【考点4】字符串的输入与输出"><a href="#【考点4】字符串的输入与输出" class="headerlink" title="【考点4】字符串的输入与输出"></a>【考点4】字符串的输入与输出</h5><p>可以用scanf和printf函数，如scanf(“%s”,str);，也可用专门处理字符串的两个函数gets和puts函数，还可以对字符数组逐个元素进行赋值，但一定要在最后赋一个’\0’。</p>
+<p>使用gets函数可以接收空格，使用puts函数在最后输出一个换行。</p>
+<h5 id="【考点5】字符串函数"><a href="#【考点5】字符串函数" class="headerlink" title="【考点5】字符串函数"></a>【考点5】字符串函数</h5><p>要掌握的四个字符串函数：</p>
+<p>字符串拷贝函数strcpy（）</p>
+<p>求字符串长度函数strlen（）</p>
+<p>字符串链接函数strcat（）</p>
+<p>字符串比较函数strcmp（）</p>
+<p>使用这些函数需在预处理部分包含头文件”string.h”。</p>
+<p>字符串长度要小于字符数组的长度，例：char str[10]&#x3D; “Hello”;sizeof(str)的值为10（数组长度），strlen(str)的值为5（字符串长度）。</p>
+<p>这些函数是考试常用到的函数，大家一定要熟练应用这几个函数。</p>
+<h3 id="第十章-结构体与共用体"><a href="#第十章-结构体与共用体" class="headerlink" title="第十章 结构体与共用体"></a>第十章 结构体与共用体</h3><h5 id="【考点1】结构体类型的说明"><a href="#【考点1】结构体类型的说明" class="headerlink" title="【考点1】结构体类型的说明"></a>【考点1】结构体类型的说明</h5><p>结构体：若干个类型数据的集合。</p>
+<p>结构体类型说明格式如下：struct 类型名 {类型1 成员名1;类型2 成员名2;……};</p>
+<p>以上整个部分是一个数据类型，与整型的int是同样地位。</p>
+<p>可用typedef把结构体类型替换成一个只有几个字母的简短标识符。</p>
+<h5 id="【考点2】结构体变量的定义"><a href="#【考点2】结构体变量的定义" class="headerlink" title="【考点2】结构体变量的定义"></a>【考点2】结构体变量的定义</h5><p>结构体变量：用说明的结构体类型所定义的一个变量，与结构体类型不是一回事。</p>
+<p>一个结构体变量所占字节数为其所有成员所占字节数之和。如struct stu{char name[10];int age;} a,b;则表明定义了两个结构体变量a,b,每个变量占14个字节。a,b与int i,j;中的变量i,j是同样地位。</p>
+<h5 id="【考点3】结构体成员的引用"><a href="#【考点3】结构体成员的引用" class="headerlink" title="【考点3】结构体成员的引用"></a>【考点3】结构体成员的引用</h5><p>引用成员可用以下3种方式：</p>
+<p>（1）结构体变量名.成员名；</p>
+<p>（2）指针变量名-&gt;成员名：</p>
+<p>（3）（*指针变量名）.成员名。</p>
+<p>点（.）称为成员运算符，箭头（-&gt;）称为结构指向运算符。</p>
+<h5 id="【考点4】链表"><a href="#【考点4】链表" class="headerlink" title="【考点4】链表"></a>【考点4】链表</h5><p>链表是由一个个结点构成的，一个结点就是一个结构体变量。</p>
+<p>每个结点可以分为数据域与指针域两个部分。</p>
+<p>数据域：存放要存储的数据</p>
+<p>指针域：指向下一个结点</p>
+<p>链表是考试中的难点，在C语言和公共基础部分都会考到，要领悟掌握。</p>
+<h5 id="【考点5】共用体"><a href="#【考点5】共用体" class="headerlink" title="【考点5】共用体"></a>【考点5】共用体</h5><p>共用体的使用格式与结构体相似，共用体定义的关键字为union，共用体所占字节数是所有成员中字节数最大的那个。</p>
+<h3 id="第十一章-文件"><a href="#第十一章-文件" class="headerlink" title="第十一章 文件"></a>第十一章 文件</h3><h5 id="【考点1】文件类型指针"><a href="#【考点1】文件类型指针" class="headerlink" title="【考点1】文件类型指针"></a>【考点1】文件类型指针</h5><p>文件指针：一个指向结构体类型的指针。</p>
+<p>定义格式为：FILE *指针变量名。</p>
+<p>在使用文件时，都需要先定义文件指针。</p>
+<h5 id="【考点2】文本文件与二进制文件"><a href="#【考点2】文本文件与二进制文件" class="headerlink" title="【考点2】文本文件与二进制文件"></a>【考点2】文本文件与二进制文件</h5><p>文本形式：存放的是字符的ASCII码。</p>
+<p>进制形式：存放的是数据的二进制。</p>
+<p>例如“100”如果是文本形式就是存储’1’、 ’0’、 ’0’三个字符的ASCII码（00110001 00110000 00110000），如果是二进制形式就把100转化成二进制（01100100）。</p>
+<h5 id="【考点3】打开文件"><a href="#【考点3】打开文件" class="headerlink" title="【考点3】打开文件"></a>【考点3】打开文件</h5><p>文件的打开形式如下：FILE *fp;  fp&#x3D;fopen(“c:\lab.c”,”rb”);。</p>
+<p>fopen函数的前面一部分为文件名，后面一部分为文件的使用方式。其中r：读，w：写，a：添加，b：二进制位的。</p>
+<h5 id="【考点4】文件函数"><a href="#【考点4】文件函数" class="headerlink" title="【考点4】文件函数"></a>【考点4】文件函数</h5><p>判断文件结束：feof函数</p>
+<p>移动文件指针位置：fseek函数</p>
+<p>获得文件位置：ftell函数</p>
+<p>文件位置移到开头：rewind函数</p>
+<p>文件字符输入输出：fgetc函数和fputc函数</p>
+<p>文件输入输出：fscanf函数和fprintf函数</p>
+<p>文件字符串输入输出：fgets函数和fputs函数</p>
+<p>读写二进制文件：fread函数和fwrite函数</p>
+<p>以上函数要求知道格式会用，清楚是用于二进制文件还是文本文件，要把教材文件这章仔细复习下，不要在考试的时候把这些文件函数搞混了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://snail0220.github.io/2024/09/09/C/" data-id="cm0uvjx960004y0fw3arxeeo6" data-title="C" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MySQL总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-HTML/" rel="tag">CSS HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" rel="tag">CodeWave组黄倩本周学习大纲</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" rel="tag">CodeWave组黄倩组周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Code%E7%BB%84%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" rel="tag">Code组学习周报</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL%E7%AC%94%E8%AE%B0/" rel="tag">MySQL笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaweb/" rel="tag">javaweb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CSS-HTML/" style="font-size: 10px;">CSS HTML</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%91%A8%E6%8A%A5/" style="font-size: 20px;">CodeWave组黄倩周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 15px;">CodeWave组黄倩学习周报</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E6%9C%AC%E5%91%A8%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" style="font-size: 10px;">CodeWave组黄倩本周学习大纲</a> <a href="/tags/CodeWave%E7%BB%84%E9%BB%84%E5%80%A9%E7%BB%84%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">CodeWave组黄倩组周报</a> <a href="/tags/Code%E7%BB%84%E5%AD%A6%E4%B9%A0%E5%91%A8%E6%8A%A5/" style="font-size: 10px;">Code组学习周报</a> <a href="/tags/MySQL%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">MySQL笔记</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/javaweb/" style="font-size: 12.5px;">javaweb</a> <a href="/tags/mysql/" style="font-size: 17.5px;">mysql</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/09/09/C/">C</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/09/MySQL%E6%80%BB%E7%BB%93-0/">MySQL总结</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/09/huang2024-9-2-2024-9-8%E5%91%A8%E6%8A%A5/">huang2024-9-2-2024-9-8周报</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/09/termtwo01/">termtwo01</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/24/Maven/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
